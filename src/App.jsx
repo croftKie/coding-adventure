@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { puzzleSelector } from './store/features/puzzlesSlice';
 import { currentPuzzleSelector } from './store/features/progressSlice';
 
+import { gsap } from 'gsap';
 
 function App() {
   // const [mouse, ref] = useMouse();

@@ -3,6 +3,7 @@ import googleClassroom from '../assets/google-classroom.png'
 import gear from '../assets/gear.png';
 import podium from '../assets/podium.png';
 import process from '../assets/process.png';
+import chat from '../assets/chat.png';
 
 import { useSelector } from "react-redux";
 import { chaptersSelector } from "../store/features/chaptersSlice";
@@ -17,6 +18,7 @@ const LowerNav = ({openSettings, openClassroom, openSave})=>{
             <div className="lowerNav">
                 <div>
                     <div className="item"><img onClick={openClassroom} src={googleClassroom} alt="" /></div>
+                    <div className="item"><img onClick={openClassroom} src={chat} alt="" /></div>
                 </div>
                 <h3>0 out of {chapters[currentChapter].chapterPuzzles.length} challenges completed</h3>
                 <h3>{chapters[currentChapter].chapterName}</h3>

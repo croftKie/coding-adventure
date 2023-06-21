@@ -10,7 +10,7 @@ const InstructionInput = ({inputs}) => {
                 switch (input) {
                     case 1:
                         return (
-                            <Move />
+                            <Move/>
                         )
                     case 2:
                         return (

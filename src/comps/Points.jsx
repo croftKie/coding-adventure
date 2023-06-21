@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { changeCurrentPuzzle } from '../store/features/progressSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeCurrentPuzzle, currentChapterSelector } from '../store/features/progressSlice';
+import { chaptersSelector } from '../store/features/chaptersSlice';
 
 const Points = ({puzzles, openPopup}) => {
     const dispatch = useDispatch();
+    const chapters = useSelector(chaptersSelector);
+    const currentChapters = useSelector(currentChapterSelector)
 
 
       const assignPuzzleId = (id)=>{
@@ -12,9 +15,11 @@ const Points = ({puzzles, openPopup}) => {
 
     return ( 
         <div className="points">
-            <div onClick={()=>{assignPuzzleId(puzzles[0].id); openPopup()}} className="point one"></div>
-            <div onClick={()=>{assignPuzzleId(puzzles[1].id); openPopup()}} className="point two"></div>
-            <div onClick={()=>{assignPuzzleId(puzzles[2].id); openPopup()}} className="point three"></div>
+            {chapters[currentChapters].points.map((point, index)=>{
+              return (
+                <div style={{top:point.top, left:point.left}} onClick={()=>{assignPuzzleId(chapters[currentChapters].chapterPuzzles[index]); openPopup()}} className="point"></div>
+              )
+            })}
         </div>
      );
 }

@@ -1,26 +1,32 @@
 import React from "react";
-import save from '../assets/floppy-disk.png'
 import googleClassroom from '../assets/google-classroom.png'
 import gear from '../assets/gear.png';
 import podium from '../assets/podium.png';
 import process from '../assets/process.png';
 
-const LowerNav = ()=>{
+import { useSelector } from "react-redux";
+import { chaptersSelector } from "../store/features/chaptersSlice";
+import { currentChapterSelector } from "../store/features/progressSlice";
+
+const LowerNav = ({openSettings, openClassroom, openSave})=>{
+    const chapters = useSelector(chaptersSelector);
+    const currentChapter = useSelector(currentChapterSelector)
+
     return (
-    <>
-        <div className="lowerNav">
-            <div>
-                <div className="item"><img src={googleClassroom} alt="" /></div>
-                <div className="item"><img src={save} alt="" /></div>
+        <div className="nav">
+            <div className="lowerNav">
+                <div>
+                    <div className="item"><img onClick={openClassroom} src={googleClassroom} alt="" /></div>
+                </div>
+                <h3>0 out of {chapters[currentChapter].chapterPuzzles.length} challenges completed</h3>
+                <h3>{chapters[currentChapter].chapterName}</h3>
             </div>
-            <h3>0 out of 3 challenges completed</h3>
+            <div className="side-nav">
+                <div className="item"><img onClick={openSettings} src={podium} alt="" /></div>
+                <div className="item"><img onClick={openSettings} src={process} alt="" /></div>
+                <div className="item"><img onClick={openSettings} src={gear} alt="" /></div>
+            </div>
         </div>
-        <div className="side-nav">
-            <div className="item"><img src={podium} alt="" /></div>
-            <div className="item"><img src={process} alt="" /></div>
-            <div className="item"><img src={gear} alt="" /></div>
-        </div>
-    </>
     )
 }
 

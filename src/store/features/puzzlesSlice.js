@@ -3,34 +3,25 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     puzzles : [
         {
-            puzzleName : "test puzzle one",
+            puzzleName : "The Clearing",
             id : 101,
             type : 1,
             puzzleDescription : "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
-            pointLocation : {
-                x : 56.4,
-                y : 90.6
-            },
+            assetId : [1,2]
         },
         {
-            puzzleName : "test puzzle two",
+            puzzleName : "The Tree",
             id : 102,
             type : 2,
             puzzleDescription : "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
-            pointLocation : {
-                x : 56.4,
-                y : 90.6
-            },
+            assetId : [1,2]
         },
         {
-            puzzleName : "test puzzle three",
+            puzzleName : "The Hidden Gold",
             id : 103,
             type : 3,
             puzzleDescription : "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
-            pointLocation : {
-                x : 56.4,
-                y : 90.6
-            },
+            assetId : [1,2]
         }
     ],
 }

@@ -1,8 +1,16 @@
-const images = [
-    { id: 1, src: './assets/image01.jpg', title: 'foo', description: 'bar' },
-    { id: 2, src: './assets/image02.jpg', title: 'foo', description: 'bar' },
-    { id: 3, src: './assets/image03.jpg', title: 'foo', description: 'bar' },
-    { id: 4, src: './assets/image04.jpg', title: 'foo', description: 'bar' },
-    { id: 5, src: './assets/image05.jpg', title: 'foo', description: 'bar' },
-  ];
-  export default images;
+export const puzzleAssets = [
+    { id: 1, src: '../assets/gold-ingots.png'},
+    { id: 2, src: '../assets/pirate.png'},
+];
+export const uiAssets = [
+  { id: 1, src: '../assets/close.png'},
+  { id: 2, src: 'assets/floppy-disk.png'},
+  { id: 3, src: '../assets/gear.png'},
+  { id: 4, src: '../assets/google-classroom.png'},
+  { id: 5, src: '../assets/info.png'},
+  { id: 6, src: '../assets/podium.png'},
+  { id: 7, src: '../assets/process.png'},
+]
+export const bgAssets = [
+  { id: 1, src: '../assets/pxfuel.jpg'},
+]

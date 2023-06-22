@@ -40,7 +40,7 @@ function App() {
     openClassroom(!classroom);
   }
 
-  if (false) {
+  if (true) {
     return (
       <Splash />
     )

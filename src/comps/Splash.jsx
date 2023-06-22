@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import floppy from '../assets/floppy-disk.png';
+import logo from '../assets/binary-code.png';
 
 const Splash = () => {
     return ( 
         <div className="splash">
             <div className="splash-content">
                 <div className="topbar"></div>
-                <img src={floppy} alt="" />
+                <img src={logo} alt="" />
                 <div className="nav">
                     <div className="new card">
                         <h3>Start New</h3>

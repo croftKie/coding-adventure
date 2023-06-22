@@ -1,43 +1,50 @@
 import React, { useState, useEffect, useRef } from 'react';
 import InstructionInput from './instructions-comps/InstructionInput';
-import { instructionInputSelector } from '../../store/features/currentInput';
-import { useSelector } from 'react-redux';
+import { instructionInputSelector, clearInstruction } from '../../store/features/currentInput';
+import { useSelector, useDispatch } from 'react-redux';
 import pirate from "../../assets/pirate.png"
-import { gsap } from 'gsap';
+import gold from '../../assets/gold-ingots.png';
+import { onClickAnim } from '../../utils/animations2d';
 
-const Instructions = () => {
+const Instructions = ({puzzle}) => {
     const [inputs, setInputs] = useState([])
     const imgRef = useRef();
     const instructionInputs = useSelector(instructionInputSelector);
+    const dispatch = useDispatch();
 
     const pushInputs = (type) =>{
         setInputs([...inputs, type]);
     }
-    const onClickAnim = ()=>{
-        console.log(imgRef.current)
-        gsap.to(imgRef.current, {x: instructionInputs[0].value})
-        gsap.to(imgRef.current, {x: instructionInputs[1].value, delay: 2})
+    const reset = ()=>{
+        dispatch(clearInstruction());
+        setInputs([]);
     }
     
-    console.log(instructionInputs)
     return ( 
         <div className="instructions-puzzle">
             <div className="content">
                 <div className="input">
                     <InstructionInput inputs={inputs}/>
                     <div className="choices">
-                        <button onClick={()=>{pushInputs(1)}}>Move</button>
-                        <button onClick={()=>{pushInputs(2)}}>Turn</button>
-                        <button onClick={()=>{pushInputs(3)}}>Change</button>
+                        <button onClick={()=>{pushInputs(1)}}>Forward</button>
+                        <button onClick={()=>{pushInputs(2)}}>Backwards</button>
+                        <button onClick={()=>{pushInputs(3)}}>Right</button>
+                        <button onClick={()=>{pushInputs(4)}}>Left</button>
+                    </div>
+                    <div className='logic'>
+                        {/* <button onClick={()=>{pushInputs(5)}}>If</button> */}
+                        <button onClick={()=>{pushInputs(6)}}>Repeat</button>
+                        <button onClick={()=>{pushInputs(7)}}>End</button>
                     </div>
                 </div>
                 <div className="result">
-                    <img ref={imgRef} src={pirate} alt="" />
+                    <img style={{top:puzzle.startLocations[0].top, left:puzzle.startLocations[0].right}} ref={imgRef} src={pirate} alt="" />
+                    <img style={{top:puzzle.startLocations[1].top, left:puzzle.startLocations[1].right}} src={gold} alt="" />
                 </div>
             </div>
             <div className="buttons">
-                <button className="reset">Reset</button>
-                <button onClick={onClickAnim} className="run">Run</button>
+                <button onClick={reset} className="reset">Reset</button>
+                <button onClick={()=>{onClickAnim(imgRef, instructionInputs)}} className="run">Run</button>
             </div>
         </div>
      );

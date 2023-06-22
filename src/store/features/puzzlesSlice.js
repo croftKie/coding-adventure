@@ -8,8 +8,8 @@ const initialState = {
             type : 1,
             puzzleDescription : "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
             assetId : [1,2],
-            startLocations : [{},{}],
-            endLocations : [{}, {}]
+            startLocations : [{image : 'pirate', top : 400, right: 400},{image : 'gold', top : 100, right: 100}],
+            endLocations : [{image : 'pirate', top: 100, right: 100}, {}]
         },
         {
             puzzleName : "The Tree",

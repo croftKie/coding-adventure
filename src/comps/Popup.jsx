@@ -13,11 +13,13 @@ import Cryptography from './puzzle-templates/Cryptography';
 import { useSelector } from 'react-redux';
 import { puzzleSelector } from '../store/features/puzzlesSlice';
 
-
+import { gsap } from 'gsap';
+import { useRef } from 'react';
 
 const Popup = ({currentPuzzle, openPopup}) => {
     const puzzles = useSelector(puzzleSelector);
     const [puzzle] = puzzles.filter(puzzle => puzzle.id === currentPuzzle);
+    const popupRef = useRef();
     
     const toastText = puzzle.puzzleDescription
     const showToastMessage = () => {
@@ -27,19 +29,24 @@ const Popup = ({currentPuzzle, openPopup}) => {
         });
     };
 
+    const closeOnPress = ()=>{
+        gsap.to(popupRef.current, {height: 0, width: 0, opacity: 0})
+        setTimeout(()=>{openPopup()},1000)
+    }
+
     const type = puzzle.type;
     return ( 
-        <div className="popup">
+        <div ref={popupRef} className="popup">
             <ToastContainer />
             <div className="nav">
                 <div className='bar'>
                     <div onClick={showToastMessage} className="item"><img src={info} alt="" /></div>
-                    <div onClick={openPopup} className="item"><img src={close} alt="" /></div>
+                    <div onClick={closeOnPress} className="item"><img src={close} alt="" /></div>
                 </div>
                 <h1>{puzzle.puzzleName}</h1>
             </div>
             <div className="puzzleContent">
-                {type === 1 ? <Instructions /> : 
+                {type === 1 ? <Instructions puzzle={puzzle}/> : 
                 type === 2 ? <Cryptography /> :
                 type === 3 ? <BugFix /> :
                 type === 4 ? <Styling /> : <></>}

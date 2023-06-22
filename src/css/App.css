@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@300;400;600&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +8,7 @@
 #root {
   height: 100vh;
   width: 100vw;
-  font-family: "Geologica";
+  font-family: "Red Hat Mono";
 }
 
 .background {
@@ -39,14 +39,11 @@
   position: relative;
   height: 30px;
   width: 30px;
-  background-color: rgb(11, 222, 0);
-  border: 2px solid black;
+  background-color: #5AA9E6;
+  border: 3px solid #333333;
   border-radius: 10px;
   transition: all 0.25s;
   cursor: pointer;
-}
-.hud .points .point:hover {
-  opacity: 100%;
 }
 .hud .nav {
   grid-row: 2/3;
@@ -55,20 +52,11 @@
   justify-self: center;
   display: flex;
   justify-content: space-between;
-  background-color: rgb(33, 33, 33);
-  border-radius: 5px;
+  background-color: #FFF8EF;
+  border-radius: 10px;
   margin-bottom: 20px;
-  border: 2px solid black;
-  box-shadow: 5px 5px 0 2px black;
-}
-.hud .nav:before {
-  position: absolute;
-  content: "";
-  width: 80%;
-  height: 1%;
-  background-color: rgb(11, 222, 0);
-  border-radius: 5px 5px 0 0;
-  border-bottom: 2px solid black;
+  border: 3px solid #333333;
+  box-shadow: 5px 5px 0 1px #333333;
 }
 .hud .nav .side-nav {
   display: flex;
@@ -91,7 +79,7 @@
   display: flex;
   align-items: center;
   padding: 0 20px 0 20px;
-  color: rgb(11, 222, 0);
+  color: #333333;
 }
 .hud .lowerNav div {
   display: flex;
@@ -112,17 +100,17 @@
 .popup {
   height: 80%;
   width: 80%;
-  background-color: rgb(28, 28, 28);
-  border-radius: 25px;
-  border: 2px solid black;
+  background-color: #FFF8EF;
+  border-radius: 10px;
+  border: 3px solid #333333;
   position: absolute;
   top: 5%;
   left: 10%;
   z-index: 2;
   display: grid;
   grid-template-rows: 1fr 8fr;
-  color: rgb(11, 222, 0);
-  box-shadow: 10px 10px 0 1px black;
+  color: #333333;
+  box-shadow: 5px 5px 0 1px #333333;
 }
 .popup .nav {
   grid-row: 1/2;
@@ -130,19 +118,19 @@
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 25px 25px 0 0;
+  border-radius: 10px 10px 0 0;
 }
 .popup .nav .bar {
   width: 100%;
   padding: 5px 0 5px 0;
-  border-bottom: 2px solid black;
+  border-bottom: 3px solid #333333;
   align-self: flex-end;
   display: flex;
   justify-content: end;
   gap: 20px;
   padding-right: 10px;
-  background-color: rgb(11, 222, 0);
-  border-radius: 25px 25px 0 0;
+  background-color: #5AA9E6;
+  border-radius: 10px 10px 0 0;
 }
 .popup .nav .bar .item {
   display: flex;
@@ -195,18 +183,19 @@
 .popup .puzzleContent .instructions-puzzle .content .input .choices button {
   width: 20%;
   height: 40px;
-  background-color: rgb(11, 222, 0);
-  border: 3px solid black;
+  background-color: #9AD6FF;
+  border: 3px solid #333333;
   border-radius: 10px;
-  color: black;
+  color: #333333;
   font-size: 1.5rem;
 }
 .popup .puzzleContent .instructions-puzzle .content .result {
-  border-left: 3px solid rgb(11, 222, 0);
+  border-left: 3px solid #333333;
   height: 100%;
   width: 50%;
 }
 .popup .puzzleContent .instructions-puzzle .content .result img {
+  position: relative;
   height: 50px;
 }
 .popup .puzzleContent .instructions-puzzle .buttons {
@@ -214,15 +203,15 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-top: 3px solid rgb(11, 222, 0);
+  border-top: 3px solid #333333;
 }
 .popup .puzzleContent .instructions-puzzle .buttons button {
-  width: 15%;
+  width: 20%;
   height: 40px;
-  background-color: rgb(11, 222, 0);
-  border: 3px solid black;
+  background-color: #9AD6FF;
+  border: 3px solid #333333;
   border-radius: 10px;
-  color: black;
+  color: #333333;
   font-size: 1.5rem;
 }
 .popup .puzzleContent .bugFix-puzzle {
@@ -242,7 +231,7 @@
   grid-template-rows: 9fr 1fr;
 }
 .popup .puzzleContent .bugFix-puzzle .content .result {
-  border-left: 3px solid rgb(11, 222, 0);
+  border-left: 3px solid #333333;
   height: 100%;
   width: 50%;
 }
@@ -251,15 +240,15 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-top: 3px solid rgb(11, 222, 0);
+  border-top: 3px solid #333333;
 }
 .popup .puzzleContent .bugFix-puzzle .buttons button {
-  width: 15%;
+  width: 20%;
   height: 40px;
-  background-color: rgb(11, 222, 0);
-  border: 3px solid black;
+  background-color: #9AD6FF;
+  border: 3px solid #333333;
   border-radius: 10px;
-  color: black;
+  color: #333333;
   font-size: 1.5rem;
 }
 .popup .puzzleContent .cryptography-puzzle {
@@ -286,12 +275,12 @@
   gap: 10px;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .parts-buttons button {
-  width: 25%;
+  width: 20%;
   height: 40px;
-  background-color: rgb(11, 222, 0);
-  border: 3px solid black;
+  background-color: #9AD6FF;
+  border: 3px solid #333333;
   border-radius: 10px;
-  color: black;
+  color: #333333;
   font-size: 1.5rem;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .cryptography-input {
@@ -305,7 +294,7 @@
   align-items: center;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .choices {
-  border-top: 2px solid rgb(11, 222, 0);
+  border-top: 3px solid #333333;
   display: flex;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .choices .math {
@@ -315,13 +304,13 @@
   justify-content: center;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .choices .math button {
-  width: 25%;
+  width: 20%;
   height: 40px;
-  background-color: rgb(11, 222, 0);
-  border: 3px solid black;
+  background-color: #9AD6FF;
+  border: 3px solid #333333;
   border-radius: 10px;
-  color: black;
-  font-size: 1rem;
+  color: #333333;
+  font-size: 1.5rem;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .choices .letters {
   flex: 1;
@@ -330,16 +319,16 @@
   justify-content: center;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .choices .letters button {
-  width: 65%;
+  width: 20%;
   height: 40px;
-  background-color: rgb(11, 222, 0);
-  border: 3px solid black;
+  background-color: #9AD6FF;
+  border: 3px solid #333333;
   border-radius: 10px;
-  color: black;
-  font-size: 1rem;
+  color: #333333;
+  font-size: 1.5rem;
 }
 .popup .puzzleContent .cryptography-puzzle .content .result {
-  border-left: 3px solid rgb(11, 222, 0);
+  border-left: 3px solid #333333;
   grid-column: 2/3;
   height: 100%;
   width: 100%;
@@ -367,35 +356,21 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-top: 3px solid rgb(11, 222, 0);
+  border-top: 3px solid #333333;
 }
 .popup .puzzleContent .cryptography-puzzle .buttons button {
-  width: 15%;
-  height: 40px;
-  background-color: rgb(11, 222, 0);
-  border: 3px solid black;
-  border-radius: 10px;
-  color: black;
-  font-size: 1.5rem;
-}
-.popup .submitBox {
-  grid-row: 3/4;
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 10px;
-  width: 90%;
-  justify-self: center;
-}
-.popup .submitBox input {
-  width: 80%;
-}
-.popup .submitBox button {
   width: 20%;
+  height: 40px;
+  background-color: #9AD6FF;
+  border: 3px solid #333333;
+  border-radius: 10px;
+  color: #333333;
+  font-size: 1.5rem;
 }
 
 .splash {
   height: 100vh;
-  background-color: rgb(28, 28, 28);
+  background-color: #FFF8EF;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -403,20 +378,21 @@
 .splash .splash-content {
   width: 60%;
   height: 60%;
-  background-color: rgb(45, 45, 45);
+  background-color: #FFF8EF;
   display: grid;
   grid-template-rows: 20px 1fr 2fr;
   gap: 20px;
   border-radius: 10px;
-  border: 4px solid black;
+  border: 3px solid #333333;
+  box-shadow: 5px 5px 0 1px #333333;
 }
 .splash .splash-content .topbar {
   grid-row: 1/2;
   width: 100%;
   height: 20px;
-  background-color: rgb(11, 222, 0);
-  border-bottom: 4px solid black;
-  border-radius: 5px 5px 0 0;
+  background-color: #5AA9E6;
+  border-bottom: 3px solid #333333;
+  border-radius: 10px 10px 0 0;
 }
 .splash .splash-content img {
   grid-row: 2/3;
@@ -431,64 +407,64 @@
   width: 90%;
 }
 .splash .splash-content .nav .card {
-  background-color: rgb(11, 222, 0);
+  background-color: #9AD6FF;
   border-radius: 10px;
-  border: 4px solid black;
+  border: 3px solid #333333;
   padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   margin-bottom: 20px;
+  box-shadow: 5px 5px 0 1px #333333;
 }
 .splash .splash-content .nav .card p {
   text-align: center;
 }
 
 .settings {
-  height: 80%;
-  width: 40%;
-  background-color: rgb(28, 28, 28);
-  border-radius: 25px;
-  border: 2px solid black;
+  height: 60%;
+  width: 20%;
+  background-color: #FFF8EF;
+  border-radius: 10px;
+  border: 3px solid #333333;
   position: absolute;
-  top: 5%;
-  left: 50%;
+  top: 25%;
+  left: 70%;
   z-index: 2;
-  display: grid;
-  grid-template-rows: 1fr 8fr 2fr;
-  color: rgb(11, 222, 0);
-  box-shadow: 10px 10px 0 1px black;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  color: #333333;
+  box-shadow: 5px 5px 0 1px #333333;
 }
-
-.save {
-  height: 20%;
-  width: 80%;
-  background-color: rgb(28, 28, 28);
-  border-radius: 25px;
-  border: 2px solid black;
-  position: absolute;
-  top: 65%;
-  left: 10%;
-  z-index: 2;
-  display: grid;
-  grid-template-rows: 1fr 8fr 2fr;
-  color: rgb(11, 222, 0);
-  box-shadow: 10px 10px 0 1px black;
+.settings .top-bar {
+  background-color: #5AA9E6;
+  border-radius: 10px 10px 0 0;
+  height: 5%;
+  border-bottom: 3px solid #333333;
+  color: #333333;
+  padding-left: 10px;
+}
+.settings .dark-light {
+  color: #333333;
+}
+.settings .color-choices {
+  color: #333333;
 }
 
 .classroom {
   height: 80%;
   width: 20%;
-  background-color: rgb(28, 28, 28);
-  border-radius: 25px;
-  border: 2px solid black;
+  background-color: #FFF8EF;
+  border-radius: 10px;
+  border: 3px solid #333333;
   position: absolute;
   top: 5%;
   left: 10%;
   z-index: 2;
   display: grid;
   grid-template-rows: 1fr 8fr 2fr;
-  color: rgb(11, 222, 0);
-  box-shadow: 10px 10px 0 1px black;
+  color: #333333;
+  box-shadow: 5px 5px 0 1px #333333;
 }/*# sourceMappingURL=App.css.map */

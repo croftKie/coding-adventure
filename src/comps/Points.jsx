@@ -14,10 +14,10 @@ const Points = ({puzzles, openPopup}) => {
       }
 
       const onEnter = (e)=>{
-        gsap.to(e.target, {backgroundColor: "#e77614", scale: 1.2})
+        gsap.to(e.target, {backgroundColor: "#9AD6FF", scale: 1.2, duration: 0.1})
       }
       const onLeave = (e)=>{
-        gsap.to(e.target, {backgroundColor: "#28a92b", scale: 1})
+        gsap.to(e.target, {backgroundColor: "#5AA9E6", scale: 1, duration: 0.1})
       }
     return ( 
         <div className="points">

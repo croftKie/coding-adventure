@@ -27,7 +27,7 @@
   top: 0;
   left: 0;
   display: grid;
-  grid-template-rows: 9fr 1fr;
+  grid-template-rows: 8fr 1fr;
   grid-template-columns: 1fr 1fr;
   z-index: 1;
 }
@@ -45,20 +45,96 @@
   transition: all 0.25s;
   cursor: pointer;
 }
+.hud .notify-chapters {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  left: 25%;
+  background-color: #FFF8EF;
+  border: 3px solid #333333;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0 1px #333333;
+}
+.hud .notify-chapters .topbar {
+  grid-row: 1/2;
+  width: 100%;
+  height: 30px;
+  background-color: #5AA9E6;
+  border-bottom: 3px solid #333333;
+  border-radius: 7px 7px 0 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 10px 0 10px;
+  height: 20px;
+}
+.hud .notify-chapters .topbar img {
+  height: 13px;
+}
+.hud .notify-chapters h1 {
+  padding: 10px;
+}
+.hud .notify-chapters p {
+  padding: 10px;
+}
 .hud .nav {
   grid-row: 2/3;
   grid-column: 1/3;
   width: 80%;
   justify-self: center;
-  display: flex;
-  justify-content: space-between;
   background-color: #FFF8EF;
   border-radius: 10px;
   margin-bottom: 20px;
   border: 3px solid #333333;
   box-shadow: 5px 5px 0 1px #333333;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 20px 1fr;
+}
+.hud .nav .topbar {
+  grid-column: 1/3;
+  grid-row: 1/2;
+  grid-row: 1/2;
+  width: 100%;
+  height: 30px;
+  background-color: #5AA9E6;
+  border-bottom: 3px solid #333333;
+  border-radius: 7px 7px 0 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 10px 0 10px;
+  height: 20px;
+}
+.hud .nav .topbar img {
+  height: 13px;
+}
+.hud .nav .lowerNav {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  display: flex;
+  align-items: center;
+  padding: 0 20px 0 20px;
+  color: #333333;
+}
+.hud .nav .lowerNav div {
+  display: flex;
+  gap: 20px;
+}
+.hud .nav .lowerNav div .item {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hud .nav .lowerNav div .item img {
+  height: 30px;
+  width: 30px;
 }
 .hud .nav .side-nav {
+  grid-column: 2/3;
+  grid-row: 2/3;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -75,27 +151,6 @@
   height: 65%;
   width: 65%;
 }
-.hud .lowerNav {
-  display: flex;
-  align-items: center;
-  padding: 0 20px 0 20px;
-  color: #333333;
-}
-.hud .lowerNav div {
-  display: flex;
-  gap: 20px;
-}
-.hud .lowerNav div .item {
-  height: 50px;
-  width: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.hud .lowerNav div .item img {
-  height: 30px;
-  width: 30px;
-}
 
 .popup {
   height: 80%;
@@ -108,7 +163,7 @@
   left: 10%;
   z-index: 2;
   display: grid;
-  grid-template-rows: 1fr 8fr;
+  grid-template-rows: min-content 1fr;
   color: #333333;
   box-shadow: 5px 5px 0 1px #333333;
 }
@@ -120,25 +175,33 @@
   justify-content: space-between;
   border-radius: 10px 10px 0 0;
 }
-.popup .nav .bar {
+.popup .nav .topbar {
+  grid-row: 1/2;
   width: 100%;
-  padding: 5px 0 5px 0;
+  height: 30px;
+  background-color: #5AA9E6;
   border-bottom: 3px solid #333333;
-  align-self: flex-end;
+  border-radius: 7px 7px 0 0;
   display: flex;
   justify-content: end;
-  gap: 20px;
-  padding-right: 10px;
-  background-color: #5AA9E6;
-  border-radius: 10px 10px 0 0;
+  align-items: center;
+  padding: 0 10px 0 10px;
+  justify-content: space-between;
 }
-.popup .nav .bar .item {
+.popup .nav .topbar h1 {
+  font-size: 1.3rem;
+}
+.popup .nav .topbar .buttons {
+  display: flex;
+  gap: 10px;
+}
+.popup .nav .topbar .item {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
-.popup .nav .bar .item img {
+.popup .nav .topbar .item img {
   height: 20px;
   width: 20px;
 }
@@ -389,15 +452,27 @@
 .splash .splash-content .topbar {
   grid-row: 1/2;
   width: 100%;
-  height: 20px;
+  height: 30px;
   background-color: #5AA9E6;
   border-bottom: 3px solid #333333;
-  border-radius: 10px 10px 0 0;
+  border-radius: 7px 7px 0 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 10px 0 10px;
 }
-.splash .splash-content img {
+.splash .splash-content .topbar img {
+  height: 20px;
+}
+.splash .splash-content .logo-bar {
   grid-row: 2/3;
-  height: 150px;
   justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.splash .splash-content .logo-bar img {
+  height: 150px;
 }
 .splash .splash-content .nav {
   grid-row: 3/4;
@@ -405,6 +480,7 @@
   gap: 30px;
   justify-self: center;
   width: 90%;
+  justify-content: space-around;
 }
 .splash .splash-content .nav .card {
   background-color: #9AD6FF;
@@ -417,6 +493,9 @@
   justify-content: space-around;
   margin-bottom: 20px;
   box-shadow: 5px 5px 0 1px #333333;
+  height: 90%;
+  width: 20%;
+  cursor: pointer;
 }
 .splash .splash-content .nav .card p {
   text-align: center;
@@ -467,4 +546,55 @@
   grid-template-rows: 1fr 8fr 2fr;
   color: #333333;
   box-shadow: 5px 5px 0 1px #333333;
+}
+
+.landscape {
+  height: 100vh;
+  background-color: #FFF8EF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.landscape .landscape-content {
+  width: 60%;
+  height: 60%;
+  background-color: #FFF8EF;
+  display: grid;
+  grid-template-rows: 20px 1fr 2fr;
+  gap: 20px;
+  border-radius: 10px;
+  border: 3px solid #333333;
+  box-shadow: 5px 5px 0 1px #333333;
+}
+.landscape .landscape-content .topbar {
+  grid-row: 1/2;
+  width: 100%;
+  height: 30px;
+  background-color: #5AA9E6;
+  border-bottom: 3px solid #333333;
+  border-radius: 7px 7px 0 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 10px 0 10px;
+}
+.landscape .landscape-content .topbar img {
+  height: 20px;
+}
+.landscape .landscape-content .logo-bar {
+  grid-row: 2/3;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.landscape .landscape-content .logo-bar img {
+  height: 150px;
+}
+.landscape .landscape-content .error-message {
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }/*# sourceMappingURL=App.css.map */

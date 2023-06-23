@@ -14,7 +14,8 @@ import { useSelector } from 'react-redux';
 import { puzzleSelector } from './store/features/puzzlesSlice';
 import { currentPuzzleSelector } from './store/features/progressSlice';
 
-import { gsap } from 'gsap';
+import NotifyChapters from './comps/NotifyChapters';
+import { SplashSelector } from './store/features/UiSlice';
 
 function App() {
   // const [mouse, ref] = useMouse();
@@ -25,6 +26,7 @@ function App() {
   
   const puzzles = useSelector(puzzleSelector);
   const currentPuzzle = useSelector(currentPuzzleSelector);
+  const splashStatus = useSelector(SplashSelector);
 
   // if(mouse.x > 340 && mouse.x < 360 && mouse.y > 250 && mouse.y < 270) {
   //   console.log("You found a puzzle")
@@ -40,7 +42,7 @@ function App() {
     openClassroom(!classroom);
   }
 
-  if (true) {
+  if (splashStatus) {
     return (
       <Splash />
     )
@@ -58,6 +60,7 @@ function App() {
 
       <div className="hud">
         <Points puzzles={puzzles} openPopup={openPopup}/>
+        <NotifyChapters/>
         <LowerNav openClassroom={openClassroomPage} openSettings={openSettings}/>
       </div>
     </>

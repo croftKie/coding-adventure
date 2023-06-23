@@ -4,6 +4,7 @@ const initialState = {
     chapters : [
         {
             chapterName : 'The Forest',
+            chapterDescription : 'lorem ipsum text would have been good to include here but I am writing it in the state slice and do not have access to that shortcut',
             chapterId : 100,
             chapterPuzzles : [101,102,103,104],
             points : [

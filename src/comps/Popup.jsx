@@ -39,11 +39,13 @@ const Popup = ({currentPuzzle, openPopup}) => {
         <div ref={popupRef} className="popup">
             <ToastContainer />
             <div className="nav">
-                <div className='bar'>
-                    <div onClick={showToastMessage} className="item"><img src={info} alt="" /></div>
-                    <div onClick={closeOnPress} className="item"><img src={close} alt="" /></div>
+                <div className='topbar'>
+                    <h1>{puzzle.puzzleName}</h1>
+                    <div className="buttons">
+                        <div onClick={showToastMessage} className="item"><img src={info} alt="" /></div>
+                        <div onClick={closeOnPress} className="item"><img src={close} alt="" /></div>
+                    </div>
                 </div>
-                <h1>{puzzle.puzzleName}</h1>
             </div>
             <div className="puzzleContent">
                 {type === 1 ? <Instructions puzzle={puzzle}/> : 

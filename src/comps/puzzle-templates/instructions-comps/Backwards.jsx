@@ -6,7 +6,7 @@ const Backwards = () => {
     const dispatch = useDispatch();
     return ( 
         <div className="move-block"> 
-            <p>Move backwards by <span><input type="number" onBlur={(e)=>{dispatch(addInstruction({type:'backwards', value:e.target.value}))}}/> </span> steps</p> 
+            <p>Move backwards by <span><input type="number" onBlur={(e)=>{dispatch(addInstruction({type:'backwards', value:parseInt(e.target.value)}))}}/> </span> steps</p> 
         </div>
      );
 }

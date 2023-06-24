@@ -8,7 +8,7 @@ const initialState = {
             type : 1,
             puzzleDescription : "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
             assetId : [1,2],
-            startLocations : [{image : 'pirate', top : 400, right: 400},{image : 'gold', top : 100, right: 100}],
+            startLocations : [{image : 'pirate', x : 400, y: 400},{image : 'gold', x : 100, y: 100}],
             endLocations : [{image : 'pirate', top: 100, right: 100}, {}]
         },
         {

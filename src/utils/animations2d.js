@@ -1,13 +1,15 @@
 import { gsap } from "gsap";
-export const onClickAnim = (imgRef, instructionInputs)=>{
-    let currentY = 0;
-    let currentX = 0;
+export const animator = (imgRef, instructionInputs, height, width)=>{
+    const pos = imgRef.current.style.transform.slice(imgRef.current.style.transform.indexOf('(')+1, imgRef.current.style.transform.indexOf(')')).replace('px,', '').replace('px','').split(' ');
+    let X = parseInt(pos[0]);
+    let Y = parseInt(pos[1]);
+
     let tl = gsap.timeline({repeatDelay: 1});
     tl.pause();
 
     const repeatIndex = instructionInputs.findIndex(el => el.type === 'repeat');
     const endIndex = instructionInputs.findIndex(el => el.type === 'end');
-    const repeatable = instructionInputs.slice(repeatIndex+1, endIndex)
+    const repeatable = instructionInputs.slice(repeatIndex+1, endIndex);
 
     for (let i = 0; i < instructionInputs.length; i++) {
         if (i === repeatIndex) {
@@ -17,20 +19,40 @@ export const onClickAnim = (imgRef, instructionInputs)=>{
                 repeatable.forEach((el)=>{
                     switch (el.type) {
                         case 'forward':
-                            tl.to(imgRef.current, {y: currentY - parseInt(el.value)})
-                            currentY = currentY - parseInt(el.value);
+                            if(Y - el.value < 0){
+                                tl.to(imgRef.current, {y: 0});
+                                Y = 0;
+                            } else {
+                                tl.to(imgRef.current, {y: Y - Math.abs(el.value)});
+                                Y -= Math.abs(el.value);
+                            }
                             break;
                         case 'backwards':
-                            tl.to(imgRef.current, {y: parseInt(el.value)})
-                            currentY = currentY + parseInt(el.value);
+                            if(Y + el.value > height){
+                                tl.to(imgRef.current, {y: height});
+                                Y = height;
+                            } else {
+                                tl.to(imgRef.current, {y: Y + Math.abs(el.value)});
+                                Y += Math.abs(el.value);
+                            }
                             break;
                         case 'right':
-                            tl.to(imgRef.current, {x: parseInt(el.value)})
-                            currentX = currentX + parseInt(el.value);
+                            if(X + el.value > width){
+                                tl.to(imgRef.current, {x: width});
+                                X = width;
+                            } else {
+                                tl.to(imgRef.current, {x: X + Math.abs(el.value)});
+                                X += Math.abs(el.value);
+                            }
                             break;
                         case 'left':
-                            tl.to(imgRef.current, {x: currentX - parseInt(el.value)})
-                            currentX = currentX - parseInt(el.value);
+                            if(X - el.value < 0){
+                                tl.to(imgRef.current, {x: 0});
+                                X = 0;
+                            } else {
+                                tl.to(imgRef.current, {x: X - Math.abs(el.value)});
+                                X -= Math.abs(el.value);
+                            }
                             break;
                         default:
                             break;
@@ -42,20 +64,40 @@ export const onClickAnim = (imgRef, instructionInputs)=>{
         } else {
             switch (instructionInputs[i].type) {
                 case 'forward':
-                    tl.to(imgRef.current, {y: currentY - instructionInputs[i].value})
-                    currentY = currentY - instructionInputs[i].value;
+                    if(Y - instructionInputs[i].value < 0){
+                        tl.to(imgRef.current, {y: 0});
+                        Y = 0;
+                    } else {
+                        tl.to(imgRef.current, {y: Y - Math.abs(instructionInputs[i].value)});
+                        Y -= Math.abs(instructionInputs[i].value);
+                    }
                     break;
                 case 'backwards':
-                    tl.to(imgRef.current, {y: instructionInputs[i].value})
-                    currentY = currentY + instructionInputs[i].value;
+                    if(Y + instructionInputs[i].value > height){
+                        tl.to(imgRef.current, {y: height});
+                        Y = height;
+                    } else {
+                        tl.to(imgRef.current, {y: Y + Math.abs(instructionInputs[i].value)});
+                        Y += Math.abs(instructionInputs[i].value);
+                    }
                     break;
                 case 'right':
-                    tl.to(imgRef.current, {x: instructionInputs[i].value})
-                    currentX = currentX + instructionInputs[i].value;
+                    if(X + instructionInputs[i].value > width){
+                        tl.to(imgRef.current, {x: width});
+                        X = width;
+                    } else {
+                        tl.to(imgRef.current, {x: X + Math.abs(instructionInputs[i].value)});
+                        X += Math.abs(instructionInputs[i].value);
+                    }
                     break;
                 case 'left':
-                    tl.to(imgRef.current, {x: currentX - instructionInputs[i].value})
-                    currentX = currentX - instructionInputs[i].value;
+                    if(X - instructionInputs[i].value < 0){
+                        tl.to(imgRef.current, {x: 0});
+                        X = 0;
+                    } else {
+                        tl.to(imgRef.current, {x: Y - Math.abs(instructionInputs[i].value)});
+                        X -= Math.abs(instructionInputs[i].value);
+                    }
                     break;
                 default:
                     break;
@@ -63,4 +105,9 @@ export const onClickAnim = (imgRef, instructionInputs)=>{
         }
     }
     tl.resume();
+    return 1;
+}
+
+export const resetAnimation = (imgRef, startLocs) =>{
+    gsap.to(imgRef.current, {x: startLocs[0].x, y: startLocs[0].y});
 }

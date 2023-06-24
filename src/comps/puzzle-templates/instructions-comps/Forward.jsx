@@ -6,7 +6,7 @@ const Forward = () => {
     const dispatch = useDispatch();
     return ( 
         <div className="move-block"> 
-            <p>Move forwards by <span><input type="number" onBlur={(e)=>{dispatch(addInstruction({type:'forward', value:e.target.value}))}}/> </span> steps</p> 
+            <p>Move forwards by <span><input type="number" onBlur={(e)=>{dispatch(addInstruction({type:'forward', value:parseInt(e.target.value)}))}}/> </span> steps</p> 
         </div>
      );
 }

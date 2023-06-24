@@ -226,11 +226,12 @@ $border-radius-bar: 7px;
             .content{
                 height: 85%;
                 display: flex;
+                justify-content: center;
                 .input{
                     height: 100%;
                     width: 50%;
                     display: grid;
-                    grid-template-rows: 9fr 1fr;
+                    grid-template-rows: 9fr 1fr 1fr;
                     .instruction-input{
                         padding: 20px;
                         display: flex;
@@ -255,11 +256,22 @@ $border-radius-bar: 7px;
                             @include button;
                         }
                     }
+                    .logic{
+                        grid-row: 3/4;
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        button{
+                            @include button;
+                        }
+                    }
                 }
                 .result {
                     border-left: $border-dark;
-                    height: 100%;
-                    width: 50%;
+                    height: 500px;
+                    width: 500px;
+                    padding-left: 20px;
+                    position: relative;
                     img{
                         position: relative;
                         height: 50px;

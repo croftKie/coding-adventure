@@ -6,7 +6,7 @@ const Right = () => {
     const dispatch = useDispatch();
     return ( 
         <div className="move-block"> 
-            <p>Move right by <span><input type="number" onBlur={(e)=>{dispatch(addInstruction({type:'right', value:e.target.value}))}}/> </span> steps</p> 
+            <p>Move right by <span><input type="number" onBlur={(e)=>{dispatch(addInstruction({type:'right', value:parseInt(e.target.value)}))}}/> </span> steps</p> 
         </div>
      );
 }

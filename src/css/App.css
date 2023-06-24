@@ -221,12 +221,13 @@
 .popup .puzzleContent .instructions-puzzle .content {
   height: 85%;
   display: flex;
+  justify-content: center;
 }
 .popup .puzzleContent .instructions-puzzle .content .input {
   height: 100%;
   width: 50%;
   display: grid;
-  grid-template-rows: 9fr 1fr;
+  grid-template-rows: 9fr 1fr 1fr;
 }
 .popup .puzzleContent .instructions-puzzle .content .input .instruction-input {
   padding: 20px;
@@ -252,10 +253,27 @@
   color: #333333;
   font-size: 1.5rem;
 }
+.popup .puzzleContent .instructions-puzzle .content .input .logic {
+  grid-row: 3/4;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.popup .puzzleContent .instructions-puzzle .content .input .logic button {
+  width: 20%;
+  height: 40px;
+  background-color: #9AD6FF;
+  border: 3px solid #333333;
+  border-radius: 10px;
+  color: #333333;
+  font-size: 1.5rem;
+}
 .popup .puzzleContent .instructions-puzzle .content .result {
   border-left: 3px solid #333333;
-  height: 100%;
-  width: 50%;
+  height: 500px;
+  width: 500px;
+  padding-left: 20px;
+  position: relative;
 }
 .popup .puzzleContent .instructions-puzzle .content .result img {
   position: relative;

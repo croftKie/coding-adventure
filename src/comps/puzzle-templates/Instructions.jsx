@@ -4,13 +4,17 @@ import { instructionInputSelector, clearInstruction } from '../../store/features
 import { useSelector, useDispatch } from 'react-redux';
 import pirate from "../../assets/pirate.png"
 import gold from '../../assets/gold-ingots.png';
-import { onClickAnim } from '../../utils/animations2d';
+import { animator, resetAnimation } from '../../utils/animations2d';
+import { getLoc } from '../../utils/getLoc';
 
 const Instructions = ({puzzle}) => {
     const [inputs, setInputs] = useState([])
-    const imgRef = useRef();
+    const charImg = useRef();
+    const goalImg = useRef();
+    const resultRef = useRef();
     const instructionInputs = useSelector(instructionInputSelector);
     const dispatch = useDispatch();
+    const startLocs = puzzle.startLocations;
 
     const pushInputs = (type) =>{
         setInputs([...inputs, type]);
@@ -18,8 +22,12 @@ const Instructions = ({puzzle}) => {
     const reset = ()=>{
         dispatch(clearInstruction());
         setInputs([]);
+        resetAnimation(charImg, startLocs);
     }
-    
+    const run = ()=>{
+        const runComplete = animator(charImg, instructionInputs, 500, 500);
+    }
+
     return ( 
         <div className="instructions-puzzle">
             <div className="content">
@@ -37,14 +45,22 @@ const Instructions = ({puzzle}) => {
                         <button onClick={()=>{pushInputs(7)}}>End</button>
                     </div>
                 </div>
-                <div className="result">
-                    <img style={{top:puzzle.startLocations[0].top, left:puzzle.startLocations[0].right}} ref={imgRef} src={pirate} alt="" />
-                    <img style={{top:puzzle.startLocations[1].top, left:puzzle.startLocations[1].right}} src={gold} alt="" />
+                <div ref={resultRef} className="result">
+                    <img 
+                        ref={charImg}
+                        style={{transform: `translate(${startLocs[0].x}px, ${startLocs[0].y}px`}} 
+                        src={pirate} 
+                        alt="" />
+                    <img 
+                        ref={goalImg}
+                        style={{transform: `translate(${startLocs[1].x}px, ${startLocs[1].y}px`}} 
+                        src={gold} 
+                        alt="" />
                 </div>
             </div>
             <div className="buttons">
                 <button onClick={reset} className="reset">Reset</button>
-                <button onClick={()=>{onClickAnim(imgRef, instructionInputs)}} className="run">Run</button>
+                <button onClick={run} className="run">Run</button>
             </div>
         </div>
      );

@@ -1,9 +1,9 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { useSelector } from "react-redux";
-import { chaptersSelector } from "../store/features/chaptersSlice";
-import { currentChapterSelector } from "../store/features/progressSlice";
-import close from '../assets/close.png';
+import { chaptersSelector } from "../../store/features/chaptersSlice";
+import { currentChapterSelector } from "../../store/features/progressSlice";
+import close from '../../assets/close.png';
 
 const NotifyChapters = () => {
     const chapters = useSelector(chaptersSelector);

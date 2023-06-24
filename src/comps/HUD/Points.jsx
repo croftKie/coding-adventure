@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeCurrentPuzzle, currentChapterSelector } from '../store/features/progressSlice';
-import { chaptersSelector } from '../store/features/chaptersSlice';
+import { changeCurrentPuzzle, currentChapterSelector } from '../../store/features/progressSlice';
+import { chaptersSelector } from '../../store/features/chaptersSlice';
 import { gsap } from 'gsap';
 
 const Points = ({puzzles, openPopup}) => {

@@ -432,6 +432,20 @@ $point-complete-color-secondary: #5efc88;
       }
     }
   }
+  .win-condition {
+    position: absolute;
+    height: 90%;
+    width: 90%;
+    top: 5%;
+    left: 5%;
+    z-index: 3;
+    background-color: $base-white;
+    border: $border-dark;
+    border-radius: $border-radius-small;
+    .topbar {
+      @include topbar();
+    }
+  }
 }
 
 .splash {
@@ -502,9 +516,57 @@ $point-complete-color-secondary: #5efc88;
   }
   .dark-light {
     color: $base-black;
+    display: flex;
+    justify-content: center;
+    button {
+      height: 50px;
+      padding: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      border: $border-dark;
+      border-radius: $border-radius-small;
+      background-color: $blue-light-color;
+      box-shadow: $box-shadow-dark;
+      &:hover {
+        background-color: $blue-main-color;
+      }
+      &:active {
+        box-shadow: none;
+      }
+    }
   }
   .color-choices {
     color: $base-black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    select {
+      width: 70%;
+      height: 50%;
+      outline: none;
+      font-weight: 600;
+      border: $border-dark;
+      border-radius: $border-radius-small;
+      background-color: $blue-light-color;
+      box-shadow: $box-shadow-dark;
+    }
+    button {
+      height: 50px;
+      padding: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      border: $border-dark;
+      border-radius: $border-radius-small;
+      background-color: $blue-light-color;
+      box-shadow: $box-shadow-dark;
+      &:hover {
+        background-color: $blue-main-color;
+      }
+      &:active {
+        box-shadow: none;
+      }
+    }
   }
 }
 

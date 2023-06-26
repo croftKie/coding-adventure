@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   chaptersCompleted: [],
-  puzzlesCompleted: [],
-  activeChapter: 10,
+  activeChapter: 0,
   activePuzzle: 0,
 };
 
@@ -19,9 +18,6 @@ const progressSlice = createSlice({
     },
     addCompletedChapter: (state, action) => {
       state.chaptersCompleted = [...state.chaptersCompleted, action.payload];
-    },
-    addCompletedPuzzle: (state, action) => {
-      state.puzzlesCompleted = [...state.puzzlesCompleted, action.payload];
     },
   },
 });

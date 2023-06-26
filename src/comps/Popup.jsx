@@ -17,8 +17,9 @@ import {
   activeChapterSelector,
   activePuzzleSelector,
 } from "../store/features/progressSlice";
+import WinCondition from "./puzzle-templates/WinCondition";
 
-const Popup = () => {
+const Popup = ({ toggleUi }) => {
   const popupRef = useRef();
   const content = useSelector(readContent);
   const activeChapter = useSelector(activeChapterSelector);
@@ -27,8 +28,7 @@ const Popup = () => {
   const [activePuzzle] = puzzles.filter(
     (puzzle) => puzzle.id === activePuzzleId
   );
-
-  console.log(activePuzzle);
+  const [win, setWin] = useState(false);
 
   const toastText = activePuzzle.puzzleDescription;
   const showToastMessage = () => {
@@ -41,13 +41,14 @@ const Popup = () => {
   const closeOnPress = () => {
     gsap.to(popupRef.current, { height: 0, width: 0, opacity: 0 });
     setTimeout(() => {
-      openPopup();
+      toggleUi("popUp");
     }, 1000);
   };
-
+  console.log(win);
   return (
     <div ref={popupRef} className="popup">
       <ToastContainer />
+      {win ? <WinCondition setWin={setWin} /> : <></>}
       <div className="nav">
         <div className="topbar">
           <h1>{activePuzzle.puzzleName}</h1>
@@ -63,7 +64,7 @@ const Popup = () => {
       </div>
       <div className="puzzleContent">
         {activePuzzle.type === 1 ? (
-          <Instructions activePuzzle={activePuzzle} />
+          <Instructions setWin={setWin} activePuzzle={activePuzzle} />
         ) : activePuzzle.type === 2 ? (
           <Cryptography />
         ) : activePuzzle.type === 3 ? (

@@ -4,10 +4,13 @@ import {
   changeCurrentPuzzle,
   activeChapterSelector,
 } from "../../store/features/progressSlice";
-import { readContent } from "../../store/features/contentSlice";
+import {
+  readContent,
+  setChapterCompleteStatus,
+} from "../../store/features/contentSlice";
 import { gsap } from "gsap";
 
-const Points = ({ openPopup }) => {
+const Points = ({ toggleUi }) => {
   const dispatch = useDispatch();
   const content = useSelector(readContent);
   const activeChapter = useSelector(activeChapterSelector);
@@ -46,6 +49,7 @@ const Points = ({ openPopup }) => {
       });
     }
   };
+
   return (
     <div className="points">
       {content[activeChapter].points.map((point, index) => {
@@ -59,7 +63,7 @@ const Points = ({ openPopup }) => {
             }}
             onClick={() => {
               assignPuzzleId(puzzles[index].id);
-              openPopup();
+              toggleUi("popUp");
             }}
             className="point"
             onMouseEnter={(e) => {

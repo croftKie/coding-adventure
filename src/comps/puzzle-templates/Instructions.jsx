@@ -13,10 +13,11 @@ import {
   resetAnimation,
   WinCondition,
 } from "../../utils/animations2d";
+import { setPuzzleCompleteStatus } from "../../store/features/contentSlice";
 
 // set puzzle to completed when Win Condition is met
 
-const Instructions = ({ activePuzzle }) => {
+const Instructions = ({ activePuzzle, setWin }) => {
   const [inputs, setInputs] = useState([]);
   const charImg = useRef();
   const goalImg = useRef();
@@ -35,7 +36,10 @@ const Instructions = ({ activePuzzle }) => {
   };
   const run = () => {
     const runComplete = animator(charImg, instructionInputs, 500, 500);
-    WinCondition(charImg, runComplete, activePuzzle.endLocations[0]);
+    if (WinCondition(charImg, runComplete, activePuzzle.endLocations[0])) {
+      setWin(true);
+      // dispatch(setPuzzleCompleteStatus({ chapterId: 0, puzzleId: 0 }));
+    }
   };
 
   return (

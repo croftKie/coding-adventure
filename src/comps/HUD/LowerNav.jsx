@@ -10,13 +10,7 @@ import { useSelector } from "react-redux";
 import { activeChapterSelector } from "../../store/features/progressSlice";
 import { readContent } from "../../store/features/contentSlice";
 
-const LowerNav = ({
-  openSettings,
-  openClassroom,
-  openLeaderboard,
-  openChat,
-  openProgress,
-}) => {
+const LowerNav = ({ toggleUi }) => {
   const content = useSelector(readContent);
   const activeChapter = useSelector(activeChapterSelector);
 
@@ -28,10 +22,22 @@ const LowerNav = ({
       <div className="lowerNav">
         <div>
           <div className="item">
-            <img onClick={openClassroom} src={googleClassroom} alt="" />
+            <img
+              onClick={() => {
+                toggleUi("classroom");
+              }}
+              src={googleClassroom}
+              alt=""
+            />
           </div>
           <div className="item">
-            <img onClick={openChat} src={chat} alt="" />
+            <img
+              onClick={() => {
+                toggleUi("chat");
+              }}
+              src={chat}
+              alt=""
+            />
           </div>
         </div>
         <h3>
@@ -41,13 +47,31 @@ const LowerNav = ({
       </div>
       <div className="side-nav">
         <div className="item">
-          <img onClick={openLeaderboard} src={podium} alt="" />
+          <img
+            onClick={() => {
+              toggleUi("leaderboard");
+            }}
+            src={podium}
+            alt=""
+          />
         </div>
         <div className="item">
-          <img onClick={openProgress} src={process} alt="" />
+          <img
+            onClick={() => {
+              toggleUi("progress");
+            }}
+            src={process}
+            alt=""
+          />
         </div>
         <div className="item">
-          <img onClick={openSettings} src={gear} alt="" />
+          <img
+            onClick={() => {
+              toggleUi("settings");
+            }}
+            src={gear}
+            alt=""
+          />
         </div>
       </div>
     </div>

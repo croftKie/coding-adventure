@@ -5,7 +5,7 @@ import close from "../assets/close.png";
 import { gsap } from "gsap";
 import { changeCurrentChapter } from "../store/features/progressSlice";
 
-import { closeSplash } from "../store/features/UiSlice";
+import { updateUi } from "../store/features/UiSlice";
 
 const Splash = () => {
   const cardOne = useRef();
@@ -61,7 +61,7 @@ const Splash = () => {
               onLeave(cardOne);
             }}
             onClick={() => {
-              assignChapter(), dispatch(closeSplash(false));
+              assignChapter(), dispatch(updateUi("splashScreen"));
             }}
             className="new card"
           >

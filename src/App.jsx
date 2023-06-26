@@ -1,5 +1,7 @@
 import { useMouse } from "@uidotdev/usehooks";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./css/App.css";
 
 import Popup from "./comps/Popup";
 import Background from "./comps/Background";
@@ -12,63 +14,76 @@ import Leaderboard from "./comps/HUD/settings-comps/Leaderboard";
 import Chat from "./comps/HUD/settings-comps/Chat";
 import Classroom from "./comps/HUD/settings-comps/Classroom";
 
-import "./css/App.css";
-
-import { useSelector } from "react-redux";
 import {
   activeChapterSelector,
   activePuzzleSelector,
+  changeCurrentChapter,
 } from "./store/features/progressSlice";
 
 import NotifyChapters from "./comps/HUD/NotifyChapters";
-import { SplashSelector } from "./store/features/UiSlice";
-import { useEffect } from "react";
+import {
+  SplashSelector,
+  chatSelector,
+  classroomSelector,
+  leaderboardSelector,
+  popUpSelector,
+  progressSelector,
+  settingsSelector,
+  updateUi,
+} from "./store/features/UiSlice";
+import {
+  readContent,
+  setChapterCompleteStatus,
+} from "./store/features/contentSlice";
 
 function App() {
-  const [popUp, setPopup] = useState(false);
-  const [settings, setSettings] = useState(false);
-  const [leaderboard, setLeaderboard] = useState(false);
-  const [classroom, setClassroom] = useState(false);
-  const [progress, setProgress] = useState(false);
-  const [chat, setChat] = useState(false);
-
   const currentPuzzle = useSelector(activePuzzleSelector);
+  const activeChapter = useSelector(activeChapterSelector);
   const splashStatus = useSelector(SplashSelector);
-  const currentChapter = useSelector(activeChapterSelector);
+  const content = useSelector(readContent);
+  const popUp = useSelector(popUpSelector);
+  const settings = useSelector(settingsSelector);
+  const leaderboard = useSelector(leaderboardSelector);
+  const progress = useSelector(progressSelector);
+  const classroom = useSelector(classroomSelector);
+  const chat = useSelector(chatSelector);
+  const dispatch = useDispatch();
+  const chapterChange = false;
+
+  const toggleUi = (type) => {
+    dispatch(updateUi(type));
+  };
 
   useEffect(() => {
-    console.log(currentChapter);
-  }, [currentChapter]);
-
-  const openPopup = () => {
-    setPopup(!popUp);
-  };
-  const openSettings = () => {
-    setSettings(!settings);
-  };
-  const openLeaderboard = () => {
-    setLeaderboard(!leaderboard);
-  };
-  const openClassroom = () => {
-    setClassroom(!classroom);
-  };
-  const openProgress = () => {
-    setProgress(!progress);
-  };
-  const openChat = () => {
-    setChat(!chat);
-  };
+    const remaining = content[activeChapter].chapterPuzzles.filter((puzzle) => {
+      return !puzzle.completed;
+    });
+    if (remaining.length === 0) {
+      dispatch(setChapterCompleteStatus(activeChapter));
+    }
+  }, [content[activeChapter].chapterPuzzles]);
 
   if (splashStatus) {
     return <Splash />;
   }
 
+  if (content[activeChapter].completedStatus) {
+    return (
+      <button
+        onClick={() => {
+          dispatch(changeCurrentChapter(activeChapter + 1));
+        }}
+      >
+        Go to next chapter
+      </button>
+    );
+  }
   return (
     <>
       <Background />
 
       {popUp ? (
-        <Popup currentPuzzle={currentPuzzle} openPopup={openPopup} />
+        <Popup currentPuzzle={currentPuzzle} toggleUi={toggleUi} />
       ) : (
         <></>
       )}
@@ -88,15 +103,9 @@ function App() {
       )}
 
       <div className="hud">
-        <Points openPopup={openPopup} />
+        <Points toggleUi={toggleUi} />
         <NotifyChapters />
-        <LowerNav
-          openClassroom={openClassroom}
-          openSettings={openSettings}
-          openLeaderboard={openLeaderboard}
-          openProgress={openProgress}
-          openChat={openChat}
-        />
+        <LowerNav toggleUi={toggleUi} />
       </div>
     </>
   );

@@ -1,25 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    chaptersCompleted : [100],
-    puzzlesComplete : [101, 102],
-    currentChapter : 0,
-    currentPuzzle : -1
-}
+  chaptersCompleted: [],
+  puzzlesCompleted: [],
+  activeChapter: 10,
+  activePuzzle: 0,
+};
 
 const progressSlice = createSlice({
-    name : 'progress',
-    initialState,
-    reducers : {
-        changeCurrentPuzzle : (state, action) =>{
-            state.currentPuzzle = action.payload
-        }
-    }
+  name: "progress",
+  initialState,
+  reducers: {
+    changeCurrentPuzzle: (state, action) => {
+      state.activePuzzle = action.payload;
+    },
+    changeCurrentChapter: (state, action) => {
+      state.activeChapter = action.payload;
+    },
+    addCompletedChapter: (state, action) => {
+      state.chaptersCompleted = [...state.chaptersCompleted, action.payload];
+    },
+    addCompletedPuzzle: (state, action) => {
+      state.puzzlesCompleted = [...state.puzzlesCompleted, action.payload];
+    },
+  },
 });
 
-export const {changeCurrentPuzzle} = progressSlice.actions;
+export const { changeCurrentPuzzle, changeCurrentChapter } =
+  progressSlice.actions;
 
-export const currentPuzzleSelector = state => state.progress.currentPuzzle;
-export const currentChapterSelector = state => state.progress.currentChapter;
+export const activePuzzleSelector = (state) => state.progress.activePuzzle;
+export const activeChapterSelector = (state) => state.progress.activeChapter;
 
 export default progressSlice.reducer;

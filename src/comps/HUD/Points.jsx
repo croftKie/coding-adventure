@@ -1,38 +1,78 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeCurrentPuzzle, currentChapterSelector } from '../../store/features/progressSlice';
-import { chaptersSelector } from '../../store/features/chaptersSlice';
-import { gsap } from 'gsap';
+import React, { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  changeCurrentPuzzle,
+  activeChapterSelector,
+} from "../../store/features/progressSlice";
+import { readContent } from "../../store/features/contentSlice";
+import { gsap } from "gsap";
 
-const Points = ({puzzles, openPopup}) => {
-    const dispatch = useDispatch();
-    const chapters = useSelector(chaptersSelector);
-    const currentChapters = useSelector(currentChapterSelector)
+const Points = ({ openPopup }) => {
+  const dispatch = useDispatch();
+  const content = useSelector(readContent);
+  const activeChapter = useSelector(activeChapterSelector);
+  const puzzles = content[activeChapter].chapterPuzzles;
 
-      const assignPuzzleId = (id)=>{
-        dispatch(changeCurrentPuzzle(id));
-      }
+  const assignPuzzleId = (id) => {
+    dispatch(changeCurrentPuzzle(id));
+  };
+  const onEnter = (e, completedStatus) => {
+    if (completedStatus) {
+      gsap.to(e.target, {
+        backgroundColor: "#5efc88",
+        scale: 1.2,
+        duration: 0.1,
+      });
+    } else {
+      gsap.to(e.target, {
+        backgroundColor: "#9AD6FF",
+        scale: 1.2,
+        duration: 0.1,
+      });
+    }
+  };
+  const onLeave = (e, completedStatus) => {
+    if (completedStatus) {
+      gsap.to(e.target, {
+        backgroundColor: "#97feb3",
+        scale: 1,
+        duration: 0.1,
+      });
+    } else {
+      gsap.to(e.target, {
+        backgroundColor: "#5AA9E6",
+        scale: 1,
+        duration: 0.1,
+      });
+    }
+  };
+  return (
+    <div className="points">
+      {content[activeChapter].points.map((point, index) => {
+        return (
+          <div
+            key={puzzles[index].id}
+            style={{
+              top: point.top,
+              left: point.left,
+              backgroundColor: puzzles[index].completed ? "#97feb3" : "#5AA9E6",
+            }}
+            onClick={() => {
+              assignPuzzleId(puzzles[index].id);
+              openPopup();
+            }}
+            className="point"
+            onMouseEnter={(e) => {
+              onEnter(e, puzzles[index].completed);
+            }}
+            onMouseLeave={(e) => {
+              onLeave(e, puzzles[index].completed);
+            }}
+          ></div>
+        );
+      })}
+    </div>
+  );
+};
 
-      const onEnter = (e)=>{
-        gsap.to(e.target, {backgroundColor: "#9AD6FF", scale: 1.2, duration: 0.1})
-      }
-      const onLeave = (e)=>{
-        gsap.to(e.target, {backgroundColor: "#5AA9E6", scale: 1, duration: 0.1})
-      }
-    return ( 
-        <div className="points">
-            {chapters[currentChapters].points.map((point, index)=>{
-              return (
-                <div 
-                  style={{top:point.top, left:point.left}} 
-                  onClick={()=>{assignPuzzleId(chapters[currentChapters].chapterPuzzles[index]); openPopup()}} 
-                  className="point"
-                  onMouseEnter={onEnter}
-                  onMouseLeave={onLeave}></div>
-              )
-            })}
-        </div>
-     );
-}
- 
 export default Points;

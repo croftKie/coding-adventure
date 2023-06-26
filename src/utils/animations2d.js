@@ -95,7 +95,7 @@ export const animator = (imgRef, instructionInputs, height, width)=>{
                         tl.to(imgRef.current, {x: 0});
                         X = 0;
                     } else {
-                        tl.to(imgRef.current, {x: Y - Math.abs(instructionInputs[i].value)});
+                        tl.to(imgRef.current, {x: X - Math.abs(instructionInputs[i].value)});
                         X -= Math.abs(instructionInputs[i].value);
                     }
                     break;
@@ -105,9 +105,19 @@ export const animator = (imgRef, instructionInputs, height, width)=>{
         }
     }
     tl.resume();
-    return 1;
+    return {x: X, y: Y};
 }
 
 export const resetAnimation = (imgRef, startLocs) =>{
     gsap.to(imgRef.current, {x: startLocs[0].x, y: startLocs[0].y});
+}
+
+export const WinCondition = (char, charLocation, goalLocation)=>{
+    const loc = char.current.getBoundingClientRect();
+    if(charLocation.x <= (goalLocation.x + loc.width) && 
+        charLocation.x >= goalLocation.x && 
+        charLocation.y <= (goalLocation.y + loc.height) && 
+        charLocation.y >= goalLocation.y) {
+        console.log("You have won!");
+    }
 }

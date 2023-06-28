@@ -445,6 +445,30 @@ $point-complete-color-secondary: #5efc88;
     .topbar {
       @include topbar();
     }
+    .content {
+      height: 100%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      .info {
+        text-align: center;
+      }
+      .win-image {
+        img {
+          height: 200px;
+        }
+      }
+      .buttons {
+        button {
+          @include button();
+          margin-right: 40px;
+          width: 200px;
+          font-size: 1.2rem;
+        }
+      }
+    }
   }
 }
 
@@ -662,5 +686,23 @@ $point-complete-color-secondary: #5efc88;
       flex-direction: column;
       justify-content: space-around;
     }
+  }
+}
+
+.loading {
+  height: 100vh;
+  background-color: $base-black;
+  color: $base-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  p {
+    width: 50%;
+  }
+  button {
+    @include button();
   }
 }

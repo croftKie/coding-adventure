@@ -13,6 +13,7 @@ import Progress from "./comps/HUD/settings-comps/Progress";
 import Leaderboard from "./comps/HUD/settings-comps/Leaderboard";
 import Chat from "./comps/HUD/settings-comps/Chat";
 import Classroom from "./comps/HUD/settings-comps/Classroom";
+import Loading from "./comps/Loading";
 
 import {
   activeChapterSelector,
@@ -68,15 +69,7 @@ function App() {
   }
 
   if (content[activeChapter].completedStatus) {
-    return (
-      <button
-        onClick={() => {
-          dispatch(changeCurrentChapter(activeChapter + 1));
-        }}
-      >
-        Go to next chapter
-      </button>
-    );
+    return <Loading />;
   }
   return (
     <>

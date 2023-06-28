@@ -471,6 +471,32 @@
   align-items: center;
   padding: 0 10px 0 10px;
 }
+.popup .win-condition .content {
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.popup .win-condition .content .info {
+  text-align: center;
+}
+.popup .win-condition .content .win-image img {
+  height: 200px;
+}
+.popup .win-condition .content .buttons button {
+  width: 20%;
+  height: 40px;
+  background-color: #9ad6ff;
+  border: 3px solid #333333;
+  border-radius: 10px;
+  color: #333333;
+  font-size: 1.5rem;
+  margin-right: 40px;
+  width: 200px;
+  font-size: 1.2rem;
+}
 
 .splash {
   height: 100vh;
@@ -816,4 +842,28 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.loading {
+  height: 100vh;
+  background-color: #333333;
+  color: #fff8ef;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+.loading p {
+  width: 50%;
+}
+.loading button {
+  width: 20%;
+  height: 40px;
+  background-color: #9ad6ff;
+  border: 3px solid #333333;
+  border-radius: 10px;
+  color: #333333;
+  font-size: 1.5rem;
 }/*# sourceMappingURL=App.css.map */

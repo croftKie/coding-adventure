@@ -29,6 +29,7 @@ const Popup = ({ toggleUi }) => {
     (puzzle) => puzzle.id === activePuzzleId
   );
   const [win, setWin] = useState(false);
+  console.log(activePuzzle);
 
   const toastText = activePuzzle.puzzleDescription;
   const showToastMessage = () => {
@@ -44,11 +45,10 @@ const Popup = ({ toggleUi }) => {
       toggleUi("popUp");
     }, 1000);
   };
-  console.log(win);
   return (
     <div ref={popupRef} className="popup">
       <ToastContainer />
-      {win ? <WinCondition setWin={setWin} /> : <></>}
+      {win ? <WinCondition setWin={setWin} toggleUi={toggleUi} /> : <></>}
       <div className="nav">
         <div className="topbar">
           <h1>{activePuzzle.puzzleName}</h1>

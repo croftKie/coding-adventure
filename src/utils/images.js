@@ -10,6 +10,8 @@ export const images = {
     "./assets/podium.png",
     "./assets/process.png",
     "./assets/binary-code.png",
+    "./assets/chat.png",
+    "./assets/gear.png",
   ],
   chapterBgAssets: ["./assets/pxfuel.jpg"],
 };

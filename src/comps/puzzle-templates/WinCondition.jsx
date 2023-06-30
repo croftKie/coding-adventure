@@ -5,7 +5,7 @@ import {
   activeChapterSelector,
   activePuzzleSelector,
 } from "../../store/features/progressSlice";
-import pirate from "../../assets/pirate.png";
+import { images } from "../../utils/images";
 
 const WinCondition = ({ setWin, toggleUi }) => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const WinCondition = ({ setWin, toggleUi }) => {
           <p>LITTLE BLURB THAT EXPLAINS MORE OF THE STORY</p>
         </div>
         <div className="win-image">
-          <img src={pirate} alt="" />
+          <img src={images.puzzleAssets[0]} alt="" />
         </div>
         <div className="buttons">
           <button

@@ -1,23 +1,19 @@
 import React from "react";
-import googleClassroom from "../../assets/google-classroom.png";
-import gear from "../../assets/gear.png";
-import podium from "../../assets/podium.png";
-import process from "../../assets/process.png";
-import chat from "../../assets/chat.png";
-import close from "../../assets/close.png";
+import { images } from "../../utils/images";
 
 import { useSelector } from "react-redux";
 import { activeChapterSelector } from "../../store/features/progressSlice";
 import { readContent } from "../../store/features/contentSlice";
 
 const LowerNav = ({ toggleUi }) => {
+  const uiAssets = images.uiAssets;
   const content = useSelector(readContent);
   const activeChapter = useSelector(activeChapterSelector);
 
   return (
     <div className="nav">
       <div className="topbar">
-        <img src={close} alt="" />
+        <img src={uiAssets[0]} alt="" />
       </div>
       <div className="lowerNav">
         <div>
@@ -26,7 +22,7 @@ const LowerNav = ({ toggleUi }) => {
               onClick={() => {
                 toggleUi("classroom");
               }}
-              src={googleClassroom}
+              src={uiAssets[3]}
               alt=""
             />
           </div>
@@ -35,7 +31,7 @@ const LowerNav = ({ toggleUi }) => {
               onClick={() => {
                 toggleUi("chat");
               }}
-              src={chat}
+              src={uiAssets[8]}
               alt=""
             />
           </div>
@@ -51,7 +47,7 @@ const LowerNav = ({ toggleUi }) => {
             onClick={() => {
               toggleUi("leaderboard");
             }}
-            src={podium}
+            src={uiAssets[5]}
             alt=""
           />
         </div>
@@ -60,7 +56,7 @@ const LowerNav = ({ toggleUi }) => {
             onClick={() => {
               toggleUi("progress");
             }}
-            src={process}
+            src={uiAssets[6]}
             alt=""
           />
         </div>
@@ -69,7 +65,7 @@ const LowerNav = ({ toggleUi }) => {
             onClick={() => {
               toggleUi("settings");
             }}
-            src={gear}
+            src={uiAssets[9]}
             alt=""
           />
         </div>

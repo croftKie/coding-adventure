@@ -1,5 +1,5 @@
 export const images = {
-  puzzleAssets: ["./assets/gold-ingots.png", "./assets/pirate.png"],
+  puzzleAssets: ["./assets/pirate.png", "./assets/gold-ingots.png"],
   puzzleBgAssets: ["./assets/paper_bg.png"],
   uiAssets: [
     "./assets/close.png",

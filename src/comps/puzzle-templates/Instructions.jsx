@@ -6,10 +6,10 @@ import {
 } from "../../store/features/currentInput";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  isPathComplete,
   animator,
-  resetAnimation,
-  WinCondition,
-} from "../../utils/animations2d";
+  resetAnimationPath,
+} from "../../path-animation-library/pathAnimation";
 import { images } from "../../utils/images";
 
 const Instructions = ({ activePuzzle, setWin }) => {
@@ -29,18 +29,27 @@ const Instructions = ({ activePuzzle, setWin }) => {
   const reset = () => {
     dispatch(clearInstruction());
     setInputs([]);
-    resetAnimation(charImg, startLocs);
+    resetAnimationPath(charImg.current, startLocs[0]);
   };
   const run = () => {
-    const runComplete = animator(charImg, instructionInputs, 500, 500);
-    if (WinCondition(charImg, runComplete, activePuzzle.endLocations[0])) {
+    const isRunComplete = animator(
+      charImg.current,
+      instructionInputs,
+      500,
+      500
+    );
+
+    if (
+      isPathComplete(
+        charImg.current,
+        isRunComplete,
+        activePuzzle.endLocations[0]
+      )
+    ) {
       setWin(true);
       // dispatch(setPuzzleCompleteStatus({ chapterId: 0, puzzleId: 0 }));
     }
   };
-
-  console.log(assetRefs);
-  console.log(images.puzzleAssets[assetRefs[1]]);
 
   return (
     <div className="instructions-puzzle">

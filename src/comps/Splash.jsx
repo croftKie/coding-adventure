@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import logo from "../assets/binary-code.png";
-import close from "../assets/close.png";
+import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
 import { gsap } from "gsap";
-import { changeCurrentChapter } from "../store/features/progressSlice";
 
+import { images } from "../utils/images";
+
+import { changeCurrentChapter } from "../store/features/progressSlice";
 import { updateUi } from "../store/features/UiSlice";
 
 const Splash = () => {
@@ -33,7 +33,7 @@ const Splash = () => {
     <div className="splash">
       <div className="splash-content">
         <div className="topbar">
-          <img src={close} alt="" />
+          <img src={images.uiAssets[0]} alt="" />
         </div>
         <div className="logo-bar">
           <img
@@ -41,7 +41,7 @@ const Splash = () => {
               spin(logoRef);
             }}
             ref={logoRef}
-            src={logo}
+            src={images.uiAssets[7]}
             alt=""
           />
           <div className="logo-text">

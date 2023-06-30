@@ -20,6 +20,7 @@ const initialState = {
           ],
           endLocations: [{ image: "pirate", x: 100, y: 100 }],
           completed: false,
+          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
         },
         // {
         //   puzzleName: "The Tree",
@@ -52,6 +53,7 @@ const initialState = {
         // { top: "35%", left: "67%" },
       ],
       completedStatus: false,
+      assets: { bgAssets: [0] },
     },
     {
       chapterName: "The Weathered Tree",
@@ -71,6 +73,7 @@ const initialState = {
           ],
           endLocations: [{ image: "pirate", x: 300, y: 200 }, {}],
           completed: false,
+          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
         },
         // {
         //   puzzleName: "The Tree II",
@@ -103,6 +106,7 @@ const initialState = {
         // { top: "55%", left: "67%" },
       ],
       completedStatus: false,
+      assets: { bgAssets: [0] },
     },
     {
       chapterName: "The City",
@@ -122,6 +126,7 @@ const initialState = {
           ],
           endLocations: [{ image: "pirate", x: 400, y: 100 }],
           completed: false,
+          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
         },
       ],
       points: [
@@ -130,6 +135,7 @@ const initialState = {
         // { top: "35%", left: "67%" },
       ],
       completedStatus: false,
+      assets: { bgAssets: [0] },
     },
   ],
 };

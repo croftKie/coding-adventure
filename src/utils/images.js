@@ -1,16 +1,15 @@
-export const puzzleAssets = [
-    { id: 1, src: '../assets/gold-ingots.png'},
-    { id: 2, src: '../assets/pirate.png'},
-];
-export const uiAssets = [
-  { id: 1, src: '../assets/close.png'},
-  { id: 2, src: 'assets/floppy-disk.png'},
-  { id: 3, src: '../assets/gear.png'},
-  { id: 4, src: '../assets/google-classroom.png'},
-  { id: 5, src: '../assets/info.png'},
-  { id: 6, src: '../assets/podium.png'},
-  { id: 7, src: '../assets/process.png'},
-]
-export const bgAssets = [
-  { id: 1, src: '../assets/pxfuel.jpg'},
-]
+export const images = {
+  puzzleAssets: ["./assets/gold-ingots.png", "./assets/pirate.png"],
+  puzzleBgAssets: ["./assets/paper_bg.png"],
+  uiAssets: [
+    "./assets/close.png",
+    "./assets/floppy-disk.png",
+    "./assets/gear.png",
+    "./assets/google-classroom.png",
+    "./assets/info.png",
+    "./assets/podium.png",
+    "./assets/process.png",
+    "./assets/binary-code.png",
+  ],
+  chapterBgAssets: ["./assets/pxfuel.jpg"],
+};

@@ -1,8 +1,10 @@
-import { useMouse } from "@uidotdev/usehooks";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import "./css/App.css";
 
+// React and React Redux dependencies
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+// Import statements for child components
 import Popup from "./comps/Popup";
 import Background from "./comps/Background";
 import LowerNav from "./comps/HUD/LowerNav";
@@ -14,14 +16,15 @@ import Leaderboard from "./comps/HUD/settings-comps/Leaderboard";
 import Chat from "./comps/HUD/settings-comps/Chat";
 import Classroom from "./comps/HUD/settings-comps/Classroom";
 import Loading from "./comps/Loading";
+import NotifyChapters from "./comps/HUD/NotifyChapters";
 
+// State import for currently active chapters and puzzles
 import {
   activeChapterSelector,
   activePuzzleSelector,
-  changeCurrentChapter,
 } from "./store/features/progressSlice";
 
-import NotifyChapters from "./comps/HUD/NotifyChapters";
+// State import for UI toggles (bools)
 import {
   SplashSelector,
   chatSelector,
@@ -32,12 +35,15 @@ import {
   settingsSelector,
   updateUi,
 } from "./store/features/UiSlice";
+
+// State import for puzzle/chapter content
 import {
-  readContent,
-  setChapterCompleteStatus,
+  readContent, // all chapter & puzzle content
+  setChapterCompleteStatus, // action to set chapter as complete
 } from "./store/features/contentSlice";
 
 function App() {
+  // variable declarations
   const currentPuzzle = useSelector(activePuzzleSelector);
   const activeChapter = useSelector(activeChapterSelector);
   const splashStatus = useSelector(SplashSelector);
@@ -49,12 +55,13 @@ function App() {
   const classroom = useSelector(classroomSelector);
   const chat = useSelector(chatSelector);
   const dispatch = useDispatch();
-  const chapterChange = false;
 
+  // Dispatch function for opening and closing UI elements
   const toggleUi = (type) => {
     dispatch(updateUi(type));
   };
 
+  // update function to monitor completed puzzles - dispatches chapter complete status
   useEffect(() => {
     const remaining = content[activeChapter].chapterPuzzles.filter((puzzle) => {
       return !puzzle.completed;
@@ -64,6 +71,7 @@ function App() {
     }
   }, [content[activeChapter].chapterPuzzles]);
 
+  // Returns based on splash screen status and chapter complete status and default return
   if (splashStatus) {
     return <Splash />;
   }

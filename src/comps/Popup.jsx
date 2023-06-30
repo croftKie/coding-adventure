@@ -1,50 +1,54 @@
-import React, { useState, useEffect } from "react";
-import close from "../assets/close.png";
-import info from "../assets/info.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { gsap } from "gsap";
+
+import React, { useState, useRef } from "react";
+import { useSelector } from "react-redux";
+
+import { images } from "../utils/images";
 
 import Instructions from "./puzzle-templates/Instructions";
 import BugFix from "./puzzle-templates/BugFix";
 import Cryptography from "./puzzle-templates/Cryptography";
+import WinCondition from "./puzzle-templates/WinCondition";
 
-import { useSelector } from "react-redux";
-
-import { gsap } from "gsap";
-import { useRef } from "react";
 import { readContent } from "../store/features/contentSlice";
 import {
   activeChapterSelector,
   activePuzzleSelector,
 } from "../store/features/progressSlice";
-import WinCondition from "./puzzle-templates/WinCondition";
 
 const Popup = ({ toggleUi }) => {
+  // variable declarations
+  const [win, setWin] = useState(false);
   const popupRef = useRef();
   const content = useSelector(readContent);
   const activeChapter = useSelector(activeChapterSelector);
-  const puzzles = content[activeChapter].chapterPuzzles;
   const activePuzzleId = useSelector(activePuzzleSelector);
+
+  const puzzles = content[activeChapter].chapterPuzzles;
   const [activePuzzle] = puzzles.filter(
     (puzzle) => puzzle.id === activePuzzleId
   );
-  const [win, setWin] = useState(false);
-  console.log(activePuzzle);
-
   const toastText = activePuzzle.puzzleDescription;
+
+  // helper functions
   const showToastMessage = () => {
     toast.info(toastText, {
       position: toast.POSITION.TOP_LEFT,
       allowHTML: true,
     });
   };
-
   const closeOnPress = () => {
     gsap.to(popupRef.current, { height: 0, width: 0, opacity: 0 });
     setTimeout(() => {
       toggleUi("popUp");
     }, 1000);
   };
+
+  // Return state for component
+  // Loads win condition child comp if win condition is met.
+  // Loads child puzzle component depending on puzzle type of active puzzle
   return (
     <div ref={popupRef} className="popup">
       <ToastContainer />
@@ -54,10 +58,10 @@ const Popup = ({ toggleUi }) => {
           <h1>{activePuzzle.puzzleName}</h1>
           <div className="buttons">
             <div onClick={showToastMessage} className="item">
-              <img src={info} alt="" />
+              <img src={images.uiAssets[4]} alt="" />
             </div>
             <div onClick={closeOnPress} className="item">
-              <img src={close} alt="" />
+              <img src={images.uiAssets[0]} alt="" />
             </div>
           </div>
         </div>

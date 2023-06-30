@@ -5,17 +5,12 @@ import {
   clearInstruction,
 } from "../../store/features/currentInput";
 import { useSelector, useDispatch } from "react-redux";
-import pirate from "../../assets/pirate.png";
-import gold from "../../assets/gold-ingots.png";
-import bg from "../../assets/paper_bg.png";
 import {
   animator,
   resetAnimation,
   WinCondition,
 } from "../../utils/animations2d";
-import { setPuzzleCompleteStatus } from "../../store/features/contentSlice";
-
-// set puzzle to completed when Win Condition is met
+import { images } from "../../utils/images";
 
 const Instructions = ({ activePuzzle, setWin }) => {
   const [inputs, setInputs] = useState([]);
@@ -25,6 +20,8 @@ const Instructions = ({ activePuzzle, setWin }) => {
   const instructionInputs = useSelector(instructionInputSelector);
   const dispatch = useDispatch();
   const startLocs = activePuzzle.startLocations;
+  const assetTypes = Object.keys(activePuzzle.assets);
+  const assetRefs = activePuzzle.assets.puzzleAssets;
 
   const pushInputs = (type) => {
     setInputs([...inputs, type]);
@@ -41,6 +38,9 @@ const Instructions = ({ activePuzzle, setWin }) => {
       // dispatch(setPuzzleCompleteStatus({ chapterId: 0, puzzleId: 0 }));
     }
   };
+
+  console.log(assetRefs);
+  console.log(images.puzzleAssets[assetRefs[1]]);
 
   return (
     <div className="instructions-puzzle">
@@ -96,7 +96,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
           </div>
         </div>
         <div
-          style={{ backgroundImage: `url(${bg})` }}
+          style={{ backgroundImage: `url(${images[assetTypes[1]][0]})` }}
           ref={resultRef}
           className="result"
         >
@@ -105,7 +105,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
             style={{
               transform: `translate(${startLocs[0].x}px, ${startLocs[0].y}px`,
             }}
-            src={pirate}
+            src={images[assetTypes[0]][assetRefs[0]]}
             alt=""
           />
           <img
@@ -113,7 +113,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
             style={{
               transform: `translate(${startLocs[1].x}px, ${startLocs[1].y}px`,
             }}
-            src={gold}
+            src={images[assetTypes[0]][assetRefs[1]]}
             alt=""
           />
         </div>

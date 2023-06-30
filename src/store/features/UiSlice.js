@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  splashScreen: false,
+  splashScreen: true,
   popUp: false,
   settings: false,
   leaderboard: false,

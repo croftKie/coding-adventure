@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { readContent } from "../store/features/contentSlice";
+
 import {
   changeCurrentChapter,
   activeChapterSelector,
@@ -8,9 +11,13 @@ import {
 const Loading = () => {
   const dispatch = useDispatch();
   const activeChapter = useSelector(activeChapterSelector);
+  const content = useSelector(readContent);
   return (
     <div className="loading">
-      <h1>You completed chapter {activeChapter}</h1>
+      <h1>
+        You completed chapter {activeChapter + 1} -{" "}
+        {content[activeChapter].chapterName}
+      </h1>
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa officia
         harum, veniam minima ea nobis. Odio officia error minima cupiditate

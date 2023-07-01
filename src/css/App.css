@@ -342,17 +342,34 @@
 .popup .puzzleContent .bugFix-puzzle .content {
   height: 85%;
   display: flex;
+  justify-content: center;
 }
 .popup .puzzleContent .bugFix-puzzle .content .input {
   height: 100%;
   width: 50%;
   display: grid;
-  grid-template-rows: 9fr 1fr;
+  grid-template-rows: 4fr 1fr;
+}
+.popup .puzzleContent .bugFix-puzzle .content .input .bug-fix-input {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.popup .puzzleContent .bugFix-puzzle .content .input .bug-fix-input div p span input {
+  width: 50px;
 }
 .popup .puzzleContent .bugFix-puzzle .content .result {
-  border-left: 3px solid #333333;
-  height: 100%;
-  width: 50%;
+  border: 3px solid #333333;
+  border-radius: 7px;
+  height: 500px;
+  width: 500px;
+  padding-left: 20px;
+  position: relative;
+}
+.popup .puzzleContent .bugFix-puzzle .content .result img {
+  position: relative;
+  height: 50px;
 }
 .popup .puzzleContent .bugFix-puzzle .buttons {
   height: 15%;

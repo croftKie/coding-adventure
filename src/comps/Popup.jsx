@@ -72,9 +72,7 @@ const Popup = ({ toggleUi }) => {
         ) : activePuzzle.type === 2 ? (
           <Cryptography />
         ) : activePuzzle.type === 3 ? (
-          <BugFix />
-        ) : activePuzzle.type === 4 ? (
-          <Styling />
+          <BugFix setWin={setWin} activePuzzle={activePuzzle} />
         ) : (
           <></>
         )}

@@ -355,16 +355,39 @@ $point-complete-color-secondary: #5efc88;
       .content {
         height: 85%;
         display: flex;
+        justify-content: center;
         .input {
           height: 100%;
           width: 50%;
           display: grid;
-          grid-template-rows: 9fr 1fr;
+          grid-template-rows: 4fr 1fr;
+          .bug-fix-input {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            div {
+              p {
+                span {
+                  input {
+                    width: 50px;
+                  }
+                }
+              }
+            }
+          }
         }
         .result {
-          border-left: $border-dark;
-          height: 100%;
-          width: 50%;
+          border: $border-dark;
+          border-radius: $border-radius-bar;
+          height: 500px;
+          width: 500px;
+          padding-left: 20px;
+          position: relative;
+          img {
+            position: relative;
+            height: 50px;
+          }
         }
       }
       .buttons {

@@ -92,14 +92,14 @@ const Instructions = ({ activePuzzle, setWin }) => {
             <div className="logic">
               <button
                 onClick={() => {
-                  pushInputs(6);
+                  pushInputs(5);
                 }}
               >
                 Repeat
               </button>
               <button
                 onClick={() => {
-                  pushInputs(7);
+                  pushInputs(6);
                 }}
               >
                 End

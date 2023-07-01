@@ -5,25 +5,27 @@ import {
   instructionInputSelector,
 } from "../../../store/features/currentInput";
 
-const End = ({ placeholder }) => {
+const Repeat = ({ placeholder }) => {
   const dispatch = useDispatch();
   return (
     <div className="move-block">
       <p>
-        End{" "}
+        Repeat following{" "}
         <span>
           <input
-            type="text"
+            type="number"
             placeholder={placeholder}
             onBlur={(e) => {
-              dispatch(addInstruction({ type: "end", value: e.target.value }));
+              dispatch(
+                addInstruction({ type: "repeat", value: e.target.value })
+              );
             }}
           />{" "}
         </span>{" "}
-        block
+        times
       </p>
     </div>
   );
 };
 
-export default End;
+export default Repeat;

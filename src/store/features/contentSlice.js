@@ -22,35 +22,46 @@ const initialState = {
           completed: false,
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
         },
-        // {
-        //   puzzleName: "The Tree",
-        //   id: 1,
-        //   type: 2,
-        //   puzzleDescription:
-        //     "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
-        //   clues: [
-        //     "this is clue number one",
-        //     "this is clue number two",
-        //     "this is clue number three",
-        //   ],
-        //   winCondition: ["XXX", "XXX", "XXX"],
-        //   completed: false,
-        // },
-        // {
-        //   puzzleName: "The Hidden Gold",
-        //   id: 2,
-        //   type: 3,
-        //   puzzleDescription:
-        //     "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
-        //   startLocations: [{}, {}],
-        //   endLocations: [{}, {}],
-        //   completed: false,
-        // },
+        {
+          puzzleName: "The Tree",
+          id: 1,
+          type: 2,
+          puzzleDescription:
+            "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
+          clues: [
+            "this is clue number one",
+            "this is clue number two",
+            "this is clue number three",
+          ],
+          winCondition: ["XXX", "XXX", "XXX"],
+          completed: false,
+          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
+        },
+        {
+          puzzleName: "The Hidden Gold",
+          id: 2,
+          type: 3,
+          puzzleDescription:
+            "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
+          startLocations: [
+            { image: "pirate", x: 400, y: 400 },
+            { image: "gold", x: 100, y: 100 },
+          ],
+          endLocations: [{}, {}],
+          completed: false,
+          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
+          inputs: [
+            { type: "forward", value: 100 },
+            { type: "left", value: 100 },
+            { type: "backwards", value: 300 },
+            { type: "right", value: 300 },
+          ],
+        },
       ],
       points: [
         { top: "57%", left: "10%" },
-        // { top: "60%", left: "90%" },
-        // { top: "35%", left: "67%" },
+        { top: "60%", left: "90%" },
+        { top: "35%", left: "67%" },
       ],
       completedStatus: false,
       assets: { bgAssets: [0] },
@@ -155,11 +166,22 @@ const contentSlice = createSlice({
       state.chapters[chapterIndex].chapterPuzzles[puzzleIndex].completed =
         !state.chapters[chapterIndex].chapterPuzzles[puzzleIndex].completed;
     },
+    changeBugFixInstructions: (state, action) => {
+      const chapterIndex = action.payload.chapterIndex;
+      const puzzleIndex = action.payload.puzzleIndex;
+      const inputToChange = action.payload.inputToChange;
+      state.chapters[chapterIndex].chapterPuzzles[puzzleIndex].inputs[
+        inputToChange
+      ] = action.payload.change;
+    },
   },
 });
 
-export const { setChapterCompleteStatus, setPuzzleCompleteStatus } =
-  contentSlice.actions;
+export const {
+  setChapterCompleteStatus,
+  setPuzzleCompleteStatus,
+  changeBugFixInstructions,
+} = contentSlice.actions;
 
 export const readContent = (state) => state.content.chapters;
 export default contentSlice.reducer;

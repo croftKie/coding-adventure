@@ -18,10 +18,16 @@ export const isPathComplete = (element, elementLocation, endLocation) => {
   }
 };
 
-export const animator = (element, inputs, parentHeight, parentWidth) => {
+export const animator = (
+  element,
+  inputs,
+  parentHeight,
+  parentWidth,
+  onComplete
+) => {
   let X = _getPosition(element).X;
   let Y = _getPosition(element).Y;
-  const tl = _initTimeline();
+  const tl = _initTimeline(onComplete);
   const { repeatStartIndex, repeatEndIndex, repeatableInputs, repeatNumber } =
     _utils(inputs);
 
@@ -134,8 +140,8 @@ const _getPosition = (element) => {
   return { X: parseInt(pos[0]), Y: parseInt(pos[1]) };
 };
 
-const _initTimeline = () => {
-  let tl = gsap.timeline({ repeatDelay: 1 });
+const _initTimeline = (onComplete) => {
+  let tl = gsap.timeline({ onComplete: onComplete, repeatDelay: 1 });
   tl.pause();
   return tl;
 };
@@ -157,4 +163,8 @@ const _utils = (inputs) => {
     repeatableInputs: repeatableInputs,
     repeatNumber: repeatNumber,
   };
+};
+
+export const timelineComplete = async () => {
+  console.log("hello");
 };

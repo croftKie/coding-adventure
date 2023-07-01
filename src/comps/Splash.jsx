@@ -1,10 +1,13 @@
 import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { gsap } from "gsap";
 
 import { images } from "../utils/images";
 
-import { changeCurrentChapter } from "../store/features/progressSlice";
+import {
+  changeCurrentChapter,
+  activeChapterSelector,
+} from "../store/features/progressSlice";
 import { updateUi } from "../store/features/UiSlice";
 
 const Splash = () => {
@@ -13,6 +16,7 @@ const Splash = () => {
   const cardThree = useRef();
   const cardFour = useRef();
   const logoRef = useRef();
+  const activeChapter = useSelector(activeChapterSelector);
   const dispatch = useDispatch();
 
   const onEnter = (ref) => {
@@ -25,10 +29,11 @@ const Splash = () => {
     gsap.to(ref.current, { rotation: 360, repeat: 4, yoyo: true });
   };
 
-  const assignChapter = () => {
-    dispatch(changeCurrentChapter(0));
+  const assignChapter = (chapter) => {
+    dispatch(changeCurrentChapter(chapter));
   };
 
+  console.log(activeChapter);
   return (
     <div className="splash">
       <div className="splash-content">
@@ -61,7 +66,7 @@ const Splash = () => {
               onLeave(cardOne);
             }}
             onClick={() => {
-              assignChapter(), dispatch(updateUi("splashScreen"));
+              assignChapter(0), dispatch(updateUi("splashScreen"));
             }}
             className="new card"
           >
@@ -77,6 +82,9 @@ const Splash = () => {
             }}
             onMouseLeave={() => {
               onLeave(cardTwo);
+            }}
+            onClick={() => {
+              assignChapter(activeChapter), dispatch(updateUi("splashScreen"));
             }}
             className="continue card"
           >

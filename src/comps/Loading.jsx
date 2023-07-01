@@ -6,6 +6,7 @@ import { readContent } from "../store/features/contentSlice";
 import {
   changeCurrentChapter,
   activeChapterSelector,
+  addCompletedChapter,
 } from "../store/features/progressSlice";
 
 const Loading = () => {
@@ -28,6 +29,7 @@ const Loading = () => {
       <button
         onClick={() => {
           dispatch(changeCurrentChapter(activeChapter + 1));
+          dispatch(addCompletedChapter(activeChapter));
         }}
       >
         Go to next chapter

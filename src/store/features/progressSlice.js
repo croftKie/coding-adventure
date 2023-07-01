@@ -2,7 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   chaptersCompleted: [],
-  activeChapter: 0,
+  activeChapter:
+    localStorage.getItem("lastChapterCompleted") >= 0
+      ? parseInt(localStorage.getItem("lastChapterCompleted")) + 1
+      : 0,
   activePuzzle: 0,
 };
 
@@ -17,13 +20,17 @@ const progressSlice = createSlice({
       state.activeChapter = action.payload;
     },
     addCompletedChapter: (state, action) => {
+      localStorage.setItem("lastChapterCompleted", action.payload);
       state.chaptersCompleted = [...state.chaptersCompleted, action.payload];
     },
   },
 });
 
-export const { changeCurrentPuzzle, changeCurrentChapter } =
-  progressSlice.actions;
+export const {
+  changeCurrentPuzzle,
+  changeCurrentChapter,
+  addCompletedChapter,
+} = progressSlice.actions;
 
 export const activePuzzleSelector = (state) => state.progress.activePuzzle;
 export const activeChapterSelector = (state) => state.progress.activeChapter;

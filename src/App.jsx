@@ -71,8 +71,6 @@ function App() {
     }
   }, [content[activeChapter].chapterPuzzles]);
 
-  console.log(chat);
-
   // Returns based on splash screen status and chapter complete status and default return
   if (splashStatus) {
     return <Splash />;

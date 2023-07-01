@@ -9,6 +9,7 @@ import {
   isPathComplete,
   animator,
   resetAnimationPath,
+  timelineComplete,
 } from "../../path-animation-library/pathAnimation";
 import { images } from "../../utils/images";
 
@@ -36,20 +37,20 @@ const Instructions = ({ activePuzzle, setWin }) => {
       charImg.current,
       instructionInputs,
       500,
-      500
+      500,
+      () => {
+        if (
+          isPathComplete(
+            charImg.current,
+            isRunComplete,
+            activePuzzle.endLocations[0]
+          )
+        ) {
+          setWin(true);
+          // dispatch(setPuzzleCompleteStatus({ chapterId: 0, puzzleId: 0 }));
+        }
+      }
     );
-
-    if (
-      isPathComplete(
-        charImg.current,
-        isRunComplete,
-        activePuzzle.endLocations[0]
-      )
-    ) {
-      console.log("hello");
-      setWin(true);
-      // dispatch(setPuzzleCompleteStatus({ chapterId: 0, puzzleId: 0 }));
-    }
   };
 
   return (

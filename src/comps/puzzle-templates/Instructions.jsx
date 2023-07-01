@@ -46,6 +46,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
         activePuzzle.endLocations[0]
       )
     ) {
+      console.log("hello");
       setWin(true);
       // dispatch(setPuzzleCompleteStatus({ chapterId: 0, puzzleId: 0 }));
     }
@@ -56,52 +57,53 @@ const Instructions = ({ activePuzzle, setWin }) => {
       <div className="content">
         <div className="input">
           <InstructionInput inputs={inputs} />
-          <div className="choices">
-            <button
-              onClick={() => {
-                pushInputs(1);
-              }}
-            >
-              Forward
-            </button>
-            <button
-              onClick={() => {
-                pushInputs(2);
-              }}
-            >
-              Backwards
-            </button>
-            <button
-              onClick={() => {
-                pushInputs(3);
-              }}
-            >
-              Right
-            </button>
-            <button
-              onClick={() => {
-                pushInputs(4);
-              }}
-            >
-              Left
-            </button>
-          </div>
-          <div className="logic">
-            {/* <button onClick={()=>{pushInputs(5)}}>If</button> */}
-            <button
-              onClick={() => {
-                pushInputs(6);
-              }}
-            >
-              Repeat
-            </button>
-            <button
-              onClick={() => {
-                pushInputs(7);
-              }}
-            >
-              End
-            </button>
+          <div className="input-buttons">
+            <div className="choices">
+              <button
+                onClick={() => {
+                  pushInputs(1);
+                }}
+              >
+                <img src={images.uiAssets[11]} alt="" />
+              </button>
+              <button
+                onClick={() => {
+                  pushInputs(2);
+                }}
+              >
+                <img src={images.uiAssets[10]} alt="" />
+              </button>
+              <button
+                onClick={() => {
+                  pushInputs(3);
+                }}
+              >
+                <img src={images.uiAssets[12]} alt="" />
+              </button>
+              <button
+                onClick={() => {
+                  pushInputs(4);
+                }}
+              >
+                <img src={images.uiAssets[13]} alt="" />
+              </button>
+            </div>
+            <div className="logic">
+              <button
+                onClick={() => {
+                  pushInputs(6);
+                }}
+              >
+                Repeat
+              </button>
+              <button
+                onClick={() => {
+                  pushInputs(7);
+                }}
+              >
+                End
+              </button>
+            </div>
           </div>
         </div>
         <div

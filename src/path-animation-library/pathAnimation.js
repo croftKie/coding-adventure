@@ -19,7 +19,8 @@ export const isPathComplete = (element, elementLocation, endLocation) => {
 };
 
 export const animator = (element, inputs, parentHeight, parentWidth) => {
-  const { X, Y } = _getPosition(element);
+  let X = _getPosition(element).X;
+  let Y = _getPosition(element).Y;
   const tl = _initTimeline();
   const { repeatStartIndex, repeatEndIndex, repeatableInputs, repeatNumber } =
     _utils(inputs);
@@ -44,7 +45,7 @@ export const animator = (element, inputs, parentHeight, parentWidth) => {
       }
       i = repeatEndIndex;
     } else {
-      _animatePath(
+      const value = _animatePath(
         element,
         inputs[i].type,
         inputs[i],
@@ -54,13 +55,29 @@ export const animator = (element, inputs, parentHeight, parentWidth) => {
         X,
         Y
       );
+      if (Object.keys(value)[0] === "X") {
+        X = value.X;
+      } else if (Object.keys(value)[0] === "Y") {
+        Y = value.Y;
+      }
     }
   }
   tl.resume();
   return { x: X, y: Y };
 };
 
-const _animatePath = (element, type, el, tl, height, width, X, Y) => {
+const _animatePath = (
+  element,
+  type,
+  el,
+  tl,
+  height,
+  width,
+  startingX,
+  startingY
+) => {
+  let X = startingX;
+  let Y = startingY;
   switch (type) {
     case "forward":
       if (Y - el.value < 0) {
@@ -70,7 +87,7 @@ const _animatePath = (element, type, el, tl, height, width, X, Y) => {
         tl.to(element, { y: Y - Math.abs(el.value) });
         Y -= Math.abs(el.value);
       }
-      break;
+      return { Y: Y };
     case "backwards":
       if (Y + el.value > height) {
         tl.to(element, { y: height });
@@ -79,7 +96,7 @@ const _animatePath = (element, type, el, tl, height, width, X, Y) => {
         tl.to(element, { y: Y + Math.abs(el.value) });
         Y += Math.abs(el.value);
       }
-      break;
+      return { Y: Y };
     case "right":
       if (X + el.value > width) {
         tl.to(element, { x: width });
@@ -88,7 +105,7 @@ const _animatePath = (element, type, el, tl, height, width, X, Y) => {
         tl.to(element, { x: X + Math.abs(el.value) });
         X += Math.abs(el.value);
       }
-      break;
+      return { X: X };
     case "left":
       if (X - el.value < 0) {
         tl.to(element, { x: 0 });
@@ -97,7 +114,7 @@ const _animatePath = (element, type, el, tl, height, width, X, Y) => {
         tl.to(element, { x: X - Math.abs(el.value) });
         X -= Math.abs(el.value);
       }
-      break;
+      return { X: X };
     default:
       break;
   }

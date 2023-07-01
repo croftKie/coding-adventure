@@ -12,6 +12,10 @@ export const images = {
     "./assets/binary-code.png",
     "./assets/chat.png",
     "./assets/gear.png",
+    "./assets/arrow-down.png",
+    "./assets/arrow-up.png",
+    "./assets/arrow-right.png",
+    "./assets/arrow-left.png",
   ],
   chapterBgAssets: ["./assets/pxfuel.jpg"],
 };

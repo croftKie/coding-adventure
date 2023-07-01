@@ -572,6 +572,69 @@ $point-complete-color-secondary: #5efc88;
   }
 }
 
+.stats {
+  height: 100vh;
+  background-color: $base-white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .stats-content {
+    width: 80%;
+    height: 80%;
+    background-color: $base-white;
+    display: grid;
+    grid-template-rows: 20px 1fr 2fr;
+    gap: 20px;
+    border-radius: $border-radius-small;
+    border: $border-dark;
+    box-shadow: $box-shadow-dark;
+    .topbar {
+      @include topbar();
+      justify-content: space-between;
+      img {
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+    .logo-bar {
+      grid-row: 2/3;
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      img {
+        height: 150px;
+      }
+    }
+    .nav {
+      grid-row: 3/4;
+      display: flex;
+      gap: 30px;
+      justify-self: center;
+      width: 90%;
+      justify-content: space-around;
+      .card {
+        background-color: $blue-light-color;
+        border-radius: $border-radius-small;
+        border: $border-dark;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: 20px;
+        box-shadow: $box-shadow-dark;
+        height: 90%;
+        width: 20%;
+        cursor: pointer;
+        p {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
 .settings {
   @include settingsMenu();
   .top-bar {

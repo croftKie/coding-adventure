@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { gsap } from "gsap";
 
@@ -9,8 +9,10 @@ import {
   activeChapterSelector,
 } from "../store/features/progressSlice";
 import { updateUi } from "../store/features/UiSlice";
+import Statistics from "./Statistics";
 
 const Splash = () => {
+  const [stats, setStats] = useState(false);
   const cardOne = useRef();
   const cardTwo = useRef();
   const cardThree = useRef();
@@ -33,7 +35,10 @@ const Splash = () => {
     dispatch(changeCurrentChapter(chapter));
   };
 
-  console.log(activeChapter);
+  if (stats) {
+    return <Statistics setStats={setStats} />;
+  }
+
   return (
     <div className="splash">
       <div className="splash-content">
@@ -98,6 +103,9 @@ const Splash = () => {
             }}
             onMouseLeave={() => {
               onLeave(cardThree);
+            }}
+            onClick={() => {
+              setStats(true);
             }}
             className="stats card"
           >

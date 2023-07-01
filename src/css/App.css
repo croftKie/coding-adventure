@@ -606,6 +606,78 @@
   text-align: center;
 }
 
+.stats {
+  height: 100vh;
+  background-color: #fff8ef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.stats .stats-content {
+  width: 80%;
+  height: 80%;
+  background-color: #fff8ef;
+  display: grid;
+  grid-template-rows: 20px 1fr 2fr;
+  gap: 20px;
+  border-radius: 10px;
+  border: 3px solid #333333;
+  box-shadow: 5px 5px 0 1px #333333;
+}
+.stats .stats-content .topbar {
+  grid-row: 1/2;
+  width: 100%;
+  height: 30px;
+  background-color: #5aa9e6;
+  border-bottom: 3px solid #333333;
+  border-radius: 7px 7px 0 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 10px 0 10px;
+  justify-content: space-between;
+}
+.stats .stats-content .topbar img {
+  height: 20px;
+  cursor: pointer;
+}
+.stats .stats-content .logo-bar {
+  grid-row: 2/3;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.stats .stats-content .logo-bar img {
+  height: 150px;
+}
+.stats .stats-content .nav {
+  grid-row: 3/4;
+  display: flex;
+  gap: 30px;
+  justify-self: center;
+  width: 90%;
+  justify-content: space-around;
+}
+.stats .stats-content .nav .card {
+  background-color: #9ad6ff;
+  border-radius: 10px;
+  border: 3px solid #333333;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  box-shadow: 5px 5px 0 1px #333333;
+  height: 90%;
+  width: 20%;
+  cursor: pointer;
+}
+.stats .stats-content .nav .card p {
+  text-align: center;
+}
+
 .settings {
   height: 60%;
   width: 20%;

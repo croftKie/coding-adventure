@@ -17,5 +17,5 @@ export const images = {
     "./assets/arrow-right.png",
     "./assets/arrow-left.png",
   ],
-  chapterBgAssets: ["./assets/pxfuel.jpg"],
+  chapterBgAssets: ["./assets/backgrounds/pxfuel.jpg"],
 };

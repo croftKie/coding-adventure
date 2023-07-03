@@ -1,32 +1,83 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import BugFixInput from "./bugFix-comps/bugFixInput";
 import { useSelector, useDispatch } from "react-redux";
 import { images } from "../../utils/images";
+import {
+  animator,
+  isPathComplete,
+  resetAnimationPath,
+} from "../../path-animation-library/pathAnimation.js";
+import { clearInstruction } from "../../store/features/currentInput.js";
+import {
+  changeBugFixInstructions,
+  resetBugFixInstructions,
+} from "../../store/features/contentSlice.js";
+import { activeChapterSelector } from "../../store/features/progressSlice.js";
 
 const BugFix = ({ activePuzzle, setWin }) => {
-  const [inputs, setInputs] = useState([]);
   const assetTypes = Object.keys(activePuzzle.assets);
   const assetRefs = activePuzzle.assets.puzzleAssets;
   const startLocs = activePuzzle.startLocations;
+  const charImg = useRef();
+  const goalImg = useRef();
+  const activeChapter = useSelector(activeChapterSelector);
+  const dispatch = useDispatch();
 
-  const pushInputs = (type) => {
-    setInputs([...inputs, type]);
+  const run = () => {
+    const isRunComplete = animator(
+      charImg.current,
+      activePuzzle.inputs,
+      500,
+      500,
+      () => {
+        if (
+          isPathComplete(
+            charImg.current,
+            isRunComplete,
+            activePuzzle.endLocations[0]
+          )
+        ) {
+          setWin(true);
+          // dispatch(setPuzzleCompleteStatus({ chapterId: 0, puzzleId: 0 }));
+        }
+      }
+    );
+  };
+  const reset = () => {
+    dispatch(
+      resetBugFixInstructions({
+        chapterIndex: activeChapter,
+        puzzleIndex: activePuzzle.id,
+      })
+    );
+    resetAnimationPath(charImg.current, startLocs[0]);
   };
 
-  console.log(activePuzzle);
+  const changeInput = (payload) => {
+    dispatch(
+      changeBugFixInstructions({
+        chapterIndex: activeChapter,
+        puzzleIndex: activePuzzle.id,
+        inputToChange: payload[0],
+        change: payload[1],
+      })
+    );
+  };
+
+  console.log(activePuzzle.inputs);
 
   return (
     <div className="bugFix-puzzle">
       <div className="content">
         <div className="input">
-          <BugFixInput inputs={activePuzzle.inputs} />
+          <BugFixInput changeInput={changeInput} inputs={activePuzzle.inputs} />
         </div>
         <div
           style={{ backgroundImage: `url(${images[assetTypes[1]][0]})` }}
           className="result"
         >
           <img
-            // ref={charImg}
+            ref={charImg}
             style={{
               transform: `translate(${startLocs[0].x}px, ${startLocs[0].y}px`,
             }}
@@ -34,7 +85,7 @@ const BugFix = ({ activePuzzle, setWin }) => {
             alt=""
           />
           <img
-            // ref={goalImg}
+            ref={goalImg}
             style={{
               transform: `translate(${startLocs[1].x}px, ${startLocs[1].y}px`,
             }}
@@ -44,8 +95,12 @@ const BugFix = ({ activePuzzle, setWin }) => {
         </div>
       </div>
       <div className="buttons">
-        <button className="reset">Reset</button>
-        <button className="run">Run</button>
+        <button className="reset" onClick={reset}>
+          Reset
+        </button>
+        <button className="run" onClick={run}>
+          Run
+        </button>
       </div>
     </div>
   );

@@ -20,9 +20,9 @@ const LowerNav = ({ toggleUi }) => {
           <div className="item">
             <img
               onClick={() => {
-                toggleUi("classroom");
+                toggleUi("chat");
               }}
-              src={uiAssets[3]}
+              src={uiAssets[8]}
               alt=""
             />
           </div>

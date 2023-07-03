@@ -217,11 +217,11 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: end;
   gap: 20px;
 }
 .popup .puzzleContent .instructions-puzzle .content {
-  height: 85%;
+  height: 100%;
   display: flex;
   justify-content: center;
   gap: 30px;
@@ -231,6 +231,7 @@
   width: 50%;
   display: grid;
   grid-template-rows: 4fr 1fr;
+  gap: 10px;
 }
 .popup .puzzleContent .instructions-puzzle .content .input .instruction-input {
   padding: 20px;
@@ -243,6 +244,7 @@
   color: #5efc88;
   border: 10px solid black;
   box-shadow: inset 0 0 2px 5px black;
+  align-self: center;
 }
 .popup .puzzleContent .instructions-puzzle .content .input .instruction-input div p span input {
   text-align: center;
@@ -318,7 +320,13 @@
   font-size: 1.5rem;
   width: 50%;
 }
-.popup .puzzleContent .instructions-puzzle .content .result {
+.popup .puzzleContent .instructions-puzzle .content .result-container {
+  display: grid;
+  grid-template-rows: 4fr 1fr;
+  gap: 10px;
+}
+.popup .puzzleContent .instructions-puzzle .content .result-container .result {
+  align-self: center;
   border: 3px solid #333333;
   border-radius: 7px;
   height: 500px;
@@ -326,18 +334,18 @@
   padding-left: 20px;
   position: relative;
 }
-.popup .puzzleContent .instructions-puzzle .content .result img {
+.popup .puzzleContent .instructions-puzzle .content .result-container .result img {
   position: relative;
   height: 50px;
 }
-.popup .puzzleContent .instructions-puzzle .buttons {
+.popup .puzzleContent .instructions-puzzle .content .result-container .buttons {
+  align-self: center;
   height: 15%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-top: 3px solid #333333;
 }
-.popup .puzzleContent .instructions-puzzle .buttons button {
+.popup .puzzleContent .instructions-puzzle .content .result-container .buttons button {
   width: 20%;
   height: 40px;
   background-color: #9ad6ff;

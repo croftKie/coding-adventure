@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   chapters: [
     {
-      chapterName: "The Waterfall",
+      chapterName: "Autumn",
       chapterDescription:
         "Following your map you believe there is a treasure chest hidden somewhere near that waterfall. You move cautiously to avoid drawing attention from the city.",
       chapterId: 0,
@@ -47,14 +47,20 @@ const initialState = {
             { image: "pirate", x: 400, y: 400 },
             { image: "gold", x: 100, y: 100 },
           ],
-          endLocations: [{}, {}],
+          endLocations: [{ image: "pirate", x: 100, y: 100 }],
           completed: false,
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
           inputs: [
-            { type: "forward", value: 100 },
-            { type: "left", value: 100 },
-            { type: "backwards", value: 300 },
-            { type: "right", value: 300 },
+            { type: "forward", value: 200 },
+            { type: "left", value: 200 },
+            { type: "backwards", value: 100 },
+            { type: "right", value: 100 },
+          ],
+          resetInputs: [
+            { type: "forward", value: 200 },
+            { type: "left", value: 200 },
+            { type: "backwards", value: 100 },
+            { type: "right", value: 100 },
           ],
         },
       ],
@@ -67,7 +73,7 @@ const initialState = {
       assets: { bgAssets: [0] },
     },
     {
-      chapterName: "The Weathered Tree",
+      chapterName: "Winter",
       chapterDescription:
         "With the first treasure found you continue you to follow your map, this time it leads to a hole beneath that old tree across the lake.",
       chapterId: 1,
@@ -86,30 +92,30 @@ const initialState = {
           completed: false,
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
         },
-        // {
-        //   puzzleName: "The Tree II",
-        //   id: 202,
-        //   type: 2,
-        //   puzzleDescription:
-        //     "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
-        //   clues: [
-        //     "this is clue number one",
-        //     "this is clue number two",
-        //     "this is clue number three",
-        //   ],
-        //   winCondition: ["XXX", "XXX", "XXX"],
-        //   completed: false,
-        // },
-        // {
-        //   puzzleName: "The Hidden Gold II",
-        //   id: 303,
-        //   type: 3,
-        //   puzzleDescription:
-        //     "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
-        //   startLocations: [{}, {}],
-        //   endLocations: [{}, {}],
-        //   completed: false,
-        // },
+        {
+          puzzleName: "The Tree II",
+          id: 1,
+          type: 2,
+          puzzleDescription:
+            "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
+          clues: [
+            "this is clue number one",
+            "this is clue number two",
+            "this is clue number three",
+          ],
+          winCondition: ["XXX", "XXX", "XXX"],
+          completed: false,
+        },
+        {
+          puzzleName: "The Hidden Gold II",
+          id: 2,
+          type: 3,
+          puzzleDescription:
+            "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
+          startLocations: [{}, {}],
+          endLocations: [{}, {}],
+          completed: false,
+        },
       ],
       points: [
         { top: "70%", left: "83%" },
@@ -120,24 +126,101 @@ const initialState = {
       assets: { bgAssets: [0] },
     },
     {
-      chapterName: "The City",
+      chapterName: "Spring",
       chapterDescription:
         "That was easy! OK, the last X on your map leads right into the city, to the top of that tower with the sun shining down on it.",
       chapterId: 2,
       chapterPuzzles: [
         {
-          puzzleName: "Jewelled Tower",
+          puzzleName: "The Deep Dark",
           id: 0,
           type: 1,
           puzzleDescription:
             "Use the direction buttons to add instructions, plan out your path to reach the goal.",
           startLocations: [
-            { image: "pirate", x: 50, y: 300 },
-            { image: "gold", x: 400, y: 100 },
+            { image: "pirate", x: 200, y: 100 },
+            { image: "gold", x: 300, y: 200 },
           ],
-          endLocations: [{ image: "pirate", x: 400, y: 100 }],
+          endLocations: [{ image: "pirate", x: 300, y: 200 }, {}],
           completed: false,
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
+        },
+        {
+          puzzleName: "The Tree II",
+          id: 1,
+          type: 2,
+          puzzleDescription:
+            "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
+          clues: [
+            "this is clue number one",
+            "this is clue number two",
+            "this is clue number three",
+          ],
+          winCondition: ["XXX", "XXX", "XXX"],
+          completed: false,
+        },
+        {
+          puzzleName: "The Hidden Gold II",
+          id: 2,
+          type: 3,
+          puzzleDescription:
+            "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
+          startLocations: [{}, {}],
+          endLocations: [{}, {}],
+          completed: false,
+        },
+      ],
+      points: [
+        { top: "45%", left: "60%" },
+        // { top: "60%", left: "90%" },
+        // { top: "35%", left: "67%" },
+      ],
+      completedStatus: false,
+      assets: { bgAssets: [0] },
+    },
+    {
+      chapterName: "Summer",
+      chapterDescription:
+        "That was easy! OK, the last X on your map leads right into the city, to the top of that tower with the sun shining down on it.",
+      chapterId: 2,
+      chapterPuzzles: [
+        {
+          puzzleName: "The Deep Dark",
+          id: 0,
+          type: 1,
+          puzzleDescription:
+            "Use the direction buttons to add instructions, plan out your path to reach the goal.",
+          startLocations: [
+            { image: "pirate", x: 200, y: 100 },
+            { image: "gold", x: 300, y: 200 },
+          ],
+          endLocations: [{ image: "pirate", x: 300, y: 200 }, {}],
+          completed: false,
+          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
+        },
+        {
+          puzzleName: "The Tree II",
+          id: 1,
+          type: 2,
+          puzzleDescription:
+            "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
+          clues: [
+            "this is clue number one",
+            "this is clue number two",
+            "this is clue number three",
+          ],
+          winCondition: ["XXX", "XXX", "XXX"],
+          completed: false,
+        },
+        {
+          puzzleName: "The Hidden Gold II",
+          id: 2,
+          type: 3,
+          puzzleDescription:
+            "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
+          startLocations: [{}, {}],
+          endLocations: [{}, {}],
+          completed: false,
         },
       ],
       points: [
@@ -172,7 +255,15 @@ const contentSlice = createSlice({
       const inputToChange = action.payload.inputToChange;
       state.chapters[chapterIndex].chapterPuzzles[puzzleIndex].inputs[
         inputToChange
-      ] = action.payload.change;
+      ].value = action.payload.change;
+    },
+    resetBugFixInstructions: (state, action) => {
+      state.chapters[action.payload.chapterIndex].chapterPuzzles[
+        action.payload.puzzleIndex
+      ].inputs =
+        state.chapters[action.payload.chapterIndex].chapterPuzzles[
+          action.payload.puzzleIndex
+        ].resetInputs;
     },
   },
 });
@@ -181,6 +272,7 @@ export const {
   setChapterCompleteStatus,
   setPuzzleCompleteStatus,
   changeBugFixInstructions,
+  resetBugFixInstructions,
 } = contentSlice.actions;
 
 export const readContent = (state) => state.content.chapters;

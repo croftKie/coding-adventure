@@ -107,36 +107,38 @@ const Instructions = ({ activePuzzle, setWin }) => {
             </div>
           </div>
         </div>
-        <div
-          style={{ backgroundImage: `url(${images[assetTypes[1]][0]})` }}
-          ref={resultRef}
-          className="result"
-        >
-          <img
-            ref={charImg}
-            style={{
-              transform: `translate(${startLocs[0].x}px, ${startLocs[0].y}px`,
-            }}
-            src={images[assetTypes[0]][assetRefs[0]]}
-            alt=""
-          />
-          <img
-            ref={goalImg}
-            style={{
-              transform: `translate(${startLocs[1].x}px, ${startLocs[1].y}px`,
-            }}
-            src={images[assetTypes[0]][assetRefs[1]]}
-            alt=""
-          />
+        <div className="result-container">
+          <div
+            style={{ backgroundImage: `url(${images[assetTypes[1]][0]})` }}
+            ref={resultRef}
+            className="result"
+          >
+            <img
+              ref={charImg}
+              style={{
+                transform: `translate(${startLocs[0].x}px, ${startLocs[0].y}px`,
+              }}
+              src={images[assetTypes[0]][assetRefs[0]]}
+              alt=""
+            />
+            <img
+              ref={goalImg}
+              style={{
+                transform: `translate(${startLocs[1].x}px, ${startLocs[1].y}px`,
+              }}
+              src={images[assetTypes[0]][assetRefs[1]]}
+              alt=""
+            />
+          </div>
+          <div className="buttons">
+            <button onClick={reset} className="reset">
+              Reset
+            </button>
+            <button onClick={run} className="run">
+              Run
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="buttons">
-        <button onClick={reset} className="reset">
-          Reset
-        </button>
-        <button onClick={run} className="run">
-          Run
-        </button>
       </div>
     </div>
   );

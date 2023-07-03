@@ -5,7 +5,7 @@ import {
   instructionInputSelector,
 } from "../../../store/features/currentInput";
 
-const Left = ({ placeholder }) => {
+const Left = ({ placeholder, index, changeInput }) => {
   const dispatch = useDispatch();
   return (
     <div className="move-block">
@@ -16,12 +16,7 @@ const Left = ({ placeholder }) => {
             type="number"
             placeholder={placeholder}
             onBlur={(e) => {
-              dispatch(
-                addInstruction({
-                  type: "left",
-                  value: parseInt(e.target.value),
-                })
-              );
+              changeInput([index, parseInt(e.target.value)]);
             }}
           />{" "}
         </span>{" "}

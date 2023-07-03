@@ -5,7 +5,7 @@ import {
   instructionInputSelector,
 } from "../../../store/features/currentInput";
 
-const Repeat = ({ placeholder }) => {
+const Repeat = ({ placeholder, index, changeInput }) => {
   const dispatch = useDispatch();
   return (
     <div className="move-block">
@@ -16,9 +16,7 @@ const Repeat = ({ placeholder }) => {
             type="number"
             placeholder={placeholder}
             onBlur={(e) => {
-              dispatch(
-                addInstruction({ type: "repeat", value: e.target.value })
-              );
+              changeInput([index, parseInt(e.target.value)]);
             }}
           />{" "}
         </span>{" "}

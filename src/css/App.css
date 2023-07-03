@@ -435,21 +435,20 @@
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 1fr 8fr 1fr;
+  grid-template-rows: 1fr 4fr 4fr;
+  background-color: #333333;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .parts-buttons {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   gap: 10px;
+  border-bottom: 3px solid #5efc88;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .parts-buttons button {
-  width: 20%;
-  height: 40px;
-  background-color: #9ad6ff;
-  border: 3px solid #333333;
-  border-radius: 10px;
-  color: #333333;
-  font-size: 1.5rem;
+  background-color: inherit;
+  border: none;
+  color: #fff8ef;
+  font-size: 25px;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .cryptography-input {
   padding: 30px;
@@ -460,40 +459,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #fff8ef;
 }
-.popup .puzzleContent .cryptography-puzzle .content .input .choices {
-  border-top: 3px solid #333333;
+.popup .puzzleContent .cryptography-puzzle .content .input .input-values {
   display: flex;
+  justify-content: space-around;
 }
-.popup .puzzleContent .cryptography-puzzle .content .input .choices .math {
-  flex: 2;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-.popup .puzzleContent .cryptography-puzzle .content .input .choices .math button {
-  width: 20%;
-  height: 40px;
-  background-color: #9ad6ff;
-  border: 3px solid #333333;
-  border-radius: 10px;
-  color: #333333;
-  font-size: 1.5rem;
-}
-.popup .puzzleContent .cryptography-puzzle .content .input .choices .letters {
-  flex: 1;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-.popup .puzzleContent .cryptography-puzzle .content .input .choices .letters button {
-  width: 20%;
-  height: 40px;
-  background-color: #9ad6ff;
-  border: 3px solid #333333;
-  border-radius: 10px;
-  color: #333333;
-  font-size: 1.5rem;
+.popup .puzzleContent .cryptography-puzzle .content .input .input-values input {
+  height: 100px;
+  width: 100px;
+  font-size: 50px;
+  text-align: center;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  border-bottom: 3px solid #5efc88;
+  color: #5efc88;
+  caret-color: #5efc88;
 }
 .popup .puzzleContent .cryptography-puzzle .content .result {
   border-left: 3px solid #333333;
@@ -1087,4 +1069,6 @@
   border-radius: 10px;
   color: #333333;
   font-size: 1.5rem;
-}/*# sourceMappingURL=App.css.map */
+}
+
+/*# sourceMappingURL=App.css.map */

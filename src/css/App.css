@@ -27,13 +27,44 @@
   top: 0;
   left: 0;
   display: grid;
-  grid-template-rows: 8fr 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40px 8fr 1fr;
   z-index: 1;
 }
-.hud .points {
+.hud .tutorial {
+  position: absolute;
+  background-color: #fff8ef;
+  border: 3px solid #333333;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.hud .tutorial p {
+  width: 80%;
+}
+.hud .tutorial button {
+  margin-left: 60%;
+}
+.hud .one {
+  top: 75%;
+  left: 60%;
+}
+.hud .two {
+  top: 5%;
+  left: 40%;
+}
+.hud .three {
+  top: 50%;
+  left: 12%;
+}
+.hud .open-chapter-info {
   grid-row: 1/2;
-  grid-column: 1/3;
+  height: 40px;
+  justify-self: center;
+  cursor: pointer;
+}
+.hud .points {
+  grid-row: 2/3;
 }
 .hud .points .point {
   position: relative;
@@ -78,8 +109,7 @@
   padding: 10px;
 }
 .hud .nav {
-  grid-row: 2/3;
-  grid-column: 1/3;
+  grid-row: 3/4;
   width: 80%;
   justify-self: center;
   background-color: #fff8ef;
@@ -108,31 +138,6 @@
 }
 .hud .nav .topbar img {
   height: 13px;
-}
-.hud .nav .lowerNav {
-  grid-column: 1/2;
-  grid-row: 2/3;
-  display: flex;
-  align-items: center;
-  gap: 50px;
-  padding: 0 20px 0 20px;
-  color: #333333;
-}
-.hud .nav .lowerNav div {
-  display: flex;
-  gap: 20px;
-}
-.hud .nav .lowerNav div .item {
-  height: 50px;
-  width: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.hud .nav .lowerNav div .item img {
-  height: 30px;
-  width: 30px;
 }
 .hud .nav .side-nav {
   grid-column: 2/3;
@@ -709,23 +714,77 @@
   text-align: center;
 }
 
-.settings {
+.make-puzzle {
+  height: 100vh;
+  background-color: #fff8ef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.make-puzzle .make-puzzle-content {
+  width: 90%;
+  height: 90%;
+  background-color: #fff8ef;
+  display: grid;
+  grid-template-rows: 30px 40px 2fr;
+  border-radius: 10px;
+  border: 3px solid #333333;
+  box-shadow: 5px 5px 0 1px #333333;
+}
+.make-puzzle .make-puzzle-content .topbar {
+  grid-row: 1/2;
+  width: 100%;
+  height: 30px;
+  background-color: #5aa9e6;
+  border-bottom: 3px solid #333333;
+  border-radius: 7px 7px 0 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 10px 0 10px;
+  justify-content: space-between;
+  padding: 0;
+}
+.make-puzzle .make-puzzle-content .topbar img {
+  height: 20px;
+  cursor: pointer;
+}
+.make-puzzle .make-puzzle-content .lower-bar {
+  background-color: #9ad6ff;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid #333333;
+}
+.make-puzzle .make-puzzle-content .lower-bar div {
+  height: 100%;
+  width: 25%;
+  cursor: pointer;
+  border-right: 3px solid #333333;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.make-puzzle .make-puzzle-content .lower-bar .active {
+  background-color: #5aa9e6;
+}
+
+.options {
   height: 60%;
-  width: 20%;
+  width: 40%;
   background-color: #fff8ef;
   border-radius: 10px;
   border: 3px solid #333333;
   position: absolute;
   top: 25%;
-  left: 70%;
+  left: 50%;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 50px;
   color: #333333;
   box-shadow: 5px 5px 0 1px #333333;
 }
-.settings .top-bar {
+.options .top-bar {
   grid-row: 1/2;
   width: 100%;
   height: 30px;
@@ -737,12 +796,32 @@
   align-items: center;
   padding: 0 10px 0 10px;
 }
-.settings .dark-light {
+.options .top-bar img {
+  height: 20px;
+}
+.options .lower-bar {
+  background-color: #9ad6ff;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid #333333;
+}
+.options .lower-bar div {
+  text-align: center;
+  height: 100%;
+  width: 25%;
+  cursor: pointer;
+  border-right: 3px solid #333333;
+  font-weight: bold;
+}
+.options .lower-bar .active {
+  background-color: #5aa9e6;
+}
+.options .settings .dark-light {
   color: #333333;
   display: flex;
   justify-content: center;
 }
-.settings .dark-light button {
+.options .settings .dark-light button {
   height: 50px;
   padding: 10px;
   font-weight: 600;
@@ -752,20 +831,20 @@
   background-color: #9ad6ff;
   box-shadow: 5px 5px 0 1px #333333;
 }
-.settings .dark-light button:hover {
+.options .settings .dark-light button:hover {
   background-color: #5aa9e6;
 }
-.settings .dark-light button:active {
+.options .settings .dark-light button:active {
   box-shadow: none;
 }
-.settings .color-choices {
+.options .settings .color-choices {
   color: #333333;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
-.settings .color-choices select {
+.options .settings .color-choices select {
   width: 70%;
   height: 50%;
   outline: none;
@@ -775,7 +854,7 @@
   background-color: #9ad6ff;
   box-shadow: 5px 5px 0 1px #333333;
 }
-.settings .color-choices button {
+.options .settings .color-choices button {
   height: 50px;
   padding: 10px;
   font-weight: 600;
@@ -785,52 +864,22 @@
   background-color: #9ad6ff;
   box-shadow: 5px 5px 0 1px #333333;
 }
-.settings .color-choices button:hover {
+.options .settings .color-choices button:hover {
   background-color: #5aa9e6;
 }
-.settings .color-choices button:active {
+.options .settings .color-choices button:active {
   box-shadow: none;
 }
-
-.leaderboard {
-  height: 60%;
-  width: 20%;
-  background-color: #fff8ef;
-  border-radius: 10px;
-  border: 3px solid #333333;
-  position: absolute;
-  top: 25%;
-  left: 70%;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  color: #333333;
-  box-shadow: 5px 5px 0 1px #333333;
-  align-items: center;
-}
-.leaderboard .top-bar {
-  grid-row: 1/2;
-  width: 100%;
-  height: 30px;
-  background-color: #5aa9e6;
-  border-bottom: 3px solid #333333;
-  border-radius: 7px 7px 0 0;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  padding: 0 10px 0 10px;
-}
-.leaderboard .board {
+.options .leaderboard .board {
   width: 80%;
 }
-.leaderboard .board .card {
+.options .leaderboard .board .card {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 1fr;
   margin-bottom: 20px;
 }
-.leaderboard .board .card .number {
+.options .leaderboard .board .card .number {
   grid-column: 1/2;
   grid-row: 1/3;
   justify-self: start;
@@ -844,55 +893,26 @@
   border: 3px solid #333333;
   border-radius: 7px;
 }
-.leaderboard .board .card .number img {
+.options .leaderboard .board .card .number img {
   height: 30px;
 }
-.leaderboard .board .card h4 {
+.options .leaderboard .board .card h4 {
   grid-column: 2/3;
   text-align: end;
 }
-.leaderboard .board .card p {
+.options .leaderboard .board .card p {
   grid-column: 2/3;
   grid-row: 1/2;
   text-align: end;
 }
-
-.progress {
-  height: 60%;
-  width: 20%;
-  background-color: #fff8ef;
-  border-radius: 10px;
-  border: 3px solid #333333;
-  position: absolute;
-  top: 25%;
-  left: 70%;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  color: #333333;
-  box-shadow: 5px 5px 0 1px #333333;
-}
-.progress .top-bar {
-  grid-row: 1/2;
-  width: 100%;
-  height: 30px;
-  background-color: #5aa9e6;
-  border-bottom: 3px solid #333333;
-  border-radius: 7px 7px 0 0;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  padding: 0 10px 0 10px;
-}
-.progress .point {
+.options .progress .point {
   background-color: #5aa9e6;
   height: 40px;
   width: 40px;
   border-radius: 10px;
   border: 3px solid #333333;
 }
-.progress .one {
+.options .progress .one {
   position: absolute;
   display: flex;
   align-items: center;
@@ -900,7 +920,7 @@
   top: 500px;
   left: 40px;
 }
-.progress .two {
+.options .progress .two {
   position: absolute;
   display: flex;
   align-items: center;
@@ -908,7 +928,7 @@
   top: 350px;
   left: 100px;
 }
-.progress .three {
+.options .progress .three {
   position: absolute;
   display: flex;
   align-items: center;
@@ -916,84 +936,12 @@
   top: 200px;
   left: 100px;
 }
-.progress .four {
+.options .progress .four {
   position: absolute;
   display: flex;
   align-items: center;
   gap: 10px;
   left: 50px;
-}
-
-.classroom {
-  height: 60%;
-  width: 20%;
-  background-color: #fff8ef;
-  border-radius: 10px;
-  border: 3px solid #333333;
-  position: absolute;
-  top: 25%;
-  left: 70%;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  color: #333333;
-  box-shadow: 5px 5px 0 1px #333333;
-  left: 10%;
-}
-.classroom .top-bar {
-  grid-row: 1/2;
-  width: 100%;
-  height: 30px;
-  background-color: #5aa9e6;
-  border-bottom: 3px solid #333333;
-  border-radius: 7px 7px 0 0;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  padding: 0 10px 0 10px;
-}
-.classroom .dark-light {
-  color: #333333;
-}
-.classroom .color-choices {
-  color: #333333;
-}
-
-.chat {
-  height: 60%;
-  width: 20%;
-  background-color: #fff8ef;
-  border-radius: 10px;
-  border: 3px solid #333333;
-  position: absolute;
-  top: 25%;
-  left: 70%;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  color: #333333;
-  box-shadow: 5px 5px 0 1px #333333;
-  left: 10%;
-}
-.chat .top-bar {
-  grid-row: 1/2;
-  width: 100%;
-  height: 30px;
-  background-color: #5aa9e6;
-  border-bottom: 3px solid #333333;
-  border-radius: 7px 7px 0 0;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  padding: 0 10px 0 10px;
-}
-.chat .dark-light {
-  color: #333333;
-}
-.chat .color-choices {
-  color: #333333;
 }
 
 .landscape {

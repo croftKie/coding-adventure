@@ -3,9 +3,6 @@ import React, { useState, useEffect } from "react";
 const Settings = () => {
   return (
     <div className="settings">
-      <div className="top-bar">
-        <h3>Settings</h3>
-      </div>
       <div className="dark-light">
         <button>Toggle Dark Mode</button>
       </div>

@@ -1,4 +1,5 @@
 import "./css/App.css";
+import { images } from "./utils/images.js";
 
 // React and React Redux dependencies
 import { useEffect } from "react";
@@ -13,10 +14,10 @@ import Splash from "./comps/Splash";
 import Settings from "./comps/HUD/settings-comps/Settings";
 import Progress from "./comps/HUD/settings-comps/Progress";
 import Leaderboard from "./comps/HUD/settings-comps/Leaderboard";
-import Chat from "./comps/HUD/settings-comps/Chat";
-import Classroom from "./comps/HUD/settings-comps/Classroom";
 import Loading from "./comps/Loading";
 import NotifyChapters from "./comps/HUD/NotifyChapters";
+import Options from "./comps/HUD/settings-comps/Options.jsx";
+import TutModal from "./comps/tutorial/TutModal.jsx";
 
 // State import for currently active chapters and puzzles
 import {
@@ -27,12 +28,8 @@ import {
 // State import for UI toggles (bools)
 import {
   SplashSelector,
-  chatSelector,
-  classroomSelector,
-  leaderboardSelector,
+  optionsSelector,
   popUpSelector,
-  progressSelector,
-  settingsSelector,
   updateUi,
 } from "./store/features/UiSlice";
 
@@ -42,6 +39,8 @@ import {
   setChapterCompleteStatus, // action to set chapter as complete
 } from "./store/features/contentSlice";
 
+import { tutorialOpenSelector } from "./store/features/tutorialSlice.js";
+
 function App() {
   // variable declarations
   const currentPuzzle = useSelector(activePuzzleSelector);
@@ -49,11 +48,8 @@ function App() {
   const splashStatus = useSelector(SplashSelector);
   const content = useSelector(readContent);
   const popUp = useSelector(popUpSelector);
-  const settings = useSelector(settingsSelector);
-  const leaderboard = useSelector(leaderboardSelector);
-  const progress = useSelector(progressSelector);
-  const classroom = useSelector(classroomSelector);
-  const chat = useSelector(chatSelector);
+  const options = useSelector(optionsSelector);
+  const tutOpen = useSelector(tutorialOpenSelector);
   const dispatch = useDispatch();
 
   // Dispatch function for opening and closing UI elements
@@ -79,6 +75,7 @@ function App() {
   if (content[activeChapter].completedStatus) {
     return <Loading />;
   }
+  console.log(tutOpen);
   return (
     <>
       <Background />
@@ -89,21 +86,11 @@ function App() {
         <></>
       )}
 
-      {settings ? (
-        <Settings />
-      ) : classroom ? (
-        <Classroom />
-      ) : leaderboard ? (
-        <Leaderboard />
-      ) : progress ? (
-        <Progress />
-      ) : chat ? (
-        <Chat />
-      ) : (
-        <></>
-      )}
+      {options ? <Options /> : <></>}
 
       <div className="hud">
+        <img src={images.uiAssets[14]} alt="" className="open-chapter-info" />
+        {tutOpen ? <TutModal /> : <></>}
         <Points toggleUi={toggleUi} />
         <NotifyChapters />
         <LowerNav toggleUi={toggleUi} />

@@ -33,7 +33,16 @@ const initialState = {
             "this is clue number two",
             "this is clue number three",
           ],
-          winCondition: ["XXX", "XXX", "XXX"],
+          winCondition: [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0],
+          ],
+          inputs: [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0],
+          ],
           completed: false,
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
         },

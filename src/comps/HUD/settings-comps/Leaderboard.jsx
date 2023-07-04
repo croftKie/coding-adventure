@@ -4,9 +4,6 @@ import { images } from "../../../utils/images";
 const Leaderboard = () => {
   return (
     <div className="leaderboard">
-      <div className="top-bar">
-        <h3>Leaderboard</h3>
-      </div>
       <div className="board">
         {[1, 2, 3, 4, 5, 6].map((item) => {
           return (

@@ -39,17 +39,16 @@ $point-complete-color-secondary: #5efc88;
 }
 @mixin settingsMenu {
   height: 60%;
-  width: 20%;
+  width: 40%;
   background-color: $base-white;
   border-radius: $border-radius-small;
   border: $border-dark;
   position: absolute;
   top: 25%;
-  left: 70%;
+  left: 50%;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 50px;
   color: $base-black;
   box-shadow: $box-shadow-dark;
 }
@@ -90,12 +89,43 @@ $point-complete-color-secondary: #5efc88;
   top: 0;
   left: 0;
   display: grid;
-  grid-template-rows: 8fr 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40px 8fr 1fr;
   z-index: 1;
-  .points {
+  .tutorial{
+    position: absolute;
+    background-color: $base-white;
+    border: $border-dark;
+    border-radius: $border-radius-small;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    p{
+      width: 80%;
+    }
+    button{
+      margin-left: 60%;
+    }
+  }
+  .one{
+    top: 75%;
+    left: 60%;
+  }
+  .two{
+    top: 5%;
+    left: 40%;
+  }
+  .three{
+    top: 50%;
+    left: 12%;
+  }
+  .open-chapter-info{
     grid-row: 1/2;
-    grid-column: 1/3;
+    height: 40px;
+    justify-self: center;
+    cursor: pointer;
+  }
+  .points {
+    grid-row: 2/3;
     .point {
       position: relative;
       height: 30px;
@@ -131,8 +161,7 @@ $point-complete-color-secondary: #5efc88;
     }
   }
   .nav {
-    grid-row: 2/3;
-    grid-column: 1/3;
+    grid-row: 3/4;
     width: 80%;
     justify-self: center;
     background-color: $base-white;
@@ -150,31 +179,6 @@ $point-complete-color-secondary: #5efc88;
       height: 20px;
       img {
         height: 13px;
-      }
-    }
-    .lowerNav {
-      grid-column: 1/2;
-      grid-row: 2/3;
-      display: flex;
-      align-items: center;
-      gap: 50px;
-      padding: 0 20px 0 20px;
-      color: $base-black;
-      div {
-        display: flex;
-        gap: 20px;
-        .item {
-          height: 50px;
-          width: 50px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-          img {
-            height: 30px;
-            width: 30px;
-          }
-        }
       }
     }
     .side-nav {
@@ -685,179 +689,209 @@ $point-complete-color-secondary: #5efc88;
   }
 }
 
-.settings {
-  @include settingsMenu();
-  .top-bar {
-    @include topbar();
-  }
-  .dark-light {
-    color: $base-black;
-    display: flex;
-    justify-content: center;
-    button {
-      height: 50px;
-      padding: 10px;
-      font-weight: 600;
-      cursor: pointer;
-      border: $border-dark;
-      border-radius: $border-radius-small;
-      background-color: $blue-light-color;
-      box-shadow: $box-shadow-dark;
-      &:hover {
-        background-color: $blue-main-color;
-      }
-      &:active {
-        box-shadow: none;
-      }
-    }
-  }
-  .color-choices {
-    color: $base-black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    select {
-      width: 70%;
-      height: 50%;
-      outline: none;
-      font-weight: 600;
-      border: $border-dark;
-      border-radius: $border-radius-small;
-      background-color: $blue-light-color;
-      box-shadow: $box-shadow-dark;
-    }
-    button {
-      height: 50px;
-      padding: 10px;
-      font-weight: 600;
-      cursor: pointer;
-      border: $border-dark;
-      border-radius: $border-radius-small;
-      background-color: $blue-light-color;
-      box-shadow: $box-shadow-dark;
-      &:hover {
-        background-color: $blue-main-color;
-      }
-      &:active {
-        box-shadow: none;
-      }
-    }
-  }
-}
-
-.leaderboard {
-  @include settingsMenu();
+.make-puzzle {
+  height: 100vh;
+  background-color: $base-white;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  .top-bar {
-    @include topbar();
-  }
-  .board {
-    width: 80%;
-    .card {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      grid-template-rows: 1fr 1fr;
-      margin-bottom: 20px;
-      .number {
-        grid-column: 1/2;
-        grid-row: 1/3;
-        justify-self: start;
-        align-self: center;
-        background-color: $blue-main-color;
-        height: 30px;
-        width: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: $border-dark;
-        border-radius: $border-radius-bar;
-        img {
-          height: 30px;
-        }
-      }
-      h4 {
-        grid-column: 2/3;
-        text-align: end;
-      }
-      p {
-        grid-column: 2/3;
-        grid-row: 1/2;
-        text-align: end;
-      }
-    }
-  }
-}
-
-.progress {
-  @include settingsMenu();
-  .top-bar {
-    @include topbar();
-  }
-  .point {
-    background-color: $blue-main-color;
-    height: 40px;
-    width: 40px;
+  .make-puzzle-content {
+    width: 90%;
+    height: 90%;
+    background-color: $base-white;
+    display: grid;
+    grid-template-rows: 30px 40px 2fr;
     border-radius: $border-radius-small;
     border: $border-dark;
-  }
-  .one {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    top: 500px;
-    left: 40px;
-  }
-  .two {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    top: 350px;
-    left: 100px;
-  }
-  .three {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    top: 200px;
-    left: 100px;
-  }
-  .four {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    left: 50px;
+    box-shadow: $box-shadow-dark;
+    .topbar {
+      @include topbar();
+      justify-content: space-between;
+      padding: 0;
+      img {
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+    .lower-bar{
+      background-color: $blue-light-color;
+      display: flex;
+      align-items: center;
+      border-bottom: $border-dark;
+      div{
+        height: 100%;
+        width: 25%;
+        cursor: pointer;
+        border-right: $border-dark;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .active{
+        background-color: $blue-main-color;
+      }
+    }
   }
 }
 
-.classroom {
+.options {
   @include settingsMenu();
-  left: 10%;
   .top-bar {
     @include topbar();
+    img{
+      height: 20px;
+    }
   }
-  .dark-light {
-    color: $base-black;
+  .lower-bar{
+    background-color: $blue-light-color;
+    display: flex;
+    align-items: center;
+    border-bottom: $border-dark;
+    div{
+      text-align: center;
+      height: 100%;
+      width: 25%;
+      cursor: pointer;
+      border-right: $border-dark;
+      font-weight: bold;
+    }
+    .active{
+      background-color: $blue-main-color;
+    }
   }
-  .color-choices {
-    color: $base-black;
+  .settings {
+    .dark-light {
+      color: $base-black;
+      display: flex;
+      justify-content: center;
+      button {
+        height: 50px;
+        padding: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        border: $border-dark;
+        border-radius: $border-radius-small;
+        background-color: $blue-light-color;
+        box-shadow: $box-shadow-dark;
+        &:hover {
+          background-color: $blue-main-color;
+        }
+        &:active {
+          box-shadow: none;
+        }
+      }
+    }
+    .color-choices {
+      color: $base-black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      select {
+        width: 70%;
+        height: 50%;
+        outline: none;
+        font-weight: 600;
+        border: $border-dark;
+        border-radius: $border-radius-small;
+        background-color: $blue-light-color;
+        box-shadow: $box-shadow-dark;
+      }
+      button {
+        height: 50px;
+        padding: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        border: $border-dark;
+        border-radius: $border-radius-small;
+        background-color: $blue-light-color;
+        box-shadow: $box-shadow-dark;
+        &:hover {
+          background-color: $blue-main-color;
+        }
+        &:active {
+          box-shadow: none;
+        }
+      }
+    }
   }
-}
-.chat {
-  @include settingsMenu();
-  left: 10%;
-  .top-bar {
-    @include topbar();
+  .leaderboard {
+    .board {
+      width: 80%;
+      .card {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 1fr 1fr;
+        margin-bottom: 20px;
+        .number {
+          grid-column: 1/2;
+          grid-row: 1/3;
+          justify-self: start;
+          align-self: center;
+          background-color: $blue-main-color;
+          height: 30px;
+          width: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: $border-dark;
+          border-radius: $border-radius-bar;
+          img {
+            height: 30px;
+          }
+        }
+        h4 {
+          grid-column: 2/3;
+          text-align: end;
+        }
+        p {
+          grid-column: 2/3;
+          grid-row: 1/2;
+          text-align: end;
+        }
+      }
+    }
   }
-  .dark-light {
-    color: $base-black;
-  }
-  .color-choices {
-    color: $base-black;
+  .progress {
+    .point {
+      background-color: $blue-main-color;
+      height: 40px;
+      width: 40px;
+      border-radius: $border-radius-small;
+      border: $border-dark;
+    }
+    .one {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      top: 500px;
+      left: 40px;
+    }
+    .two {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      top: 350px;
+      left: 100px;
+    }
+    .three {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      top: 200px;
+      left: 100px;
+    }
+    .four {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      left: 50px;
+    }
   }
 }
 
@@ -902,7 +936,6 @@ $point-complete-color-secondary: #5efc88;
     }
   }
 }
-
 .loading {
   height: 100vh;
   background-color: $base-black;

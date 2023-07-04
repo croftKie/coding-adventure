@@ -10,9 +10,11 @@ import {
 } from "../store/features/progressSlice";
 import { updateUi } from "../store/features/UiSlice";
 import Statistics from "./Statistics";
+import MakePuzzle from "./MakePuzzle";
 
 const Splash = () => {
   const [stats, setStats] = useState(false);
+  const [makePuzzle, setMakePuzzle] = useState(false);
   const cardOne = useRef();
   const cardTwo = useRef();
   const cardThree = useRef();
@@ -37,6 +39,9 @@ const Splash = () => {
 
   if (stats) {
     return <Statistics setStats={setStats} />;
+  }
+  if (makePuzzle) {
+    return <MakePuzzle setMakePuzzle={setMakePuzzle} />;
   }
 
   return (
@@ -120,10 +125,16 @@ const Splash = () => {
             onMouseLeave={() => {
               onLeave(cardFour);
             }}
+            onClick={() => {
+              setMakePuzzle(true);
+            }}
             className="class card"
           >
-            <h3>Google Classroom</h3>
-            <p>Check if you have any challenges set by your teacher</p>
+            <h3>Make your own puzzles</h3>
+            <p>
+              Use the puzzle builder to create your own logic puzzles and share
+              them
+            </p>
           </div>
         </div>
       </div>

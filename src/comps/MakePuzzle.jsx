@@ -6,10 +6,9 @@ import Preview from "./puzzle-maker-comps/Preview.jsx";
 
 const MakePuzzle = ({ setMakePuzzle }) => {
   const [openPage, setOpenPage] = useState("puzzles");
-  const settingsBarRef = useRef();
-  const leaderboardBarRef = useRef();
-  const progressBarRef = useRef();
-  const barRefs = [settingsBarRef, leaderboardBarRef, progressBarRef];
+  const previewBarRef = useRef();
+  const creatorBarRef = useRef();
+  const barRefs = [previewBarRef, creatorBarRef];
 
   const updateClass = (currentElement) => {
     barRefs.forEach((element) => {
@@ -34,9 +33,9 @@ const MakePuzzle = ({ setMakePuzzle }) => {
         </div>
         <div className="lower-bar">
           <div
-            ref={settingsBarRef}
+            ref={previewBarRef}
             onClick={() => {
-              updateClass(settingsBarRef);
+              updateClass(previewBarRef);
               setOpenPage("puzzles");
             }}
             className="puzzles active"
@@ -44,24 +43,14 @@ const MakePuzzle = ({ setMakePuzzle }) => {
             Puzzles
           </div>
           <div
-            ref={leaderboardBarRef}
+            ref={creatorBarRef}
             onClick={() => {
-              updateClass(leaderboardBarRef);
+              updateClass(creatorBarRef);
               setOpenPage("creator");
             }}
             className="features"
           >
             Creator
-          </div>
-          <div
-            ref={progressBarRef}
-            onClick={() => {
-              updateClass(progressBarRef);
-              setOpenPage("preview");
-            }}
-            className="preview"
-          >
-            Preview
           </div>
         </div>
         <div className="content">
@@ -69,8 +58,6 @@ const MakePuzzle = ({ setMakePuzzle }) => {
             <Puzzles />
           ) : openPage === "creator" ? (
             <Creator />
-          ) : openPage === "preview" ? (
-            <Preview />
           ) : (
             <Puzzles />
           )}

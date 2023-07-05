@@ -817,6 +817,40 @@
 .make-puzzle .make-puzzle-content .lower-bar .active {
   background-color: #5aa9e6;
 }
+.make-puzzle .make-puzzle-content .content .puzzle-manager {
+  display: flex;
+  height: 100%;
+}
+.make-puzzle .make-puzzle-content .content .puzzle-manager .puzzle-list {
+  flex: 1;
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.make-puzzle .make-puzzle-content .content .puzzle-manager .puzzle-list .card {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  grid-template-columns: 4fr 1fr;
+  background-color: #9ad6ff;
+  border-radius: 10px;
+  border: 3px solid #333333;
+  padding-left: 10px;
+}
+.make-puzzle .make-puzzle-content .content .puzzle-manager .puzzle-list .card h3 {
+  grid-column: 1/3;
+}
+.make-puzzle .make-puzzle-content .content .puzzle-manager .puzzle-list .card img {
+  height: 30px;
+}
+.make-puzzle .make-puzzle-content .content .puzzle-info {
+  flex: 2;
+  height: 97%;
+  border-radius: 10px;
+  border: 3px solid #333333;
+  margin: 10px;
+}
 
 .options {
   height: 60%;
@@ -1083,7 +1117,7 @@
   height: 200px;
   top: -200px;
   left: 600px;
-  opacity: 1;
+  opacity: 0;
   cursor: pointer;
   transition: all;
 }
@@ -1114,4 +1148,6 @@
 }
 .dialogue-container .dialogue p {
   padding: 20px;
-}/*# sourceMappingURL=App.css.map */
+}
+
+/*# sourceMappingURL=App.css.map */

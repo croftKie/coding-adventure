@@ -103,7 +103,7 @@ const Splash = () => {
             <h3>Continue</h3>
             <p>Continue where you last left off and beat the bad guy!</p>
           </div>
-          <div
+          {/* <div
             ref={cardThree}
             onMouseEnter={() => {
               onEnter(cardThree);
@@ -118,7 +118,7 @@ const Splash = () => {
           >
             <h3>Statistics</h3>
             <p>Take a look at how many challenges you've completed</p>
-          </div>
+          </div> */}
           <div
             ref={cardFour}
             onMouseEnter={() => {

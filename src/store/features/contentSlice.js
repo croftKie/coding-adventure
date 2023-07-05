@@ -12,8 +12,17 @@ const initialState = {
           puzzleName: "Cold Cold Gold",
           id: 0,
           type: 1,
-          puzzleDescription:
-            "Use the direction buttons to add instructions, plan out your path to reach the goal.",
+          puzzleDialogue: [
+            "Welcome to CyberSpace!",
+            "You'll have to beat all the puzzles if you want to escape.",
+            "Looks like we landed on the edge of the forest",
+            "We'll need to find the Stone Clearing to find you a way out of here.",
+            "You're going to need me to interact with this world",
+            "So I'll tag along to help you out.",
+            "First up... we'll need to fetch my 'input program', its how I interact with the world...",
+            "... I lost it up that tree!",
+            "Could you give me instructions to get it back, whilst I climb the tree?",
+          ],
           startLocations: [
             { image: "pirate", x: 400, y: 400 },
             { image: "gold", x: 100, y: 100 },
@@ -26,8 +35,11 @@ const initialState = {
           puzzleName: "The Tree",
           id: 1,
           type: 2,
-          puzzleDescription:
-            "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
+          puzzleDialogue: [
+            "Welcome to CyberSpace!",
+            "You'll have to beat all the puzzles if you want to escape",
+            "Lets get started!",
+          ],
           clues: [
             "this is clue number one",
             "this is clue number two",
@@ -56,8 +68,7 @@ const initialState = {
           puzzleName: "The Hidden Gold",
           id: 2,
           type: 3,
-          puzzleDescription:
-            "lorem ipsum text would be useful here but I can't be bothered going to google it and my autocomplete isn't working.",
+          puzzleDialogue: ["Welcome to CyberSpace!"],
           startLocations: [
             { image: "pirate", x: 400, y: 400 },
             { image: "gold", x: 100, y: 100 },

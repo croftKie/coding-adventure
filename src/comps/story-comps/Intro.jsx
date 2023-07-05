@@ -37,7 +37,7 @@ const Intro = () => {
         );
       }
     });
-    tl.to(imgRef.current, { opacity: 1 });
+    // tl.to(imgRef.current, { opacity: 1 });
   });
 
   return (

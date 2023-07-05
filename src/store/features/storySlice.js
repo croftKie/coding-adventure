@@ -30,6 +30,7 @@ const initialState = {
       text: "Click me to start your adventure",
     },
   ],
+  dialogue: [],
 };
 
 const storySlice = createSlice({

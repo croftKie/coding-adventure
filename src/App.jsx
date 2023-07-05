@@ -40,6 +40,7 @@ import {
 
 import { tutorialOpenSelector } from "./store/features/tutorialSlice.js";
 import Intro from "./comps/story-comps/Intro";
+import Dialogue from "./comps/story-comps/Dialogue";
 
 function App() {
   // variable declarations
@@ -94,7 +95,9 @@ function App() {
         <div className="features">Progress</div>
         <div className="preview">Leaderboard</div>
       </div>
-      <div style={{ backgroundImage: bg }} className="content"></div>
+      <div style={{ backgroundImage: bg }} className="content">
+        <Dialogue dialogue={activePuzzle.puzzleDialogue} />
+      </div>
       <div className="hud">
         {content[activeChapter].completedStatus ? (
           <button>Complete Chapter</button>

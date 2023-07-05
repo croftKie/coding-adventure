@@ -1,46 +1,210 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
+import Clues from "./cryptography-comps/Clues.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addCryptoResults,
+  resetCryptoInput,
+} from "../../store/features/contentSlice.js";
+import { activeChapterSelector } from "../../store/features/progressSlice.js";
 
-const Cryptography = () => {
+const Cryptography = ({ setWin, activePuzzle }) => {
+  const [openPage, setOpenPage] = useState(0);
+  const dispatch = useDispatch();
+  const activeChapter = useSelector(activeChapterSelector);
+
+  const checkWin = () => {
+    const results = activePuzzle.winCondition.map((condition, i) => {
+      return condition.map((figure, j) => {
+        return figure === activePuzzle.inputs[i][j];
+      });
+    });
+    const test = results.filter((step) => {
+      return step.includes(false);
+    });
+    if (test.length === 0) {
+      setWin(true);
+    }
+    dispatch(
+      addCryptoResults({
+        activeChapter: activeChapter,
+        activePuzzle: activePuzzle.id,
+        result: results,
+      })
+    );
+    dispatch(
+      setPuzzleCompleteStatus({
+        chapterId: activeChapter,
+        puzzleId: activePuzzle.id,
+      })
+    );
+  };
+
   return (
     <div className="cryptography-puzzle">
       <div className="content">
         <div className="input">
           <div className="parts-buttons">
-            <button>Part One</button>
-            <button>Part Two</button>
-            <button>Part Three</button>
+            <button
+              onClick={() => {
+                setOpenPage(0);
+              }}
+            >
+              Part One
+            </button>
+            <button
+              onClick={() => {
+                setOpenPage(1);
+              }}
+            >
+              Part Two
+            </button>
+            <button
+              onClick={() => {
+                setOpenPage(2);
+              }}
+            >
+              Part Three
+            </button>
           </div>
-          <div className="cryptography-input">
-            <div className="clues">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
-                architecto ullam eum. Dicta quae distinctio illum debitis, quo
-                atque deserunt maxime error suscipit expedita facilis
-                repudiandae delectus est asperiores officia?
-              </p>
-            </div>
-          </div>
-          <div className="input-values">
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-          </div>
+          <Clues activePuzzle={activePuzzle} openPage={openPage} />
         </div>
         <div className="result">
           <div className="part-one">
-            <p>X - X - X</p>
+            <p>
+              <span
+                className={
+                  activePuzzle.results.length > 0
+                    ? activePuzzle.results[0][0]
+                      ? "green"
+                      : "red"
+                    : "none"
+                }
+              >
+                {activePuzzle.inputs[0][0]}
+              </span>{" "}
+              -{" "}
+              <span
+                className={
+                  activePuzzle.results.length > 0
+                    ? activePuzzle.results[0][1]
+                      ? "green"
+                      : "red"
+                    : "none"
+                }
+              >
+                {activePuzzle.inputs[0][1]}
+              </span>{" "}
+              -{" "}
+              <span
+                className={
+                  activePuzzle.results.length > 0
+                    ? activePuzzle.results[0][2]
+                      ? "green"
+                      : "red"
+                    : "none"
+                }
+              >
+                {activePuzzle.inputs[0][2]}
+              </span>
+            </p>
           </div>
           <div className="part-two">
-            <p>X - X - X</p>
+            <p>
+              <span
+                className={
+                  activePuzzle.results.length > 0
+                    ? activePuzzle.results[1][0]
+                      ? "green"
+                      : "red"
+                    : "none"
+                }
+              >
+                {activePuzzle.inputs[1][0]}
+              </span>{" "}
+              -{" "}
+              <span
+                className={
+                  activePuzzle.results.length > 0
+                    ? activePuzzle.results[1][1]
+                      ? "green"
+                      : "red"
+                    : "none"
+                }
+              >
+                {activePuzzle.inputs[1][1]}
+              </span>{" "}
+              -{" "}
+              <span
+                className={
+                  activePuzzle.results.length > 0
+                    ? activePuzzle.results[1][2]
+                      ? "green"
+                      : "red"
+                    : "none"
+                }
+              >
+                {activePuzzle.inputs[1][2]}
+              </span>
+            </p>
           </div>
           <div className="part-three">
-            <p>X - X - X</p>
+            <p>
+              <span
+                className={
+                  activePuzzle.results.length > 0
+                    ? activePuzzle.results[2][0]
+                      ? "green"
+                      : "red"
+                    : "none"
+                }
+              >
+                {activePuzzle.inputs[2][0]}
+              </span>{" "}
+              -{" "}
+              <span
+                className={
+                  activePuzzle.results.length > 0
+                    ? activePuzzle.results[2][1]
+                      ? "green"
+                      : "red"
+                    : "none"
+                }
+              >
+                {activePuzzle.inputs[2][1]}
+              </span>{" "}
+              -{" "}
+              <span
+                className={
+                  activePuzzle.results.length > 0
+                    ? activePuzzle.results[2][2]
+                      ? "green"
+                      : "red"
+                    : "none"
+                }
+              >
+                {activePuzzle.inputs[2][2]}
+              </span>
+            </p>
           </div>
         </div>
       </div>
       <div className="buttons">
-        <button className="reset">Reset</button>
-        <button className="run">Run</button>
+        <button
+          onClick={() => {
+            dispatch(
+              resetCryptoInput({
+                activeChapter: activeChapter,
+                activePuzzle: activePuzzle.id,
+              })
+            );
+          }}
+          className="reset"
+        >
+          Reset
+        </button>
+        <button onClick={checkWin} className="run">
+          Run
+        </button>
       </div>
     </div>
   );

@@ -12,24 +12,10 @@ import BugFix from "./puzzle-templates/BugFix";
 import Cryptography from "./puzzle-templates/Cryptography";
 import WinCondition from "./puzzle-templates/WinCondition";
 
-import { readContent } from "../store/features/contentSlice";
-import {
-  activeChapterSelector,
-  activePuzzleSelector,
-} from "../store/features/progressSlice";
-
-const Popup = ({ toggleUi }) => {
+const Popup = ({ activePuzzle, toggleUi }) => {
   // variable declarations
   const [win, setWin] = useState(false);
   const popupRef = useRef();
-  const content = useSelector(readContent);
-  const activeChapter = useSelector(activeChapterSelector);
-  const activePuzzleId = useSelector(activePuzzleSelector);
-
-  const puzzles = content[activeChapter].chapterPuzzles;
-  const [activePuzzle] = puzzles.filter(
-    (puzzle) => puzzle.id === activePuzzleId
-  );
   const toastText = activePuzzle.puzzleDescription;
 
   // helper functions
@@ -46,9 +32,6 @@ const Popup = ({ toggleUi }) => {
     }, 1000);
   };
 
-  // Return state for component
-  // Loads win condition child comp if win condition is met.
-  // Loads child puzzle component depending on puzzle type of active puzzle
   return (
     <div ref={popupRef} className="popup">
       <ToastContainer />
@@ -70,7 +53,7 @@ const Popup = ({ toggleUi }) => {
         {activePuzzle.type === 1 ? (
           <Instructions setWin={setWin} activePuzzle={activePuzzle} />
         ) : activePuzzle.type === 2 ? (
-          <Cryptography />
+          <Cryptography setWin={setWin} activePuzzle={activePuzzle} />
         ) : activePuzzle.type === 3 ? (
           <BugFix setWin={setWin} activePuzzle={activePuzzle} />
         ) : (

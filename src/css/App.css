@@ -8,23 +8,69 @@
 #root {
   height: 100vh;
   width: 100vw;
-  font-family: "Red Hat Mono";
+  font-family: "Red Hat Mono", sans-serif;
 }
 
-.background {
-  height: 99.5vh;
+.contentWindow {
+  height: 98%;
+  width: 98%;
+  border-radius: 10px;
+  border: 3px solid #333333;
+  box-shadow: 5px 5px 0 1px #333333;
+  position: absolute;
+  display: grid;
+  grid-template-rows: 30px 30px 1fr;
+  top: 1%;
+  left: 1%;
 }
-.background img {
+.contentWindow .topbar {
+  grid-row: 1/2;
+  width: 100%;
+  height: 30px;
+  background-color: #5aa9e6;
+  border-bottom: 3px solid #333333;
+  border-radius: 7px 7px 0 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 10px 0 10px;
+}
+.contentWindow .topbar img {
+  height: 20px;
+}
+.contentWindow .lower-bar {
+  background-color: #9ad6ff;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid #333333;
+}
+.contentWindow .lower-bar div {
+  height: 100%;
+  width: 25%;
+  cursor: pointer;
+  border-right: 3px solid #333333;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contentWindow .lower-bar .active {
+  background-color: #5aa9e6;
+}
+.contentWindow .content {
   height: 100%;
   width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .hud {
-  height: 100vh;
-  width: 100vw;
+  height: 12%;
+  width: 100%;
   background-color: transparent;
   position: absolute;
-  top: 0;
+  top: 85%;
   left: 0;
   display: grid;
   grid-template-rows: 40px 8fr 1fr;
@@ -109,54 +155,49 @@
   padding: 10px;
 }
 .hud .nav {
-  grid-row: 3/4;
-  width: 80%;
+  position: absolute;
+  height: 100%;
+  width: 40%;
+  left: 30%;
   justify-self: center;
   background-color: #fff8ef;
   border-radius: 10px;
   margin-bottom: 20px;
   border: 3px solid #333333;
   box-shadow: 5px 5px 0 1px #333333;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.hud .nav .info {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 20px 1fr;
-}
-.hud .nav .topbar {
-  grid-column: 1/3;
-  grid-row: 1/2;
-  grid-row: 1/2;
-  width: 100%;
-  height: 30px;
-  background-color: #5aa9e6;
-  border-bottom: 3px solid #333333;
-  border-radius: 7px 7px 0 0;
-  display: flex;
-  justify-content: end;
+  grid-template-columns: 60px 1fr 60px;
   align-items: center;
-  padding: 0 10px 0 10px;
-  height: 20px;
+  text-align: center;
 }
-.hud .nav .topbar img {
-  height: 13px;
-}
-.hud .nav .side-nav {
+.hud .nav .info div {
   grid-column: 2/3;
-  grid-row: 2/3;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
 }
-.hud .nav .side-nav .item {
-  height: 50px;
-  width: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.hud .nav .info img {
+  height: 30px;
+  justify-self: center;
   cursor: pointer;
 }
-.hud .nav .side-nav .item img {
-  height: 65%;
-  width: 65%;
+.hud .nav .buttons {
+  display: flex;
+  justify-content: space-around;
+}
+.hud .nav .buttons button {
+  width: 20%;
+  height: 40px;
+  background-color: #9ad6ff;
+  border: 3px solid #333333;
+  border-radius: 10px;
+  color: #333333;
+  font-size: 1.5rem;
+  width: 40%;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .popup {
@@ -440,20 +481,21 @@
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 1fr 4fr 4fr;
+  grid-template-rows: 30px 4fr 4fr;
   background-color: #333333;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .parts-buttons {
   display: flex;
-  justify-content: space-around;
-  gap: 10px;
+  justify-content: space-between;
   border-bottom: 3px solid #5efc88;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .parts-buttons button {
+  flex: 1;
   background-color: inherit;
   border: none;
   color: #fff8ef;
-  font-size: 25px;
+  font-size: 20px;
+  cursor: pointer;
 }
 .popup .puzzleContent .cryptography-puzzle .content .input .cryptography-input {
   padding: 30px;
@@ -490,11 +532,11 @@
   display: flex;
   align-items: center;
   padding: 30px;
+  font-size: 1.5rem;
 }
 .popup .puzzleContent .cryptography-puzzle .content .result .part-one {
   flex: 1;
   height: 50px;
-  text-align: center;
 }
 .popup .puzzleContent .cryptography-puzzle .content .result .part-two {
   flex: 1;
@@ -505,6 +547,12 @@
   flex: 1;
   height: 50px;
   text-align: center;
+}
+.popup .puzzleContent .cryptography-puzzle .content .result .red {
+  border-bottom: 3px solid #ffa2a2;
+}
+.popup .puzzleContent .cryptography-puzzle .content .result .green {
+  border-bottom: 3px solid #a1ffba;
 }
 .popup .puzzleContent .cryptography-puzzle .buttons {
   height: 15%;
@@ -1019,4 +1067,25 @@
   font-size: 1.5rem;
 }
 
-/*# sourceMappingURL=App.css.map */
+.intro {
+  height: 100%;
+  color: #fff8ef;
+  background-color: #333333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+  gap: 60px;
+}
+.intro img {
+  position: relative;
+  height: 200px;
+  top: -200px;
+  left: 600px;
+  opacity: 0;
+  cursor: pointer;
+  transition: all;
+}
+.intro img:hover {
+  transform: scale(110%);
+}/*# sourceMappingURL=App.css.map */

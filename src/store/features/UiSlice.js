@@ -7,6 +7,7 @@ const initialState = {
   leaderboard: false,
   progress: false,
   options: false,
+  intro: false,
 };
 
 const UiSlice = createSlice({
@@ -31,5 +32,6 @@ export const settingsSelector = (state) => state.ui.settings;
 export const leaderboardSelector = (state) => state.ui.leaderboard;
 export const progressSelector = (state) => state.ui.progress;
 export const optionsSelector = (state) => state.ui.options;
+export const introOpenSelector = (state) => state.ui.intro;
 
 export default UiSlice.reducer;

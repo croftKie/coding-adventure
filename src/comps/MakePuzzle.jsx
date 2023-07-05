@@ -10,6 +10,7 @@ const MakePuzzle = ({ setMakePuzzle }) => {
   const leaderboardBarRef = useRef();
   const progressBarRef = useRef();
   const barRefs = [settingsBarRef, leaderboardBarRef, progressBarRef];
+
   const updateClass = (currentElement) => {
     barRefs.forEach((element) => {
       if (element.current.classList.contains("active")) {

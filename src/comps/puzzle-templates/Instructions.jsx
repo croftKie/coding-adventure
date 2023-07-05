@@ -11,6 +11,7 @@ import {
   resetAnimationPath,
   timelineComplete,
 } from "../../path-animation-library/pathAnimation";
+import { activeChapterSelector } from "../../store/features/progressSlice";
 import { images } from "../../utils/images";
 
 const Instructions = ({ activePuzzle, setWin }) => {
@@ -19,6 +20,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
   const goalImg = useRef();
   const resultRef = useRef();
   const instructionInputs = useSelector(instructionInputSelector);
+  const activeChapter = useSelector(activeChapterSelector);
   const dispatch = useDispatch();
   const startLocs = activePuzzle.startLocations;
   const assetTypes = Object.keys(activePuzzle.assets);
@@ -47,7 +49,12 @@ const Instructions = ({ activePuzzle, setWin }) => {
           )
         ) {
           setWin(true);
-          // dispatch(setPuzzleCompleteStatus({ chapterId: 0, puzzleId: 0 }));
+          dispatch(
+            setPuzzleCompleteStatus({
+              chapterId: activeChapter,
+              puzzleId: activePuzzle.id,
+            })
+          );
         }
       }
     );

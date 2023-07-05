@@ -17,6 +17,13 @@ export const images = {
     "./assets/arrow-right.png",
     "./assets/arrow-left.png",
     "./assets/down-arrow.png",
+    "./assets/code_mascot.png",
   ],
   chapterBgAssets: ["./assets/backgrounds/pxfuel.jpg"],
+  bgAssets: [
+    "./assets/backgrounds/pxfuel.jpg",
+    "./assets/backgrounds/autumn_1.png",
+    "./assets/backgrounds/autumn_2.png",
+    "./assets/backgrounds/autumn_3.jpg",
+  ],
 };

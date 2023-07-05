@@ -20,7 +20,7 @@ const initialState = {
           ],
           endLocations: [{ image: "pirate", x: 100, y: 100 }],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
+          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [1] },
         },
         {
           puzzleName: "The Tree",
@@ -43,8 +43,14 @@ const initialState = {
             [0, 0, 0],
             [0, 0, 0],
           ],
+          resetInputs: [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0],
+          ],
+          results: [],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
+          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [2] },
         },
         {
           puzzleName: "The Hidden Gold",
@@ -58,7 +64,7 @@ const initialState = {
           ],
           endLocations: [{ image: "pirate", x: 100, y: 100 }],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [0] },
+          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [3] },
           inputs: [
             { type: "forward", value: 200 },
             { type: "left", value: 200 },
@@ -79,7 +85,6 @@ const initialState = {
         { top: "35%", left: "67%" },
       ],
       completedStatus: false,
-      assets: { bgAssets: [0] },
     },
     {
       chapterName: "Winter",
@@ -274,6 +279,25 @@ const contentSlice = createSlice({
           action.payload.puzzleIndex
         ].resetInputs;
     },
+    changeCryptoInput: (state, action) => {
+      state.chapters[action.payload.activeChapter].chapterPuzzles[
+        action.payload.activePuzzle
+      ].inputs[action.payload.openPage][action.payload.inputIndex] =
+        action.payload.value;
+    },
+    resetCryptoInput: (state, action) => {
+      state.chapters[action.payload.activeChapter].chapterPuzzles[
+        action.payload.activePuzzle
+      ].inputs =
+        state.chapters[action.payload.activeChapter].chapterPuzzles[
+          action.payload.activePuzzle
+        ].resetInputs;
+    },
+    addCryptoResults: (state, action) => {
+      state.chapters[action.payload.activeChapter].chapterPuzzles[
+        action.payload.activePuzzle
+      ].results = action.payload.result;
+    },
   },
 });
 
@@ -282,6 +306,9 @@ export const {
   setPuzzleCompleteStatus,
   changeBugFixInstructions,
   resetBugFixInstructions,
+  changeCryptoInput,
+  resetCryptoInput,
+  addCryptoResults,
 } = contentSlice.actions;
 
 export const readContent = (state) => state.content.chapters;

@@ -38,7 +38,12 @@ const BugFix = ({ activePuzzle, setWin }) => {
           )
         ) {
           setWin(true);
-          // dispatch(setPuzzleCompleteStatus({ chapterId: 0, puzzleId: 0 }));
+          dispatch(
+            setPuzzleCompleteStatus({
+              chapterId: activeChapter,
+              puzzleId: activePuzzle.id,
+            })
+          );
         }
       }
     );

@@ -3,43 +3,55 @@ import { images } from "../../utils/images";
 
 import { useSelector, useDispatch } from "react-redux";
 import { activeChapterSelector } from "../../store/features/progressSlice";
+import { changeCurrentPuzzle } from "../../store/features/progressSlice";
 import { readContent } from "../../store/features/contentSlice";
-import { toggleTutorial } from "../../store/features/tutorialSlice.js";
-const LowerNav = ({ toggleUi }) => {
-  const uiAssets = images.uiAssets;
+const LowerNav = ({ activePuzzle, toggleUi }) => {
   const content = useSelector(readContent);
   const activeChapter = useSelector(activeChapterSelector);
   const dispatch = useDispatch();
+
+  const style = activePuzzle.completed ? { backgroundColor: "#97feb3" } : {};
   return (
-    <div className="nav">
-      <div className="topbar">
-        <img src={uiAssets[0]} alt="" />
-      </div>
-      <div className="lowerNav">
-        <h3>
-          0 out of {content[activeChapter].chapterPuzzles.length} challenges
-          completed
-        </h3>
-      </div>
-      <div className="side-nav">
-        <div className="item">
+    <div style={style} className="nav">
+      <div className="info">
+        {content[activeChapter].chapterPuzzles[activePuzzle.id - 1] ? (
           <img
             onClick={() => {
-              dispatch(toggleTutorial());
+              dispatch(changeCurrentPuzzle(activePuzzle.id - 1));
             }}
-            src={uiAssets[4]}
+            src={images.uiAssets[13]}
             alt=""
           />
+        ) : (
+          <></>
+        )}
+        <div>
+          <h3>{activePuzzle.puzzleName}</h3>
+          <h3>
+            0 out of {content[activeChapter].chapterPuzzles.length} puzzles
+            completed
+          </h3>
         </div>
-        <div className="item">
+        {content[activeChapter].chapterPuzzles[activePuzzle.id + 1] ? (
           <img
             onClick={() => {
-              toggleUi("options");
+              dispatch(changeCurrentPuzzle(activePuzzle.id + 1));
             }}
-            src={uiAssets[9]}
+            src={images.uiAssets[12]}
             alt=""
           />
-        </div>
+        ) : (
+          <></>
+        )}
+      </div>
+      <div className="buttons">
+        <button
+          onClick={() => {
+            toggleUi("popUp");
+          }}
+        >
+          Open Puzzle
+        </button>
       </div>
     </div>
   );

@@ -76,7 +76,9 @@ const Splash = () => {
               onLeave(cardOne);
             }}
             onClick={() => {
-              assignChapter(0), dispatch(updateUi("splashScreen"));
+              assignChapter(0);
+              dispatch(updateUi("intro"));
+              dispatch(updateUi("splashScreen"));
             }}
             className="new card"
           >

@@ -9,11 +9,11 @@ const initialState = {
       chapterId: 0,
       chapterPuzzles: [
         {
-          puzzleName: "Cold Cold Gold",
+          puzzleName: "Climbing the tree!",
           id: 0,
           type: 1,
           puzzleDialogue: [
-            "Welcome to CyberSpace!",
+            "Welcome to Cyberspace!",
             "You'll have to beat all the puzzles if you want to escape.",
             "Looks like we landed on the edge of the forest",
             "We'll need to find the Stone Clearing to find you a way out of here.",
@@ -29,11 +29,11 @@ const initialState = {
           ],
           endLocations: [{ image: "pirate", x: 100, y: 100 }],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [1] },
+          assets: { charAssets: [0, 1], puzzleBgAssets: [1] },
         },
         {
-          puzzleName: "The Tree",
-          id: 1,
+          puzzleName: "The Stone Door",
+          id: 2,
           type: 2,
           puzzleDialogue: [
             "Welcome to CyberSpace!",
@@ -41,14 +41,14 @@ const initialState = {
             "Lets get started!",
           ],
           clues: [
-            "this is clue number one",
-            "this is clue number two",
-            "this is clue number three",
+            "Take the first letter of your companions name, and combine it with 23 + 32",
+            "How many letter are in your name, combine that with 64 divided by 4",
+            "Start with 0... add 100, subtract 40, and multiply by 2",
           ],
           winCondition: [
-            [0, 0, 0],
-            [0, 0, 0],
-            [0, 0, 0],
+            ["B", "5", "5"],
+            ["4", "2", "6"],
+            ["1", "2", "0"],
           ],
           inputs: [
             [0, 0, 0],
@@ -62,11 +62,11 @@ const initialState = {
           ],
           results: [],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [2] },
+          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [3] },
         },
         {
-          puzzleName: "The Hidden Gold",
-          id: 2,
+          puzzleName: "The Forest Maze",
+          id: 1,
           type: 3,
           puzzleDialogue: ["Welcome to CyberSpace!"],
           startLocations: [
@@ -75,7 +75,7 @@ const initialState = {
           ],
           endLocations: [{ image: "pirate", x: 100, y: 100 }],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [3] },
+          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [2] },
           inputs: [
             { type: "forward", value: 200 },
             { type: "left", value: 200 },
@@ -293,7 +293,7 @@ const contentSlice = createSlice({
     changeCryptoInput: (state, action) => {
       state.chapters[action.payload.activeChapter].chapterPuzzles[
         action.payload.activePuzzle
-      ].inputs[action.payload.openPage][action.payload.inputIndex] =
+      ].inputs[action.payload.part][action.payload.inputIndex] =
         action.payload.value;
     },
     resetCryptoInput: (state, action) => {

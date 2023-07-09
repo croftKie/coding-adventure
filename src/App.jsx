@@ -1,21 +1,19 @@
-import "./css/App.css";
+import "./css/App.min.css";
 import { images } from "./utils/images.js";
 
 // React and React Redux dependencies
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Import statements for child components
-import Popup from "./comps/Popup";
-import LowerNav from "./comps/HUD/LowerNav";
+
 import Splash from "./comps/Splash";
-import Settings from "./comps/HUD/settings-comps/Settings";
 import Progress from "./comps/HUD/settings-comps/Progress";
 import Leaderboard from "./comps/HUD/settings-comps/Leaderboard";
 import Loading from "./comps/Loading";
 import NotifyChapters from "./comps/story-comps/NotifyChapters";
-import Options from "./comps/HUD/settings-comps/Options.jsx";
 import TutModal from "./comps/tutorial/TutModal.jsx";
+import Puzzle from "./comps/Puzzle.jsx";
 
 // State import for currently active chapters and puzzles
 import {
@@ -27,7 +25,6 @@ import {
 import {
   SplashSelector,
   optionsSelector,
-  popUpSelector,
   introOpenSelector,
   updateUi,
 } from "./store/features/UiSlice";
@@ -40,16 +37,16 @@ import {
 
 import { tutorialOpenSelector } from "./store/features/tutorialSlice.js";
 import Intro from "./comps/story-comps/Intro";
-import Dialogue from "./comps/story-comps/Dialogue";
 
 function App() {
   // variable declarations
+  const barRef = useRef();
   const currentPuzzle = useSelector(activePuzzleSelector);
   const activeChapter = useSelector(activeChapterSelector);
   const splashStatus = useSelector(SplashSelector);
   const introOpenState = useSelector(introOpenSelector);
   const content = useSelector(readContent);
-  const popUp = useSelector(popUpSelector);
+
   const options = useSelector(optionsSelector);
   const tutOpen = useSelector(tutorialOpenSelector);
   const dispatch = useDispatch();
@@ -57,10 +54,19 @@ function App() {
   const [activePuzzle] = puzzles.filter(
     (puzzle) => puzzle.id === currentPuzzle
   );
-
+  const [page, setPage] = useState(0);
   // Dispatch function for opening and closing UI elements
   const toggleUi = (type) => {
     dispatch(updateUi(type));
+  };
+
+  const switchBarStyling = (option) => {
+    Array.from(barRef.current.children).forEach((child, i) => {
+      child.classList.remove("active");
+      if (child.classList.contains(option)) {
+        child.classList.add("active");
+      }
+    });
   };
 
   // update function to monitor completed puzzles - dispatches chapter complete status
@@ -84,30 +90,52 @@ function App() {
   if (content[activeChapter].completedStatus) {
     return <Loading />;
   }
-  const bg = `url(${images.bgAssets[activePuzzle.assets.puzzleBgAssets[0]]})`;
+
   return (
     <div className="contentWindow">
       <div className="topbar">
         <img src={images.uiAssets[0]} alt="" />
       </div>
-      <div className="lower-bar">
-        <div className="puzzles active">Chapter</div>
-        <div className="features">Progress</div>
-        <div className="preview">Leaderboard</div>
+      <div ref={barRef} className="lower-bar">
+        <div
+          onClick={() => {
+            setPage(0);
+            switchBarStyling("puzzles");
+          }}
+          className="puzzles active"
+        >
+          Chapter
+        </div>
+        <div
+          onClick={() => {
+            setPage(1);
+            switchBarStyling("progress");
+          }}
+          className="progress"
+        >
+          Progress
+        </div>
+        <div
+          onClick={() => {
+            setPage(2);
+            switchBarStyling("leaderboard");
+          }}
+          className="leaderboard"
+        >
+          Leaderboard
+        </div>
       </div>
-      <div style={{ backgroundImage: bg }} className="content">
-        <Dialogue dialogue={activePuzzle.puzzleDialogue} />
-      </div>
-      <div className="hud">
-        {content[activeChapter].completedStatus ? (
-          <button>Complete Chapter</button>
-        ) : (
-          <></>
-        )}
-        <LowerNav activePuzzle={activePuzzle} toggleUi={toggleUi} />
-      </div>
-      {popUp ? (
-        <Popup activePuzzle={activePuzzle} toggleUi={toggleUi} />
+      {page === 0 ? (
+        <Puzzle
+          content={content}
+          activePuzzle={activePuzzle}
+          toggleUi={toggleUi}
+          activeChapter={activeChapter}
+        />
+      ) : page === 1 ? (
+        <Progress />
+      ) : page === 2 ? (
+        <Leaderboard />
       ) : (
         <></>
       )}

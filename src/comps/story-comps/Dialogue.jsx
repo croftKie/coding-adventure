@@ -19,15 +19,13 @@ const Dialogue = ({ dialogue }) => {
   const hideDialogueBox = () => {
     gsap.to(dialogueRef.current, { top: "-22%" });
   };
-
-  console.log(dialogue);
   return (
     <div ref={dialogueRef} className="dialogue-container">
       <div className="topbar">
         <img onClick={hideDialogueBox} src={images.uiAssets[0]} alt="" />
       </div>
       <div className="dialogue">
-        <img src={images.uiAssets[15]} />
+        <img src={images.charAssets[0]} />
         <p ref={textRef}>Hey there, Alex!</p>
       </div>
     </div>

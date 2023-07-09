@@ -2,10 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   chaptersCompleted: [],
-  activeChapter:
-    localStorage.getItem("lastChapterCompleted") >= 0
-      ? parseInt(localStorage.getItem("lastChapterCompleted")) + 1
-      : 0,
+  activeChapter: localStorage.getItem("lastChapterCompleted")
+    ? parseInt(localStorage.getItem("lastChapterCompleted")) + 1
+    : 0,
   activePuzzle: 0,
 };
 

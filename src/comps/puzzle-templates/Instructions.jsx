@@ -24,7 +24,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
   const dispatch = useDispatch();
   const startLocs = activePuzzle.startLocations;
   const assetTypes = Object.keys(activePuzzle.assets);
-  const assetRefs = activePuzzle.assets.puzzleAssets;
+  const assetRefs = activePuzzle.assets.charAssets;
 
   const pushInputs = (type) => {
     setInputs([...inputs, type]);

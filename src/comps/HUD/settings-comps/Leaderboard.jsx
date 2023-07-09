@@ -11,11 +11,25 @@ const Leaderboard = () => {
               <div className="number">
                 <h4>{item}</h4>
               </div>
-              <h4>1,000,000</h4>
-              <p>Username</p>
+              <h4>Username:</h4>
+              <p>score</p>
             </div>
           );
         })}
+      </div>
+      <div className={"addToBoard"}>
+        <div className={"title"}>
+          <h1>CodeVenture Leaderboard</h1>
+          <p>Add your name to the leaderboard</p>
+        </div>
+        <div className={"nameInput"}>
+          <p>What is your name?</p>
+          <input type={"text"} />
+        </div>
+        <div className={"currentScore"}>
+          <p>Current Score:</p>
+          <p>1000</p>
+        </div>
       </div>
     </div>
   );

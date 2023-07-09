@@ -43,29 +43,6 @@ const Cryptography = ({ setWin, activePuzzle }) => {
     <div className="cryptography-puzzle">
       <div className="content">
         <div className="input">
-          <div className="parts-buttons">
-            <button
-              onClick={() => {
-                setOpenPage(0);
-              }}
-            >
-              Part One
-            </button>
-            <button
-              onClick={() => {
-                setOpenPage(1);
-              }}
-            >
-              Part Two
-            </button>
-            <button
-              onClick={() => {
-                setOpenPage(2);
-              }}
-            >
-              Part Three
-            </button>
-          </div>
           <Clues activePuzzle={activePuzzle} openPage={openPage} />
         </div>
         <div className="result">

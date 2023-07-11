@@ -17,6 +17,7 @@ import { activeChapterSelector } from "../../store/features/progressSlice.js";
 const BugFix = ({ activePuzzle, setWin }) => {
   const assetTypes = Object.keys(activePuzzle.assets);
   const assetRefs = activePuzzle.assets.puzzleAssets;
+  const bgRef = activePuzzle.assets.puzzleBgAssets[1];
   const startLocs = activePuzzle.startLocations;
   const charImg = useRef();
   const goalImg = useRef();
@@ -78,9 +79,8 @@ const BugFix = ({ activePuzzle, setWin }) => {
           <BugFixInput changeInput={changeInput} inputs={activePuzzle.inputs} />
         </div>
         <div
-          style={{ backgroundImage: `url(${images[assetTypes[1]][0]})` }}
-          className="result"
-        >
+          style={{ backgroundImage: `url(${images[assetTypes[1]][bgRef]})` }}
+          className="result">
           <img
             ref={charImg}
             style={{

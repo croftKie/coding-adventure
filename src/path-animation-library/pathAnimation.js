@@ -23,6 +23,7 @@ export const animator = (
   inputs,
   parentHeight,
   parentWidth,
+  obstacles = [],
   onComplete
 ) => {
   let X = _getPosition(element).X;
@@ -30,7 +31,6 @@ export const animator = (
   const tl = _initTimeline(onComplete);
   const { repeatStartIndex, repeatEndIndex, repeatableInputs, repeatNumber } =
     _utils(inputs);
-
   for (let i = 0; i < inputs.length; i++) {
     if (i === repeatStartIndex) {
       let j = 0;
@@ -68,11 +68,77 @@ export const animator = (
       }
     }
   }
+
+  let obstacleHit = false;
+  tl.getChildren().forEach((anim) => {
+    if (obstacleHit) {
+      tl.remove(anim);
+    } else {
+      if (anim.vars.y === obstacles[0][1] || anim.vars.x === obstacles[0][0]) {
+        console.log("hit obstacle");
+        obstacleHit = true;
+      }
+    }
+  });
   tl.resume();
-  return { x: X, y: Y };
+  return { x: X, y: Y, hitStatus: obstacleHit };
 };
 
 const _animatePath = (
+  element,
+  type,
+  el,
+  tl,
+  height,
+  width,
+  startingX,
+  startingY
+) => {
+  let X = startingX;
+  let Y = startingY;
+  switch (type) {
+    case "forward":
+      if (Y - el.value < 0) {
+        tl.to(element, { y: 0 });
+        Y = 0;
+      } else {
+        tl.to(element, { y: Y - Math.abs(el.value) });
+        Y -= Math.abs(el.value);
+      }
+      return { Y: Y };
+    case "backwards":
+      if (Y + el.value > height) {
+        tl.to(element, { y: height });
+        Y = height;
+      } else {
+        tl.to(element, { y: Y + Math.abs(el.value) });
+        Y += Math.abs(el.value);
+      }
+      return { Y: Y };
+    case "right":
+      if (X + el.value > width) {
+        tl.to(element, { x: width });
+        X = width;
+      } else {
+        tl.to(element, { x: X + Math.abs(el.value) });
+        X += Math.abs(el.value);
+      }
+      return { X: X };
+    case "left":
+      if (X - el.value < 0) {
+        tl.to(element, { x: 0 });
+        X = 0;
+      } else {
+        tl.to(element, { x: X - Math.abs(el.value) });
+        X -= Math.abs(el.value);
+      }
+      return { X: X };
+    default:
+      break;
+  }
+};
+
+const _animatePathWithObstacles = (
   element,
   type,
   el,
@@ -163,8 +229,4 @@ const _utils = (inputs) => {
     repeatableInputs: repeatableInputs,
     repeatNumber: repeatNumber,
   };
-};
-
-export const timelineComplete = async () => {
-  console.log("hello");
 };

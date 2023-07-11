@@ -1,4 +1,7 @@
-import "./css/App.min.css";
+// Main Component for Codeventure Application
+
+// styling and image asset imports
+import "./css/App.css";
 import { images } from "./utils/images.js";
 
 // React and React Redux dependencies
@@ -6,7 +9,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Import statements for child components
-
 import Splash from "./comps/Splash";
 import Progress from "./comps/HUD/settings-comps/Progress";
 import Leaderboard from "./comps/HUD/settings-comps/Leaderboard";
@@ -14,51 +16,41 @@ import Loading from "./comps/Loading";
 import NotifyChapters from "./comps/story-comps/NotifyChapters";
 import TutModal from "./comps/tutorial/TutModal.jsx";
 import Puzzle from "./comps/Puzzle.jsx";
+import Intro from "./comps/story-comps/Intro";
 
-// State import for currently active chapters and puzzles
+// Store import statements
 import {
   activeChapterSelector,
   activePuzzleSelector,
 } from "./store/features/progressSlice";
-
-// State import for UI toggles (bools)
 import {
   SplashSelector,
-  optionsSelector,
   introOpenSelector,
   updateUi,
 } from "./store/features/UiSlice";
-
-// State import for puzzle/chapter content
 import {
-  readContent, // all chapter & puzzle content
-  setChapterCompleteStatus, // action to set chapter as complete
+  readContent,
+  setChapterCompleteStatus,
 } from "./store/features/contentSlice";
-
 import { tutorialOpenSelector } from "./store/features/tutorialSlice.js";
-import Intro from "./comps/story-comps/Intro";
 
 function App() {
-  // variable declarations
+  // component variable declarations
+  const dispatch = useDispatch();
   const barRef = useRef();
   const currentPuzzle = useSelector(activePuzzleSelector);
   const activeChapter = useSelector(activeChapterSelector);
   const splashStatus = useSelector(SplashSelector);
   const introOpenState = useSelector(introOpenSelector);
   const content = useSelector(readContent);
-
-  const options = useSelector(optionsSelector);
   const tutOpen = useSelector(tutorialOpenSelector);
-  const dispatch = useDispatch();
   const puzzles = content[activeChapter].chapterPuzzles;
+  const [page, setPage] = useState(0);
+
+  // puzzle filter provides currently selected puzzle - prop drilled to child components
   const [activePuzzle] = puzzles.filter(
     (puzzle) => puzzle.id === currentPuzzle
   );
-  const [page, setPage] = useState(0);
-  // Dispatch function for opening and closing UI elements
-  const toggleUi = (type) => {
-    dispatch(updateUi(type));
-  };
 
   const switchBarStyling = (option) => {
     Array.from(barRef.current.children).forEach((child, i) => {
@@ -129,7 +121,6 @@ function App() {
         <Puzzle
           content={content}
           activePuzzle={activePuzzle}
-          toggleUi={toggleUi}
           activeChapter={activeChapter}
         />
       ) : page === 1 ? (

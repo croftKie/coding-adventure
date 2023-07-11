@@ -25,11 +25,13 @@ const Creator = () => {
         item.type !== "submit" &&
         item.localName !== "button"
       ) {
-        obj[item.name] = item.value;
+        if (item.type === "file") {
+          console.log(item.files);
+        } else {
+          obj[item.name] = item.value;
+        }
       }
     });
-    console.log(obj);
-    console.log(addNewPuzzle);
     dispatch(addNewPuzzle(obj));
   };
 
@@ -42,7 +44,6 @@ const Creator = () => {
     });
   };
 
-  console.log(useSelector(selectPuzzleMakerPuzzles));
   return (
     <div className={"creator"}>
       <div ref={barRef} className={"puzzleTypePicker"}>
@@ -52,8 +53,7 @@ const Creator = () => {
             switchBarStyling("instruction");
             setPuzzleType("instruction");
           }}
-          className={"card instruction"}
-        >
+          className={"card instruction active"}>
           <h2>Instruction Puzzle</h2>
         </div>
         <div
@@ -62,8 +62,7 @@ const Creator = () => {
             switchBarStyling("crypto");
             setPuzzleType("crypto");
           }}
-          className={"card crypto"}
-        >
+          className={"card crypto"}>
           <h2>Crack the Code Puzzle</h2>
         </div>
         <div
@@ -72,8 +71,7 @@ const Creator = () => {
             switchBarStyling("bugFix");
             setPuzzleType("bugFix");
           }}
-          className={"card bugFix"}
-        >
+          className={"card bugFix"}>
           <h2>Fix the Bug Puzzle</h2>
         </div>
       </div>

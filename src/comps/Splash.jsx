@@ -9,7 +9,6 @@ import {
   activeChapterSelector,
 } from "../store/features/progressSlice";
 import { updateUi } from "../store/features/UiSlice";
-import Statistics from "./Statistics";
 import MakePuzzle from "./MakePuzzle";
 
 const Splash = () => {
@@ -56,7 +55,7 @@ const Splash = () => {
               spin(logoRef);
             }}
             ref={logoRef}
-            src={images.uiAssets[7]}
+            src={images.charAssets[0]}
             alt=""
           />
           <div className="logo-text">
@@ -103,22 +102,6 @@ const Splash = () => {
             <h3>Continue</h3>
             <p>Continue where you last left off and beat the bad guy!</p>
           </div>
-          {/* <div
-            ref={cardThree}
-            onMouseEnter={() => {
-              onEnter(cardThree);
-            }}
-            onMouseLeave={() => {
-              onLeave(cardThree);
-            }}
-            onClick={() => {
-              setStats(true);
-            }}
-            className="stats card"
-          >
-            <h3>Statistics</h3>
-            <p>Take a look at how many challenges you've completed</p>
-          </div> */}
           <div
             ref={cardFour}
             onMouseEnter={() => {

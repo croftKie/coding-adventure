@@ -11,11 +11,11 @@ const Dialogue = ({ dialogue }) => {
   const textRef = useRef();
   useLayoutEffect(() => {
     const tl = gsap.timeline();
-    tl.to(dialogueRef.current, { top: 10, delay: 1 });
+    tl.to(dialogueRef.current, { top: 10, delay: 2 });
     dialogue.forEach((line) => {
-      tl.to(textRef.current, { text: line, duration: 3, delay: 1 });
+      tl.to(textRef.current, { text: line, duration: 3, delay: 2 });
     });
-  }, []);
+  });
   const hideDialogueBox = () => {
     gsap.to(dialogueRef.current, { top: "-22%" });
   };

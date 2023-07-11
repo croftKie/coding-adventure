@@ -50,7 +50,7 @@ const Intro = () => {
           dispatch(updateUi("intro"));
         }}
         ref={imgRef}
-        src={images.uiAssets[15]}
+        src={images.charAssets[1]}
       />
     </div>
   );

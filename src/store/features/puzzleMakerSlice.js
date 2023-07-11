@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  puzzles: [],
+  puzzles: JSON.parse(localStorage.getItem("puzzles")) || [],
 };
 
 const puzzleMakerSlice = createSlice({
@@ -9,7 +9,9 @@ const puzzleMakerSlice = createSlice({
   initialState,
   reducers: {
     addNewPuzzle: (state, action) => {
-      state.puzzles = [...state.puzzles, action.payload];
+      const array = [...state.puzzles, action.payload];
+      state.puzzles = array;
+      localStorage.setItem("puzzles", JSON.stringify(array));
     },
   },
 });

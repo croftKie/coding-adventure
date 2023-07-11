@@ -9,13 +9,14 @@ import {
   isPathComplete,
   animator,
   resetAnimationPath,
-  timelineComplete,
 } from "../../path-animation-library/pathAnimation";
 import { activeChapterSelector } from "../../store/features/progressSlice";
 import { images } from "../../utils/images";
+import ResetCondition from "./ResetCondition";
 
 const Instructions = ({ activePuzzle, setWin }) => {
   const [inputs, setInputs] = useState([]);
+  const [toggleResetScreen, setToggleResetScreen] = useState(false);
   const charImg = useRef();
   const goalImg = useRef();
   const resultRef = useRef();
@@ -24,7 +25,8 @@ const Instructions = ({ activePuzzle, setWin }) => {
   const dispatch = useDispatch();
   const startLocs = activePuzzle.startLocations;
   const assetTypes = Object.keys(activePuzzle.assets);
-  const assetRefs = activePuzzle.assets.charAssets;
+  const assetRefs = activePuzzle.assets.puzzleAssets;
+  const bgRef = activePuzzle.assets.puzzleBgAssets[1];
 
   const pushInputs = (type) => {
     setInputs([...inputs, type]);
@@ -40,7 +42,11 @@ const Instructions = ({ activePuzzle, setWin }) => {
       instructionInputs,
       500,
       500,
+      [[300, 400]],
       () => {
+        if (isRunComplete.hitStatus) {
+          setToggleResetScreen(true);
+        }
         if (
           isPathComplete(
             charImg.current,
@@ -59,10 +65,10 @@ const Instructions = ({ activePuzzle, setWin }) => {
       }
     );
   };
-
   return (
     <div className="instructions-puzzle">
       <div className="content">
+        {toggleResetScreen ? <ResetCondition /> : <></>}
         <div className="input">
           <InstructionInput inputs={inputs} />
           <div className="input-buttons">
@@ -70,29 +76,25 @@ const Instructions = ({ activePuzzle, setWin }) => {
               <button
                 onClick={() => {
                   pushInputs(1);
-                }}
-              >
+                }}>
                 <img src={images.uiAssets[11]} alt="" />
               </button>
               <button
                 onClick={() => {
                   pushInputs(2);
-                }}
-              >
+                }}>
                 <img src={images.uiAssets[10]} alt="" />
               </button>
               <button
                 onClick={() => {
                   pushInputs(3);
-                }}
-              >
+                }}>
                 <img src={images.uiAssets[12]} alt="" />
               </button>
               <button
                 onClick={() => {
                   pushInputs(4);
-                }}
-              >
+                }}>
                 <img src={images.uiAssets[13]} alt="" />
               </button>
             </div>
@@ -100,15 +102,13 @@ const Instructions = ({ activePuzzle, setWin }) => {
               <button
                 onClick={() => {
                   pushInputs(5);
-                }}
-              >
+                }}>
                 Repeat
               </button>
               <button
                 onClick={() => {
                   pushInputs(6);
-                }}
-              >
+                }}>
                 End
               </button>
             </div>
@@ -116,10 +116,9 @@ const Instructions = ({ activePuzzle, setWin }) => {
         </div>
         <div className="result-container">
           <div
-            style={{ backgroundImage: `url(${images[assetTypes[1]][0]})` }}
+            style={{ backgroundImage: `url(${images[assetTypes[1]][bgRef]})` }}
             ref={resultRef}
-            className="result"
-          >
+            className="result">
             <img
               ref={charImg}
               style={{

@@ -202,13 +202,13 @@
 }
 
 .popup {
-  height: 80%;
+  height: 90%;
   width: 80%;
   background-color: #fff8ef;
   border-radius: 10px;
   border: 3px solid #333333;
   position: absolute;
-  top: 5%;
+  top: 7%;
   left: 10%;
   z-index: 2;
   display: grid;
@@ -384,6 +384,9 @@
 .popup .puzzleContent .instructions-puzzle .content .result-container .result img {
   position: relative;
   height: 50px;
+  background-color: #fff8ef;
+  border-radius: 10px;
+  border: 3px solid #333333;
 }
 .popup .puzzleContent .instructions-puzzle .content .result-container .buttons {
   align-self: center;
@@ -449,6 +452,9 @@
 .popup .puzzleContent .bugFix-puzzle .content .result img {
   position: relative;
   height: 50px;
+  background-color: #fff8ef;
+  border-radius: 10px;
+  border: 3px solid #333333;
 }
 .popup .puzzleContent .bugFix-puzzle .buttons {
   height: 15%;
@@ -643,7 +649,7 @@
 }
 .splash .splash-content {
   width: 60%;
-  height: 60%;
+  height: 70%;
   background-color: #fff8ef;
   display: grid;
   grid-template-rows: 20px 1fr 2fr;
@@ -675,7 +681,7 @@
   gap: 20px;
 }
 .splash .splash-content .logo-bar img {
-  height: 150px;
+  height: 180px;
 }
 .splash .splash-content .nav {
   grid-row: 3/4;
@@ -693,12 +699,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 30px;
   margin-bottom: 20px;
   box-shadow: 5px 5px 0 1px #333333;
-  height: 90%;
-  width: 20%;
+  height: 80%;
+  width: 25%;
   cursor: pointer;
+}
+.splash .splash-content .nav .card h3 {
+  text-align: center;
 }
 .splash .splash-content .nav .card p {
   text-align: center;
@@ -830,6 +840,9 @@
 .make-puzzle .make-puzzle-content .lower-bar .active {
   background-color: #5aa9e6;
 }
+.make-puzzle .make-puzzle-content .content {
+  max-height: 100%;
+}
 .make-puzzle .make-puzzle-content .content .puzzle-manager {
   display: flex;
   height: 100%;
@@ -839,10 +852,12 @@
   padding: 10px;
   height: 100%;
   display: flex;
-  flex-direction: column;
   gap: 20px;
+  flex-wrap: wrap;
 }
 .make-puzzle .make-puzzle-content .content .puzzle-manager .puzzle-list .card {
+  width: 300px;
+  height: 100px;
   display: grid;
   grid-template-rows: 1fr 2fr;
   grid-template-columns: 4fr 1fr;
@@ -858,25 +873,28 @@
   height: 30px;
 }
 .make-puzzle .make-puzzle-content .content .creator {
-  height: 100%;
+  max-height: 100%;
   display: flex;
 }
 .make-puzzle .make-puzzle-content .content .creator .puzzleTypePicker {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 10px;
   gap: 30px;
 }
 .make-puzzle .make-puzzle-content .content .creator .puzzleTypePicker .card {
   border: 3px solid #333333;
   border-radius: 10px;
-  background-color: #5aa9e6;
-  flex: 1;
+  background-color: #9ad6ff;
   padding: 20px;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.make-puzzle .make-puzzle-content .content .creator .puzzleTypePicker .active {
+  background-color: #5aa9e6;
 }
 .make-puzzle .make-puzzle-content .content .creator .puzzleCreatorForm {
   flex: 3;
@@ -888,8 +906,8 @@
 .make-puzzle .make-puzzle-content .content .creator .puzzleCreatorForm form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  width: 70%;
+  gap: 10px;
+  width: 95%;
   height: 90%;
 }
 .make-puzzle .make-puzzle-content .content .creator .puzzleCreatorForm form .commonFormElements {
@@ -900,16 +918,36 @@
   font-size: 20px;
 }
 .make-puzzle .make-puzzle-content .content .creator .puzzleCreatorForm form .commonFormElements input {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .make-puzzle .make-puzzle-content .content .creator .puzzleCreatorForm form .instructionFormElements {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 50px;
+  gap: 20px;
+}
+.make-puzzle .make-puzzle-content .content .creator .puzzleCreatorForm form .instructionFormElements .charOne {
+  grid-row: 1/2;
+  grid-column: 1/2;
+}
+.make-puzzle .make-puzzle-content .content .creator .puzzleCreatorForm form .instructionFormElements .charTwo {
+  grid-row: 1/2;
+  grid-column: 2/3;
+}
+.make-puzzle .make-puzzle-content .content .creator .puzzleCreatorForm form .instructionFormElements .ob-1 {
+  grid-row: 1/2;
+  grid-column: 3/4;
+}
+.make-puzzle .make-puzzle-content .content .creator .puzzleCreatorForm form .instructionFormElements .ob-2 {
+  grid-row: 1/2;
+  grid-column: 4/5;
+}
+.make-puzzle .make-puzzle-content .content .creator .puzzleCreatorForm form .instructionFormElements .puzzleBackground {
+  grid-row: 2/3;
+  grid-column: 1/5;
 }
 .make-puzzle .make-puzzle-content .content .creator .puzzleCreatorForm form .instructionFormElements label {
-  font-size: 20px;
+  font-size: 15px;
 }
 .make-puzzle .make-puzzle-content .content .creator .puzzleCreatorForm form .buttons {
   display: flex;
@@ -1115,6 +1153,4 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-}
-
-/*# sourceMappingURL=App.css.map */
+}/*# sourceMappingURL=App.css.map */

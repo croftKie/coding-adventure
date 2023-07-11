@@ -244,13 +244,13 @@ $point-complete-color-secondary: #5efc88;
 }
 
 .popup {
-  height: 80%;
+  height: 90%;
   width: 80%;
   background-color: $base-white;
   border-radius: $border-radius-small;
   border: $border-dark;
   position: absolute;
-  top: 5%;
+  top: 7%;
   left: 10%;
   z-index: 2;
   display: grid;
@@ -399,6 +399,9 @@ $point-complete-color-secondary: #5efc88;
             img {
               position: relative;
               height: 50px;
+              background-color: $base-white;
+              border-radius: $border-radius-small;
+              border: $border-dark;
             }
           }
           .buttons {
@@ -458,6 +461,9 @@ $point-complete-color-secondary: #5efc88;
           img {
             position: relative;
             height: 50px;
+            background-color: $base-white;
+            border-radius: $border-radius-small;
+            border: $border-dark;
           }
         }
       }
@@ -633,7 +639,7 @@ $point-complete-color-secondary: #5efc88;
   align-items: center;
   .splash-content {
     width: 60%;
-    height: 60%;
+    height: 70%;
     background-color: $base-white;
     display: grid;
     grid-template-rows: 20px 1fr 2fr;
@@ -654,7 +660,7 @@ $point-complete-color-secondary: #5efc88;
       align-items: center;
       gap: 20px;
       img {
-        height: 150px;
+        height: 180px;
       }
     }
     .nav {
@@ -672,12 +678,16 @@ $point-complete-color-secondary: #5efc88;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
+        justify-content: center;
+        gap: 30px;
         margin-bottom: 20px;
         box-shadow: $box-shadow-dark;
-        height: 90%;
-        width: 20%;
+        height: 80%;
+        width: 25%;
         cursor: pointer;
+        h3 {
+          text-align: center;
+        }
         p {
           text-align: center;
         }
@@ -802,9 +812,11 @@ $point-complete-color-secondary: #5efc88;
           padding: 10px;
           height: 100%;
           display: flex;
-          flex-direction: column;
           gap: 20px;
+          flex-wrap: wrap;
           .card {
+            width: 300px;
+            height: 100px;
             display: grid;
             grid-template-rows: 1fr 2fr;
             grid-template-columns: 4fr 1fr;
@@ -853,8 +865,8 @@ $point-complete-color-secondary: #5efc88;
           form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            width: 70%;
+            gap: 10px;
+            width: 95%;
             height: 90%;
             .commonFormElements {
               display: flex;
@@ -868,11 +880,31 @@ $point-complete-color-secondary: #5efc88;
             }
             .instructionFormElements {
               display: grid;
-              grid-template-columns: 1fr 1fr;
+              grid-template-columns: 1fr 1fr 1fr 1fr;
               grid-template-rows: 1fr 1fr;
-              gap: 30px;
+              gap: 20px;
+              .charOne {
+                grid-row: 1/2;
+                grid-column: 1/2;
+              }
+              .charTwo {
+                grid-row: 1/2;
+                grid-column: 2/3;
+              }
+              .ob-1 {
+                grid-row: 1/2;
+                grid-column: 3/4;
+              }
+              .ob-2 {
+                grid-row: 1/2;
+                grid-column: 4/5;
+              }
+              .puzzleBackground {
+                grid-row: 2/3;
+                grid-column: 1/5;
+              }
               label {
-                font-size: 20px;
+                font-size: 15px;
               }
             }
             .buttons {

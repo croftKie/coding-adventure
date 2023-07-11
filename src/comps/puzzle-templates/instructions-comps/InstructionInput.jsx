@@ -10,7 +10,6 @@ const InstructionInput = ({ inputs }) => {
   return (
     <div className="instruction-input">
       {inputs.map((input) => {
-        console.log(input);
         switch (input) {
           case 1:
             return <Forward placeholder={0} />;

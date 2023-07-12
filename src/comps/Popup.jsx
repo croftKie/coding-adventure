@@ -26,7 +26,7 @@ const Popup = ({ activePuzzle, toggleUi }) => {
     });
   };
   const closeOnPress = () => {
-    gsap.to(popupRef.current, { height: 0, width: 0, opacity: 0 });
+    gsap.to(popupRef.current, { opacity: 0 });
     setTimeout(() => {
       toggleUi("popUp");
     }, 1000);

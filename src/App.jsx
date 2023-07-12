@@ -17,7 +17,7 @@ import NotifyChapters from "./comps/story-comps/NotifyChapters";
 import TutModal from "./comps/tutorial/TutModal.jsx";
 import Puzzle from "./comps/Puzzle.jsx";
 import Intro from "./comps/story-comps/Intro";
-
+import Landscape from "./comps/Landscape";
 // Store import statements
 import {
   activeChapterSelector,
@@ -46,6 +46,27 @@ function App() {
   const tutOpen = useSelector(tutorialOpenSelector);
   const puzzles = content[activeChapter].chapterPuzzles;
   const [page, setPage] = useState(0);
+  const [screenSize, setScreenSize] = useState(getCurrentDimensions());
+
+  function getCurrentDimensions() {
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+  }
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      setScreenSize(getCurrentDimensions());
+    };
+    window.addEventListener("resize", updateDimensions);
+
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, [screenSize]);
+
+  console.log(screenSize);
 
   // puzzle filter provides currently selected puzzle - prop drilled to child components
   const [activePuzzle] = puzzles.filter(
@@ -71,6 +92,10 @@ function App() {
     }
   }, [content[activeChapter].chapterPuzzles]);
 
+  if (screenSize.width - 200 <= screenSize.height) {
+    return <Landscape />;
+  }
+
   // Returns based on splash screen status and chapter complete status and default return
   if (splashStatus) {
     return <Splash />;
@@ -94,8 +119,7 @@ function App() {
             setPage(0);
             switchBarStyling("puzzles");
           }}
-          className="puzzles active"
-        >
+          className="puzzles active">
           Chapter
         </div>
         <div
@@ -103,8 +127,7 @@ function App() {
             setPage(1);
             switchBarStyling("progress");
           }}
-          className="progress"
-        >
+          className="progress">
           Progress
         </div>
         <div
@@ -112,8 +135,7 @@ function App() {
             setPage(2);
             switchBarStyling("leaderboard");
           }}
-          className="leaderboard"
-        >
+          className="leaderboard">
           Leaderboard
         </div>
       </div>

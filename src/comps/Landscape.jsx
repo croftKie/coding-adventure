@@ -1,16 +1,14 @@
 import React from "react";
-import logo from "../assets/binary-code.png";
-import close from "../assets/close.png";
+// import logo from "../assets/binary-code.png";
+// import close from "../assets/close.png";
 
 const Landscape = () => {
   return (
     <div className="landscape">
       <div className="landscape-content">
-        <div className="topbar">
-          <img src={close} alt="" />
-        </div>
+        <div className="topbar">{/* <img src={close} alt="" /> */}</div>
         <div className="logo-bar">
-          <img src={logo} alt="" />
+          {/* <img src={logo} alt="" /> */}
           <div className="logo-text">
             <h1>CodeVenture</h1>
             <h3>

@@ -96,7 +96,7 @@ const initialState = {
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [2] },
         },
       ],
-      completedStatus: false,
+      completedStatus: true,
     },
     {
       chapterName: "Winter",
@@ -172,7 +172,7 @@ const initialState = {
           ],
         },
       ],
-      completedStatus: false,
+      completedStatus: true,
       assets: { bgAssets: [0] },
     },
     {
@@ -193,6 +193,37 @@ const initialState = {
           endLocations: [{ x: 100, y: 100 }],
           completed: false,
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [6, 6] },
+        },
+        {
+          puzzleName: "The Forest Maze",
+          id: 1,
+          type: 3,
+          puzzleDialogue: [
+            "We have been wandering around the forest for a while...",
+            "I think we might be lost...",
+            "I used to have the location of the old cave in my programming.",
+            "Looks like it got mixed up... these instructions don't make sense.",
+            "Can you fix the instructions to help us find the old cave and escape this forest.",
+          ],
+          startLocations: [
+            { x: 400, y: 400 },
+            { x: 150, y: 150 },
+          ],
+          endLocations: [{ x: 150, y: 150 }],
+          completed: false,
+          assets: { puzzleAssets: [1, 4], puzzleBgAssets: [1, 1] },
+          inputs: [
+            { type: "forward", value: 200 },
+            { type: "left", value: 200 },
+            { type: "backwards", value: 100 },
+            { type: "right", value: 100 },
+          ],
+          resetInputs: [
+            { type: "forward", value: 200 },
+            { type: "left", value: 200 },
+            { type: "backwards", value: 100 },
+            { type: "right", value: 100 },
+          ],
         },
         {
           puzzleName: "The Stone Door",
@@ -226,31 +257,6 @@ const initialState = {
           results: [],
           completed: false,
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [7] },
-        },
-        {
-          puzzleName: "The Forest Maze",
-          id: 1,
-          type: 3,
-          puzzleDialogue: ["Welcome to CyberSpace!"],
-          startLocations: [
-            { x: 400, y: 400 },
-            { x: 100, y: 100 },
-          ],
-          endLocations: [{ x: 100, y: 100 }],
-          completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [8, 8] },
-          inputs: [
-            { type: "forward", value: 200 },
-            { type: "left", value: 200 },
-            { type: "backwards", value: 100 },
-            { type: "right", value: 100 },
-          ],
-          resetInputs: [
-            { type: "forward", value: 200 },
-            { type: "left", value: 200 },
-            { type: "backwards", value: 100 },
-            { type: "right", value: 100 },
-          ],
         },
       ],
       completedStatus: false,
@@ -369,9 +375,13 @@ const contentSlice = createSlice({
       const chapterIndex = action.payload.chapterIndex;
       const puzzleIndex = action.payload.puzzleIndex;
       const inputToChange = action.payload.inputToChange;
-      state.chapters[chapterIndex].chapterPuzzles[puzzleIndex].inputs[
-        inputToChange
-      ].value = action.payload.change;
+      console.log(action.payload);
+      let loc =
+        state.chapters[chapterIndex].chapterPuzzles[puzzleIndex].inputs[
+          inputToChange
+        ];
+
+      loc.value = action.payload.change;
     },
     resetBugFixInstructions: (state, action) => {
       state.chapters[action.payload.chapterIndex].chapterPuzzles[

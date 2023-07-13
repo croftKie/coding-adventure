@@ -71,12 +71,17 @@ export const animator = (
 
   let obstacleHit = false;
   tl.getChildren().forEach((anim) => {
-    if (obstacleHit) {
-      tl.remove(anim);
-    } else {
-      if (anim.vars.y === obstacles[0][1] || anim.vars.x === obstacles[0][0]) {
-        console.log("hit obstacle");
-        obstacleHit = true;
+    if (obstacles.length > 0) {
+      if (obstacleHit) {
+        tl.remove(anim);
+      } else {
+        if (
+          anim.vars.y === obstacles[0][1] ||
+          anim.vars.x === obstacles[0][0]
+        ) {
+          console.log("hit obstacle");
+          obstacleHit = true;
+        }
       }
     }
   });

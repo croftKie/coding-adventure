@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addCryptoResults,
   resetCryptoInput,
+  setPuzzleCompleteStatus,
 } from "../../store/features/contentSlice.js";
 import { activeChapterSelector } from "../../store/features/progressSlice.js";
 
@@ -55,8 +56,7 @@ const Cryptography = ({ setWin, activePuzzle }) => {
                       ? "green"
                       : "red"
                     : "none"
-                }
-              >
+                }>
                 {activePuzzle.inputs[0][0]}
               </span>{" "}
               -{" "}
@@ -67,8 +67,7 @@ const Cryptography = ({ setWin, activePuzzle }) => {
                       ? "green"
                       : "red"
                     : "none"
-                }
-              >
+                }>
                 {activePuzzle.inputs[0][1]}
               </span>{" "}
               -{" "}
@@ -79,8 +78,7 @@ const Cryptography = ({ setWin, activePuzzle }) => {
                       ? "green"
                       : "red"
                     : "none"
-                }
-              >
+                }>
                 {activePuzzle.inputs[0][2]}
               </span>
             </p>
@@ -94,8 +92,7 @@ const Cryptography = ({ setWin, activePuzzle }) => {
                       ? "green"
                       : "red"
                     : "none"
-                }
-              >
+                }>
                 {activePuzzle.inputs[1][0]}
               </span>{" "}
               -{" "}
@@ -106,8 +103,7 @@ const Cryptography = ({ setWin, activePuzzle }) => {
                       ? "green"
                       : "red"
                     : "none"
-                }
-              >
+                }>
                 {activePuzzle.inputs[1][1]}
               </span>{" "}
               -{" "}
@@ -118,8 +114,7 @@ const Cryptography = ({ setWin, activePuzzle }) => {
                       ? "green"
                       : "red"
                     : "none"
-                }
-              >
+                }>
                 {activePuzzle.inputs[1][2]}
               </span>
             </p>
@@ -133,8 +128,7 @@ const Cryptography = ({ setWin, activePuzzle }) => {
                       ? "green"
                       : "red"
                     : "none"
-                }
-              >
+                }>
                 {activePuzzle.inputs[2][0]}
               </span>{" "}
               -{" "}
@@ -145,8 +139,7 @@ const Cryptography = ({ setWin, activePuzzle }) => {
                       ? "green"
                       : "red"
                     : "none"
-                }
-              >
+                }>
                 {activePuzzle.inputs[2][1]}
               </span>{" "}
               -{" "}
@@ -157,8 +150,7 @@ const Cryptography = ({ setWin, activePuzzle }) => {
                       ? "green"
                       : "red"
                     : "none"
-                }
-              >
+                }>
                 {activePuzzle.inputs[2][2]}
               </span>
             </p>
@@ -175,8 +167,7 @@ const Cryptography = ({ setWin, activePuzzle }) => {
               })
             );
           }}
-          className="reset"
-        >
+          className="reset">
           Reset
         </button>
         <button onClick={checkWin} className="run">

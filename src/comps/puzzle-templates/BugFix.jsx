@@ -13,7 +13,7 @@ import {
   resetBugFixInstructions,
 } from "../../store/features/contentSlice.js";
 import { activeChapterSelector } from "../../store/features/progressSlice.js";
-
+import { readContent } from "../../store/features/contentSlice.js";
 const BugFix = ({ activePuzzle, setWin }) => {
   const assetTypes = Object.keys(activePuzzle.assets);
   const assetRefs = activePuzzle.assets.puzzleAssets;
@@ -23,7 +23,7 @@ const BugFix = ({ activePuzzle, setWin }) => {
   const goalImg = useRef();
   const activeChapter = useSelector(activeChapterSelector);
   const dispatch = useDispatch();
-
+  const content = useSelector(readContent);
   const run = () => {
     const isRunComplete = animator(
       charImg.current,

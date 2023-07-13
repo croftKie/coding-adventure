@@ -66,8 +66,6 @@ function App() {
     };
   }, [screenSize]);
 
-  console.log(screenSize);
-
   // puzzle filter provides currently selected puzzle - prop drilled to child components
   const [activePuzzle] = puzzles.filter(
     (puzzle) => puzzle.id === currentPuzzle

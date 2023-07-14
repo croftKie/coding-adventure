@@ -38,7 +38,11 @@
   align-items: center;
   padding: 0 10px 0 10px;
 }
-.contentWindow .topbar img {
+.contentWindow .topbar .buttons {
+  display: flex;
+  gap: 10px;
+}
+.contentWindow .topbar .buttons div img {
   height: 20px;
 }
 .contentWindow .lower-bar {
@@ -673,7 +677,11 @@
   align-items: center;
   padding: 0 10px 0 10px;
 }
-.splash .splash-content .topbar img {
+.splash .splash-content .topbar .buttons {
+  display: flex;
+  gap: 10px;
+}
+.splash .splash-content .topbar .buttons div img {
   height: 20px;
 }
 .splash .splash-content .logo-bar {
@@ -1141,4 +1149,20 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+
+.tutorial {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.tutorial ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.tutorial ul li {
+  font-size: 1rem;
 }/*# sourceMappingURL=App.css.map */

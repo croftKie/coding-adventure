@@ -11,20 +11,19 @@ import Instructions from "./puzzle-templates/Instructions";
 import BugFix from "./puzzle-templates/BugFix";
 import Cryptography from "./puzzle-templates/Cryptography";
 import WinCondition from "./puzzle-templates/WinCondition";
+import Msg from "./tutorial/TutModal";
+import { puzzleTutorialSelector } from "../store/features/tutorialSlice";
 
 const Popup = ({ activePuzzle, toggleUi }) => {
   // variable declarations
   const [win, setWin] = useState(false);
   const popupRef = useRef();
-  const toastText = activePuzzle.puzzleDescription;
+  const puzzleTutorial = useSelector(puzzleTutorialSelector);
 
-  // helper functions
   const showToastMessage = () => {
-    toast.info(toastText, {
-      position: toast.POSITION.TOP_LEFT,
-      allowHTML: true,
-    });
+    toast(<Msg tutorial={puzzleTutorial} />, { autoClose: false });
   };
+
   const closeOnPress = () => {
     gsap.to(popupRef.current, { opacity: 0 });
     setTimeout(() => {

@@ -93,8 +93,14 @@ $point-complete-color-secondary: #5efc88;
   left: 1%;
   .topbar {
     @include topbar();
-    img {
-      height: 20px;
+    .buttons {
+      display: flex;
+      gap: 10px;
+      div {
+        img {
+          height: 20px;
+        }
+      }
     }
   }
   .lower-bar {
@@ -652,8 +658,14 @@ $point-complete-color-secondary: #5efc88;
     box-shadow: $box-shadow-dark;
     .topbar {
       @include topbar();
-      img {
-        height: 20px;
+      .buttons {
+        display: flex;
+        gap: 10px;
+        div {
+          img {
+            height: 20px;
+          }
+        }
       }
     }
     .logo-bar {
@@ -1087,6 +1099,22 @@ $point-complete-color-secondary: #5efc88;
       display: flex;
       justify-content: center;
       gap: 20px;
+    }
+  }
+}
+
+.tutorial {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    li {
+      font-size: 1rem;
     }
   }
 }

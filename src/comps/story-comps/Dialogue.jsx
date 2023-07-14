@@ -22,7 +22,14 @@ const Dialogue = ({ dialogue }) => {
   return (
     <div ref={dialogueRef} className="dialogue-container">
       <div className="topbar">
-        <img onClick={hideDialogueBox} src={images.uiAssets[0]} alt="" />
+        <div className="buttons">
+          <div className="item">
+            <img src={images.uiAssets[4]} alt="" />
+          </div>
+          <div className="item">
+            <img src={images.uiAssets[0]} alt="" />
+          </div>
+        </div>
       </div>
       <div className="dialogue">
         <img src={images.charAssets[0]} />

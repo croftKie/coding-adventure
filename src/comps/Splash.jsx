@@ -10,6 +10,9 @@ import {
 } from "../store/features/progressSlice";
 import { updateUi } from "../store/features/UiSlice";
 import MakePuzzle from "./MakePuzzle";
+import { ToastContainer, toast } from "react-toastify";
+import Msg from "./tutorial/TutModal";
+import { splashTutorialSelector } from "../store/features/tutorialSlice";
 
 const Splash = () => {
   const [stats, setStats] = useState(false);
@@ -21,6 +24,7 @@ const Splash = () => {
   const logoRef = useRef();
   const activeChapter = useSelector(activeChapterSelector);
   const dispatch = useDispatch();
+  const splashTutorial = useSelector(splashTutorialSelector);
 
   const onEnter = (ref) => {
     gsap.to(ref.current, { scale: 1.1, backgroundColor: "#5AA9E6" });
@@ -36,6 +40,10 @@ const Splash = () => {
     dispatch(changeCurrentChapter(chapter));
   };
 
+  const showToastMessage = () => {
+    toast(<Msg tutorial={splashTutorial} />, { autoClose: false });
+  };
+
   if (stats) {
     return <Statistics setStats={setStats} />;
   }
@@ -45,9 +53,17 @@ const Splash = () => {
 
   return (
     <div className="splash">
+      <ToastContainer />
       <div className="splash-content">
         <div className="topbar">
-          <img src={images.uiAssets[0]} alt="" />
+          <div className="buttons">
+            <div onClick={showToastMessage} className="item">
+              <img src={images.uiAssets[4]} alt="" />
+            </div>
+            <div className="item">
+              <img src={images.uiAssets[0]} alt="" />
+            </div>
+          </div>
         </div>
         <div className="logo-bar">
           <img
@@ -79,8 +95,7 @@ const Splash = () => {
               dispatch(updateUi("intro"));
               dispatch(updateUi("splashScreen"));
             }}
-            className="new card"
-          >
+            className="new card">
             <h3>Start New</h3>
             <p>
               Start the challenge from the beginning and beat the bad guy...
@@ -97,8 +112,7 @@ const Splash = () => {
             onClick={() => {
               assignChapter(activeChapter), dispatch(updateUi("splashScreen"));
             }}
-            className="continue card"
-          >
+            className="continue card">
             <h3>Continue</h3>
             <p>Continue where you last left off and beat the bad guy!</p>
           </div>
@@ -113,8 +127,7 @@ const Splash = () => {
             onClick={() => {
               setMakePuzzle(true);
             }}
-            className="class card"
-          >
+            className="class card">
             <h3>Make your own puzzles</h3>
             <p>
               Use the puzzle builder to create your own logic puzzles and share

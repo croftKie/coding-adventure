@@ -7,6 +7,7 @@ import { images } from "./utils/images.js";
 // React and React Redux dependencies
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 
 // Import statements for child components
 import Splash from "./comps/Splash";
@@ -32,7 +33,8 @@ import {
   readContent,
   setChapterCompleteStatus,
 } from "./store/features/contentSlice";
-import { tutorialOpenSelector } from "./store/features/tutorialSlice.js";
+import { puzzleTutorialSelector } from "./store/features/tutorialSlice";
+import Msg from "./comps/tutorial/TutModal.jsx";
 
 function App() {
   // component variable declarations
@@ -43,10 +45,10 @@ function App() {
   const splashStatus = useSelector(SplashSelector);
   const introOpenState = useSelector(introOpenSelector);
   const content = useSelector(readContent);
-  const tutOpen = useSelector(tutorialOpenSelector);
   const puzzles = content[activeChapter].chapterPuzzles;
   const [page, setPage] = useState(0);
   const [screenSize, setScreenSize] = useState(getCurrentDimensions());
+  const puzzleTutorial = useSelector(puzzleTutorialSelector);
 
   function getCurrentDimensions() {
     return {
@@ -80,6 +82,11 @@ function App() {
     });
   };
 
+  const showToastMessage = () => {
+    console.log("hello");
+    toast(<Msg tutorial={puzzleTutorial} />, { autoClose: false });
+  };
+
   // update function to monitor completed puzzles - dispatches chapter complete status
   useEffect(() => {
     const remaining = content[activeChapter].chapterPuzzles.filter((puzzle) => {
@@ -107,50 +114,60 @@ function App() {
   }
 
   return (
-    <div className="contentWindow">
-      <div className="topbar">
-        <img src={images.uiAssets[0]} alt="" />
+    <>
+      <ToastContainer />
+      <div className="contentWindow">
+        <div className="topbar">
+          <div className="buttons">
+            <div onClick={showToastMessage} className="item">
+              <img src={images.uiAssets[4]} alt="" />
+            </div>
+            <div className="item">
+              <img src={images.uiAssets[0]} alt="" />
+            </div>
+          </div>
+        </div>
+        <div ref={barRef} className="lower-bar">
+          <div
+            onClick={() => {
+              setPage(0);
+              switchBarStyling("puzzles");
+            }}
+            className="puzzles active">
+            Chapter
+          </div>
+          <div
+            onClick={() => {
+              setPage(1);
+              switchBarStyling("progress");
+            }}
+            className="progress">
+            Progress
+          </div>
+          <div
+            onClick={() => {
+              setPage(2);
+              switchBarStyling("leaderboard");
+            }}
+            className="leaderboard">
+            Leaderboard
+          </div>
+        </div>
+        {page === 0 ? (
+          <Puzzle
+            content={content}
+            activePuzzle={activePuzzle}
+            activeChapter={activeChapter}
+          />
+        ) : page === 1 ? (
+          <Progress />
+        ) : page === 2 ? (
+          <Leaderboard />
+        ) : (
+          <></>
+        )}
       </div>
-      <div ref={barRef} className="lower-bar">
-        <div
-          onClick={() => {
-            setPage(0);
-            switchBarStyling("puzzles");
-          }}
-          className="puzzles active">
-          Chapter
-        </div>
-        <div
-          onClick={() => {
-            setPage(1);
-            switchBarStyling("progress");
-          }}
-          className="progress">
-          Progress
-        </div>
-        <div
-          onClick={() => {
-            setPage(2);
-            switchBarStyling("leaderboard");
-          }}
-          className="leaderboard">
-          Leaderboard
-        </div>
-      </div>
-      {page === 0 ? (
-        <Puzzle
-          content={content}
-          activePuzzle={activePuzzle}
-          activeChapter={activeChapter}
-        />
-      ) : page === 1 ? (
-        <Progress />
-      ) : page === 2 ? (
-        <Leaderboard />
-      ) : (
-        <></>
-      )}
-    </div>
+    </>
   );
 }
 

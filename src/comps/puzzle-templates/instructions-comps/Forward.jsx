@@ -27,7 +27,6 @@ const Forward = ({ placeholder }) => {
         </span>{" "}
         steps
       </p>
-      <p>RUN</p>
     </div>
   );
 };

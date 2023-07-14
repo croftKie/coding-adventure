@@ -96,7 +96,7 @@ const initialState = {
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [2] },
         },
       ],
-      completedStatus: true,
+      completedStatus: false,
     },
     {
       chapterName: "Winter",
@@ -108,7 +108,12 @@ const initialState = {
           puzzleName: "The Bug City",
           id: 0,
           type: 1,
-          puzzleDialogue: ["Welcome to Bug City!"],
+          puzzleDialogue: [
+            "Welcome to Bug City!",
+            "The city used to be beautiful and logical but now it is overrun with bugs!",
+            "We should be careful here",
+            "lets find a way through the city to the safe building.",
+          ],
           startLocations: [
             { x: 400, y: 400 },
             { x: 100, y: 100 },
@@ -121,7 +126,11 @@ const initialState = {
           puzzleName: "Getting into the shining skyscraper",
           id: 1,
           type: 2,
-          puzzleDialogue: ["Lets get out of here!"],
+          puzzleDialogue: [
+            "LLooks like the bugs have spotted us!",
+            "We should get into the building quickly.",
+            "Solve the riddle and crack the door code",
+          ],
           clues: [
             "Take the first letter of your companions name, and combine it with 23 + 32",
             "How many letter are in your name, combine that with 64 divided by 4",
@@ -150,7 +159,14 @@ const initialState = {
           puzzleName: "Fix the crazy elevator",
           id: 2,
           type: 3,
-          puzzleDialogue: ["Welcome to CyberSpace!"],
+          puzzleDialogue: [
+            "That was a close one!",
+            "At least we can take a breath now... or you can, I don't really breath.",
+            "But I can simulate it... in... out...in...out",
+            "Let's take the elevator out of here...",
+            "You should know, its a little crazy.",
+            "We might have to fix the directions to reach the exit we want",
+          ],
           startLocations: [
             { x: 400, y: 400 },
             { x: 100, y: 100 },
@@ -172,7 +188,7 @@ const initialState = {
           ],
         },
       ],
-      completedStatus: true,
+      completedStatus: false,
       assets: { bgAssets: [0] },
     },
     {
@@ -185,7 +201,15 @@ const initialState = {
           puzzleName: "Climbing the tree!",
           id: 0,
           type: 1,
-          puzzleDialogue: ["Lets find the way out of here!"],
+          puzzleDialogue: [
+            "Oh no... we shouldn't have come here.",
+            "This is the KOBOL forest",
+            "Its the oldest kingdom in the land.",
+            "The guards here are ruthless.",
+            "They don't like any other code!",
+            "We need to be sneaky to get through here.",
+            "Lets start by the waterfall, I know a cave is around there.",
+          ],
           startLocations: [
             { x: 400, y: 400 },
             { x: 100, y: 100 },
@@ -199,11 +223,9 @@ const initialState = {
           id: 1,
           type: 3,
           puzzleDialogue: [
-            "We have been wandering around the forest for a while...",
-            "I think we might be lost...",
-            "I used to have the location of the old cave in my programming.",
-            "Looks like it got mixed up... these instructions don't make sense.",
-            "Can you fix the instructions to help us find the old cave and escape this forest.",
+            "Oh no... the guards must have heard us!",
+            "OK, we need to found our way through this cave without alerting the guards.",
+            "It's been a long long time since I was here, the instructions are a little messed up in my memory.",
           ],
           startLocations: [
             { x: 400, y: 400 },
@@ -230,9 +252,12 @@ const initialState = {
           id: 2,
           type: 2,
           puzzleDialogue: [
-            "Welcome to CyberSpace!",
-            "You'll have to beat all the puzzles if you want to escape",
-            "Lets get started!",
+            "We found the lake!",
+            "we need to solve the riddle to open the door beneath the water and we can swim through.",
+            "This should be easy... I set this code...",
+            "Oh... ",
+            "Looks like they changed the variables",
+            "hmm, okay over to you Alex.",
           ],
           clues: [
             "Take the first letter of your companions name, and combine it with 23 + 32",

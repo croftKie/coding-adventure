@@ -18,32 +18,34 @@ const Progress = () => {
             <h2>Chapter 1</h2>
             <p>{content[0].chapterDescription}</p>
           </div>
-          <div
-            className="card"
-            style={
-              content[0].chapterPuzzles[0].completed
-                ? { backgroundColor: "green" }
-                : { backgroundColor: "pink" }
-            }>
-            <h3>{content[0].chapterPuzzles[0].puzzleName}</h3>
-          </div>
-          <div
-            className="card"
-            style={
-              content[0].chapterPuzzles[0].completed
-                ? { backgroundColor: "green" }
-                : { backgroundColor: "pink" }
-            }>
-            <h3>{content[0].chapterPuzzles[1].puzzleName}</h3>
-          </div>
-          <div
-            className="card"
-            style={
-              content[0].chapterPuzzles[0].completed
-                ? { backgroundColor: "green" }
-                : { backgroundColor: "pink" }
-            }>
-            <h3>{content[0].chapterPuzzles[2].puzzleName}</h3>
+          <div className="cards">
+            <div
+              className="card one"
+              style={
+                content[0].chapterPuzzles[0].completed
+                  ? { backgroundColor: "green" }
+                  : { backgroundColor: "pink" }
+              }>
+              <h3>{content[0].chapterPuzzles[0].puzzleName}</h3>
+            </div>
+            <div
+              className="card two"
+              style={
+                content[0].chapterPuzzles[0].completed
+                  ? { backgroundColor: "green" }
+                  : { backgroundColor: "pink" }
+              }>
+              <h3>{content[0].chapterPuzzles[1].puzzleName}</h3>
+            </div>
+            <div
+              className="card three"
+              style={
+                content[0].chapterPuzzles[0].completed
+                  ? { backgroundColor: "green" }
+                  : { backgroundColor: "pink" }
+              }>
+              <h3>{content[0].chapterPuzzles[2].puzzleName}</h3>
+            </div>
           </div>
         </div>
       </div>
@@ -53,32 +55,34 @@ const Progress = () => {
             <h2>Chapter 1</h2>
             <p>{content[1].chapterDescription}</p>
           </div>
-          <div
-            className="card"
-            style={
-              content[0].chapterPuzzles[0].completed
-                ? { backgroundColor: "green" }
-                : { backgroundColor: "pink" }
-            }>
-            <h3>{content[1].chapterPuzzles[0].puzzleName}</h3>
-          </div>
-          <div
-            className="card"
-            style={
-              content[0].chapterPuzzles[0].completed
-                ? { backgroundColor: "green" }
-                : { backgroundColor: "pink" }
-            }>
-            <h3>{content[1].chapterPuzzles[1].puzzleName}</h3>
-          </div>
-          <div
-            className="card"
-            style={
-              content[0].chapterPuzzles[0].completed
-                ? { backgroundColor: "green" }
-                : { backgroundColor: "pink" }
-            }>
-            <h3>{content[1].chapterPuzzles[2].puzzleName}</h3>
+          <div className="cards">
+            <div
+              className="card one"
+              style={
+                content[0].chapterPuzzles[0].completed
+                  ? { backgroundColor: "green" }
+                  : { backgroundColor: "pink" }
+              }>
+              <h3>{content[0].chapterPuzzles[0].puzzleName}</h3>
+            </div>
+            <div
+              className="card two"
+              style={
+                content[0].chapterPuzzles[0].completed
+                  ? { backgroundColor: "green" }
+                  : { backgroundColor: "pink" }
+              }>
+              <h3>{content[0].chapterPuzzles[1].puzzleName}</h3>
+            </div>
+            <div
+              className="card three"
+              style={
+                content[0].chapterPuzzles[0].completed
+                  ? { backgroundColor: "green" }
+                  : { backgroundColor: "pink" }
+              }>
+              <h3>{content[0].chapterPuzzles[2].puzzleName}</h3>
+            </div>
           </div>
         </div>
       </div>
@@ -88,32 +92,34 @@ const Progress = () => {
             <h2>Chapter 1</h2>
             <p>{content[2].chapterDescription}</p>
           </div>
-          <div
-            className="card"
-            style={
-              content[0].chapterPuzzles[0].completed
-                ? { backgroundColor: "green" }
-                : { backgroundColor: "pink" }
-            }>
-            <h3>{content[2].chapterPuzzles[0].puzzleName}</h3>
-          </div>
-          <div
-            className="card"
-            style={
-              content[0].chapterPuzzles[0].completed
-                ? { backgroundColor: "green" }
-                : { backgroundColor: "pink" }
-            }>
-            <h3>{content[2].chapterPuzzles[1].puzzleName}</h3>
-          </div>
-          <div
-            className="card"
-            style={
-              content[0].chapterPuzzles[0].completed
-                ? { backgroundColor: "green" }
-                : { backgroundColor: "pink" }
-            }>
-            <h3>{content[2].chapterPuzzles[2].puzzleName}</h3>
+          <div className="cards">
+            <div
+              className="card one"
+              style={
+                content[0].chapterPuzzles[0].completed
+                  ? { backgroundColor: "green" }
+                  : { backgroundColor: "pink" }
+              }>
+              <h3>{content[0].chapterPuzzles[0].puzzleName}</h3>
+            </div>
+            <div
+              className="card two"
+              style={
+                content[0].chapterPuzzles[0].completed
+                  ? { backgroundColor: "green" }
+                  : { backgroundColor: "pink" }
+              }>
+              <h3>{content[0].chapterPuzzles[1].puzzleName}</h3>
+            </div>
+            <div
+              className="card three"
+              style={
+                content[0].chapterPuzzles[0].completed
+                  ? { backgroundColor: "green" }
+                  : { backgroundColor: "pink" }
+              }>
+              <h3>{content[0].chapterPuzzles[2].puzzleName}</h3>
+            </div>
           </div>
         </div>
       </div>
@@ -123,32 +129,34 @@ const Progress = () => {
             <h2>Chapter 1</h2>
             <p>{content[3].chapterDescription}</p>
           </div>
-          <div
-            className="card"
-            style={
-              content[0].chapterPuzzles[0].completed
-                ? { backgroundColor: "green" }
-                : { backgroundColor: "pink" }
-            }>
-            <h3>{content[3].chapterPuzzles[0].puzzleName}</h3>
-          </div>
-          <div
-            className="card"
-            style={
-              content[0].chapterPuzzles[0].completed
-                ? { backgroundColor: "green" }
-                : { backgroundColor: "pink" }
-            }>
-            <h3>{content[3].chapterPuzzles[1].puzzleName}</h3>
-          </div>
-          <div
-            className="card"
-            style={
-              content[0].chapterPuzzles[0].completed
-                ? { backgroundColor: "green" }
-                : { backgroundColor: "pink" }
-            }>
-            <h3>{content[3].chapterPuzzles[2].puzzleName}</h3>
+          <div className="cards">
+            <div
+              className="card one"
+              style={
+                content[0].chapterPuzzles[0].completed
+                  ? { backgroundColor: "green" }
+                  : { backgroundColor: "pink" }
+              }>
+              <h3>{content[0].chapterPuzzles[0].puzzleName}</h3>
+            </div>
+            <div
+              className="card two"
+              style={
+                content[0].chapterPuzzles[0].completed
+                  ? { backgroundColor: "green" }
+                  : { backgroundColor: "pink" }
+              }>
+              <h3>{content[0].chapterPuzzles[1].puzzleName}</h3>
+            </div>
+            <div
+              className="card three"
+              style={
+                content[0].chapterPuzzles[0].completed
+                  ? { backgroundColor: "green" }
+                  : { backgroundColor: "pink" }
+              }>
+              <h3>{content[0].chapterPuzzles[2].puzzleName}</h3>
+            </div>
           </div>
         </div>
       </div>

@@ -1072,27 +1072,59 @@
   gap: 30px;
 }
 .progress .bg .info {
-  color: #fff8ef;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  gap: 50px;
+  justify-content: space-between;
+  height: 100%;
+  color: white;
 }
 .progress .bg .info .title {
-  width: 100%;
+  background-color: rgba(53, 231, 133, 0.6);
+  padding: 10px;
   border-radius: 7px 7px 0 0;
-  background-color: #333333;
-  color: #fff8ef;
-  padding: 10px;
 }
-.progress .bg .info .card {
-  width: 90%;
-  background-color: #9ad6ff;
-  border: 3px solid #333333;
-  border-radius: 10px;
-  color: #333333;
-  padding: 10px;
+.progress .bg .info .cards {
+  height: 50%;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.progress .bg .info .cards .card {
+  width: 70%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(53, 231, 133, 0.6) !important;
+  border-radius: 50px;
+}
+.progress .bg .info .cards .one {
+  margin-left: 20px;
+}
+.progress .bg .info .cards .two {
+  margin-left: 45px;
+}
+.progress .bg .info .cards .three {
+  margin-left: 85px;
+}
+.progress .bg-2 .info .title {
+  background-color: rgba(154, 214, 255, 0.6);
+}
+.progress .bg-2 .info .cards .card {
+  background-color: rgba(154, 214, 255, 0.6) !important;
+}
+.progress .bg-3 .info .title {
+  background-color: rgba(90, 255, 189, 0.6);
+}
+.progress .bg-3 .info .cards .card {
+  background-color: rgba(90, 255, 189, 0.6) !important;
+}
+.progress .bg-4 .info .title {
+  background-color: rgba(213, 167, 66, 0.7);
+}
+.progress .bg-4 .info .cards .card {
+  background-color: rgba(210, 164, 66, 0.7) !important;
 }
 
 .leaderboard {

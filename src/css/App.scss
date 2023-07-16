@@ -1021,27 +1021,102 @@ $point-complete-color-secondary: #5efc88;
     align-items: center;
     justify-content: flex-start;
     gap: 30px;
+    // .info {
+    //   color: $base-white;
+    //   display: flex;
+    //   flex-direction: column;
+    //   align-items: center;
+    //   width: 100%;
+    //   gap: 50px;
+    //   .title {
+    //     width: 100%;
+    //     border-radius: $border-radius-bar $border-radius-bar 0 0;
+    //     background-color: $base-black;
+    //     color: $base-white;
+    //     padding: 10px;
+    //   }
+    //   .card {
+    //     width: 90%;
+    //     background-color: $blue-light-color;
+    //     border: $border-dark;
+    //     border-radius: $border-radius-small;
+    //     color: $base-black;
+    //     padding: 10px;
+    //   }
+    // }
+  }
+  .bg {
     .info {
-      color: $base-white;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      width: 100%;
-      gap: 50px;
+      justify-content: space-between;
+      height: 100%;
+      color: white;
       .title {
-        width: 100%;
+        background-color: rgba(53, 231, 133, 0.6);
+        padding: 10px;
         border-radius: $border-radius-bar $border-radius-bar 0 0;
-        background-color: $base-black;
-        color: $base-white;
-        padding: 10px;
       }
-      .card {
-        width: 90%;
-        background-color: $blue-light-color;
-        border: $border-dark;
-        border-radius: $border-radius-small;
-        color: $base-black;
-        padding: 10px;
+      .cards {
+        height: 50%;
+        padding-bottom: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .card {
+          width: 70%;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba(53, 231, 133, 0.6) !important;
+          border-radius: 50px;
+        }
+        .one {
+          margin-left: 20px;
+        }
+        .two {
+          margin-left: 45px;
+        }
+        .three {
+          margin-left: 85px;
+        }
+      }
+    }
+  }
+  .bg-2 {
+    .info {
+      .title {
+        background-color: rgba(154, 214, 255, 0.6);
+      }
+      .cards {
+        .card {
+          background-color: rgba(154, 214, 255, 0.6) !important;
+        }
+      }
+    }
+  }
+  .bg-3 {
+    .info {
+      .title {
+        background-color: rgba(90, 255, 189, 0.6);
+      }
+      .cards {
+        .card {
+          background-color: rgba(90, 255, 189, 0.6) !important;
+        }
+      }
+    }
+  }
+  .bg-4 {
+    .info {
+      .title {
+        background-color: rgba(213, 167, 66, 0.7);
+      }
+      .cards {
+        .card {
+          background-color: rgba(210, 164, 66, 0.7) !important;
+        }
       }
     }
   }

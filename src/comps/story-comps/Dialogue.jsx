@@ -27,7 +27,7 @@ const Dialogue = ({ dialogue }) => {
             <img src={images.uiAssets[4]} alt="" />
           </div>
           <div className="item">
-            <img src={images.uiAssets[0]} alt="" />
+            <img onClick={hideDialogueBox} src={images.uiAssets[0]} alt="" />
           </div>
         </div>
       </div>

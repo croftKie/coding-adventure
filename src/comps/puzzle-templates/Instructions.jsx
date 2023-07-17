@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import InstructionInput from "./instructions-comps/InstructionInput";
 import {
   instructionInputSelector,
@@ -13,6 +14,8 @@ import {
 import { activeChapterSelector } from "../../store/features/progressSlice";
 import { images } from "../../utils/images";
 import ResetCondition from "./ResetCondition";
+import Msg from "../tutorial/TutModal";
+import { instructionPuzzleTutorialSelector } from "../../store/features/tutorialSlice";
 
 const Instructions = ({ activePuzzle, setWin }) => {
   const [inputs, setInputs] = useState([]);
@@ -20,6 +23,9 @@ const Instructions = ({ activePuzzle, setWin }) => {
   const resultRef = useRef();
   const instructionInputs = useSelector(instructionInputSelector);
   const activeChapter = useSelector(activeChapterSelector);
+  const instructionPuzzleTutorial = useSelector(
+    instructionPuzzleTutorialSelector
+  );
   const dispatch = useDispatch();
   const puzzleAssets = activePuzzle.puzzleAssets;
 
@@ -67,8 +73,13 @@ const Instructions = ({ activePuzzle, setWin }) => {
       }
     );
   };
+
+  const showToastMessage = () => {
+    toast(<Msg tutorial={instructionPuzzleTutorial} />, { autoClose: false });
+  };
   return (
     <div className="instructions-puzzle">
+      <ToastContainer />
       <div className="content">
         {toggleResetScreen ? <ResetCondition reset={reset} /> : <></>}
         <div className="input">
@@ -97,6 +108,12 @@ const Instructions = ({ activePuzzle, setWin }) => {
           </div>
         </div>
         <div className="controls">
+          <img
+            onClick={showToastMessage}
+            className="tutorial"
+            src={images.uiAssets[4]}
+            alt=""
+          />
           <div className="input-buttons">
             <div className="choices">
               <button

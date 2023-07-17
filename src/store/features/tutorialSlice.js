@@ -40,7 +40,17 @@ const initialState = {
       "Code puzzles require you to use logical thinking to solve a riddle",
     ],
   },
-  instructionPuzzle: {},
+  instructionPuzzle: {
+    name: "Instruction Puzzles",
+    text: [
+      "Click an arrow key to add a direction instruction to the black terminal",
+      "Each direction is one instruction, if you want to repeat a block of instructions. Use Repeat and End",
+      "Add repeat before your instructions and write how many times you wish to repeat the instructions.",
+      "Add end after your isntructions to tell Byte where to stop repeating.",
+      "Click reset to clear your instructions and start again.",
+      "Click run to give your instructions to Byte and watch him go",
+    ],
+  },
   bugFixPuzzle: { name: "Bug Fix Tutorial", text: [] },
   cryptoPuzzle: { name: "Crack the Code Tutorial", text: [] },
   activeTutorial: 0,
@@ -69,5 +79,8 @@ export const byteTutorialSelector = (state) => {
 };
 export const popupTutorialSelector = (state) => {
   return state.tutorial.popupTutorial;
+};
+export const instructionPuzzleTutorialSelector = (state) => {
+  return state.tutorial.instructionPuzzle;
 };
 export default tutorialSlice.reducer;

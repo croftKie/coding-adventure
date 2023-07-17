@@ -325,7 +325,7 @@ const initialState = {
       chapterId: 3,
       chapterPuzzles: [
         {
-          puzzleName: "Climbing the tree!",
+          puzzleName: "Finding a boat",
           id: 0,
           type: 1,
           puzzleDialogue: [
@@ -356,7 +356,7 @@ const initialState = {
           ],
         },
         {
-          puzzleName: "The Stone Door",
+          puzzleName: "Fix it up!",
           id: 1,
           type: 2,
           puzzleDialogue: [
@@ -391,7 +391,7 @@ const initialState = {
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [10] },
         },
         {
-          puzzleName: "The Forest Maze",
+          puzzleName: "Out to Sea",
           id: 2,
           type: 3,
           puzzleDialogue: [

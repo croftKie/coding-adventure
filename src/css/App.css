@@ -338,6 +338,12 @@
   border: 3px solid #333333;
   box-shadow: 5px 5px 0 1px #333333;
 }
+.popup .puzzleContent .instructions-puzzle .content .controls .tutorial {
+  position: relative;
+  height: 30px;
+  left: 97%;
+  top: -15px;
+}
 .popup .puzzleContent .instructions-puzzle .content .controls .input-buttons {
   flex: 1;
   grid-row: 2/3;

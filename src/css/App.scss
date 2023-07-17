@@ -367,6 +367,12 @@ $point-complete-color-secondary: #5efc88;
           border-radius: $border-radius-small;
           border: $border-dark;
           box-shadow: $box-shadow-dark;
+          .tutorial {
+            position: relative;
+            height: 30px;
+            left: 97%;
+            top: -15px;
+          }
           .input-buttons {
             flex: 1;
             grid-row: 2/3;

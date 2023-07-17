@@ -71,6 +71,7 @@ export const animator = (
 
   let obstacleHit = false;
   tl.getChildren().forEach((anim) => {
+    console.log(anim);
     if (obstacles.length > 0) {
       if (obstacleHit) {
         tl.remove(anim);

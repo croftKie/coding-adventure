@@ -61,4 +61,9 @@ export const images = {
     "./assets/backgrounds/progress/3.png",
     "./assets/backgrounds/progress/4.png",
   ],
+  eggAssets: [
+    "./assets/egg/beetle.png",
+    "./assets/egg/byte_right.png",
+    "./assets/egg/game_background_1.png",
+  ],
 };

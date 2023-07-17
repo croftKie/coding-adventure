@@ -34,7 +34,6 @@ const Popup = ({ activePuzzle, toggleUi }) => {
 
   return (
     <div ref={popupRef} className="popup">
-      <ToastContainer />
       {win ? <WinCondition setWin={setWin} toggleUi={toggleUi} /> : <></>}
       <div className="nav">
         <Topbar

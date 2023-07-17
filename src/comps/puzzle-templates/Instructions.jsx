@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
 import { ToastContainer, toast } from "react-toastify";
 import InstructionInput from "./instructions-comps/InstructionInput";
 import {
@@ -21,6 +22,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
   const [inputs, setInputs] = useState([]);
   const [toggleResetScreen, setToggleResetScreen] = useState(false);
   const resultRef = useRef();
+  const tutorialRef = useRef();
   const instructionInputs = useSelector(instructionInputSelector);
   const activeChapter = useSelector(activeChapterSelector);
   const instructionPuzzleTutorial = useSelector(
@@ -73,13 +75,16 @@ const Instructions = ({ activePuzzle, setWin }) => {
       }
     );
   };
-
   const showToastMessage = () => {
     toast(<Msg tutorial={instructionPuzzleTutorial} />, { autoClose: false });
   };
+  useLayoutEffect(() => {
+    Array.from(resultRef.current.children).forEach((child) => {
+      gsap.to(child, { duration: 0.5, scale: 1.2, repeat: 4, yoyo: true });
+    });
+  }, []);
   return (
     <div className="instructions-puzzle">
-      <ToastContainer />
       <div className="content">
         {toggleResetScreen ? <ResetCondition reset={reset} /> : <></>}
         <div className="input">
@@ -109,6 +114,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
         </div>
         <div className="controls">
           <img
+            ref={tutorialRef}
             onClick={showToastMessage}
             className="tutorial"
             src={images.uiAssets[4]}

@@ -14,10 +14,12 @@ import { ToastContainer, toast } from "react-toastify";
 import Msg from "./tutorial/TutModal";
 import { splashTutorialSelector } from "../store/features/tutorialSlice";
 import Topbar from "./util-comps/Topbar";
+import Egg from "./HUD/settings-comps/Egg";
 
 const Splash = () => {
   const [stats, setStats] = useState(false);
   const [makePuzzle, setMakePuzzle] = useState(false);
+  const [egg, setEgg] = useState(false);
   const cardOne = useRef();
   const cardTwo = useRef();
   const cardThree = useRef();
@@ -51,15 +53,19 @@ const Splash = () => {
     return <MakePuzzle setMakePuzzle={setMakePuzzle} />;
   }
 
+  if (egg) {
+    return <Egg />;
+  }
+
   return (
     <div className="splash">
-      <ToastContainer />
       <div className="splash-content">
         <Topbar show={showToastMessage} />
         <div className="logo-bar">
           <img
             onClick={() => {
               spin(logoRef);
+              setEgg(true);
             }}
             ref={logoRef}
             src={images.charAssets[0]}

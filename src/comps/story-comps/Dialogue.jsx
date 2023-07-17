@@ -32,7 +32,6 @@ const Dialogue = ({ dialogue }) => {
   };
   return (
     <div ref={dialogueRef} className="dialogue-container">
-      <ToastContainer />
       <Topbar show={showToastMessage} close={hideDialogueBox} />
       <div className="dialogue">
         <img src={images.charAssets[0]} />

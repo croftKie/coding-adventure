@@ -15,9 +15,7 @@ import {
 import { activeChapterSelector } from "../../store/features/progressSlice.js";
 import { readContent } from "../../store/features/contentSlice.js";
 const BugFix = ({ activePuzzle, setWin }) => {
-  const assetTypes = Object.keys(activePuzzle.assets);
-  const assetRefs = activePuzzle.assets.puzzleAssets;
-  const bgRef = activePuzzle.assets.puzzleBgAssets[1];
+  const puzzleAssets = activePuzzle.puzzleAssets;
   const startLocs = activePuzzle.startLocations;
   const charImg = useRef();
   const goalImg = useRef();
@@ -79,14 +77,18 @@ const BugFix = ({ activePuzzle, setWin }) => {
           <BugFixInput changeInput={changeInput} inputs={activePuzzle.inputs} />
         </div>
         <div
-          style={{ backgroundImage: `url(${images[assetTypes[1]][bgRef]})` }}
+          style={{
+            backgroundImage: `url(${
+              images.puzzleBgAssets[puzzleAssets[1].puzzleBgAssets[1]]
+            })`,
+          }}
           className="result">
           <img
             ref={charImg}
             style={{
               transform: `translate(${startLocs[0].x}px, ${startLocs[0].y}px`,
             }}
-            src={images[assetTypes[0]][assetRefs[0]]}
+            src={images.puzzleAssets[puzzleAssets[1].puzzleAssets[0]]}
             alt=""
           />
           <img
@@ -94,18 +96,18 @@ const BugFix = ({ activePuzzle, setWin }) => {
             style={{
               transform: `translate(${startLocs[1].x}px, ${startLocs[1].y}px`,
             }}
-            src={images[assetTypes[0]][assetRefs[1]]}
+            src={images.puzzleAssets[puzzleAssets[1].puzzleAssets[1]]}
             alt=""
           />
         </div>
-      </div>
-      <div className="buttons">
-        <button className="reset" onClick={reset}>
-          Reset
-        </button>
-        <button className="run" onClick={run}>
-          Run
-        </button>
+        <div className="buttons">
+          <button className="reset" onClick={reset}>
+            Reset
+          </button>
+          <button className="run" onClick={run}>
+            Run
+          </button>
+        </div>
       </div>
     </div>
   );

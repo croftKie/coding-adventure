@@ -156,23 +156,23 @@ const Cryptography = ({ setWin, activePuzzle }) => {
             </p>
           </div>
         </div>
-      </div>
-      <div className="buttons">
-        <button
-          onClick={() => {
-            dispatch(
-              resetCryptoInput({
-                activeChapter: activeChapter,
-                activePuzzle: activePuzzle.id,
-              })
-            );
-          }}
-          className="reset">
-          Reset
-        </button>
-        <button onClick={checkWin} className="run">
-          Run
-        </button>
+        <div className="buttons">
+          <button
+            onClick={() => {
+              dispatch(
+                resetCryptoInput({
+                  activeChapter: activeChapter,
+                  activePuzzle: activePuzzle.id,
+                })
+              );
+            }}
+            className="reset">
+            Reset
+          </button>
+          <button onClick={checkWin} className="run">
+            Run
+          </button>
+        </div>
       </div>
     </div>
   );

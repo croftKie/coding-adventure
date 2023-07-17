@@ -459,12 +459,13 @@ $point-complete-color-secondary: #5efc88;
       flex-direction: column;
       .content {
         height: 85%;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 500px 1fr;
         .input {
+          margin-left: 50px;
           height: 100%;
-          width: 50%;
+          width: 100%;
           display: grid;
           grid-template-rows: 4fr 1fr;
           .bug-fix-input {
@@ -487,6 +488,7 @@ $point-complete-color-secondary: #5efc88;
           }
         }
         .result {
+          justify-self: center;
           border: $border-dark;
           border-radius: $border-radius-bar;
           height: 500px;
@@ -501,15 +503,26 @@ $point-complete-color-secondary: #5efc88;
             border: $border-dark;
           }
         }
-      }
-      .buttons {
-        height: 15%;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        border-top: $border-dark;
-        button {
-          @include button;
+        .buttons {
+          justify-self: center;
+          width: 60%;
+          grid-column: 1/3;
+          display: flex;
+          justify-content: center;
+          gap: 50px;
+          padding: 20px;
+          background-color: $blue-main-color;
+          margin: 40px 60px 40px 60px;
+          border-radius: $border-radius-small;
+          border: $border-dark;
+          box-shadow: $box-shadow-dark;
+          button {
+            @include button;
+            background-color: $base-white;
+            width: 160px;
+            height: 60px;
+            font-size: 2rem;
+          }
         }
       }
     }
@@ -522,6 +535,7 @@ $point-complete-color-secondary: #5efc88;
         height: 90%;
         display: grid;
         grid-template-columns: 1fr 1fr;
+        grid-template-rows: 500px 1fr;
         .input {
           grid-column: 1/2;
           height: 100%;
@@ -529,19 +543,6 @@ $point-complete-color-secondary: #5efc88;
           display: grid;
           grid-template-rows: 1fr 1fr;
           background-color: $base-black;
-          .parts-buttons {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 3px solid #5efc88;
-            button {
-              flex: 1;
-              background-color: inherit;
-              border: none;
-              color: $base-white;
-              font-size: 20px;
-              cursor: pointer;
-            }
-          }
           .cryptography-input {
             padding: 30px;
             .clues {
@@ -613,15 +614,26 @@ $point-complete-color-secondary: #5efc88;
             border-bottom: 3px solid #a1ffba;
           }
         }
-      }
-      .buttons {
-        height: 15%;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        border-top: $border-dark;
-        button {
-          @include button;
+        .buttons {
+          justify-self: center;
+          width: 60%;
+          grid-column: 1/3;
+          display: flex;
+          justify-content: center;
+          gap: 50px;
+          padding: 20px;
+          background-color: $blue-main-color;
+          margin: 40px 60px 40px 60px;
+          border-radius: $border-radius-small;
+          border: $border-dark;
+          box-shadow: $box-shadow-dark;
+          button {
+            @include button;
+            background-color: $base-white;
+            width: 160px;
+            height: 60px;
+            font-size: 2rem;
+          }
         }
       }
     }

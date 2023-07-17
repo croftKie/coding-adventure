@@ -18,7 +18,9 @@ const Puzzle = ({ content, activePuzzle, activeChapter }) => {
   const popUpStatus = useSelector(popUpSelector);
 
   // concat dynamic image data for component styling
-  const bg = `url(${images.bgAssets[activePuzzle.assets.puzzleBgAssets[0]]})`;
+  const bg = `url(${
+    images.bgAssets[activePuzzle.puzzleAssets[1].puzzleBgAssets[0]]
+  })`;
 
   // Dispatch function for opening and closing UI elements
   const toggleUi = (type) => {

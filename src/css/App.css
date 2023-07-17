@@ -1096,7 +1096,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(53, 231, 133, 0.6) !important;
+  background-color: rgba(53, 231, 133, 0.6);
   border-radius: 50px;
 }
 .progress .bg .info .cards .one {
@@ -1112,19 +1112,19 @@
   background-color: rgba(154, 214, 255, 0.6);
 }
 .progress .bg-2 .info .cards .card {
-  background-color: rgba(154, 214, 255, 0.6) !important;
+  background-color: rgba(154, 214, 255, 0.6);
 }
 .progress .bg-3 .info .title {
   background-color: rgba(90, 255, 189, 0.6);
 }
 .progress .bg-3 .info .cards .card {
-  background-color: rgba(90, 255, 189, 0.6) !important;
+  background-color: rgba(90, 255, 189, 0.6);
 }
 .progress .bg-4 .info .title {
   background-color: rgba(213, 167, 66, 0.7);
 }
 .progress .bg-4 .info .cards .card {
-  background-color: rgba(210, 164, 66, 0.7) !important;
+  background-color: rgba(210, 164, 66, 0.7);
 }
 
 .leaderboard {

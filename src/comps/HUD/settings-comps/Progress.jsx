@@ -4,11 +4,17 @@ import { readContent } from "../../../store/features/contentSlice";
 import { useSelector } from "react-redux";
 
 const Progress = () => {
-  const bg1 = `url(${images.progressAssets[[0]]})`;
+  const bg1 = `url(${images.progressAssets[[3]]})`;
   const bg2 = `url(${images.progressAssets[[1]]})`;
-  const bg3 = `url(${images.progressAssets[[2]]})`;
-  const bg4 = `url(${images.progressAssets[[3]]})`;
+  const bg3 = `url(${images.progressAssets[[0]]})`;
+  const bg4 = `url(${images.progressAssets[[2]]})`;
   const content = useSelector(readContent);
+
+  // {
+  //   content[0].chapterPuzzles[0].completed
+  //     ? { backgroundColor: "green" }
+  //     : { backgroundColor: "pink" };
+  // }
 
   return (
     <div className="progress">
@@ -19,31 +25,13 @@ const Progress = () => {
             <p>{content[0].chapterDescription}</p>
           </div>
           <div className="cards">
-            <div
-              className="card one"
-              style={
-                content[0].chapterPuzzles[0].completed
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "pink" }
-              }>
+            <div className="card one">
               <h3>{content[0].chapterPuzzles[0].puzzleName}</h3>
             </div>
-            <div
-              className="card two"
-              style={
-                content[0].chapterPuzzles[0].completed
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "pink" }
-              }>
+            <div className="card two">
               <h3>{content[0].chapterPuzzles[1].puzzleName}</h3>
             </div>
-            <div
-              className="card three"
-              style={
-                content[0].chapterPuzzles[0].completed
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "pink" }
-              }>
+            <div className="card three">
               <h3>{content[0].chapterPuzzles[2].puzzleName}</h3>
             </div>
           </div>
@@ -56,31 +44,13 @@ const Progress = () => {
             <p>{content[1].chapterDescription}</p>
           </div>
           <div className="cards">
-            <div
-              className="card one"
-              style={
-                content[0].chapterPuzzles[0].completed
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "pink" }
-              }>
+            <div className="card one">
               <h3>{content[0].chapterPuzzles[0].puzzleName}</h3>
             </div>
-            <div
-              className="card two"
-              style={
-                content[0].chapterPuzzles[0].completed
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "pink" }
-              }>
+            <div className="card two">
               <h3>{content[0].chapterPuzzles[1].puzzleName}</h3>
             </div>
-            <div
-              className="card three"
-              style={
-                content[0].chapterPuzzles[0].completed
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "pink" }
-              }>
+            <div className="card three">
               <h3>{content[0].chapterPuzzles[2].puzzleName}</h3>
             </div>
           </div>
@@ -93,31 +63,13 @@ const Progress = () => {
             <p>{content[2].chapterDescription}</p>
           </div>
           <div className="cards">
-            <div
-              className="card one"
-              style={
-                content[0].chapterPuzzles[0].completed
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "pink" }
-              }>
+            <div className="card one">
               <h3>{content[0].chapterPuzzles[0].puzzleName}</h3>
             </div>
-            <div
-              className="card two"
-              style={
-                content[0].chapterPuzzles[0].completed
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "pink" }
-              }>
+            <div className="card two">
               <h3>{content[0].chapterPuzzles[1].puzzleName}</h3>
             </div>
-            <div
-              className="card three"
-              style={
-                content[0].chapterPuzzles[0].completed
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "pink" }
-              }>
+            <div className="card three">
               <h3>{content[0].chapterPuzzles[2].puzzleName}</h3>
             </div>
           </div>
@@ -130,31 +82,13 @@ const Progress = () => {
             <p>{content[3].chapterDescription}</p>
           </div>
           <div className="cards">
-            <div
-              className="card one"
-              style={
-                content[0].chapterPuzzles[0].completed
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "pink" }
-              }>
+            <div className="card one">
               <h3>{content[0].chapterPuzzles[0].puzzleName}</h3>
             </div>
-            <div
-              className="card two"
-              style={
-                content[0].chapterPuzzles[0].completed
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "pink" }
-              }>
+            <div className="card two">
               <h3>{content[0].chapterPuzzles[1].puzzleName}</h3>
             </div>
-            <div
-              className="card three"
-              style={
-                content[0].chapterPuzzles[0].completed
-                  ? { backgroundColor: "green" }
-                  : { backgroundColor: "pink" }
-              }>
+            <div className="card three">
               <h3>{content[0].chapterPuzzles[2].puzzleName}</h3>
             </div>
           </div>

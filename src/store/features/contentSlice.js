@@ -5,7 +5,7 @@ const initialState = {
     {
       chapterName: "Autumn",
       chapterDescription:
-        "Following your map you believe there is a treasure chest hidden somewhere near that waterfall. You move cautiously to avoid drawing attention from the city.",
+        "An deep forest filled with mysterious creatures known as 'Programs', the forest is filled with puzzles to beat.",
       chapterId: 0,
       chapterPuzzles: [
         {
@@ -23,13 +23,21 @@ const initialState = {
             "... I lost it up that tree!",
             "Could you give me instructions to get it back, whilst I climb the tree?",
           ],
-          startLocations: [
-            { x: 50, y: 400 },
-            { x: 350, y: 50 },
-          ],
-          endLocations: [{ x: 350, y: 50 }],
           completed: false,
-          assets: { puzzleAssets: [1, 2], puzzleBgAssets: [0, 0] },
+          puzzleAssets: [
+            [
+              {
+                startLocation: [{ x: 50, y: 400 }],
+                endLocation: { x: 350, y: 50 },
+                asset: 1,
+              },
+              {
+                startLocation: [{ x: 350, y: 50 }],
+                asset: 2,
+              },
+            ],
+            { puzzleBgAssets: [0, 0] },
+          ],
         },
         {
           puzzleName: "The Forest Maze",
@@ -73,12 +81,12 @@ const initialState = {
           ],
           clues: [
             "Take the first letter of your companions name, and combine it with 23 + 32",
-            "How many letter are in your name, combine that with 64 divided by 4",
+            "You're Alex, right? Combine the letters in your name with 64 divided by 4",
             "Start with 0... add 100, subtract 40, and multiply by 2",
           ],
           winCondition: [
             ["B", "5", "5"],
-            ["4", "2", "6"],
+            ["4", "1", "6"],
             ["1", "2", "0"],
           ],
           inputs: [
@@ -101,7 +109,7 @@ const initialState = {
     {
       chapterName: "Winter",
       chapterDescription:
-        "With the first treasure found you continue you to follow your map, this time it leads to a hole beneath that old tree across the lake.",
+        "The Bug City is a scary place, code bugs hide around every corner waiting to ruin your 'Program'. It's wise not to hang around here.",
       chapterId: 1,
       chapterPuzzles: [
         {
@@ -114,20 +122,32 @@ const initialState = {
             "We should be careful here",
             "lets find a way through the city to the safe building.",
           ],
-          startLocations: [
-            { x: 400, y: 400 },
-            { x: 100, y: 100 },
-          ],
-          endLocations: [{ x: 100, y: 100 }],
           completed: false,
-          assets: { puzzleAssets: [0, 7], puzzleBgAssets: [3, 3] },
+          puzzleAssets: [
+            [
+              {
+                startLocation: [{ x: 400, y: 400 }],
+                endLocation: { x: 100, y: 100 },
+                asset: 0,
+              },
+              {
+                startLocation: [{ x: 100, y: 100 }],
+                asset: 7,
+              },
+              {
+                startLocation: [{ x: 200, y: 200 }],
+                asset: 6,
+              },
+            ],
+            { puzzleBgAssets: [3, 3] },
+          ],
         },
         {
           puzzleName: "Getting into the shining skyscraper",
           id: 1,
           type: 2,
           puzzleDialogue: [
-            "LLooks like the bugs have spotted us!",
+            "Looks like the bugs have spotted us!",
             "We should get into the building quickly.",
             "Solve the riddle and crack the door code",
           ],
@@ -164,7 +184,7 @@ const initialState = {
             "At least we can take a breath now... or you can, I don't really breath.",
             "But I can simulate it... in... out...in...out",
             "Let's take the elevator out of here...",
-            "You should know, its a little crazy.",
+            "You should know, it's a little crazy.",
             "We might have to fix the directions to reach the exit we want",
           ],
           startLocations: [
@@ -194,7 +214,7 @@ const initialState = {
     {
       chapterName: "Spring",
       chapterDescription:
-        "That was easy! OK, the last X on your map leads right into the city, to the top of that tower with the sun shining down on it.",
+        "The shining city of KOBOL. The oldest in the land, and birthplace of Byte. Stay away from the guards, they don't like other code!",
       chapterId: 2,
       chapterPuzzles: [
         {
@@ -203,20 +223,28 @@ const initialState = {
           type: 1,
           puzzleDialogue: [
             "Oh no... we shouldn't have come here.",
-            "This is the KOBOL forest",
+            "This is KOBOL",
             "Its the oldest kingdom in the land.",
             "The guards here are ruthless.",
             "They don't like any other code!",
             "We need to be sneaky to get through here.",
             "Lets start by the waterfall, I know a cave is around there.",
           ],
-          startLocations: [
-            { x: 400, y: 400 },
-            { x: 100, y: 100 },
-          ],
-          endLocations: [{ x: 100, y: 100 }],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [6, 6] },
+          puzzleAssets: [
+            [
+              {
+                startLocation: [{ x: 400, y: 400 }],
+                endLocation: { x: 100, y: 100 },
+                asset: 0,
+              },
+              {
+                startLocation: [{ x: 100, y: 100 }],
+                asset: 1,
+              },
+            ],
+            { puzzleBgAssets: [6, 6] },
+          ],
         },
         {
           puzzleName: "The Forest Maze",
@@ -289,8 +317,7 @@ const initialState = {
     },
     {
       chapterName: "Summer",
-      chapterDescription:
-        "That was easy! OK, the last X on your map leads right into the city, to the top of that tower with the sun shining down on it.",
+      chapterDescription: "Node Beach, the gateway back to your world. ",
       chapterId: 2,
       chapterPuzzles: [
         {
@@ -308,13 +335,21 @@ const initialState = {
             "... I lost it up that tree!",
             "Could you give me instructions to get it back, whilst I climb the tree?",
           ],
-          startLocations: [
-            { x: 400, y: 400 },
-            { x: 100, y: 100 },
-          ],
-          endLocations: [{ x: 100, y: 100 }],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [9, 9] },
+          puzzleAssets: [
+            [
+              {
+                startLocation: [{ x: 400, y: 400 }],
+                endLocation: { x: 100, y: 100 },
+                asset: 0,
+              },
+              {
+                startLocation: [{ x: 100, y: 100 }],
+                asset: 1,
+              },
+            ],
+            { puzzleBgAssets: [9, 9] },
+          ],
         },
         {
           puzzleName: "The Stone Door",
@@ -400,7 +435,6 @@ const contentSlice = createSlice({
       const chapterIndex = action.payload.chapterIndex;
       const puzzleIndex = action.payload.puzzleIndex;
       const inputToChange = action.payload.inputToChange;
-      console.log(action.payload);
       let loc =
         state.chapters[chapterIndex].chapterPuzzles[puzzleIndex].inputs[
           inputToChange

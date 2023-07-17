@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { images } from "../../utils/images";
 
-const ResetCondition = ({ toggleUi }) => {
+const ResetCondition = ({ reset }) => {
   return (
     <div className="win-condition">
       <div className="topbar"></div>
@@ -14,7 +14,7 @@ const ResetCondition = ({ toggleUi }) => {
           <img src={images.puzzleAssets[0]} alt="" />
         </div>
         <div className="buttons">
-          <button>Try Again!</button>
+          <button onClick={reset}>Try Again!</button>
         </div>
       </div>
     </div>

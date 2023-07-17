@@ -17,41 +17,43 @@ import ResetCondition from "./ResetCondition";
 const Instructions = ({ activePuzzle, setWin }) => {
   const [inputs, setInputs] = useState([]);
   const [toggleResetScreen, setToggleResetScreen] = useState(false);
-  const charImg = useRef();
-  const goalImg = useRef();
   const resultRef = useRef();
   const instructionInputs = useSelector(instructionInputSelector);
   const activeChapter = useSelector(activeChapterSelector);
   const dispatch = useDispatch();
-  const startLocs = activePuzzle.startLocations;
-  const assetTypes = Object.keys(activePuzzle.assets);
-  const assetRefs = activePuzzle.assets.puzzleAssets;
-  const bgRef = activePuzzle.assets.puzzleBgAssets[1];
+  const puzzleAssets = activePuzzle.puzzleAssets;
 
   const pushInputs = (type) => {
     setInputs([...inputs, type]);
   };
   const reset = () => {
+    if (toggleResetScreen) {
+      setToggleResetScreen(false);
+    }
     dispatch(clearInstruction());
     setInputs([]);
-    resetAnimationPath(charImg.current, startLocs[0]);
+    resetAnimationPath(
+      resultRef.current.children[0],
+      puzzleAssets[0][0].startLocation[0]
+    );
   };
   const run = () => {
+    const assets = resultRef.current.children;
     const isRunComplete = animator(
-      charImg.current,
+      assets[0],
       instructionInputs,
       500,
       500,
-      [[300, 400]],
+      [puzzleAssets[0][2].startLocation],
       () => {
         if (isRunComplete.hitStatus) {
           setToggleResetScreen(true);
         }
         if (
           isPathComplete(
-            charImg.current,
+            assets[0],
             isRunComplete,
-            activePuzzle.endLocations[0]
+            puzzleAssets[0][0].endLocation
           )
         ) {
           setWin(true);
@@ -68,7 +70,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
   return (
     <div className="instructions-puzzle">
       <div className="content">
-        {toggleResetScreen ? <ResetCondition /> : <></>}
+        {toggleResetScreen ? <ResetCondition reset={reset} /> : <></>}
         <div className="input">
           <InstructionInput inputs={inputs} />
           <div className="input-buttons">
@@ -116,25 +118,24 @@ const Instructions = ({ activePuzzle, setWin }) => {
         </div>
         <div className="result-container">
           <div
-            style={{ backgroundImage: `url(${images[assetTypes[1]][bgRef]})` }}
             ref={resultRef}
+            style={{
+              backgroundImage: `url(${
+                images.puzzleBgAssets[puzzleAssets[1].puzzleBgAssets[1]]
+              })`,
+            }}
             className="result">
-            <img
-              ref={charImg}
-              style={{
-                transform: `translate(${startLocs[0].x}px, ${startLocs[0].y}px`,
-              }}
-              src={images[assetTypes[0]][assetRefs[0]]}
-              alt=""
-            />
-            <img
-              ref={goalImg}
-              style={{
-                transform: `translate(${startLocs[1].x}px, ${startLocs[1].y}px`,
-              }}
-              src={images[assetTypes[0]][assetRefs[1]]}
-              alt=""
-            />
+            {puzzleAssets[0].map((assetRef) => {
+              return (
+                <img
+                  style={{
+                    transform: `translate(${assetRef.startLocation[0].x}px, ${assetRef.startLocation[0].y}px`,
+                  }}
+                  src={images.puzzleAssets[assetRef.asset]}
+                  alt=""
+                />
+              );
+            })}
           </div>
           <div className="buttons">
             <button onClick={reset} className="reset">

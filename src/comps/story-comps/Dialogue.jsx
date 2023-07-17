@@ -4,9 +4,16 @@ import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { useRef } from "react";
 import { useLayoutEffect } from "react";
+import Topbar from "../util-comps/Topbar";
+import { ToastContainer, toast } from "react-toastify";
+import Msg from "../tutorial/TutModal";
+import { byteTutorialSelector } from "../../store/features/tutorialSlice";
+import { useSelector } from "react-redux";
+
 gsap.registerPlugin(TextPlugin);
 
 const Dialogue = ({ dialogue }) => {
+  const byteTutorial = useSelector(byteTutorialSelector);
   const dialogueRef = useRef();
   const textRef = useRef();
   useLayoutEffect(() => {
@@ -19,18 +26,14 @@ const Dialogue = ({ dialogue }) => {
   const hideDialogueBox = () => {
     gsap.to(dialogueRef.current, { top: "-22%" });
   };
+
+  const showToastMessage = () => {
+    toast(<Msg tutorial={byteTutorial} />, { autoClose: false });
+  };
   return (
     <div ref={dialogueRef} className="dialogue-container">
-      <div className="topbar">
-        <div className="buttons">
-          <div className="item">
-            <img src={images.uiAssets[4]} alt="" />
-          </div>
-          <div className="item">
-            <img onClick={hideDialogueBox} src={images.uiAssets[0]} alt="" />
-          </div>
-        </div>
-      </div>
+      <ToastContainer />
+      <Topbar show={showToastMessage} close={hideDialogueBox} />
       <div className="dialogue">
         <img src={images.charAssets[0]} />
         <p ref={textRef}>Hey there, Alex!</p>

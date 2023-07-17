@@ -143,7 +143,7 @@ const initialState = {
           ],
         },
         {
-          puzzleName: "Getting into the shining skyscraper",
+          puzzleName: "The Skyscraper",
           id: 1,
           type: 2,
           puzzleDialogue: [
@@ -152,14 +152,14 @@ const initialState = {
             "Solve the riddle and crack the door code",
           ],
           clues: [
-            "Take the first letter of your companions name, and combine it with 23 + 32",
-            "How many letter are in your name, combine that with 64 divided by 4",
-            "Start with 0... add 100, subtract 40, and multiply by 2",
+            "Add 60 to 90 and multiply the number by 5",
+            "What creature roams the city?",
+            "0 is false and 1 is true, what number am I thinking of... true, false, false",
           ],
           winCondition: [
-            ["B", "5", "5"],
-            ["4", "2", "6"],
-            ["1", "2", "0"],
+            ["7", "5", "0"],
+            ["B", "U", "G"],
+            ["1", "0", "0"],
           ],
           inputs: [
             [0, 0, 0],
@@ -174,9 +174,10 @@ const initialState = {
           results: [],
           completed: false,
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [4] },
+          puzzleAssets: [[], { puzzleAssets: [0, 1], puzzleBgAssets: [4] }],
         },
         {
-          puzzleName: "Fix the crazy elevator",
+          puzzleName: "Fix the Elevator",
           id: 2,
           type: 3,
           puzzleDialogue: [
@@ -193,7 +194,6 @@ const initialState = {
           ],
           endLocations: [{ x: 100, y: 100 }],
           completed: false,
-          assets: { puzzleAssets: [0, 5], puzzleBgAssets: [5, 5] },
           inputs: [
             { type: "forward", value: 200 },
             { type: "left", value: 200 },
@@ -206,10 +206,10 @@ const initialState = {
             { type: "backwards", value: 100 },
             { type: "right", value: 100 },
           ],
+          puzzleAssets: [[], { puzzleAssets: [0, 5], puzzleBgAssets: [5, 5] }],
         },
       ],
       completedStatus: false,
-      assets: { bgAssets: [0] },
     },
     {
       chapterName: "Spring",
@@ -218,7 +218,7 @@ const initialState = {
       chapterId: 2,
       chapterPuzzles: [
         {
-          puzzleName: "Climbing the tree!",
+          puzzleName: "Entering the Cave!",
           id: 0,
           type: 1,
           puzzleDialogue: [
@@ -240,14 +240,18 @@ const initialState = {
               },
               {
                 startLocation: [{ x: 100, y: 100 }],
-                asset: 1,
+                asset: 7,
+              },
+              {
+                startLocation: [{ x: 200, y: 200 }],
+                asset: 6,
               },
             ],
-            { puzzleBgAssets: [6, 6] },
+            { puzzleBgAssets: [3, 3] },
           ],
         },
         {
-          puzzleName: "The Forest Maze",
+          puzzleName: "Deep Dark Maze",
           id: 1,
           type: 3,
           puzzleDialogue: [
@@ -276,7 +280,7 @@ const initialState = {
           ],
         },
         {
-          puzzleName: "The Stone Door",
+          puzzleName: "Dive through!",
           id: 2,
           type: 2,
           puzzleDialogue: [
@@ -313,27 +317,23 @@ const initialState = {
         },
       ],
       completedStatus: false,
-      assets: { bgAssets: [0] },
     },
     {
       chapterName: "Summer",
-      chapterDescription: "Node Beach, the gateway back to your world. ",
-      chapterId: 2,
+      chapterDescription:
+        "Node Beach, the gateway back to your world. Explore the palm trees and sand dunes to find a way out... or maybe go out to sea.",
+      chapterId: 3,
       chapterPuzzles: [
         {
           puzzleName: "Climbing the tree!",
           id: 0,
           type: 1,
           puzzleDialogue: [
-            "Welcome to Cyberspace!",
-            "You'll have to beat all the puzzles if you want to escape.",
-            "Looks like we landed on the edge of the forest",
-            "We'll need to find the Stone Clearing to find you a way out of here.",
-            "You're going to need me to interact with this world",
-            "So I'll tag along to help you out.",
-            "First up... we'll need to fetch my 'input program', its how I interact with the world...",
-            "... I lost it up that tree!",
-            "Could you give me instructions to get it back, whilst I climb the tree?",
+            "We made it!",
+            "This is Node Beach... we are safe here.",
+            "We can use one of the boats on the beach",
+            "If we can get it running we can get you home",
+            "But first, we need to find one!",
           ],
           completed: false,
           puzzleAssets: [
@@ -345,20 +345,26 @@ const initialState = {
               },
               {
                 startLocation: [{ x: 100, y: 100 }],
-                asset: 1,
+                asset: 7,
+              },
+              {
+                startLocation: [{ x: 200, y: 200 }],
+                asset: 6,
               },
             ],
-            { puzzleBgAssets: [9, 9] },
+            { puzzleBgAssets: [3, 3] },
           ],
         },
         {
           puzzleName: "The Stone Door",
-          id: 2,
+          id: 1,
           type: 2,
           puzzleDialogue: [
-            "Welcome to CyberSpace!",
-            "You'll have to beat all the puzzles if you want to escape",
-            "Lets get started!",
+            "Looks great!",
+            "Now... we just need to start it!",
+            "Here are the instructions...",
+            "Ofcourse... its another riddle!",
+            "Over to you Alex.",
           ],
           clues: [
             "Take the first letter of your companions name, and combine it with 23 + 32",
@@ -386,9 +392,16 @@ const initialState = {
         },
         {
           puzzleName: "The Forest Maze",
-          id: 1,
+          id: 2,
           type: 3,
-          puzzleDialogue: ["Welcome to CyberSpace!"],
+          puzzleDialogue: [
+            "It's running!",
+            "Well done!",
+            "Okay.. lets set sail.",
+            "(4 Hours Later)",
+            "Yep.. we are definitely going in circles.",
+            "Check the map Alex, see if you can find something that looks like home",
+          ],
           startLocations: [
             { x: 400, y: 400 },
             { x: 100, y: 100 },
@@ -411,7 +424,6 @@ const initialState = {
         },
       ],
       completedStatus: false,
-      assets: { bgAssets: [0] },
     },
   ],
 };

@@ -10,7 +10,7 @@ const initialState = {
     ],
   },
   puzzleScreen: {
-    name: "Puzzle Tutorial",
+    name: "UI Tutorial",
     text: [
       "Explore the screen and learn a little about the story from Byte",
       "Click on 'Open Puzzle' to get started on the next puzzle",
@@ -19,7 +19,28 @@ const initialState = {
       "Check out the leaderboard and see how others are doing in the leaderboard tab",
     ],
   },
-  instructionPuzzle: { name: "Instruction Puzzle Tutorial", text: [] },
+  byteText: {
+    name: "Byte Tutorial",
+    text: [
+      "Byte is your faithful companion on your journey.",
+      "He will be able to teach you a little about the world.",
+      "He will also be how you interact with the world.",
+      "You will be guiding Byte through the puzzles of this world.",
+      "He'll pop up whenever you enter a new puzzle of chapter",
+    ],
+  },
+  popupTutorial: {
+    name: "Puzzle Tutorial",
+    text: [
+      "Each chapter will have a series of puzzles",
+      "It's your job to solve them.",
+      "There are three puzzle types",
+      "Instruction Puzzles require you to give steps to reach a goal",
+      "Bug Fix puzzles require you to fix some instructions that don't work",
+      "Code puzzles require you to use logical thinking to solve a riddle",
+    ],
+  },
+  instructionPuzzle: {},
   bugFixPuzzle: { name: "Bug Fix Tutorial", text: [] },
   cryptoPuzzle: { name: "Crack the Code Tutorial", text: [] },
   activeTutorial: 0,
@@ -42,5 +63,11 @@ export const splashTutorialSelector = (state) => {
 };
 export const puzzleTutorialSelector = (state) => {
   return state.tutorial.puzzleScreen;
+};
+export const byteTutorialSelector = (state) => {
+  return state.tutorial.byteText;
+};
+export const popupTutorialSelector = (state) => {
+  return state.tutorial.popupTutorial;
 };
 export default tutorialSlice.reducer;

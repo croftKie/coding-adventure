@@ -13,6 +13,7 @@ import MakePuzzle from "./MakePuzzle";
 import { ToastContainer, toast } from "react-toastify";
 import Msg from "./tutorial/TutModal";
 import { splashTutorialSelector } from "../store/features/tutorialSlice";
+import Topbar from "./util-comps/Topbar";
 
 const Splash = () => {
   const [stats, setStats] = useState(false);
@@ -20,7 +21,6 @@ const Splash = () => {
   const cardOne = useRef();
   const cardTwo = useRef();
   const cardThree = useRef();
-  const cardFour = useRef();
   const logoRef = useRef();
   const activeChapter = useSelector(activeChapterSelector);
   const dispatch = useDispatch();
@@ -55,16 +55,7 @@ const Splash = () => {
     <div className="splash">
       <ToastContainer />
       <div className="splash-content">
-        <div className="topbar">
-          <div className="buttons">
-            <div onClick={showToastMessage} className="item">
-              <img src={images.uiAssets[4]} alt="" />
-            </div>
-            <div className="item">
-              <img src={images.uiAssets[0]} alt="" />
-            </div>
-          </div>
-        </div>
+        <Topbar show={showToastMessage} />
         <div className="logo-bar">
           <img
             onClick={() => {
@@ -77,7 +68,7 @@ const Splash = () => {
           <div className="logo-text">
             <h1>CodeVenture</h1>
             <h3>
-              A visual novel for <br /> learning to code
+              A visual novel for learning <br /> to think like a coder
             </h3>
           </div>
         </div>
@@ -117,22 +108,20 @@ const Splash = () => {
             <p>Continue where you last left off and beat the bad guy!</p>
           </div>
           <div
-            ref={cardFour}
-            onMouseEnter={() => {
-              onEnter(cardFour);
-            }}
-            onMouseLeave={() => {
-              onLeave(cardFour);
-            }}
-            onClick={() => {
-              setMakePuzzle(true);
-            }}
-            className="class card">
+            ref={cardThree}
+            // onMouseEnter={() => {
+            //   onEnter(cardThree);
+            // }}
+            // onMouseLeave={() => {
+            //   onLeave(cardThree);
+            // }}
+            // onClick={() => {
+            //   setMakePuzzle(true);
+            // }}
+            className="class card"
+            style={{ backgroundColor: "lightgrey" }}>
             <h3>Make your own puzzles</h3>
-            <p>
-              Use the puzzle builder to create your own logic puzzles and share
-              them
-            </p>
+            <p>COMING SOON</p>
           </div>
         </div>
       </div>

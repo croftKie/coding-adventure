@@ -308,15 +308,14 @@ $point-complete-color-secondary: #5efc88;
       gap: 20px;
       .content {
         height: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 500px 1fr;
         .input {
           height: 100%;
-          width: 50%;
           display: grid;
           grid-template-rows: 4fr 1fr;
-          gap: 10px;
+          margin-left: 50px;
           .instruction-input {
             @include inputContainer();
             border: 10px solid black;
@@ -338,7 +337,38 @@ $point-complete-color-secondary: #5efc88;
               }
             }
           }
+        }
+        .result-container {
+          display: grid;
+          grid-template-rows: 4fr 1fr;
+          justify-self: center;
+          .result {
+            align-self: center;
+            border: $border-dark;
+            border-radius: $border-radius-bar;
+            height: 500px;
+            width: 500px;
+            position: relative;
+            img {
+              position: relative;
+              height: 50px;
+              background-color: $base-white;
+              border-radius: $border-radius-small;
+              border: $border-dark;
+            }
+          }
+        }
+        .controls {
+          grid-column: 1/3;
+          display: flex;
+          padding: 20px;
+          background-color: $blue-main-color;
+          margin: 40px 60px 40px 60px;
+          border-radius: $border-radius-small;
+          border: $border-dark;
+          box-shadow: $box-shadow-dark;
           .input-buttons {
+            flex: 1;
             grid-row: 2/3;
             display: flex;
             justify-content: space-around;
@@ -349,10 +379,11 @@ $point-complete-color-secondary: #5efc88;
               width: 50%;
               button {
                 @include button;
+                background-color: $base-white;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-
+                box-shadow: $box-shadow-dark;
                 &:nth-of-type(1) {
                   grid-column: 1/3;
                   grid-row: 1/2;
@@ -388,39 +419,28 @@ $point-complete-color-secondary: #5efc88;
               align-items: center;
               button {
                 @include button;
-                width: 50%;
+                width: 70%;
+                font-size: 1.5rem;
+                background-color: $base-white;
+                box-shadow: $box-shadow-dark;
               }
             }
           }
-        }
-        .result-container {
-          display: grid;
-          grid-template-rows: 4fr 1fr;
-          gap: 10px;
-          .result {
-            align-self: center;
-            border: $border-dark;
-            border-radius: $border-radius-bar;
-            height: 500px;
-            width: 500px;
-            padding-left: 20px;
-            position: relative;
-            img {
-              position: relative;
-              height: 50px;
-              background-color: $base-white;
-              border-radius: $border-radius-small;
-              border: $border-dark;
-            }
-          }
           .buttons {
+            flex: 1;
             align-self: center;
-            height: 15%;
+            height: 90%;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
+            gap: 100px;
             button {
               @include button;
+              height: 80px;
+              width: 160px;
+              font-size: 2.5rem;
+              background-color: $base-white;
+              box-shadow: $box-shadow-dark;
             }
           }
         }

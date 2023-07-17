@@ -73,6 +73,30 @@ const Instructions = ({ activePuzzle, setWin }) => {
         {toggleResetScreen ? <ResetCondition reset={reset} /> : <></>}
         <div className="input">
           <InstructionInput inputs={inputs} />
+        </div>
+        <div className="result-container">
+          <div
+            ref={resultRef}
+            style={{
+              backgroundImage: `url(${
+                images.puzzleBgAssets[puzzleAssets[1].puzzleBgAssets[1]]
+              })`,
+            }}
+            className="result">
+            {puzzleAssets[0].map((assetRef) => {
+              return (
+                <img
+                  style={{
+                    transform: `translate(${assetRef.startLocation[0].x}px, ${assetRef.startLocation[0].y}px`,
+                  }}
+                  src={images.puzzleAssets[assetRef.asset]}
+                  alt=""
+                />
+              );
+            })}
+          </div>
+        </div>
+        <div className="controls">
           <div className="input-buttons">
             <div className="choices">
               <button
@@ -114,28 +138,6 @@ const Instructions = ({ activePuzzle, setWin }) => {
                 End
               </button>
             </div>
-          </div>
-        </div>
-        <div className="result-container">
-          <div
-            ref={resultRef}
-            style={{
-              backgroundImage: `url(${
-                images.puzzleBgAssets[puzzleAssets[1].puzzleBgAssets[1]]
-              })`,
-            }}
-            className="result">
-            {puzzleAssets[0].map((assetRef) => {
-              return (
-                <img
-                  style={{
-                    transform: `translate(${assetRef.startLocation[0].x}px, ${assetRef.startLocation[0].y}px`,
-                  }}
-                  src={images.puzzleAssets[assetRef.asset]}
-                  alt=""
-                />
-              );
-            })}
           </div>
           <div className="buttons">
             <button onClick={reset} className="reset">

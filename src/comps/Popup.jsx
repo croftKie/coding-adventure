@@ -12,16 +12,17 @@ import BugFix from "./puzzle-templates/BugFix";
 import Cryptography from "./puzzle-templates/Cryptography";
 import WinCondition from "./puzzle-templates/WinCondition";
 import Msg from "./tutorial/TutModal";
-import { puzzleTutorialSelector } from "../store/features/tutorialSlice";
+import { popupTutorialSelector } from "../store/features/tutorialSlice";
+import Topbar from "./util-comps/Topbar";
 
 const Popup = ({ activePuzzle, toggleUi }) => {
   // variable declarations
   const [win, setWin] = useState(false);
   const popupRef = useRef();
-  const puzzleTutorial = useSelector(puzzleTutorialSelector);
+  const popupTutorial = useSelector(popupTutorialSelector);
 
   const showToastMessage = () => {
-    toast(<Msg tutorial={puzzleTutorial} />, { autoClose: false });
+    toast(<Msg tutorial={popupTutorial} />, { autoClose: false });
   };
 
   const closeOnPress = () => {
@@ -36,17 +37,11 @@ const Popup = ({ activePuzzle, toggleUi }) => {
       <ToastContainer />
       {win ? <WinCondition setWin={setWin} toggleUi={toggleUi} /> : <></>}
       <div className="nav">
-        <div className="topbar">
-          <h1>{activePuzzle.puzzleName}</h1>
-          <div className="buttons">
-            <div onClick={showToastMessage} className="item">
-              <img src={images.uiAssets[4]} alt="" />
-            </div>
-            <div onClick={closeOnPress} className="item">
-              <img src={images.uiAssets[0]} alt="" />
-            </div>
-          </div>
-        </div>
+        <Topbar
+          show={showToastMessage}
+          close={closeOnPress}
+          name={activePuzzle.puzzleName}
+        />
       </div>
       <div className="puzzleContent">
         {activePuzzle.type === 1 ? (

@@ -33,5 +33,8 @@ export const {
 
 export const activePuzzleSelector = (state) => state.progress.activePuzzle;
 export const activeChapterSelector = (state) => state.progress.activeChapter;
+export const allChaptersCompletedSelector = (state) => {
+  return state.progress.chaptersCompleted;
+};
 
 export default progressSlice.reducer;

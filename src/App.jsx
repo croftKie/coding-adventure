@@ -14,8 +14,6 @@ import Splash from "./comps/Splash";
 import Progress from "./comps/HUD/settings-comps/Progress";
 import Leaderboard from "./comps/HUD/settings-comps/Leaderboard";
 import Loading from "./comps/Loading";
-import NotifyChapters from "./comps/story-comps/NotifyChapters";
-import TutModal from "./comps/tutorial/TutModal.jsx";
 import Puzzle from "./comps/Puzzle.jsx";
 import Intro from "./comps/story-comps/Intro";
 import Landscape from "./comps/Landscape";
@@ -23,9 +21,11 @@ import Landscape from "./comps/Landscape";
 import {
   activeChapterSelector,
   activePuzzleSelector,
+  allChaptersCompletedSelector,
 } from "./store/features/progressSlice";
 import {
   SplashSelector,
+  exitOpenSelector,
   introOpenSelector,
   updateUi,
 } from "./store/features/UiSlice";
@@ -35,6 +35,7 @@ import {
 } from "./store/features/contentSlice";
 import { puzzleTutorialSelector } from "./store/features/tutorialSlice";
 import Msg from "./comps/tutorial/TutModal.jsx";
+import Ending from "./comps/story-comps/Ending";
 
 function App() {
   // component variable declarations
@@ -44,6 +45,8 @@ function App() {
   const activeChapter = useSelector(activeChapterSelector);
   const splashStatus = useSelector(SplashSelector);
   const introOpenState = useSelector(introOpenSelector);
+  const exitOpenState = useSelector(exitOpenSelector);
+  const allChaptersCompleted = useSelector(allChaptersCompletedSelector);
   const content = useSelector(readContent);
   const puzzles = content[activeChapter].chapterPuzzles;
   const [page, setPage] = useState(0);
@@ -95,6 +98,9 @@ function App() {
     if (remaining.length === 0) {
       dispatch(setChapterCompleteStatus(activeChapter));
     }
+    if (allChaptersCompleted && allChaptersCompleted.length === 4) {
+      dispatch(updateUi("exit"));
+    }
   }, [content[activeChapter].chapterPuzzles]);
 
   if (screenSize.width - 200 <= screenSize.height) {
@@ -108,7 +114,9 @@ function App() {
   if (introOpenState) {
     return <Intro />;
   }
-
+  if (exitOpenState) {
+    return <Ending />;
+  }
   if (content[activeChapter].completedStatus) {
     return <Loading />;
   }

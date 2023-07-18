@@ -153,11 +153,12 @@ function App() {
             Progress
           </div>
           <div
-            onClick={() => {
-              setPage(2);
-              switchBarStyling("leaderboard");
-            }}
-            className="leaderboard">
+            // onClick={() => {
+            //   setPage(2);
+            //   switchBarStyling("leaderboard");
+            // }}
+            className="leaderboard"
+            style={{ backgroundColor: "lightgrey", cursor: "default" }}>
             Leaderboard
           </div>
         </div>

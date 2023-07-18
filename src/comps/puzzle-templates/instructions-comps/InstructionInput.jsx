@@ -151,7 +151,7 @@ const InstructionInput = ({ inputs }) => {
                   <span>
                     <input
                       type="text"
-                      value="repeat"
+                      placeholder="repeat"
                       onBlur={(e) => {
                         dispatch(
                           addInstruction({ type: "end", value: e.target.value })

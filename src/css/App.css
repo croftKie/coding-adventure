@@ -330,14 +330,13 @@ button {
   border-radius: 7px;
   height: 500px;
   width: 500px;
-  position: relative;
 }
 .popup .puzzleContent .instructions-puzzle .content .result-container .result img {
-  position: relative;
   height: 50px;
   background-color: #fff8ef;
   border-radius: 10px;
   border: 3px solid #333333;
+  transform-origin: center;
 }
 .popup .puzzleContent .instructions-puzzle .content .controls {
   grid-column: 1/3;

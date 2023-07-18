@@ -104,7 +104,7 @@ const initialState = {
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [2] },
         },
       ],
-      completedStatus: false,
+      completedStatus: true,
     },
     {
       chapterName: "Winter",
@@ -173,7 +173,6 @@ const initialState = {
           ],
           results: [],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [4] },
           puzzleAssets: [[], { puzzleAssets: [0, 1], puzzleBgAssets: [4] }],
         },
         {
@@ -209,7 +208,7 @@ const initialState = {
           puzzleAssets: [[], { puzzleAssets: [0, 5], puzzleBgAssets: [5, 5] }],
         },
       ],
-      completedStatus: false,
+      completedStatus: true,
     },
     {
       chapterName: "Spring",
@@ -234,20 +233,24 @@ const initialState = {
           puzzleAssets: [
             [
               {
-                startLocation: [{ x: 400, y: 400 }],
-                endLocation: { x: 100, y: 100 },
-                asset: 0,
+                startLocation: [{ x: 450, y: 50 }],
+                endLocation: { x: 0, y: 300 },
+                asset: 1,
+              },
+              {
+                startLocation: [{ x: 0, y: 300 }],
+                asset: 4,
               },
               {
                 startLocation: [{ x: 100, y: 100 }],
-                asset: 7,
+                asset: 3,
               },
               {
-                startLocation: [{ x: 200, y: 200 }],
-                asset: 6,
+                startLocation: [{ x: 140, y: 300 }],
+                asset: 3,
               },
             ],
-            { puzzleBgAssets: [3, 3] },
+            { puzzleBgAssets: [6, 6] },
           ],
         },
         {
@@ -265,7 +268,6 @@ const initialState = {
           ],
           endLocations: [{ x: 150, y: 150 }],
           completed: false,
-          assets: { puzzleAssets: [1, 4], puzzleBgAssets: [1, 1] },
           inputs: [
             { type: "forward", value: 200 },
             { type: "left", value: 200 },
@@ -278,6 +280,7 @@ const initialState = {
             { type: "backwards", value: 100 },
             { type: "right", value: 100 },
           ],
+          puzzleAssets: [[], { puzzleAssets: [1, 4], puzzleBgAssets: [1, 1] }],
         },
         {
           puzzleName: "Dive through!",
@@ -313,10 +316,10 @@ const initialState = {
           ],
           results: [],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [7] },
+          puzzleAssets: [[], { puzzleAssets: [0, 1], puzzleBgAssets: [7] }],
         },
       ],
-      completedStatus: false,
+      completedStatus: true,
     },
     {
       chapterName: "Summer",
@@ -339,20 +342,28 @@ const initialState = {
           puzzleAssets: [
             [
               {
-                startLocation: [{ x: 400, y: 400 }],
-                endLocation: { x: 100, y: 100 },
+                startLocation: [{ x: 100, y: 100 }],
+                endLocation: { x: 350, y: 450 },
                 asset: 0,
               },
               {
-                startLocation: [{ x: 100, y: 100 }],
+                startLocation: [{ x: 350, y: 450 }],
                 asset: 7,
               },
               {
-                startLocation: [{ x: 200, y: 200 }],
+                startLocation: [{ x: 50, y: 200 }],
+                asset: 6,
+              },
+              {
+                startLocation: [{ x: 100, y: 300 }],
+                asset: 6,
+              },
+              {
+                startLocation: [{ x: 170, y: 50 }],
                 asset: 6,
               },
             ],
-            { puzzleBgAssets: [3, 3] },
+            { puzzleBgAssets: [9, 9] },
           ],
         },
         {
@@ -367,14 +378,14 @@ const initialState = {
             "Over to you Alex.",
           ],
           clues: [
-            "Take the first letter of your companions name, and combine it with 23 + 32",
-            "How many letter are in your name, combine that with 64 divided by 4",
-            "Start with 0... add 100, subtract 40, and multiply by 2",
+            "How many broken boats where on the beach? How many working ones? and How many chapters have you visited?",
+            "Think back... what did your companion need to climb in the first puzzle? Subtract the last letter",
+            "If you have 100 grains of sand and you pick up 5 more, ten times, how many grains do you have?",
           ],
           winCondition: [
-            ["B", "5", "5"],
-            ["4", "2", "6"],
-            ["1", "2", "0"],
+            ["3", "1", "4"],
+            ["T", "R", "E"],
+            ["1", "5", "0"],
           ],
           inputs: [
             [0, 0, 0],
@@ -389,6 +400,7 @@ const initialState = {
           results: [],
           completed: false,
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [10] },
+          puzzleAssets: [[], { puzzleAssets: [0, 1], puzzleBgAssets: [10] }],
         },
         {
           puzzleName: "Out to Sea",
@@ -408,7 +420,6 @@ const initialState = {
           ],
           endLocations: [{ x: 100, y: 100 }],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [11, 11] },
           inputs: [
             { type: "forward", value: 200 },
             { type: "left", value: 200 },
@@ -420,6 +431,10 @@ const initialState = {
             { type: "left", value: 200 },
             { type: "backwards", value: 100 },
             { type: "right", value: 100 },
+          ],
+          puzzleAssets: [
+            [],
+            { puzzleAssets: [0, 1], puzzleBgAssets: [11, 11] },
           ],
         },
       ],

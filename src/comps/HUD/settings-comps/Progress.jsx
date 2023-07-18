@@ -11,14 +11,14 @@ const Progress = () => {
   const content = useSelector(readContent);
 
   const backgroundManager = (chapterNumber) => {
-    if (content[chapterNumber - 1].completed) {
+    if (content[chapterNumber - 1].completedStatus) {
       return { backgroundImage: bg1 };
     }
     return { backgroundColor: "rgb(41, 41, 41)" };
   };
 
   const buttonBgManager = (chapterNumber) => {
-    if (content[chapterNumber - 1].completed) {
+    if (content[chapterNumber - 1].completedStatus) {
       return { backgroundImage: bg1 };
     }
     return { backgroundColor: "rgb(31, 31, 31)" };

@@ -33,30 +33,30 @@ const initialState = {
   exit: [
     {
       class: "one",
-      text: "Everything is black around you, you can't see a thing!",
+      text: "You suddenly fall through the water!",
     },
-    { class: "two", text: "Suddenly you hear a voice in your head." },
-    { class: "three", text: "Your name is Alex, right?" },
-    { class: "four", text: "Welcome to Cyberspace..." },
+    { class: "two", text: "You hear the crashing of water" },
+    { class: "three", text: "Then in a moment, it stops." },
+    { class: "four", text: "You feel the fabric of a chair beneath you." },
     {
       class: "five",
-      text: "Looks like you fell into the old computer program!",
+      text: "You open your eyes again and your at your desk.",
     },
     {
       class: "six",
-      text: "This is a world of puzzles, logic and code.",
+      text: "You made it home! A voice says in your head",
     },
     {
       class: "seven",
-      text: "You'll need to solve the puzzles you find to escape.",
+      text: "Looks like I got pulled through with you.",
     },
     {
       class: "eight",
-      text: "Luckily, you'll have some help!",
+      text: "You sigh with relief and smile, what an adventure!",
     },
     {
       class: "nine",
-      text: "Click me to start your adventure",
+      text: "Lets look for another one! You hear Byte say.",
     },
   ],
 };

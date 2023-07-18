@@ -20,8 +20,8 @@ const Clues = ({ activePuzzle, openPage }) => {
     <>
       <div className="cryptography-input">
         <div className="clues">
-          {activePuzzle.clues.map((clue) => {
-            return <p>{clue}</p>;
+          {activePuzzle.clues.map((clue, index) => {
+            return <p>{`Part ${index + 1}: ${clue}`}</p>;
           })}
         </div>
       </div>

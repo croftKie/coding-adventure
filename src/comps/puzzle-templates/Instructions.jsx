@@ -30,6 +30,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
   );
   const dispatch = useDispatch();
   const puzzleAssets = activePuzzle.puzzleAssets;
+  const puzzleAssetsCopy = [...puzzleAssets[0]];
 
   const pushInputs = (type) => {
     setInputs([...inputs, type]);
@@ -52,7 +53,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
       instructionInputs,
       500,
       500,
-      [puzzleAssets[0][2].startLocation],
+      [puzzleAssetsCopy.slice(2)],
       () => {
         if (isRunComplete.hitStatus) {
           setToggleResetScreen(true);

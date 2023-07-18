@@ -28,7 +28,12 @@ const LowerNav = ({ activePuzzle, toggleUi }) => {
         <div>
           <h3>{activePuzzle.puzzleName}</h3>
           <h3>
-            0 out of {content[activeChapter].chapterPuzzles.length} puzzles
+            {
+              content[activeChapter].chapterPuzzles.filter((puzzle) => {
+                return puzzle.completed;
+              }).length
+            }{" "}
+            out of {content[activeChapter].chapterPuzzles.length} puzzles
             completed
           </h3>
         </div>
@@ -48,8 +53,7 @@ const LowerNav = ({ activePuzzle, toggleUi }) => {
         <button
           onClick={() => {
             toggleUi("popUp");
-          }}
-        >
+          }}>
           Open Puzzle
         </button>
       </div>

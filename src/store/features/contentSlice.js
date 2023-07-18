@@ -104,7 +104,7 @@ const initialState = {
           assets: { puzzleAssets: [0, 1], puzzleBgAssets: [2] },
         },
       ],
-      completedStatus: true,
+      completedStatus: false,
     },
     {
       chapterName: "Winter",
@@ -208,7 +208,7 @@ const initialState = {
           puzzleAssets: [[], { puzzleAssets: [0, 5], puzzleBgAssets: [5, 5] }],
         },
       ],
-      completedStatus: true,
+      completedStatus: false,
     },
     {
       chapterName: "Spring",
@@ -319,7 +319,7 @@ const initialState = {
           puzzleAssets: [[], { puzzleAssets: [0, 1], puzzleBgAssets: [7] }],
         },
       ],
-      completedStatus: true,
+      completedStatus: false,
     },
     {
       chapterName: "Summer",

@@ -19,7 +19,7 @@ const Progress = () => {
 
   const buttonBgManager = (chapterNumber) => {
     if (content[chapterNumber - 1].completedStatus) {
-      return { backgroundImage: bg1 };
+      return { backgroundColor: "white" };
     }
     return { backgroundColor: "rgb(31, 31, 31)" };
   };

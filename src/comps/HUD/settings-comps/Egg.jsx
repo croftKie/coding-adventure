@@ -2,24 +2,31 @@ import React from "react";
 import kaboom from "kaboom";
 import { useRef } from "react";
 import { images } from "../../../utils/images";
+import { useLayoutEffect } from "react";
 
 const Egg = () => {
   const canvasRef = useRef();
 
-  egg();
+  useLayoutEffect(() => {
+    egg(canvasRef.current);
+  }, []);
 
-  return <canvas ref={canvasRef}></canvas>;
+  return (
+    <div className="eggContainer">
+      <canvas ref={canvasRef}></canvas>
+    </div>
+  );
 };
 
 export default Egg;
 
-function egg(canvasRef) {
+function egg(ref) {
   const SPAWN_HEIGHT = [48, 0];
   const JUMP = 600;
   const SPEED = 200;
   const GRAVITY = 800;
 
-  kaboom({ width: 600, height: 600, canvas: canvasRef });
+  kaboom({ width: 600, height: 600, canvas: ref });
 
   loadSprite("beetle", images.eggAssets[0], {
     sliceX: 4,
@@ -38,23 +45,13 @@ function egg(canvasRef) {
 
   scene("game", () => {
     setGravity(GRAVITY);
-    const background = add([sprite("bg"), scale(0.55)]);
+    spawnDeco();
     const player = add([
       sprite("byte"),
       pos(80, 40),
       area(),
       body(),
       scale(0.2),
-    ]);
-
-    add([
-      rect(width(), SPAWN_HEIGHT[0]),
-      outline(4),
-      pos(0, height()),
-      anchor("botleft"),
-      area(),
-      body({ isStatic: true }),
-      color(127, 200, 255),
     ]);
 
     onKeyPress("space", () => {
@@ -85,7 +82,7 @@ function egg(canvasRef) {
   });
 
   scene("lose", (score) => {
-    const background = add([sprite("bg"), scale(0.55)]);
+    spawnDeco();
     add([
       sprite("byte"),
       pos(width() / 2, height() / 2 - 80),
@@ -107,7 +104,9 @@ function egg(canvasRef) {
   go("game");
 
   function jump(player, JUMP) {
-    player.jump(JUMP);
+    if (player.isGrounded()) {
+      player.jump(JUMP);
+    }
   }
   function left(player) {
     player.move(-SPEED, 0);
@@ -120,8 +119,7 @@ function egg(canvasRef) {
     const bug = add([
       sprite("beetle"),
       area(),
-      outline(4),
-      scale(3),
+      scale(2),
       pos(width(), height() - SPAWN_HEIGHT[0]),
       anchor("bot"),
       color(255, 180, 255),
@@ -129,8 +127,21 @@ function egg(canvasRef) {
       "bug",
     ]);
     bug.play("move");
-    wait(rand(1.5, 3), () => {
+    wait(rand(1.5, 2.5), () => {
       spawnBug(SPAWN_HEIGHT);
     });
+  }
+
+  function spawnDeco() {
+    const background = add([sprite("bg"), scale(0.55)]);
+    const floor = add([
+      rect(width(), SPAWN_HEIGHT[0]),
+      outline(4),
+      pos(0, height()),
+      anchor("botleft"),
+      area(),
+      body({ isStatic: true }),
+      color(127, 200, 255),
+    ]);
   }
 }

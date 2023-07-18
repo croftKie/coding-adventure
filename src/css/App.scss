@@ -1218,3 +1218,16 @@ button {
     }
   }
 }
+
+.eggContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $base-black;
+  canvas {
+    border: 6px solid $base-white;
+    border-radius: $border-radius-small;
+  }
+}

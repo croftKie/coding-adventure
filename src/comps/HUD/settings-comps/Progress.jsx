@@ -12,7 +12,10 @@ const Progress = () => {
 
   const backgroundManager = (chapterNumber) => {
     if (content[chapterNumber - 1].completedStatus) {
-      return { backgroundImage: bg1 };
+      return {
+        backgroundImage:
+          chapterNumber === 1 ? bg2 : chapterNumber === 2 ? bg3 : bg4,
+      };
     }
     return { backgroundColor: "rgb(41, 41, 41)" };
   };

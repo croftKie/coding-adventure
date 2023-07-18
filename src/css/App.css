@@ -1267,4 +1267,17 @@ button {
 }
 .tutorial ul li {
   font-size: 1rem;
+}
+
+.eggContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333333;
+}
+.eggContainer canvas {
+  border: 6px solid #fff8ef;
+  border-radius: 10px;
 }/*# sourceMappingURL=App.css.map */

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  // Content for all chapters and puzzles used within the game.
   chapters: [
     {
       chapterName: "Autumn",
@@ -447,17 +448,20 @@ const contentSlice = createSlice({
   name: "content",
   initialState,
   reducers: {
+    // sets the active chapter to completed status
     setChapterCompleteStatus: (state, action) => {
       const index = action.payload;
       state.chapters[index].completedStatus =
         !state.chapters[index].completedStatus;
     },
+    // sets the active puzzle to completed status
     setPuzzleCompleteStatus: (state, action) => {
       const chapterIndex = action.payload.chapterId;
       const puzzleIndex = action.payload.puzzleId;
       state.chapters[chapterIndex].chapterPuzzles[puzzleIndex].completed =
         !state.chapters[chapterIndex].chapterPuzzles[puzzleIndex].completed;
     },
+    // mutates the instructions for the Bug Fix puzzle type
     changeBugFixInstructions: (state, action) => {
       const chapterIndex = action.payload.chapterIndex;
       const puzzleIndex = action.payload.puzzleIndex;
@@ -466,9 +470,9 @@ const contentSlice = createSlice({
         state.chapters[chapterIndex].chapterPuzzles[puzzleIndex].inputs[
           inputToChange
         ];
-
       loc.value = action.payload.change;
     },
+    // Resets the instructions for the Bug Fix to their original form
     resetBugFixInstructions: (state, action) => {
       state.chapters[action.payload.chapterIndex].chapterPuzzles[
         action.payload.puzzleIndex
@@ -477,12 +481,14 @@ const contentSlice = createSlice({
           action.payload.puzzleIndex
         ].resetInputs;
     },
+    // mutate the inputs for the Cryptography puzzle type
     changeCryptoInput: (state, action) => {
       state.chapters[action.payload.activeChapter].chapterPuzzles[
         action.payload.activePuzzle
       ].inputs[action.payload.part][action.payload.inputIndex] =
         action.payload.value;
     },
+    // resets the inputs for the Cryptography puzzle type
     resetCryptoInput: (state, action) => {
       state.chapters[action.payload.activeChapter].chapterPuzzles[
         action.payload.activePuzzle
@@ -491,6 +497,7 @@ const contentSlice = createSlice({
           action.payload.activePuzzle
         ].resetInputs;
     },
+    // adds completed Cryptography input to be tested
     addCryptoResults: (state, action) => {
       state.chapters[action.payload.activeChapter].chapterPuzzles[
         action.payload.activePuzzle

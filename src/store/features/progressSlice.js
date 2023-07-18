@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  // Holds state on how many chapters have been completed and which is the active chapter and puzzle
   chaptersCompleted: [],
   activeChapter: localStorage.getItem("lastChapterCompleted")
     ? parseInt(localStorage.getItem("lastChapterCompleted")) + 1

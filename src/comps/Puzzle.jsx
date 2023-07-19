@@ -1,6 +1,7 @@
 // React imports
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { gameManager } from "../kaboom/gameManager.js";
 
 // asset imports
 import { images } from "../utils/images.js";
@@ -27,10 +28,17 @@ const Puzzle = ({ content, activePuzzle, activeChapter }) => {
     dispatch(updateUi(type));
   };
 
+  useLayoutEffect(() => {
+    const width = gameRef.current.parentNode.scrollWidth;
+    const height = gameRef.current.parentNode.scrollHeight;
+    gameManager(gameRef.current, width, height, toggleUi);
+  });
+
   return (
     <>
       <div style={{ backgroundImage: bg }} className="content">
         <Dialogue dialogue={activePuzzle.puzzleDialogue} />
+        <canvas ref={gameRef}></canvas>;
       </div>
       <div className="hud">
         {content[activeChapter].completedStatus ? (
@@ -38,7 +46,7 @@ const Puzzle = ({ content, activePuzzle, activeChapter }) => {
         ) : (
           <></>
         )}
-        <LowerNav activePuzzle={activePuzzle} toggleUi={toggleUi} />
+        {/* <LowerNav activePuzzle={activePuzzle} toggleUi={toggleUi} /> */}
       </div>
       {popUpStatus ? (
         <Popup activePuzzle={activePuzzle} toggleUi={toggleUi} />

@@ -25,6 +25,7 @@ const BugFix = ({ activePuzzle, setWin }) => {
       activePuzzle.inputs,
       500,
       500,
+      [],
       () => {
         if (
           isPathComplete(

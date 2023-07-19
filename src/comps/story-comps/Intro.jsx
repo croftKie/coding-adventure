@@ -1,7 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { readContent } from "../../store/features/contentSlice";
-import { activeChapterSelector } from "../../store/features/progressSlice";
 import { introSelector } from "../../store/features/storySlice";
 import { gsap } from "gsap";
 import { useRef } from "react";
@@ -10,13 +8,12 @@ import { images } from "../../utils/images";
 import { updateUi } from "../../store/features/UiSlice";
 
 const Intro = () => {
-  const activeChapter = useSelector(activeChapterSelector);
   const introContent = useSelector(introSelector);
-  const content = useSelector(readContent);
   const textRef = useRef();
   const imgRef = useRef();
   const dispatch = useDispatch();
 
+  // creates GSAP timeline for text and inits after load
   useLayoutEffect(() => {
     const tl = gsap.timeline();
     Array.from(textRef.current.children).forEach((child) => {

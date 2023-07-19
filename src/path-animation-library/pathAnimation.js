@@ -1,10 +1,13 @@
 import { gsap } from "gsap";
 
+// restores current animation path to default values
 export const resetAnimationPath = (element, elementStartLocation) => {
   gsap.to(element, { x: elementStartLocation.x, y: elementStartLocation.y });
 };
 
+// returns boolean if GSAP timeline has completed and element has reached specified location
 export const isPathComplete = (element, elementLocation, endLocation) => {
+  console.log(element, elementLocation, endLocation);
   const size = element.getBoundingClientRect();
   if (
     elementLocation.x <= endLocation.x + size.width &&
@@ -18,6 +21,7 @@ export const isPathComplete = (element, elementLocation, endLocation) => {
   }
 };
 
+// animator logic to seperate single inputs and repeatable inputs
 export const animator = (
   element,
   inputs,
@@ -71,7 +75,6 @@ export const animator = (
 
   let obstacleHit = false;
   tl.getChildren().forEach((anim) => {
-    console.log(obstacles[0]);
     if (obstacles.length > 0) {
       if (obstacleHit) {
         tl.remove(anim);
@@ -88,10 +91,13 @@ export const animator = (
       }
     }
   });
+
+  // _animatePathWithObstacle(obstacleHit, tl, obstacles);
   tl.resume();
   return { x: X, y: Y, hitStatus: obstacleHit };
 };
 
+// adds each input to the timeline
 const _animatePath = (
   element,
   type,
@@ -146,60 +152,28 @@ const _animatePath = (
   }
 };
 
-const _animatePathWithObstacles = (
-  element,
-  type,
-  el,
-  tl,
-  height,
-  width,
-  startingX,
-  startingY
-) => {
-  let X = startingX;
-  let Y = startingY;
-  switch (type) {
-    case "forward":
-      if (Y - el.value < 0) {
-        tl.to(element, { y: 0 });
-        Y = 0;
+// new obstacle collision manager
+const _animatePathWithObstacles = (obstacleHit, tl, obstacles) => {
+  tl.getChildren().forEach((anim) => {
+    if (obstacles.length > 0) {
+      if (obstacleHit) {
+        tl.remove(anim);
       } else {
-        tl.to(element, { y: Y - Math.abs(el.value) });
-        Y -= Math.abs(el.value);
+        for (let i = 0; i < obstacles[0].length; i++) {
+          if (
+            anim.vars.y === obstacles[0][i].startLocation[0].y &&
+            anim.vars.x === obstacles[0][i].startLocation[0].x
+          ) {
+            console.log("hit obstacle");
+            obstacleHit = true;
+          }
+        }
       }
-      return { Y: Y };
-    case "backwards":
-      if (Y + el.value > height) {
-        tl.to(element, { y: height });
-        Y = height;
-      } else {
-        tl.to(element, { y: Y + Math.abs(el.value) });
-        Y += Math.abs(el.value);
-      }
-      return { Y: Y };
-    case "right":
-      if (X + el.value > width) {
-        tl.to(element, { x: width });
-        X = width;
-      } else {
-        tl.to(element, { x: X + Math.abs(el.value) });
-        X += Math.abs(el.value);
-      }
-      return { X: X };
-    case "left":
-      if (X - el.value < 0) {
-        tl.to(element, { x: 0 });
-        X = 0;
-      } else {
-        tl.to(element, { x: X - Math.abs(el.value) });
-        X -= Math.abs(el.value);
-      }
-      return { X: X };
-    default:
-      break;
-  }
+    }
+  });
 };
 
+// returns the active position of the element - performs string manipulation
 const _getPosition = (element) => {
   const pos = element.style.transform
     .slice(
@@ -214,12 +188,14 @@ const _getPosition = (element) => {
   return { X: parseInt(pos[0]), Y: parseInt(pos[1]) };
 };
 
+// Creates a initial GSAP timeline and pauses for population
 const _initTimeline = (onComplete) => {
   let tl = gsap.timeline({ onComplete: onComplete, repeatDelay: 1 });
   tl.pause();
   return tl;
 };
 
+// utility manager for repeatable inputs
 const _utils = (inputs) => {
   const repeatStartIndex = inputs.findIndex((el) => el.type === "repeat");
   const repeatEndIndex = inputs.findIndex((el) => el.type === "end");

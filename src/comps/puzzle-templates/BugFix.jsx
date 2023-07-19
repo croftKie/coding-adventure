@@ -7,13 +7,11 @@ import {
   isPathComplete,
   resetAnimationPath,
 } from "../../path-animation-library/pathAnimation.js";
-import { clearInstruction } from "../../store/features/currentInput.js";
 import {
   changeBugFixInstructions,
   resetBugFixInstructions,
 } from "../../store/features/contentSlice.js";
 import { activeChapterSelector } from "../../store/features/progressSlice.js";
-import { readContent } from "../../store/features/contentSlice.js";
 const BugFix = ({ activePuzzle, setWin }) => {
   const puzzleAssets = activePuzzle.puzzleAssets;
   const startLocs = activePuzzle.startLocations;
@@ -21,7 +19,6 @@ const BugFix = ({ activePuzzle, setWin }) => {
   const goalImg = useRef();
   const activeChapter = useSelector(activeChapterSelector);
   const dispatch = useDispatch();
-  const content = useSelector(readContent);
   const run = () => {
     const isRunComplete = animator(
       charImg.current,
@@ -67,8 +64,6 @@ const BugFix = ({ activePuzzle, setWin }) => {
       })
     );
   };
-
-  console.log(activePuzzle.inputs);
 
   return (
     <div className="bugFix-puzzle">

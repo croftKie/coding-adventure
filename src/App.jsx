@@ -17,6 +17,9 @@ import Loading from "./comps/Loading";
 import Puzzle from "./comps/Puzzle.jsx";
 import Intro from "./comps/story-comps/Intro";
 import Landscape from "./comps/Landscape";
+import Msg from "./comps/tutorial/TutModal.jsx";
+import Ending from "./comps/story-comps/Ending";
+
 // Store import statements
 import {
   activeChapterSelector,
@@ -34,8 +37,6 @@ import {
   setChapterCompleteStatus,
 } from "./store/features/contentSlice";
 import { puzzleTutorialSelector } from "./store/features/tutorialSlice";
-import Msg from "./comps/tutorial/TutModal.jsx";
-import Ending from "./comps/story-comps/Ending";
 
 function App() {
   // component variable declarations
@@ -76,6 +77,7 @@ function App() {
     (puzzle) => puzzle.id === currentPuzzle
   );
 
+  // changes active tab styling on top bar
   const switchBarStyling = (option) => {
     Array.from(barRef.current.children).forEach((child, i) => {
       child.classList.remove("active");
@@ -85,6 +87,7 @@ function App() {
     });
   };
 
+  // populates and inits toast message
   const showToastMessage = () => {
     console.log("hello");
     toast(<Msg tutorial={puzzleTutorial} />, { autoClose: false });
@@ -103,11 +106,10 @@ function App() {
     }
   }, [content[activeChapter].chapterPuzzles]);
 
+  // Returns based on splash screen status and chapter complete status and default return
   if (screenSize.width - 200 <= screenSize.height) {
     return <Landscape />;
   }
-
-  // Returns based on splash screen status and chapter complete status and default return
   if (splashStatus) {
     return <Splash />;
   }

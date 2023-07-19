@@ -1,5 +1,6 @@
 import React from "react";
 
+// returns tutorial toast jsx
 const Msg = (props) => {
   const tutorial = props.tutorial;
   return (

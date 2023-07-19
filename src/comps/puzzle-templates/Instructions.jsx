@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import InstructionInput from "./instructions-comps/InstructionInput";
 import {
   instructionInputSelector,

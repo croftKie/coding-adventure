@@ -17,8 +17,7 @@ const WinCondition = ({ setWin, toggleUi }) => {
       <div className="topbar"></div>
       <div className="content">
         <div className="info">
-          <h1>Congratulations, you beat the INSERT PUZZLE NAME!</h1>
-          <p>LITTLE BLURB THAT EXPLAINS MORE OF THE STORY</p>
+          <h1>Congratulations, you completed the puzzle!</h1>
         </div>
         <div className="win-image">
           <img src={images.puzzleAssets[0]} alt="" />
@@ -34,15 +33,13 @@ const WinCondition = ({ setWin, toggleUi }) => {
               );
               toggleUi("popUp");
               setWin(false);
-            }}
-          >
+            }}>
             Mark as Complete
           </button>
           <button
             onClick={() => {
               setWin(false);
-            }}
-          >
+            }}>
             Improve your answer
           </button>
         </div>

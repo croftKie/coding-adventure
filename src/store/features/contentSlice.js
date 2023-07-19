@@ -57,7 +57,6 @@ const initialState = {
           ],
           endLocations: [{ x: 150, y: 150 }],
           completed: false,
-          assets: { puzzleAssets: [1, 4], puzzleBgAssets: [1, 1] },
           inputs: [
             { type: "forward", value: 200 },
             { type: "left", value: 200 },
@@ -70,6 +69,7 @@ const initialState = {
             { type: "backwards", value: 100 },
             { type: "right", value: 100 },
           ],
+          puzzleAssets: [[], { puzzleAssets: [1, 4], puzzleBgAssets: [1, 1] }],
         },
         {
           puzzleName: "The Stone Door",
@@ -102,7 +102,7 @@ const initialState = {
           ],
           results: [],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [2] },
+          puzzleAssets: [[], { puzzleAssets: [0, 1], puzzleBgAssets: [2] }],
         },
       ],
       completedStatus: false,

@@ -1,19 +1,18 @@
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { gsap } from "gsap";
 
 import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 
-import { images } from "../utils/images";
-
 import Instructions from "./puzzle-templates/Instructions";
 import BugFix from "./puzzle-templates/BugFix";
 import Cryptography from "./puzzle-templates/Cryptography";
 import WinCondition from "./puzzle-templates/WinCondition";
 import Msg from "./tutorial/TutModal";
-import { popupTutorialSelector } from "../store/features/tutorialSlice";
 import Topbar from "./util-comps/Topbar";
+
+import { popupTutorialSelector } from "../store/features/tutorialSlice";
 
 const Popup = ({ activePuzzle, toggleUi }) => {
   // variable declarations
@@ -21,10 +20,12 @@ const Popup = ({ activePuzzle, toggleUi }) => {
   const popupRef = useRef();
   const popupTutorial = useSelector(popupTutorialSelector);
 
+  // init and populate toast
   const showToastMessage = () => {
     toast(<Msg tutorial={popupTutorial} />, { autoClose: false });
   };
 
+  // close popup on press
   const closeOnPress = () => {
     gsap.to(popupRef.current, { opacity: 0 });
     setTimeout(() => {

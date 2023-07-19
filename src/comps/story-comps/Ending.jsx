@@ -13,6 +13,7 @@ const Ending = () => {
   const imgRef = useRef();
   const dispatch = useDispatch();
 
+  // creates GSAP timeline for text and inits after load
   useLayoutEffect(() => {
     const tl = gsap.timeline();
     Array.from(textRef.current.children).forEach((child) => {

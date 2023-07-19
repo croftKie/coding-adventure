@@ -5,7 +5,7 @@ import { TextPlugin } from "gsap/TextPlugin";
 import { useRef } from "react";
 import { useLayoutEffect } from "react";
 import Topbar from "../util-comps/Topbar";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import Msg from "../tutorial/TutModal";
 import { byteTutorialSelector } from "../../store/features/tutorialSlice";
 import { useSelector } from "react-redux";
@@ -13,9 +13,12 @@ import { useSelector } from "react-redux";
 gsap.registerPlugin(TextPlugin);
 
 const Dialogue = ({ dialogue }) => {
+  // variable declaration
   const byteTutorial = useSelector(byteTutorialSelector);
   const dialogueRef = useRef();
   const textRef = useRef();
+
+  //set up GSAP timeline for dialogue box - init on final load
   useLayoutEffect(() => {
     const tl = gsap.timeline();
     tl.to(dialogueRef.current, { top: 10, delay: 2 });
@@ -27,6 +30,7 @@ const Dialogue = ({ dialogue }) => {
     gsap.to(dialogueRef.current, { top: "-22%" });
   };
 
+  // init and populate tutorial toast
   const showToastMessage = () => {
     toast(<Msg tutorial={byteTutorial} />, { autoClose: false });
   };

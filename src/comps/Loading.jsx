@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { readContent } from "../store/features/contentSlice";
-
 import {
   changeCurrentChapter,
   activeChapterSelector,
@@ -10,9 +9,11 @@ import {
 } from "../store/features/progressSlice";
 
 const Loading = () => {
+  // variable declarations
   const dispatch = useDispatch();
   const activeChapter = useSelector(activeChapterSelector);
   const content = useSelector(readContent);
+
   return (
     <div className="loading">
       <h1>
@@ -30,8 +31,7 @@ const Loading = () => {
         onClick={() => {
           dispatch(changeCurrentChapter(activeChapter + 1));
           dispatch(addCompletedChapter(activeChapter));
-        }}
-      >
+        }}>
         Go to next chapter
       </button>
     </div>

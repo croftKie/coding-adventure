@@ -1,22 +1,24 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { gsap } from "gsap";
+import { toast } from "react-toastify";
 
 import { images } from "../utils/images";
+
+import Topbar from "./util-comps/Topbar";
+import Egg from "./HUD/settings-comps/Egg";
+import MakePuzzle from "./MakePuzzle";
+import Msg from "./tutorial/TutModal";
 
 import {
   changeCurrentChapter,
   activeChapterSelector,
 } from "../store/features/progressSlice";
 import { updateUi } from "../store/features/UiSlice";
-import MakePuzzle from "./MakePuzzle";
-import { ToastContainer, toast } from "react-toastify";
-import Msg from "./tutorial/TutModal";
 import { splashTutorialSelector } from "../store/features/tutorialSlice";
-import Topbar from "./util-comps/Topbar";
-import Egg from "./HUD/settings-comps/Egg";
 
 const Splash = () => {
+  const dispatch = useDispatch();
   const [stats, setStats] = useState(false);
   const [makePuzzle, setMakePuzzle] = useState(false);
   const [egg, setEgg] = useState(false);
@@ -25,9 +27,9 @@ const Splash = () => {
   const cardThree = useRef();
   const logoRef = useRef();
   const activeChapter = useSelector(activeChapterSelector);
-  const dispatch = useDispatch();
   const splashTutorial = useSelector(splashTutorialSelector);
 
+  // Splash card animations
   const onEnter = (ref) => {
     gsap.to(ref.current, { scale: 1.1, backgroundColor: "#5AA9E6" });
   };
@@ -38,17 +40,17 @@ const Splash = () => {
     gsap.to(ref.current, { rotation: 360, repeat: 4, yoyo: true });
   };
 
+  // assigns 0 chapter on "start new" or fetches active from local storage
   const assignChapter = (chapter) => {
     dispatch(changeCurrentChapter(chapter));
   };
 
+  // init and populate toast message
   const showToastMessage = () => {
     toast(<Msg tutorial={splashTutorial} />, { autoClose: false });
   };
 
-  if (stats) {
-    return <Statistics setStats={setStats} />;
-  }
+  // returns for other modes
   if (makePuzzle) {
     return <MakePuzzle setMakePuzzle={setMakePuzzle} />;
   }

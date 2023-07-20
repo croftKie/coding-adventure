@@ -10,6 +10,7 @@ import {
 import {
   changeBugFixInstructions,
   resetBugFixInstructions,
+  setPuzzleCompleteStatus,
 } from "../../store/features/contentSlice.js";
 import { activeChapterSelector } from "../../store/features/progressSlice.js";
 const BugFix = ({ activePuzzle, setWin }) => {
@@ -25,6 +26,7 @@ const BugFix = ({ activePuzzle, setWin }) => {
       activePuzzle.inputs,
       500,
       500,
+      [],
       () => {
         if (
           isPathComplete(

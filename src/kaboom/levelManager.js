@@ -6,7 +6,7 @@ export const levels = [
       "              ",
       "              ",
       "              ",
-      "    P       A",
+      "    P       A ",
       "##############",
     ],
     [
@@ -15,7 +15,7 @@ export const levels = [
       "              ",
       "              ",
       "              ",
-      "    P       A",
+      "    P       A ",
       "##############",
     ],
     [
@@ -24,7 +24,7 @@ export const levels = [
       "              ",
       "              ",
       "              ",
-      "    P         ",
+      "    P       A ",
       "##############",
     ],
   ],
@@ -124,6 +124,7 @@ export const levelOptions = [
     tiles: {
       A: () => [sprite("arrow"), area(), scale(1), "arrow"],
       P: () => [sprite("puzzle"), area(), scale(1), "puzzle"],
+      B: () => [sprite("exit"), area(), scale(1), "exit"],
       "#": () => [sprite("autumnGround"), area(), body({ isStatic: true })],
       "-": () => [
         sprite("autumnGroundCenter"),

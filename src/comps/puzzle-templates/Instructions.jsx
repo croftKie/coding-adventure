@@ -17,6 +17,7 @@ import { images } from "../../utils/images";
 import ResetCondition from "./ResetCondition";
 import Msg from "../tutorial/TutModal";
 import { instructionPuzzleTutorialSelector } from "../../store/features/tutorialSlice";
+import { setPuzzleCompleteStatus } from "../../store/features/contentSlice";
 
 const Instructions = ({ activePuzzle, setWin }) => {
   const [inputs, setInputs] = useState([]);

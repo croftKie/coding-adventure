@@ -24,7 +24,7 @@ const initialState = {
             "... I lost it up that tree!",
             "Could you give me instructions to get it back, whilst I climb the tree?",
           ],
-          completed: false,
+          completed: true,
           puzzleAssets: [
             [
               {
@@ -56,7 +56,7 @@ const initialState = {
             { x: 150, y: 150 },
           ],
           endLocations: [{ x: 150, y: 150 }],
-          completed: false,
+          completed: true,
           inputs: [
             { type: "forward", value: 200 },
             { type: "left", value: 200 },
@@ -101,7 +101,7 @@ const initialState = {
             [0, 0, 0],
           ],
           results: [],
-          completed: false,
+          completed: true,
           puzzleAssets: [[], { puzzleAssets: [0, 1], puzzleBgAssets: [2] }],
         },
       ],

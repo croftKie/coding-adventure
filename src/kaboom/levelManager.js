@@ -1,6 +1,56 @@
 export const levels = [
   [
     [
+      "                            ",
+      "                            ",
+      "                            ",
+      "                            ",
+      "                            ",
+      "                            ",
+      "                            ",
+      "                            ",
+      "                            ",
+      "                            ",
+      "            P           A   ",
+      "                            ",
+      "############################",
+      "############################",
+    ],
+    [
+      "                            ",
+      "                            ",
+      "                            ",
+      "                            ",
+      "                            ",
+      "              P             ",
+      "                            ",
+      "            #####           ",
+      "                            ",
+      "                            ",
+      "  A                         ",
+      "                            ",
+      "############################",
+      "############################",
+    ],
+    [
+      "                            ",
+      "                            ",
+      "                            ",
+      "                            ",
+      "        E                   ",
+      "                            ",
+      "       ####                 ",
+      "                            ",
+      "    ##                  P   ",
+      "                            ",
+      "                       #####",
+      "                            ",
+      "############################",
+      "############################",
+    ],
+  ],
+  [
+    [
       "              ",
       "              ",
       "              ",
@@ -27,7 +77,7 @@ export const levels = [
       "              ",
       "              ",
       "              ",
-      "            P           A   ",
+      "  A         P               ",
       "                            ",
       "############################",
       "############################",
@@ -51,7 +101,7 @@ export const levels = [
   ],
 ];
 
-export const levelOptions = [
+export const options = [
   {
     tileWidth: 64,
     tileHeight: 64,
@@ -68,12 +118,13 @@ export const levelOptions = [
     },
   },
   {
-    tileWidth: 128,
-    tileHeight: 128,
+    tileWidth: 64,
+    tileHeight: 64,
     tiles: {
       A: () => [sprite("arrow"), area(), scale(1), "arrow"],
       P: () => [sprite("puzzle"), area(), scale(1), "puzzle"],
-      "#": () => [sprite("snow"), area(), body({ isStatic: true })],
+      E: () => [sprite("exit"), area(), scale(1), "exit"],
+      "#": () => [sprite("snow"), area(), scale(0.5), body({ isStatic: true })],
     },
   },
   {

@@ -11,7 +11,7 @@ export function assetLoader() {
         idle: {
           from: 0,
           to: 36,
-          speed: 72,
+          speed: 36,
           loop: true,
         },
       },
@@ -29,6 +29,21 @@ export function assetLoader() {
           to: 36,
           speed: 72,
           loop: true,
+        },
+      },
+    }
+  );
+  loadSprite(
+    "char_jump",
+    "../../public/assets/overworld/player/theboy_jump.png",
+    {
+      sliceX: 8,
+      sliceY: 5,
+      anims: {
+        jump: {
+          from: 2,
+          to: 17,
+          speed: 36,
         },
       },
     }
@@ -59,9 +74,9 @@ export function assetLoader() {
     },
   });
 
-  loadSprite("1-1", images.bgAssets[0]);
-  loadSprite("1-2", images.bgAssets[1]);
-  loadSprite("1-3", images.bgAssets[2]);
+  loadSprite("1-0", images.bgAssets[0]);
+  loadSprite("1-1", images.bgAssets[1]);
+  loadSprite("1-2", images.bgAssets[2]);
 
   loadSprite("2-1", images.bgAssets[3]);
   loadSprite("2-2", images.bgAssets[4]);
@@ -74,6 +89,11 @@ export function assetLoader() {
   loadSprite("4-1", images.bgAssets[9]);
   loadSprite("4-2", images.bgAssets[10]);
   loadSprite("4-3", images.bgAssets[11]);
+
+  loadSprite("tut-1", images.tutorialAssets[0]);
+  loadSprite("tut-2", images.tutorialAssets[1]);
+  loadSprite("tut-3", images.tutorialAssets[2]);
+  loadSprite("tut-4", images.tutorialAssets[3]);
 
   loadSprite("note", "../../public/assets/overworld/ui/music.png");
 }

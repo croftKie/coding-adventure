@@ -1,7 +1,7 @@
 import kaboom from "kaboom";
 import { assetLoader } from "./assetLoader";
-import { levelIndicators, settings } from "./settings";
-import { levels, levelOptions } from "./levelManager";
+import { settings } from "./settings";
+import { levels, options } from "./levelManager";
 import { soundLoader } from "./assetLoader";
 import { movementManager } from "./movementManager";
 
@@ -18,14 +18,120 @@ export function gameManager(
   assetLoader();
   initSettings();
 
+  scene("tut-1", () => {
+    const background = add([
+      sprite(settings.bgRef[settings.chapter][settings.level]),
+    ]);
+    const groundtiles = addLevel(
+      levels[settings.chapter][settings.level],
+      options[settings.chapter]
+    );
+    const bgTut = add([
+      pos(width / 2, height / 2),
+      rect(width - 40, height - 40),
+      anchor("center"),
+      outline(4),
+      area(),
+    ]);
+    const tutorialScreen = add([
+      sprite(`tut-${settings.current_tutorial}`),
+      scale(0.7),
+      pos(100, height / 2),
+      anchor("left"),
+    ]);
+
+    if (settings.current_tutorial > 1) {
+      const backButton = add([
+        pos(width - 300, 200),
+        rect(250, 75),
+        anchor("right"),
+        outline(4),
+        area(),
+        "back",
+      ]);
+
+      const backButtonText = add([
+        text("GO BACK"),
+        pos(width - 300, 200),
+        anchor("right"),
+        color(1, 0, 0),
+      ]);
+
+      backButton.onClick(() => {
+        current_tutorial -= 1;
+        tutorialScreen.use(sprite(`tut-${current_tutorial}`));
+        go("tut-1");
+      });
+    }
+
+    if (settings.current_tutorial < 4) {
+      const forwardButton = add([
+        pos(width - 300, 500),
+        rect(250, 75),
+        anchor("right"),
+        outline(4),
+        area(),
+        "forward",
+      ]);
+
+      const forwardButtonText = add([
+        text("NEXT"),
+        pos(width - 300, 500),
+        anchor("right"),
+        color(1, 0, 0),
+      ]);
+
+      forwardButton.onClick(() => {
+        settings.current_tutorial += 1;
+        sprite(`tut-${settings.current_tutorial}`), go("tut-1");
+      });
+    }
+
+    if (settings.current_tutorial === 4) {
+      const exitButton = add([
+        pos(width - 300, 500),
+        rect(250, 75),
+        anchor("right"),
+        outline(4),
+        area(),
+        "forward",
+      ]);
+
+      const exitButtonText = add([
+        text("End Tutorial"),
+        pos(width - 300, 500),
+        anchor("right"),
+        color(1, 0, 0),
+      ]);
+
+      exitButton.onClick(() => {
+        go("1-1");
+      });
+    }
+  });
+
   scene("1-1", () => {
-    initBackgroundAssets(levelIndicators[settings.current_scene]);
+    let groundtiles;
+
+    const background = add([
+      sprite(settings.bgRef[settings.chapter][settings.level]),
+    ]);
+
+    groundtiles = addLevel(
+      levels[settings.chapter][settings.level],
+      options[settings.chapter]
+    );
+    // left invis
+    add([rect(16, 2000), area(), body({ isStatic: true }), pos(-20, 0)]);
+    // right invis
+    add([rect(16, 2000), area(), body({ isStatic: true }), pos(width, 0)]);
+
     initHUDAssets();
     HUDInteractionManager();
 
     const player = add([
       pos(80, height - 118),
-      scale(settings.player_scale),
+      scale(settings.PLAYER_SCALE),
       area({ shape: new Rect(vec2(0), 100, 100) }),
       anchor("bot"),
       body({ stickToPlatform: true }),
@@ -38,7 +144,7 @@ export function gameManager(
     onCollide("char", "puzzle", () => {
       const puzzleText = add([
         text(`Press "E" to open the next puzzle`, {
-          size: settings.text_size,
+          size: settings.TEXT_SIZE,
         }),
         pos(width / 2, height - 50),
         anchor("center"),
@@ -56,141 +162,25 @@ export function gameManager(
     onCollide("char", "arrow", () => {
       const puzzleText = add([
         text(`Go to the next puzzle`, {
-          size: settings.text_size,
+          size: settings.TEXT_SIZE,
         }),
         pos(width / 2, height - 50),
         anchor("center"),
       ]);
 
       const change = onKeyPress("e", () => {
-        if ([2, 5, 8, 11].includes(settings.current_scene)) {
-          settings.level = 0;
-        } else {
-          settings.level += 1;
-        }
-        settings.current_scene += 1;
+        settings.level += 1;
+        settings.bg += 1;
         changeActivePuzzle(settings.level);
-        go(levelIndicators[settings.current_scene]);
-      });
-      onCollideEnd("char", "arrow", () => {
-        puzzleText.destroy();
-        change.cancel();
-      });
-    });
-  });
-  scene("1-2", () => {
-    initBackgroundAssets(levelIndicators[settings.current_scene]);
-    initHUDAssets();
-    HUDInteractionManager();
-
-    const player = add([
-      pos(80, height - 118),
-      scale(settings.player_scale),
-      area({ shape: new Rect(vec2(0), 100, 100) }),
-      anchor("bot"),
-      body({ stickToPlatform: true }),
-      "char",
-    ]);
-    player.use(sprite("char_idle"));
-    player.play("idle");
-    movementManager(player, settings);
-
-    onCollide("char", "puzzle", () => {
-      const puzzleText = add([
-        text(`Press "E" to open the next puzzle`, {
-          size: settings.text_size,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
-      ]);
-
-      const popup = onKeyPress("e", () => {
-        toggleUi("popUp");
-      });
-      onCollideEnd("char", "puzzle", () => {
-        puzzleText.destroy();
-        popup.cancel();
-      });
-    });
-
-    onCollide("char", "arrow", () => {
-      const puzzleText = add([
-        text(`Go to the next puzzle`, {
-          size: settings.text_size,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
-      ]);
-
-      const change = onKeyPress("e", () => {
-        if ([2, 5, 8, 11].includes(settings.current_scene)) {
-          settings.level = 0;
-        } else {
-          settings.level += 1;
-        }
-        settings.current_scene += 1;
-        changeActivePuzzle(settings.level);
-        go(levelIndicators[settings.current_scene]);
-      });
-      onCollideEnd("char", "arrow", () => {
-        puzzleText.destroy();
-        change.cancel();
-      });
-    });
-  });
-  scene("1-3", () => {
-    initBackgroundAssets(levelIndicators[settings.current_scene]);
-    initHUDAssets();
-    HUDInteractionManager();
-
-    const player = add([
-      pos(80, height - 118),
-      scale(settings.player_scale),
-      area({ shape: new Rect(vec2(0), 100, 100) }),
-      anchor("bot"),
-      body({ stickToPlatform: true }),
-      "char",
-    ]);
-    player.use(sprite("char_idle"));
-    player.play("idle");
-    movementManager(player, settings);
-
-    onCollide("char", "puzzle", () => {
-      const puzzleText = add([
-        text(`Press "E" to open the next puzzle`, {
-          size: settings.text_size,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
-      ]);
-
-      const popup = onKeyPress("e", () => {
-        toggleUi("popUp");
-      });
-      onCollideEnd("char", "puzzle", () => {
-        puzzleText.destroy();
-        popup.cancel();
-      });
-    });
-
-    onCollide("char", "arrow", () => {
-      const puzzleText = add([
-        text(`Go to the next puzzle`, {
-          size: settings.text_size,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
-      ]);
-
-      const change = onKeyPress("e", () => {
-        if ([2, 5, 8, 11].includes(settings.current_scene)) {
-          settings.level = 0;
-        } else {
-          settings.level += 1;
-        }
-        settings.current_scene += 1;
-        changeActivePuzzle(settings.level);
-        go(levelIndicators[settings.current_scene]);
+        background.use(
+          sprite(settings.bgRef[settings.chapter][settings.level])
+        );
+        groundtiles.destroy();
+        groundtiles = addLevel(
+          levels[settings.chapter][settings.level],
+          options[settings.level_options]
+        );
+        player.flipX = !player.flipX;
       });
       onCollideEnd("char", "arrow", () => {
         puzzleText.destroy();
@@ -200,218 +190,46 @@ export function gameManager(
 
     onCollide("char", "exit", () => {
       const puzzleText = add([
-        text(`Exit the chapter`, {
-          size: settings.text_size,
+        text(`Go to the next puzzle`, {
+          size: settings.TEXT_SIZE,
         }),
         pos(width / 2, height - 50),
         anchor("center"),
       ]);
 
       const change = onKeyPress("e", () => {
-        if ([2, 5, 8, 11].includes(settings.current_scene)) {
+        if (settings.level === 2) {
           settings.level = 0;
-          settings.level_options = 1;
         } else {
           settings.level += 1;
         }
-        settings.current_scene += 1;
-        changeActivePuzzle(settings.level);
-        go(levelIndicators[settings.current_scene]);
+        settings.chapter += 1;
+        changeActiveChapter(settings.chapter);
+
+        background.use(
+          sprite(settings.bgRef[settings.chapter][settings.level])
+        );
+        groundtiles.destroy();
+        groundtiles = addLevel(
+          levels[settings.chapter][settings.level],
+          options[settings.chapter]
+        );
+        player.flipX = !player.flipX;
       });
-      onCollideEnd("char", "arrow", () => {
+
+      onCollideEnd("char", "exit", () => {
         puzzleText.destroy();
         change.cancel();
       });
     });
   });
 
-  scene("2-1", () => {
-    const background = add([sprite("2-1-bg")]);
-    console.log(settings.level);
-    const groundtiles = addLevel(
-      levels[1][settings.level],
-      levelOptions[settings.level]
-    );
-
-    const player = add([
-      sprite("char_idle"),
-      pos(80, height - 118),
-      scale(settings.player_scale),
-      area({ shape: new Rect(vec2(0), 100, 100) }),
-      anchor("bot"),
-      body({ stickToPlatform: true }),
-      "char",
-    ]);
-    player.play("idle");
-    movementManager(player, settings);
-
-    player.onCollide("puzzle", () => {
-      const puzzleText = add([
-        text(`Press "E" to open the next puzzle`, {
-          size: settings.text_size,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
-      ]);
-
-      const popup = onKeyPress("e", () => {
-        toggleUi("popUp");
-      });
-      player.onCollideEnd("puzzle", () => {
-        puzzleText.destroy();
-        popup.cancel();
-      });
-    });
-
-    player.onCollide("arrow", () => {
-      const puzzleText = add([
-        text(`Go to the next puzzle`, {
-          size: settings.text_size,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
-      ]);
-
-      const change = onKeyPress("e", () => {
-        settings.level += 1;
-        changeActivePuzzle(1);
-        go("1-2");
-      });
-      player.onCollideEnd("arrow", () => {
-        puzzleText.destroy();
-        change.cancel();
-      });
-    });
-  });
-  scene("2-2", () => {
-    const background = add([sprite("2-2-bg")]);
-    const groundtiles = addLevel(
-      levels[0][settings.level],
-      levelOptions[settings.level]
-    );
-
-    const player = add([
-      sprite("char_idle"),
-      pos(80, height - 118),
-      scale(settings.player_scale),
-      area({ shape: new Rect(vec2(0), 100, 100) }),
-      anchor("bot"),
-      body({ stickToPlatform: true }),
-      "char",
-    ]);
-    player.play("idle");
-    movementManager(player, settings);
-
-    player.onCollide("puzzle", () => {
-      const puzzleText = add([
-        text(`Press "E" to open the next puzzle`, {
-          size: settings.text_size,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
-      ]);
-
-      const popup = onKeyPress("e", () => {
-        toggleUi("popUp");
-      });
-      player.onCollideEnd("puzzle", () => {
-        puzzleText.destroy();
-        popup.cancel();
-      });
-    });
-
-    player.onCollide("arrow", () => {
-      const puzzleText = add([
-        text(`Go to the next puzzle`, {
-          size: settings.text_size,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
-      ]);
-
-      const change = onKeyPress("e", () => {
-        settings.level += 1;
-        changeActivePuzzle(2);
-        go("1-2");
-      });
-      player.onCollideEnd("arrow", () => {
-        puzzleText.destroy();
-        change.cancel();
-      });
-    });
-  });
-  scene("2-3", () => {
-    const background = add([sprite("2-3-bg")]);
-    const groundtiles = addLevel(
-      levels[0][settings.level],
-      levelOptions[settings.level]
-    );
-
-    const player = add([
-      sprite("char_idle"),
-      pos(80, height - 118),
-      scale(settings.player_scale),
-      area({ shape: new Rect(vec2(0), 100, 100) }),
-      anchor("bot"),
-      body({ stickToPlatform: true }),
-      "char",
-    ]);
-    player.play("idle");
-    movementManager(player, settings);
-
-    player.onCollide("puzzle", () => {
-      const puzzleText = add([
-        text(`Press "E" to open the next puzzle`, {
-          size: settings.text_size,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
-      ]);
-
-      const popup = onKeyPress("e", () => {
-        toggleUi("popUp");
-      });
-      player.onCollideEnd("puzzle", () => {
-        puzzleText.destroy();
-        popup.cancel();
-      });
-    });
-
-    player.onCollide("arrow", () => {
-      const puzzleText = add([
-        text(`Go to the next puzzle`, {
-          size: settings.text_size,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
-      ]);
-
-      const change = onKeyPress("e", () => {
-        settings.level = 0;
-        changeActivePuzzle(0);
-        go("1-2");
-      });
-      player.onCollideEnd("arrow", () => {
-        puzzleText.destroy();
-        change.cancel();
-      });
-    });
-  });
-
-  go("1-1");
+  go("tut-1");
 }
 
 // Initialisation Functions
 // Calling these sets up the background assets and initial settings
 // Refer above for preferred call point
-
-function initBackgroundAssets(bg) {
-  const background = add([sprite(bg)]);
-  const groundtiles = addLevel(
-    levels[0][settings.level],
-    levelOptions[settings.level_options]
-  );
-}
 
 function initSettings() {
   setGravity(settings.GRAVITY);

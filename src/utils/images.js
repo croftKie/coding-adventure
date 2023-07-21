@@ -66,4 +66,10 @@ export const images = {
     "./assets/egg/byte_right.png",
     "./assets/egg/game_background_1.png",
   ],
+  tutorialAssets: [
+    "./assets/overworld/tutorial/1.png",
+    "./assets/overworld/tutorial/2.png",
+    "./assets/overworld/tutorial/3.png",
+    "./assets/overworld/tutorial/4.png",
+  ],
 };

@@ -15,6 +15,7 @@ import { popUpSelector, updateUi } from "../store/features/UiSlice";
 import {
   changeCurrentPuzzle,
   changeCurrentChapter,
+  addCompletedChapter,
 } from "../store/features/progressSlice.js";
 import {
   setChapterCompleteStatus,
@@ -51,14 +52,16 @@ const Puzzle = ({ content }) => {
     );
     dispatch(changeCurrentPuzzle(nextPuzzleId));
   };
-  const changeActiveChapter = (nextChapterIndex) => {
+  const changeActiveChapter = (nextChapter) => {
     dispatch(setChapterCompleteStatus(activeChapter));
-    dispatch(changeCurrentChapter(nextChapterIndex));
+    dispatch(addCompletedChapter(activeChapter));
+    dispatch(changeCurrentChapter(nextChapter));
   };
 
   useLayoutEffect(() => {
     const width = gameRef.current.parentNode.scrollWidth;
     const height = gameRef.current.parentNode.scrollHeight;
+    console.log(activePuzzle, activeChapter);
     gameManager(
       gameRef.current,
       width,

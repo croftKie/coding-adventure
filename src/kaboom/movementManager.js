@@ -31,4 +31,14 @@ export function movementManager(player, settings) {
     player.play("idle");
     walk.paused = true;
   });
+
+  onKeyPress("space", () => {
+    player.jump(800);
+    player.use(sprite("char_jump"));
+    player.play("jump");
+  });
+  // onKeyRelease("space", () => {
+  //   player.use(sprite("char_idle"));
+  //   player.play("idle");
+  // });
 }

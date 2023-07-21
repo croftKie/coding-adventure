@@ -6,11 +6,13 @@ export function movementManager(player, settings) {
     player.move(settings.SPEED, 0);
   });
   onKeyPress("d", () => {
-    player.play("run");
+    player.use(sprite("char_walk"));
+    player.play("walk");
     player.flipX = false;
     walk.paused = false;
   });
   onKeyRelease("d", () => {
+    player.use(sprite("char_idle"));
     player.play("idle");
     walk.paused = true;
   });
@@ -19,11 +21,13 @@ export function movementManager(player, settings) {
     player.flipX = true;
   });
   onKeyPress("a", () => {
-    player.play("run");
+    player.use(sprite("char_walk"));
+    player.play("walk");
     player.flipX = true;
     walk.paused = false;
   });
   onKeyRelease("a", () => {
+    player.use(sprite("char_idle"));
     player.play("idle");
     walk.paused = true;
   });

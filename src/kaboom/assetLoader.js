@@ -1,33 +1,42 @@
 import { images } from "../utils/images";
 
 export function assetLoader() {
-  loadSprite("char", "../../public/assets/overworld/player_tilesheet.png", {
-    sliceX: 9,
-    sliceY: 3,
-    anims: {
-      idle: {
-        from: 0,
-        to: 0,
-        speed: 2,
-      },
-      run: {
-        from: 9,
-        to: 10,
-        speed: 4,
-        loop: true,
-      },
-      cheer: {
-        from: 7,
-        to: 8,
-        speed: 4,
-      },
-    },
-  });
-  loadSprite("autumnGround", "../../public/assets/overworld/ground/grass.png");
   loadSprite(
-    "autumnGroundCenter",
-    "../../public/assets/overworld/ground/grassCenter.png"
+    "char_idle",
+    "../../public/assets/overworld/player/theboy_idle.png",
+    {
+      sliceX: 8,
+      sliceY: 5,
+      anims: {
+        idle: {
+          from: 0,
+          to: 36,
+          speed: 72,
+          loop: true,
+        },
+      },
+    }
   );
+  loadSprite(
+    "char_walk",
+    "../../public/assets/overworld/player/theboy_walk.png",
+    {
+      sliceX: 8,
+      sliceY: 5,
+      anims: {
+        walk: {
+          from: 0,
+          to: 36,
+          speed: 72,
+          loop: true,
+        },
+      },
+    }
+  );
+  loadSprite("grass", "../../public/assets/overworld/ground/grass.png");
+  loadSprite("sand", "../../public/assets/overworld/ground/sand.png");
+  loadSprite("stone", "../../public/assets/overworld/ground/stone.png");
+  loadSprite("snow", "../../public/assets/overworld/ground/snow.png");
 
   loadSpriteAtlas("../../public/assets/overworld/spritesheet_tiles.png", {
     puzzle: {
@@ -50,23 +59,29 @@ export function assetLoader() {
     },
   });
 
-  loadSprite("1-1-bg", images.bgAssets[0]);
-  loadSprite("1-2-bg", images.bgAssets[1]);
-  loadSprite("1-3-bg", images.bgAssets[2]);
+  loadSprite("1-1", images.bgAssets[0]);
+  loadSprite("1-2", images.bgAssets[1]);
+  loadSprite("1-3", images.bgAssets[2]);
 
-  loadSprite("2-1-bg", images.bgAssets[3]);
-  loadSprite("2-2-bg", images.bgAssets[4]);
-  loadSprite("2-3-bg", images.bgAssets[5]);
+  loadSprite("2-1", images.bgAssets[3]);
+  loadSprite("2-2", images.bgAssets[4]);
+  loadSprite("2-3", images.bgAssets[5]);
 
-  loadSprite("3-1-bg", images.bgAssets[6]);
-  loadSprite("3-2-bg", images.bgAssets[7]);
-  loadSprite("3-3-bg", images.bgAssets[8]);
+  loadSprite("3-1", images.bgAssets[6]);
+  loadSprite("3-2", images.bgAssets[7]);
+  loadSprite("3-3", images.bgAssets[8]);
 
-  loadSprite("4-1-bg", images.bgAssets[9]);
-  loadSprite("4-2-bg", images.bgAssets[10]);
-  loadSprite("4-3-bg", images.bgAssets[11]);
+  loadSprite("4-1", images.bgAssets[9]);
+  loadSprite("4-2", images.bgAssets[10]);
+  loadSprite("4-3", images.bgAssets[11]);
+
+  loadSprite("note", "../../public/assets/overworld/ui/music.png");
 }
 
 export function soundLoader() {
   loadSound("step", "../../public/assets/overworld/sfx/footstep_grass_000.ogg");
+  loadSound(
+    "forest_music",
+    "../../public/assets/overworld/sfx/ForestWalk-320bit.mp3"
+  );
 }

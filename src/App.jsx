@@ -87,7 +87,6 @@ function App() {
 
   // populates and inits toast message
   const showToastMessage = () => {
-    console.log("hello");
     toast(<Msg tutorial={puzzleTutorial} />, { autoClose: false });
   };
 

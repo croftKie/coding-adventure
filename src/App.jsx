@@ -69,11 +69,11 @@ function App() {
     };
   }, [screenSize]);
   // update function to monitor completed puzzles - dispatches chapter complete status
-  useEffect(() => {
-    if (allChaptersCompleted && allChaptersCompleted.length === 4) {
-      dispatch(updateUi("exit"));
-    }
-  }, [content[activeChapter].chapterPuzzles]);
+  // useEffect(() => {
+  //   if (allChaptersCompleted && allChaptersCompleted.length === 4) {
+  //     dispatch(updateUi("exit"));
+  //   }
+  // }, [content[activeChapter].chapterPuzzles]);
 
   // changes active tab styling on top bar
   const switchBarStyling = (option) => {
@@ -114,10 +114,10 @@ function App() {
         <div className="topbar">
           <div className="buttons">
             <div onClick={showToastMessage} className="item">
-              <img src={images.uiAssets[4]} alt="" />
+              <img src={images.uiAssets.info} alt="" />
             </div>
             <div className="item">
-              <img src={images.uiAssets[0]} alt="" />
+              <img src={images.uiAssets.close} alt="" />
             </div>
           </div>
         </div>

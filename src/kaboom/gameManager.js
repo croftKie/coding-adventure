@@ -112,6 +112,7 @@ export function gameManager(
 
   scene("1-1", () => {
     let groundtiles;
+    let puzzleComplete = false;
 
     const background = add([
       sprite(settings.bgRef[settings.chapter][settings.level]),
@@ -170,15 +171,15 @@ export function gameManager(
 
       const change = onKeyPress("e", () => {
         settings.level += 1;
-        settings.bg += 1;
         changeActivePuzzle(settings.level);
+
         background.use(
           sprite(settings.bgRef[settings.chapter][settings.level])
         );
         groundtiles.destroy();
         groundtiles = addLevel(
           levels[settings.chapter][settings.level],
-          options[settings.level_options]
+          options[settings.chapter]
         );
         player.flipX = !player.flipX;
       });
@@ -198,11 +199,8 @@ export function gameManager(
       ]);
 
       const change = onKeyPress("e", () => {
-        if (settings.level === 2) {
-          settings.level = 0;
-        } else {
-          settings.level += 1;
-        }
+        settings.level = 0;
+        changeActivePuzzle(settings.level);
         settings.chapter += 1;
         changeActiveChapter(settings.chapter);
 
@@ -210,6 +208,7 @@ export function gameManager(
           sprite(settings.bgRef[settings.chapter][settings.level])
         );
         groundtiles.destroy();
+
         groundtiles = addLevel(
           levels[settings.chapter][settings.level],
           options[settings.chapter]
@@ -236,7 +235,14 @@ function initSettings() {
 }
 
 function initHUDAssets() {
-  return add([sprite("note"), pos(20, 20), area(), scale(0.1), "note"]);
+  const note = add([sprite("note"), pos(20, 20), area(), scale(0.1), "note"]);
+  const question = add([
+    sprite("question"),
+    pos(100, 20),
+    area(),
+    scale(0.1),
+    "question",
+  ]);
 }
 
 function HUDInteractionManager() {
@@ -263,5 +269,18 @@ function HUDInteractionManager() {
     } else {
       forestMusic.paused = true;
     }
+  });
+
+  onHover("question", (e) => {
+    e.flipX = true;
+    setCursor("pointer");
+  });
+  onHoverEnd("question", (e) => {
+    e.flipX = false;
+    setCursor("default");
+  });
+  onClick("question", () => {
+    settings.current_tutorial = 1;
+    go("tut-1");
   });
 }

@@ -47,7 +47,7 @@ const Intro = () => {
           dispatch(updateUi("intro"));
         }}
         ref={imgRef}
-        src={images.charAssets[1]}
+        src={images.puzzleAssets.byte_left}
       />
     </div>
   );

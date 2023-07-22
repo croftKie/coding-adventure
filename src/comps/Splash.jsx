@@ -19,7 +19,6 @@ import { splashTutorialSelector } from "../store/features/tutorialSlice";
 
 const Splash = () => {
   const dispatch = useDispatch();
-  const [stats, setStats] = useState(false);
   const [makePuzzle, setMakePuzzle] = useState(false);
   const [egg, setEgg] = useState(false);
   const cardOne = useRef();
@@ -70,7 +69,7 @@ const Splash = () => {
               setEgg(true);
             }}
             ref={logoRef}
-            src={images.charAssets[0]}
+            src={images.puzzleAssets.byte_right}
             alt=""
           />
           <div className="logo-text">

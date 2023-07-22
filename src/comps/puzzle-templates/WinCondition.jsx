@@ -20,7 +20,7 @@ const WinCondition = ({ setWin, toggleUi }) => {
           <h1>Congratulations, you completed the puzzle!</h1>
         </div>
         <div className="win-image">
-          <img src={images.puzzleAssets[0]} alt="" />
+          <img src={images.puzzleAssets.byte_left} alt="" />
         </div>
         <div className="buttons">
           <button

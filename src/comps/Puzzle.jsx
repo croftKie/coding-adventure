@@ -3,9 +3,6 @@ import React, { useLayoutEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { gameManager } from "../kaboom/gameManager.js";
 
-// asset imports
-import { images } from "../utils/images.js";
-
 // component imports
 import Dialogue from "./story-comps/Dialogue";
 import Popup from "./Popup";

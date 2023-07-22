@@ -97,7 +97,9 @@ const Instructions = ({ activePuzzle, setWin }) => {
             ref={resultRef}
             style={{
               backgroundImage: `url(${
-                images.puzzleBgAssets[puzzleAssets[1].puzzleBgAssets[1]]
+                images.puzzleAssets.backgrounds[
+                  puzzleAssets[1].puzzleBgAssets[1]
+                ]
               })`,
             }}
             className="result">
@@ -119,7 +121,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
             ref={tutorialRef}
             onClick={showToastMessage}
             className="tutorial"
-            src={images.uiAssets[4]}
+            src={images.uiAssets.info}
             alt=""
           />
           <div className="input-buttons">
@@ -128,25 +130,25 @@ const Instructions = ({ activePuzzle, setWin }) => {
                 onClick={() => {
                   pushInputs(1);
                 }}>
-                <img src={images.uiAssets[11]} alt="" />
+                <img src={images.puzzleAssets.ui.up} alt="" />
               </button>
               <button
                 onClick={() => {
                   pushInputs(2);
                 }}>
-                <img src={images.uiAssets[10]} alt="" />
+                <img src={images.puzzleAssets.ui.right} alt="" />
               </button>
               <button
                 onClick={() => {
                   pushInputs(3);
                 }}>
-                <img src={images.uiAssets[12]} alt="" />
+                <img src={images.puzzleAssets.ui.down} alt="" />
               </button>
               <button
                 onClick={() => {
                   pushInputs(4);
                 }}>
-                <img src={images.uiAssets[13]} alt="" />
+                <img src={images.puzzleAssets.ui.left} alt="" />
               </button>
             </div>
             <div className="logic">

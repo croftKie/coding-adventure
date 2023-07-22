@@ -21,9 +21,10 @@ import {
 import {
   activeChapterSelector,
   activePuzzleSelector,
+  allChaptersCompletedSelector,
 } from "../store/features/progressSlice.js";
 
-const Puzzle = ({ content }) => {
+const Puzzle = ({ content, endGame }) => {
   const dispatch = useDispatch();
   const gameRef = useRef();
   const popUpStatus = useSelector(popUpSelector);
@@ -65,7 +66,8 @@ const Puzzle = ({ content }) => {
       height,
       toggleUi,
       changeActivePuzzle,
-      changeActiveChapter
+      changeActiveChapter,
+      endGame
     );
   }, []);
 

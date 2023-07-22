@@ -30,9 +30,9 @@ export function assetLoader() {
     sliceY: 5,
     anims: {
       jump: {
-        from: 2,
-        to: 17,
-        speed: 36,
+        from: 0,
+        to: 36,
+        speed: 72,
       },
     },
   });
@@ -63,7 +63,6 @@ export function assetLoader() {
       height: 128,
     },
   });
-
   loadSpriteAtlas(images.overworld.items.items_ss, {
     flag: {
       x: 0,
@@ -72,7 +71,6 @@ export function assetLoader() {
       height: 128,
     },
   });
-
   loadSpriteAtlas(images.overworld.items.decorations_ss, {
     puzzle: {
       x: 0,
@@ -117,6 +115,7 @@ export function assetLoader() {
 
   loadSprite("note", images.overworld.ui.music_note);
   loadSprite("question", images.overworld.ui.help_button);
+  loadSprite("button", images.overworld.ui.button);
 }
 
 export function soundLoader() {
@@ -125,4 +124,5 @@ export function soundLoader() {
     "forest_music",
     "../../public/assets/overworld/sfx/ForestWalk-320bit.mp3"
   );
+  loadSound("click", "../../public/assets/overworld/sfx/click_003.ogg");
 }

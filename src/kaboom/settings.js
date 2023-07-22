@@ -1,6 +1,6 @@
 export const settings = {
   SPEED: 300,
-  GRAVITY: 800,
+  GRAVITY: 1200,
   PLAYER_SCALE: 0.8,
   TEXT_SIZE: 45,
 

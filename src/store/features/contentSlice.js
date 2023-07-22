@@ -24,20 +24,20 @@ const initialState = {
             "... I lost it up that tree!",
             "Could you give me instructions to get it back, whilst I climb the tree?",
           ],
-          completed: true,
+          completed: false,
           puzzleAssets: [
             [
               {
                 startLocation: [{ x: 50, y: 400 }],
                 endLocation: { x: 350, y: 50 },
-                asset: 1,
+                asset: "byte_right",
               },
               {
                 startLocation: [{ x: 350, y: 50 }],
-                asset: 2,
+                asset: "program",
               },
             ],
-            { puzzleBgAssets: [0, 0] },
+            { puzzleBgAssets: ["a_1", "a_1"] },
           ],
         },
         {
@@ -56,7 +56,7 @@ const initialState = {
             { x: 150, y: 150 },
           ],
           endLocations: [{ x: 150, y: 150 }],
-          completed: true,
+          completed: false,
           inputs: [
             { type: "forward", value: 200 },
             { type: "left", value: 200 },
@@ -69,7 +69,13 @@ const initialState = {
             { type: "backwards", value: 100 },
             { type: "right", value: 100 },
           ],
-          puzzleAssets: [[], { puzzleAssets: [1, 4], puzzleBgAssets: [1, 1] }],
+          puzzleAssets: [
+            [],
+            {
+              puzzleAssets: ["byte_left", "cave"],
+              puzzleBgAssets: ["a_2", "a_2"],
+            },
+          ],
         },
         {
           puzzleName: "The Stone Door",
@@ -101,8 +107,14 @@ const initialState = {
             [0, 0, 0],
           ],
           results: [],
-          completed: true,
-          puzzleAssets: [[], { puzzleAssets: [0, 1], puzzleBgAssets: [2] }],
+          completed: false,
+          puzzleAssets: [
+            [],
+            {
+              puzzleAssets: ["byte_right", "byte_left"],
+              puzzleBgAssets: ["a_3"],
+            },
+          ],
         },
       ],
       completedStatus: false,
@@ -129,18 +141,18 @@ const initialState = {
               {
                 startLocation: [{ x: 400, y: 400 }],
                 endLocation: { x: 100, y: 100 },
-                asset: 0,
+                asset: "byte_right",
               },
               {
                 startLocation: [{ x: 100, y: 100 }],
-                asset: 7,
+                asset: "city",
               },
               {
                 startLocation: [{ x: 200, y: 200 }],
-                asset: 6,
+                asset: "bug",
               },
             ],
-            { puzzleBgAssets: [3, 3] },
+            { puzzleBgAssets: ["w_1", "w_1"] },
           ],
         },
         {
@@ -174,7 +186,13 @@ const initialState = {
           ],
           results: [],
           completed: false,
-          puzzleAssets: [[], { puzzleAssets: [0, 1], puzzleBgAssets: [4] }],
+          puzzleAssets: [
+            [],
+            {
+              puzzleAssets: ["byte_right", "byte_left"],
+              puzzleBgAssets: ["W_2"],
+            },
+          ],
         },
         {
           puzzleName: "Fix the Elevator",
@@ -206,7 +224,13 @@ const initialState = {
             { type: "backwards", value: 100 },
             { type: "right", value: 100 },
           ],
-          puzzleAssets: [[], { puzzleAssets: [0, 5], puzzleBgAssets: [5, 5] }],
+          puzzleAssets: [
+            [],
+            {
+              puzzleAssets: ["byte_right", "building"],
+              puzzleBgAssets: ["w_3", "w_3"],
+            },
+          ],
         },
       ],
       completedStatus: false,
@@ -236,22 +260,22 @@ const initialState = {
               {
                 startLocation: [{ x: 450, y: 50 }],
                 endLocation: { x: 0, y: 300 },
-                asset: 1,
+                asset: "bye_left",
               },
               {
                 startLocation: [{ x: 0, y: 300 }],
-                asset: 4,
+                asset: "cave",
               },
               {
                 startLocation: [{ x: 100, y: 100 }],
-                asset: 3,
+                asset: "guard",
               },
               {
                 startLocation: [{ x: 140, y: 300 }],
-                asset: 3,
+                asset: "guard",
               },
             ],
-            { puzzleBgAssets: [6, 6] },
+            { puzzleBgAssets: ["sg_1", "sg_1"] },
           ],
         },
         {
@@ -281,7 +305,13 @@ const initialState = {
             { type: "backwards", value: 100 },
             { type: "right", value: 100 },
           ],
-          puzzleAssets: [[], { puzzleAssets: [1, 4], puzzleBgAssets: [1, 1] }],
+          puzzleAssets: [
+            [],
+            {
+              puzzleAssets: ["byte_left", "cave"],
+              puzzleBgAssets: ["sg_2", "sg_2"],
+            },
+          ],
         },
         {
           puzzleName: "Dive through!",
@@ -317,7 +347,10 @@ const initialState = {
           ],
           results: [],
           completed: false,
-          puzzleAssets: [[], { puzzleAssets: [0, 1], puzzleBgAssets: [7] }],
+          puzzleAssets: [
+            [],
+            { puzzleAssets: [0, 1], puzzleBgAssets: ["sg_3"] },
+          ],
         },
       ],
       completedStatus: false,
@@ -345,26 +378,26 @@ const initialState = {
               {
                 startLocation: [{ x: 100, y: 100 }],
                 endLocation: { x: 350, y: 450 },
-                asset: 0,
+                asset: "byte_right",
               },
               {
                 startLocation: [{ x: 350, y: 450 }],
-                asset: 7,
+                asset: "city",
               },
               {
                 startLocation: [{ x: 50, y: 200 }],
-                asset: 6,
+                asset: "bug",
               },
               {
                 startLocation: [{ x: 100, y: 300 }],
-                asset: 6,
+                asset: "bug",
               },
               {
                 startLocation: [{ x: 170, y: 50 }],
-                asset: 6,
+                asset: "bug",
               },
             ],
-            { puzzleBgAssets: [9, 9] },
+            { puzzleBgAssets: ["sm_1", "sm_1"] },
           ],
         },
         {
@@ -400,8 +433,10 @@ const initialState = {
           ],
           results: [],
           completed: false,
-          assets: { puzzleAssets: [0, 1], puzzleBgAssets: [10] },
-          puzzleAssets: [[], { puzzleAssets: [0, 1], puzzleBgAssets: [10] }],
+          puzzleAssets: [
+            [],
+            { puzzleAssets: [0, 1], puzzleBgAssets: ["sm_2"] },
+          ],
         },
         {
           puzzleName: "Out to Sea",
@@ -435,7 +470,10 @@ const initialState = {
           ],
           puzzleAssets: [
             [],
-            { puzzleAssets: [0, 1], puzzleBgAssets: [11, 11] },
+            {
+              puzzleAssets: ["byte_right", "byte_left"],
+              puzzleBgAssets: ["sm_3", "sm_3"],
+            },
           ],
         },
       ],

@@ -248,7 +248,7 @@ export const options = [
     tiles: {
       A: () => [sprite("arrow"), area(), scale(1), "arrow"],
       P: () => [sprite("puzzle"), area(), scale(1), "puzzle"],
-      E: () => [sprite("exit"), area(), scale(1), "exit"],
+      E: () => [sprite("exit"), area(), scale(1), "exit_final"],
       "#": () => [sprite("sand"), area(), scale(0.5), body({ isStatic: true })],
     },
   },

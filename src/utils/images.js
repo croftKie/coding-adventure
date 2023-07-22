@@ -80,6 +80,7 @@ export const images = {
     ui: {
       music_note: "./assets/overworld/ui/music.png",
       help_button: "./assets/overworld/ui/question.png",
+      button: "./assets/overworld/ui/button.png",
     },
   },
 };

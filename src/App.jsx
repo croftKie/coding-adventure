@@ -58,22 +58,6 @@ function App() {
       height: window.innerHeight,
     };
   }
-  useEffect(() => {
-    const updateDimensions = () => {
-      setScreenSize(getCurrentDimensions());
-    };
-    window.addEventListener("resize", updateDimensions);
-
-    return () => {
-      window.removeEventListener("resize", updateDimensions);
-    };
-  }, [screenSize]);
-  // update function to monitor completed puzzles - dispatches chapter complete status
-  // useEffect(() => {
-  //   if (allChaptersCompleted && allChaptersCompleted.length === 4) {
-  //     dispatch(updateUi("exit"));
-  //   }
-  // }, [content[activeChapter].chapterPuzzles]);
 
   // changes active tab styling on top bar
   const switchBarStyling = (option) => {
@@ -90,6 +74,21 @@ function App() {
     toast(<Msg tutorial={puzzleTutorial} />, { autoClose: false });
   };
 
+  useEffect(() => {
+    const updateDimensions = () => {
+      setScreenSize(getCurrentDimensions());
+    };
+    window.addEventListener("resize", updateDimensions);
+
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, [screenSize]);
+
+  const endGame = () => {
+    dispatch(updateUi("exit"));
+  };
+
   // Returns based on splash screen status and chapter complete status and default return
   if (screenSize.width - 200 <= screenSize.height) {
     return <Landscape />;
@@ -100,6 +99,7 @@ function App() {
   if (introOpenState) {
     return <Intro />;
   }
+
   if (exitOpenState) {
     return <Ending />;
   }
@@ -149,7 +149,11 @@ function App() {
           </div>
         </div>
         {page === 0 ? (
-          <Puzzle content={content} activeChapter={activeChapter} />
+          <Puzzle
+            endGame={endGame}
+            content={content}
+            activeChapter={activeChapter}
+          />
         ) : page === 1 ? (
           <Progress />
         ) : page === 2 ? (

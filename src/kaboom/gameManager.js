@@ -11,12 +11,13 @@ export function gameManager(
   height,
   toggleUi,
   changeActivePuzzle,
-  changeActiveChapter
+  changeActiveChapter,
+  endGame
 ) {
   kaboom({ width: width, height: height, canvas: gameRef });
   soundLoader();
   assetLoader();
-  initSettings();
+  setGravity(settings.GRAVITY);
 
   scene("tut-1", () => {
     const background = add([
@@ -28,60 +29,57 @@ export function gameManager(
     );
     const bgTut = add([
       pos(width / 2, height / 2),
-      rect(width - 40, height - 40),
+      rect(width / 2, height - 40),
       anchor("center"),
       outline(4),
       area(),
     ]);
+
     const tutorialScreen = add([
       sprite(`tut-${settings.current_tutorial}`),
       scale(0.7),
-      pos(100, height / 2),
-      anchor("left"),
+      pos(width / 2, height / 2),
+      anchor("center"),
     ]);
 
     if (settings.current_tutorial > 1) {
       const backButton = add([
-        pos(width - 300, 200),
-        rect(250, 75),
-        anchor("right"),
-        outline(4),
+        rect(50, 50),
+        pos(width / 2 - 370, 100),
+        anchor("center"),
         area(),
         "back",
       ]);
-
       const backButtonText = add([
-        text("GO BACK"),
-        pos(width - 300, 200),
-        anchor("right"),
+        text("<<"),
+        pos(width / 2 - 370, 100),
+        anchor("center"),
         color(1, 0, 0),
       ]);
-
       backButton.onClick(() => {
-        current_tutorial -= 1;
-        tutorialScreen.use(sprite(`tut-${current_tutorial}`));
+        play("click", { volume: 0.4, speed: 1.2 });
+        settings.current_tutorial -= 1;
+        tutorialScreen.use(sprite(`tut-${settings.current_tutorial}`));
         go("tut-1");
       });
     }
 
     if (settings.current_tutorial < 4) {
       const forwardButton = add([
-        pos(width - 300, 500),
-        rect(250, 75),
-        anchor("right"),
-        outline(4),
+        rect(50, 50),
+        pos(width / 2 + 370, 100),
+        anchor("center"),
         area(),
         "forward",
       ]);
-
       const forwardButtonText = add([
-        text("NEXT"),
-        pos(width - 300, 500),
-        anchor("right"),
+        text(">>"),
+        pos(width / 2 + 370, 100),
+        anchor("center"),
         color(1, 0, 0),
       ]);
-
       forwardButton.onClick(() => {
+        play("click", { volume: 0.4, speed: 1.2 });
         settings.current_tutorial += 1;
         sprite(`tut-${settings.current_tutorial}`), go("tut-1");
       });
@@ -89,22 +87,20 @@ export function gameManager(
 
     if (settings.current_tutorial === 4) {
       const exitButton = add([
-        pos(width - 300, 500),
-        rect(250, 75),
-        anchor("right"),
-        outline(4),
+        rect(50, 50),
+        pos(width / 2 + 370, 100),
+        anchor("center"),
         area(),
         "forward",
       ]);
-
       const exitButtonText = add([
-        text("End Tutorial"),
-        pos(width - 300, 500),
-        anchor("right"),
+        text("!"),
+        pos(width / 2 + 370, 100),
+        anchor("center"),
         color(1, 0, 0),
       ]);
-
       exitButton.onClick(() => {
+        play("click", { volume: 0.4, speed: 1.2 });
         go("1-1");
       });
     }
@@ -117,15 +113,14 @@ export function gameManager(
     const background = add([
       sprite(settings.bgRef[settings.chapter][settings.level]),
     ]);
-
     groundtiles = addLevel(
       levels[settings.chapter][settings.level],
       options[settings.chapter]
     );
-    // left invis
-    add([rect(16, 2000), area(), body({ isStatic: true }), pos(-20, 0)]);
-    // right invis
-    add([rect(16, 2000), area(), body({ isStatic: true }), pos(width, 0)]);
+
+    invisWallCreator([16, 2000], [-20, 0]);
+    invisWallCreator([16, 2000], [width, 0]);
+    invisWallCreator([2000, 16], [0, 0]);
 
     initHUDAssets();
     HUDInteractionManager();
@@ -155,38 +150,51 @@ export function gameManager(
         toggleUi("popUp");
       });
       onCollideEnd("char", "puzzle", () => {
+        puzzleComplete = true;
         puzzleText.destroy();
         popup.cancel();
       });
     });
 
     onCollide("char", "arrow", () => {
-      const puzzleText = add([
-        text(`Go to the next puzzle`, {
-          size: settings.TEXT_SIZE,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
-      ]);
+      if (true) {
+        const puzzleText = add([
+          text(`Go to the next puzzle`, {
+            size: settings.TEXT_SIZE,
+          }),
+          pos(width / 2, height - 50),
+          anchor("center"),
+        ]);
+        const change = onKeyPress("e", () => {
+          settings.level += 1;
+          changeActivePuzzle(settings.level);
 
-      const change = onKeyPress("e", () => {
-        settings.level += 1;
-        changeActivePuzzle(settings.level);
-
-        background.use(
-          sprite(settings.bgRef[settings.chapter][settings.level])
-        );
-        groundtiles.destroy();
-        groundtiles = addLevel(
-          levels[settings.chapter][settings.level],
-          options[settings.chapter]
-        );
-        player.flipX = !player.flipX;
-      });
-      onCollideEnd("char", "arrow", () => {
-        puzzleText.destroy();
-        change.cancel();
-      });
+          background.use(
+            sprite(settings.bgRef[settings.chapter][settings.level])
+          );
+          groundtiles.destroy();
+          groundtiles = addLevel(
+            levels[settings.chapter][settings.level],
+            options[settings.chapter]
+          );
+          player.flipX = !player.flipX;
+        });
+        onCollideEnd("char", "arrow", () => {
+          puzzleText.destroy();
+          change.cancel();
+        });
+      } else {
+        const puzzleText = add([
+          text(`Complete the puzzle first`, {
+            size: settings.TEXT_SIZE,
+          }),
+          pos(width / 2, height - 50),
+          anchor("center"),
+        ]);
+        onCollideEnd("char", "arrow", () => {
+          puzzleText.destroy();
+        });
+      }
     });
 
     onCollide("char", "exit", () => {
@@ -221,6 +229,34 @@ export function gameManager(
         change.cancel();
       });
     });
+
+    onCollide("char", "exit_final", () => {
+      const puzzleText = add([
+        text(`End Game`, {
+          size: settings.TEXT_SIZE,
+        }),
+        pos(width / 2, height - 50),
+        anchor("center"),
+      ]);
+
+      const change = onKeyPress("e", () => {
+        endGame();
+        // background.use(
+        //   sprite(settings.bgRef[settings.chapter][settings.level])
+        // );
+        // groundtiles.destroy();
+        // groundtiles = addLevel(
+        //   levels[settings.chapter][settings.level],
+        //   options[settings.chapter]
+        // );
+        // player.flipX = !player.flipX;
+      });
+
+      onCollideEnd("char", "exit", () => {
+        puzzleText.destroy();
+        change.cancel();
+      });
+    });
   });
 
   go("tut-1");
@@ -229,10 +265,6 @@ export function gameManager(
 // Initialisation Functions
 // Calling these sets up the background assets and initial settings
 // Refer above for preferred call point
-
-function initSettings() {
-  setGravity(settings.GRAVITY);
-}
 
 function initHUDAssets() {
   const note = add([sprite("note"), pos(20, 20), area(), scale(0.1), "note"]);
@@ -263,6 +295,7 @@ function HUDInteractionManager() {
     setCursor("default");
   });
   onClick("note", () => {
+    play("click", { volume: 0.4, speed: 1.2 });
     if (!playing) {
       forestMusic.paused = false;
       playing = true;
@@ -280,7 +313,17 @@ function HUDInteractionManager() {
     setCursor("default");
   });
   onClick("question", () => {
+    play("click", { volume: 0.4, speed: 1.2 });
     settings.current_tutorial = 1;
     go("tut-1");
   });
+}
+
+function invisWallCreator(size, position) {
+  add([
+    rect(size[0], size[1]),
+    area(),
+    body({ isStatic: true }),
+    pos(position[0], position[1]),
+  ]);
 }

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { gameManager } from "../kaboom/gameManager.js";
 import { images } from "../utils/images.js";
 
-
 // component imports
 import Dialogue from "./story-comps/Dialogue";
 import Popup from "./Popup";
@@ -26,7 +25,6 @@ import {
   allChaptersCompletedSelector,
 } from "../store/features/progressSlice.js";
 
-
 const Puzzle = ({ content, endGame }) => {
   const dispatch = useDispatch();
   const gameRef = useRef();
@@ -34,7 +32,6 @@ const Puzzle = ({ content, endGame }) => {
   const activePuzzle = useSelector(activePuzzleSelector);
   const activeChapter = useSelector(activeChapterSelector);
   const puzzles = content[activeChapter].chapterPuzzles;
-  const gameRef = useRef();
 
   // puzzle filter provides currently selected puzzle - prop drilled to child components
   const [activePuzzleContent] = puzzles.filter(

@@ -348,9 +348,4 @@ function invisWallCreator(size, position) {
     body({ isStatic: true }),
     pos(position[0], position[1]),
   ]);
-      onKeyPress("e", () => {
-        toggleUi("popUp");
-      });
-    });
-  });
 }

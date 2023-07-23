@@ -3,7 +3,8 @@ import { assetLoader } from "./assetLoader";
 import { settings } from "./settings";
 import { levels, options } from "./levelManager";
 import { soundLoader } from "./assetLoader";
-import { movementManager } from "./movementManager";
+import { movementManager, animManager } from "./movementManager";
+import { walkSound } from "./soundManager";
 
 export function gameManager(
   gameRef,
@@ -18,6 +19,7 @@ export function gameManager(
   soundLoader();
   assetLoader();
   setGravity(settings.GRAVITY);
+  const walk = walkSound();
 
   scene("tut-1", () => {
     const background = add([
@@ -107,9 +109,9 @@ export function gameManager(
   });
 
   scene("1-1", () => {
+    //variable initialisation and level asset setup
     let groundtiles;
     let puzzleComplete = false;
-
     const background = add([
       sprite(settings.bgRef[settings.chapter][settings.level]),
     ]);
@@ -117,14 +119,13 @@ export function gameManager(
       levels[settings.chapter][settings.level],
       options[settings.chapter]
     );
-
     invisWallCreator([16, 2000], [-20, 0]);
     invisWallCreator([16, 2000], [width, 0]);
     invisWallCreator([2000, 16], [0, 0]);
-
     initHUDAssets();
     HUDInteractionManager();
 
+    // player initialisation
     const player = add([
       pos(80, height - 118),
       scale(settings.PLAYER_SCALE),
@@ -135,8 +136,10 @@ export function gameManager(
     ]);
     player.use(sprite("char_idle"));
     player.play("idle");
-    movementManager(player, settings);
+    movementManager(player, settings, walk);
+    animManager(player, settings, walk);
 
+    // Collision functions
     onCollide("char", "puzzle", () => {
       const puzzleText = add([
         text(`Press "E" to open the next puzzle`, {
@@ -157,7 +160,7 @@ export function gameManager(
     });
 
     onCollide("char", "arrow", () => {
-      if (true) {
+      if (puzzleComplete) {
         const puzzleText = add([
           text(`Go to the next puzzle`, {
             size: settings.TEXT_SIZE,
@@ -241,21 +244,38 @@ export function gameManager(
 
       const change = onKeyPress("e", () => {
         endGame();
-        // background.use(
-        //   sprite(settings.bgRef[settings.chapter][settings.level])
-        // );
-        // groundtiles.destroy();
-        // groundtiles = addLevel(
-        //   levels[settings.chapter][settings.level],
-        //   options[settings.chapter]
-        // );
-        // player.flipX = !player.flipX;
       });
 
       onCollideEnd("char", "exit", () => {
         puzzleText.destroy();
         change.cancel();
       });
+    });
+
+    const dialogue_options = [
+      "this is the dialogue",
+      "Byte will be speaking this dialogue",
+      "I'll fetch it from the database",
+    ];
+    let index = 0;
+    const l = loop(2, () => {
+      const bg = add([
+        rect(500, 75),
+        pos(width / 2, 100),
+        anchor("center"),
+        lifespan(2),
+      ]);
+      const dialogue = add([
+        text(dialogue_options[index], { size: 20 }),
+        pos(width / 2, 100),
+        anchor("center"),
+        lifespan(2),
+        color(0, 0, 0),
+      ]);
+      index++;
+      if (index === dialogue_options.length) {
+        l.cancel();
+      }
     });
   });
 

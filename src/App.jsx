@@ -59,6 +59,12 @@ function App() {
     };
   }
 
+  content.forEach((chapter) => {
+    chapter.chapterPuzzles.forEach((puzzle) => {
+      console.log(puzzle.puzzleDialogue.join("|"));
+    });
+  });
+
   // changes active tab styling on top bar
   const switchBarStyling = (option) => {
     Array.from(barRef.current.children).forEach((child, i) => {

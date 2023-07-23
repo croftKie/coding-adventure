@@ -6,6 +6,9 @@ const initialState = {
   activeChapter: localStorage.getItem("lastChapterCompleted")
     ? parseInt(localStorage.getItem("lastChapterCompleted")) + 1
     : 0,
+  lastChapterCompleted: localStorage.getItem("lastChapterCompleted")
+    ? parseInt(localStorage.getItem("lastChapterCompleted"))
+    : 0,
   activePuzzle: 0,
 };
 
@@ -35,7 +38,7 @@ export const {
 export const activePuzzleSelector = (state) => state.progress.activePuzzle;
 export const activeChapterSelector = (state) => state.progress.activeChapter;
 export const allChaptersCompletedSelector = (state) => {
-  return state.progress.chaptersCompleted;
+  return state.progress.lastChapterCompleted;
 };
 
 export default progressSlice.reducer;

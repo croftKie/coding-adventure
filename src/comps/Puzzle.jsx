@@ -1,35 +1,80 @@
 // React imports
-import React, { useEffect, useState, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { gameManager } from "../kaboom/gameManager.js";
-
-// asset imports
 import { images } from "../utils/images.js";
+
 
 // component imports
 import Dialogue from "./story-comps/Dialogue";
 import Popup from "./Popup";
-import LowerNav from "./HUD/LowerNav";
 
 // store imports
 import { popUpSelector, updateUi } from "../store/features/UiSlice";
-import { useLayoutEffect } from "react";
+import {
+  changeCurrentPuzzle,
+  changeCurrentChapter,
+  addCompletedChapter,
+} from "../store/features/progressSlice.js";
+import {
+  setChapterCompleteStatus,
+  setPuzzleCompleteStatus,
+} from "../store/features/contentSlice.js";
+import {
+  activeChapterSelector,
+  activePuzzleSelector,
+  allChaptersCompletedSelector,
+} from "../store/features/progressSlice.js";
 
-const Puzzle = ({ content, activePuzzle, activeChapter }) => {
+
+const Puzzle = ({ content, endGame }) => {
   const dispatch = useDispatch();
+  const gameRef = useRef();
   const popUpStatus = useSelector(popUpSelector);
+  const activePuzzle = useSelector(activePuzzleSelector);
+  const activeChapter = useSelector(activeChapterSelector);
+  const puzzles = content[activeChapter].chapterPuzzles;
   const gameRef = useRef();
 
-  // concat dynamic image data for component styling
-  const bg = `url(${
-    images.bgAssets[activePuzzle.puzzleAssets[1].puzzleBgAssets[0]]
-  })`;
+  // puzzle filter provides currently selected puzzle - prop drilled to child components
+  const [activePuzzleContent] = puzzles.filter(
+    (puzzle) => puzzle.id === activePuzzle
+  );
 
   // Dispatch function for opening and closing UI elements
   const toggleUi = (type) => {
     console.log("fired");
     dispatch(updateUi(type));
   };
+  const changeActivePuzzle = (nextPuzzleId) => {
+    dispatch(
+      setPuzzleCompleteStatus({
+        chapterId: activeChapter,
+        puzzleId: activePuzzle,
+      })
+    );
+    dispatch(changeCurrentPuzzle(nextPuzzleId));
+  };
+  const changeActiveChapter = (nextChapter) => {
+    dispatch(setChapterCompleteStatus(activeChapter));
+    dispatch(addCompletedChapter(activeChapter));
+    dispatch(changeCurrentChapter(nextChapter));
+  };
+
+  useLayoutEffect(() => {
+    const width = gameRef.current.parentNode.scrollWidth;
+    const height = gameRef.current.parentNode.scrollHeight;
+    console.log(activePuzzle, activeChapter);
+    gameManager(
+      gameRef.current,
+      width,
+      height,
+      toggleUi,
+      changeActivePuzzle,
+      changeActiveChapter,
+      endGame
+    );
+  }, []);
 
   // useLayoutEffect(() => {
   //   const width = gameRef.current.parentNode.scrollWidth;
@@ -38,20 +83,11 @@ const Puzzle = ({ content, activePuzzle, activeChapter }) => {
   // });
   return (
     <>
-      <div style={{ backgroundImage: bg }} className="content">
-        <Dialogue dialogue={activePuzzle.puzzleDialogue} />
-        {/* <canvas ref={gameRef}></canvas> */}
-      </div>
-      <div className="hud">
-        {content[activeChapter].completedStatus ? (
-          <button>Complete Chapter</button>
-        ) : (
-          <></>
-        )}
-        <LowerNav activePuzzle={activePuzzle} toggleUi={toggleUi} />
+      <div className="content">
+        <canvas ref={gameRef}></canvas>;
       </div>
       {popUpStatus ? (
-        <Popup activePuzzle={activePuzzle} toggleUi={toggleUi} />
+        <Popup activePuzzle={activePuzzleContent} toggleUi={toggleUi} />
       ) : (
         <></>
       )}

@@ -38,7 +38,7 @@ const Dialogue = ({ dialogue }) => {
     <div ref={dialogueRef} className="dialogue-container">
       <Topbar show={showToastMessage} close={hideDialogueBox} />
       <div className="dialogue">
-        <img src={images.charAssets[0]} />
+        <img src={images.puzzleAssets.byte_right} />
         <p ref={textRef}>Hey there, Alex!</p>
       </div>
     </div>

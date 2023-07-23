@@ -4,10 +4,10 @@ import { readContent } from "../../../store/features/contentSlice";
 import { useSelector } from "react-redux";
 
 const Progress = () => {
-  const bg1 = `url(${images.progressAssets[[3]]})`;
-  const bg2 = `url(${images.progressAssets[[1]]})`;
-  const bg3 = `url(${images.progressAssets[[0]]})`;
-  const bg4 = `url(${images.progressAssets[[2]]})`;
+  const bg1 = `url(${images.progressAssets.autumn})`;
+  const bg2 = `url(${images.progressAssets.winter})`;
+  const bg3 = `url(${images.progressAssets.spring})`;
+  const bg4 = `url(${images.progressAssets.summer})`;
   const content = useSelector(readContent);
 
   const backgroundManager = (chapterNumber) => {

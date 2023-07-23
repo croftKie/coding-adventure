@@ -42,14 +42,12 @@ function App() {
   // component variable declarations
   const dispatch = useDispatch();
   const barRef = useRef();
-  const currentPuzzle = useSelector(activePuzzleSelector);
   const activeChapter = useSelector(activeChapterSelector);
   const splashStatus = useSelector(SplashSelector);
   const introOpenState = useSelector(introOpenSelector);
   const exitOpenState = useSelector(exitOpenSelector);
   const allChaptersCompleted = useSelector(allChaptersCompletedSelector);
   const content = useSelector(readContent);
-  const puzzles = content[activeChapter].chapterPuzzles;
   const [page, setPage] = useState(0);
   const [screenSize, setScreenSize] = useState(getCurrentDimensions());
   const puzzleTutorial = useSelector(puzzleTutorialSelector);
@@ -61,21 +59,11 @@ function App() {
     };
   }
 
-  useEffect(() => {
-    const updateDimensions = () => {
-      setScreenSize(getCurrentDimensions());
-    };
-    window.addEventListener("resize", updateDimensions);
-
-    return () => {
-      window.removeEventListener("resize", updateDimensions);
-    };
-  }, [screenSize]);
-
-  // puzzle filter provides currently selected puzzle - prop drilled to child components
-  const [activePuzzle] = puzzles.filter(
-    (puzzle) => puzzle.id === currentPuzzle
-  );
+  content.forEach((chapter) => {
+    chapter.chapterPuzzles.forEach((puzzle) => {
+      console.log(puzzle.puzzleDialogue.join("|"));
+    });
+  });
 
   // changes active tab styling on top bar
   const switchBarStyling = (option) => {
@@ -89,22 +77,23 @@ function App() {
 
   // populates and inits toast message
   const showToastMessage = () => {
-    console.log("hello");
     toast(<Msg tutorial={puzzleTutorial} />, { autoClose: false });
   };
 
-  // update function to monitor completed puzzles - dispatches chapter complete status
   useEffect(() => {
-    const remaining = content[activeChapter].chapterPuzzles.filter((puzzle) => {
-      return !puzzle.completed;
-    });
-    if (remaining.length === 0) {
-      dispatch(setChapterCompleteStatus(activeChapter));
-    }
-    if (allChaptersCompleted && allChaptersCompleted.length === 4) {
-      dispatch(updateUi("exit"));
-    }
-  }, [content[activeChapter].chapterPuzzles]);
+    const updateDimensions = () => {
+      setScreenSize(getCurrentDimensions());
+    };
+    window.addEventListener("resize", updateDimensions);
+
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, [screenSize]);
+
+  const endGame = () => {
+    dispatch(updateUi("exit"));
+  };
 
   // Returns based on splash screen status and chapter complete status and default return
   if (screenSize.width - 200 <= screenSize.height) {
@@ -116,6 +105,7 @@ function App() {
   if (introOpenState) {
     return <Intro />;
   }
+
   if (exitOpenState) {
     return <Ending />;
   }
@@ -130,10 +120,10 @@ function App() {
         <div className="topbar">
           <div className="buttons">
             <div onClick={showToastMessage} className="item">
-              <img src={images.uiAssets[4]} alt="" />
+              <img src={images.uiAssets.info} alt="" />
             </div>
             <div className="item">
-              <img src={images.uiAssets[0]} alt="" />
+              <img src={images.uiAssets.close} alt="" />
             </div>
           </div>
         </div>
@@ -169,8 +159,8 @@ function App() {
         </div>
         {page === 0 ? (
           <Puzzle
+            endGame={endGame}
             content={content}
-            activePuzzle={activePuzzle}
             activeChapter={activeChapter}
           />
         ) : page === 1 ? (

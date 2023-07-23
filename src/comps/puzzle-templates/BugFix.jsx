@@ -10,6 +10,7 @@ import {
 import {
   changeBugFixInstructions,
   resetBugFixInstructions,
+  setPuzzleCompleteStatus,
 } from "../../store/features/contentSlice.js";
 import { activeChapterSelector } from "../../store/features/progressSlice.js";
 const BugFix = ({ activePuzzle, setWin }) => {
@@ -75,7 +76,7 @@ const BugFix = ({ activePuzzle, setWin }) => {
         <div
           style={{
             backgroundImage: `url(${
-              images.puzzleBgAssets[puzzleAssets[1].puzzleBgAssets[1]]
+              images.puzzleAssets.backgrounds[puzzleAssets[1].puzzleBgAssets[1]]
             })`,
           }}
           className="result">
@@ -84,7 +85,9 @@ const BugFix = ({ activePuzzle, setWin }) => {
             style={{
               transform: `translate(${startLocs[0].x}px, ${startLocs[0].y}px`,
             }}
-            src={images.puzzleAssets[puzzleAssets[1].puzzleAssets[0]]}
+            src={
+              images.puzzleAssets.backgrounds[puzzleAssets[1].puzzleAssets[0]]
+            }
             alt=""
           />
           <img
@@ -92,7 +95,9 @@ const BugFix = ({ activePuzzle, setWin }) => {
             style={{
               transform: `translate(${startLocs[1].x}px, ${startLocs[1].y}px`,
             }}
-            src={images.puzzleAssets[puzzleAssets[1].puzzleAssets[1]]}
+            src={
+              images.puzzleAssets.backgrounds[puzzleAssets[1].puzzleAssets[1]]
+            }
             alt=""
           />
         </div>

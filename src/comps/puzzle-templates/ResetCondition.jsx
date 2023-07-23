@@ -11,7 +11,7 @@ const ResetCondition = ({ reset }) => {
           <p>Click below to reset and try again!</p>
         </div>
         <div className="win-image">
-          <img src={images.puzzleAssets[0]} alt="" />
+          <img src={images.puzzleAssets.byte_left} alt="" />
         </div>
         <div className="buttons">
           <button onClick={reset}>Try Again!</button>

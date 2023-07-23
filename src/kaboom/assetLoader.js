@@ -118,7 +118,7 @@ export function assetLoader() {
   loadSprite("question", images.overworld.ui.help_button);
   loadSprite("button", images.overworld.ui.button);
 }
-
+//sounds loader
 export function soundLoader() {
   loadSound("step", sounds.walk);
   loadSound("forest_music", sounds.forest_music);

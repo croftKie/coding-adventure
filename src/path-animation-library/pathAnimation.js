@@ -130,7 +130,10 @@ const _animatePath = (
       }
       return { Y: Y };
     case "right":
+      console.log(width, element.clientWidth);
+      width -= element.clientWidth;
       if (X + el.value > width) {
+        console.log("running");
         tl.to(element, { x: width });
         X = width;
       } else {

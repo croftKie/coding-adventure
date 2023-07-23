@@ -358,12 +358,15 @@ button {
             border-radius: $border-radius-bar;
             height: 500px;
             width: 500px;
-            img {
-              height: 50px;
-              background-color: $base-white;
-              border-radius: $border-radius-small;
-              border: $border-dark;
-              transform-origin: center;
+            div {
+              width: fit-content;
+              img {
+                height: 50px;
+                background-color: $base-white;
+                border-radius: $border-radius-small;
+                border: $border-dark;
+                transform-origin: center;
+              }
             }
           }
         }

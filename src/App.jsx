@@ -133,7 +133,8 @@ function App() {
               setPage(0);
               switchBarStyling("puzzles");
             }}
-            className="puzzles active">
+            className="puzzles active"
+          >
             Chapter
           </div>
           <div
@@ -141,7 +142,8 @@ function App() {
               setPage(1);
               switchBarStyling("progress");
             }}
-            className="progress">
+            className="progress"
+          >
             Progress
           </div>
           <div
@@ -150,7 +152,8 @@ function App() {
             //   switchBarStyling("leaderboard");
             // }}
             className="leaderboard"
-            style={{ backgroundColor: "lightgrey", cursor: "default" }}>
+            style={{ backgroundColor: "lightgrey", cursor: "default" }}
+          >
             Leaderboard
           </div>
         </div>

@@ -241,11 +241,9 @@ export function gameManager(
         pos(width / 2, height - 50),
         anchor("center"),
       ]);
-
       const change = onKeyPress("e", () => {
         endGame();
       });
-
       onCollideEnd("char", "exit", () => {
         puzzleText.destroy();
         change.cancel();
@@ -350,4 +348,9 @@ function invisWallCreator(size, position) {
     body({ isStatic: true }),
     pos(position[0], position[1]),
   ]);
+      onKeyPress("e", () => {
+        toggleUi("popUp");
+      });
+    });
+  });
 }

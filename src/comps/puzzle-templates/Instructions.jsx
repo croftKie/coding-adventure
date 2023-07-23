@@ -49,6 +49,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
   };
   const run = () => {
     const assets = resultRef.current.children;
+    console.log(assets);
     const isRunComplete = animator(
       assets[0],
       instructionInputs,
@@ -80,11 +81,11 @@ const Instructions = ({ activePuzzle, setWin }) => {
   const showToastMessage = () => {
     toast(<Msg tutorial={instructionPuzzleTutorial} />, { autoClose: false });
   };
-  useLayoutEffect(() => {
-    Array.from(resultRef.current.children).forEach((child) => {
-      gsap.to(child, { duration: 0.5, scale: 1.2, repeat: 4, yoyo: true });
-    });
-  }, []);
+  // useLayoutEffect(() => {
+  //   Array.from(resultRef.current.children).forEach((child) => {
+  //     gsap.to(child, { duration: 0.5, scale: 1.2, repeat: 4, yoyo: true });
+  //   });
+  // }, []);
   return (
     <div className="instructions-puzzle">
       <div className="content">
@@ -105,13 +106,12 @@ const Instructions = ({ activePuzzle, setWin }) => {
             className="result">
             {puzzleAssets[0].map((assetRef) => {
               return (
-                <img
+                <div
                   style={{
                     transform: `translate(${assetRef.startLocation[0].x}px, ${assetRef.startLocation[0].y}px`,
-                  }}
-                  src={images.puzzleAssets[assetRef.asset]}
-                  alt=""
-                />
+                  }}>
+                  <img src={images.puzzleAssets[assetRef.asset]} alt="" />
+                </div>
               );
             })}
           </div>

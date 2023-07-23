@@ -331,7 +331,11 @@ button {
   height: 500px;
   width: 500px;
 }
-.popup .puzzleContent .instructions-puzzle .content .result-container .result img {
+.popup .puzzleContent .instructions-puzzle .content .result-container .result div {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.popup .puzzleContent .instructions-puzzle .content .result-container .result div img {
   height: 50px;
   background-color: #fff8ef;
   border-radius: 10px;

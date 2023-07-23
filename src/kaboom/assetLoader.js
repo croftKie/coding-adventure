@@ -1,4 +1,5 @@
 import { images } from "../utils/images";
+import { sounds } from "../utils/sounds";
 
 export function assetLoader() {
   loadSprite("char_idle", images.overworld.char_assets.char_idle, {
@@ -119,10 +120,7 @@ export function assetLoader() {
 }
 
 export function soundLoader() {
-  loadSound("step", "../../public/assets/overworld/sfx/footstep_grass_000.ogg");
-  loadSound(
-    "forest_music",
-    "../../public/assets/overworld/sfx/ForestWalk-320bit.mp3"
-  );
-  loadSound("click", "../../public/assets/overworld/sfx/click_003.ogg");
+  loadSound("step", sounds.walk);
+  loadSound("forest_music", sounds.forest_music);
+  loadSound("click", sounds.click);
 }

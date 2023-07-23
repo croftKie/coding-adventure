@@ -253,9 +253,13 @@ export function gameManager(
     });
 
     const dialogue_options = [
-      "this is the dialogue",
-      "Byte will be speaking this dialogue",
-      "I'll fetch it from the database",
+      "Welcome to Cyberspace!",
+      "I'm Byte!, Hi!",
+      "Doesn't look like your from here.",
+      "Did you get stuck here?",
+      "If you want to get out...",
+      "You'll need to beat all the puzzles.",
+      "I'll tag along and help out!",
     ];
     let index = 0;
     const l = loop(2, () => {

@@ -160,7 +160,7 @@ export function gameManager(
     });
 
     onCollide("char", "arrow", () => {
-      if (puzzleComplete) {
+      if (true) {
         const puzzleText = add([
           text(`Go to the next puzzle`, {
             size: settings.TEXT_SIZE,

@@ -1,8 +1,7 @@
 import kaboom from "kaboom";
-import { assetLoader } from "./assetLoader";
+import { assetLoader, soundLoader } from "./assetLoader";
 import { settings } from "./settings";
 import { levels, options } from "./levelManager";
-import { soundLoader } from "./assetLoader";
 import { movementManager, animManager } from "./movementManager";
 import { walkSound } from "./soundManager";
 

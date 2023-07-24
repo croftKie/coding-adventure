@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { images } from "../../../utils/images";
 import { readContent } from "../../../store/features/contentSlice";
 import { useSelector } from "react-redux";
+import { allChaptersCompletedSelector } from "../../../store/features/progressSlice.js";
 
 const Progress = () => {
   const bg1 = `url(${images.progressAssets.autumn})`;
@@ -9,9 +10,11 @@ const Progress = () => {
   const bg3 = `url(${images.progressAssets.spring})`;
   const bg4 = `url(${images.progressAssets.summer})`;
   const content = useSelector(readContent);
+  const lastChapterCompleted = useSelector(allChaptersCompletedSelector);
 
   const backgroundManager = (chapterNumber) => {
     if (content[chapterNumber - 1].completed) {
+      console.log("fired");
       return {
         backgroundImage:
           chapterNumber === 1 ? bg2 : chapterNumber === 2 ? bg3 : bg4,
@@ -69,7 +72,7 @@ const Progress = () => {
       </div>
       <div className={"bg bg-3"} style={backgroundManager(2)}>
         <div className="info">
-          <div className="title" style={buttonBgManager(1)}>
+          <div className="title" style={buttonBgManager(2)}>
             <h2>KOBOL Kingdom</h2>
             <p>{content[2].chapterDescription}</p>
           </div>
@@ -88,7 +91,7 @@ const Progress = () => {
       </div>
       <div className={"bg bg-4"} style={backgroundManager(3)}>
         <div className="info">
-          <div className="title" style={buttonBgManager(1)}>
+          <div className="title" style={buttonBgManager(3)}>
             <h2>Node Beach</h2>
             <p>{content[3].chapterDescription}</p>
           </div>

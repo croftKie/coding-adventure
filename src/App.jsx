@@ -61,7 +61,7 @@ function App() {
 
   content.forEach((chapter) => {
     chapter.chapterPuzzles.forEach((puzzle) => {
-      console.log(puzzle.puzzleDialogue.join("|"));
+      // console.log(puzzle.puzzleDialogue.join("|"));
     });
   });
 

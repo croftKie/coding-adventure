@@ -11,7 +11,7 @@ const Progress = () => {
   const content = useSelector(readContent);
 
   const backgroundManager = (chapterNumber) => {
-    if (content[chapterNumber - 1].completedStatus) {
+    if (content[chapterNumber - 1].completed) {
       return {
         backgroundImage:
           chapterNumber === 1 ? bg2 : chapterNumber === 2 ? bg3 : bg4,
@@ -21,7 +21,7 @@ const Progress = () => {
   };
 
   const buttonBgManager = (chapterNumber) => {
-    if (content[chapterNumber - 1].completedStatus) {
+    if (content[chapterNumber - 1].completed) {
       return { backgroundColor: "white" };
     }
     return { backgroundColor: "rgb(31, 31, 31)" };

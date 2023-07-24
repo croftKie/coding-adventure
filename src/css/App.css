@@ -332,7 +332,6 @@ button {
   width: 500px;
 }
 .popup .puzzleContent .instructions-puzzle .content .result-container .result div {
-  width: -moz-fit-content;
   width: fit-content;
 }
 .popup .puzzleContent .instructions-puzzle .content .result-container .result div img {
@@ -614,6 +613,11 @@ button {
   align-items: center;
   padding: 30px;
   font-size: 1.5rem;
+  background-color: #333333;
+}
+.popup .puzzleContent .cryptography-puzzle .content .result img {
+  height: 30px;
+  margin-right: 5px;
 }
 .popup .puzzleContent .cryptography-puzzle .content .result .part-one {
   flex: 1;
@@ -1284,4 +1288,6 @@ button {
 .eggContainer canvas {
   border: 6px solid #fff8ef;
   border-radius: 10px;
-}/*# sourceMappingURL=App.css.map */
+}
+
+/*# sourceMappingURL=App.css.map */

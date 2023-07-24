@@ -27,6 +27,9 @@ export const images = {
       down: "./assets/ui/arrow-down.png",
       left: "./assets/ui/arrow-left.png",
       right: "./assets/ui/arrow-right.png",
+      light_off: "./assets/ui/tile_grey.png",
+      light_fail: "./assets/ui/tile_red.png",
+      light_success: "./assets/ui/tile_green.png",
     },
   },
   uiAssets: {

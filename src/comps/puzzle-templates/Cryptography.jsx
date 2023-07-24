@@ -7,6 +7,7 @@ import {
   setPuzzleCompleteStatus,
 } from "../../store/features/contentSlice.js";
 import { activeChapterSelector } from "../../store/features/progressSlice.js";
+import { images } from "../../utils/images.js";
 
 const Cryptography = ({ setWin, activePuzzle }) => {
   const [openPage, setOpenPage] = useState(0);
@@ -48,112 +49,100 @@ const Cryptography = ({ setWin, activePuzzle }) => {
         </div>
         <div className="result">
           <div className="part-one">
-            <p>
-              <span
-                className={
-                  activePuzzle.results.length > 0
-                    ? activePuzzle.results[0][0]
-                      ? "green"
-                      : "red"
-                    : "none"
-                }>
-                {activePuzzle.inputs[0][0]}
-              </span>{" "}
-              -{" "}
-              <span
-                className={
-                  activePuzzle.results.length > 0
-                    ? activePuzzle.results[0][1]
-                      ? "green"
-                      : "red"
-                    : "none"
-                }>
-                {activePuzzle.inputs[0][1]}
-              </span>{" "}
-              -{" "}
-              <span
-                className={
-                  activePuzzle.results.length > 0
-                    ? activePuzzle.results[0][2]
-                      ? "green"
-                      : "red"
-                    : "none"
-                }>
-                {activePuzzle.inputs[0][2]}
-              </span>
-            </p>
+            <img
+              src={
+                activePuzzle.results.length > 0
+                  ? activePuzzle.results[0][0]
+                    ? images.puzzleAssets.ui.light_success
+                    : images.puzzleAssets.ui.light_fail
+                  : images.puzzleAssets.ui.light_off
+              }
+              alt=""
+            />
+            <img
+              src={
+                activePuzzle.results.length > 0
+                  ? activePuzzle.results[0][1]
+                    ? images.puzzleAssets.ui.light_success
+                    : images.puzzleAssets.ui.light_fail
+                  : images.puzzleAssets.ui.light_off
+              }
+              alt=""
+            />
+            <img
+              src={
+                activePuzzle.results.length > 0
+                  ? activePuzzle.results[0][2]
+                    ? images.puzzleAssets.ui.light_success
+                    : images.puzzleAssets.ui.light_fail
+                  : images.puzzleAssets.ui.light_off
+              }
+              alt=""
+            />
           </div>
           <div className="part-two">
-            <p>
-              <span
-                className={
-                  activePuzzle.results.length > 0
-                    ? activePuzzle.results[1][0]
-                      ? "green"
-                      : "red"
-                    : "none"
-                }>
-                {activePuzzle.inputs[1][0]}
-              </span>{" "}
-              -{" "}
-              <span
-                className={
-                  activePuzzle.results.length > 0
-                    ? activePuzzle.results[1][1]
-                      ? "green"
-                      : "red"
-                    : "none"
-                }>
-                {activePuzzle.inputs[1][1]}
-              </span>{" "}
-              -{" "}
-              <span
-                className={
-                  activePuzzle.results.length > 0
-                    ? activePuzzle.results[1][2]
-                      ? "green"
-                      : "red"
-                    : "none"
-                }>
-                {activePuzzle.inputs[1][2]}
-              </span>
-            </p>
+            <img
+              src={
+                activePuzzle.results.length > 0
+                  ? activePuzzle.results[1][0]
+                    ? images.puzzleAssets.ui.light_success
+                    : images.puzzleAssets.ui.light_fail
+                  : images.puzzleAssets.ui.light_off
+              }
+              alt=""
+            />
+            <img
+              src={
+                activePuzzle.results.length > 0
+                  ? activePuzzle.results[1][1]
+                    ? images.puzzleAssets.ui.light_success
+                    : images.puzzleAssets.ui.light_fail
+                  : images.puzzleAssets.ui.light_off
+              }
+              alt=""
+            />
+            <img
+              src={
+                activePuzzle.results.length > 0
+                  ? activePuzzle.results[1][2]
+                    ? images.puzzleAssets.ui.light_success
+                    : images.puzzleAssets.ui.light_fail
+                  : images.puzzleAssets.ui.light_off
+              }
+              alt=""
+            />
           </div>
           <div className="part-three">
-            <p>
-              <span
-                className={
-                  activePuzzle.results.length > 0
-                    ? activePuzzle.results[2][0]
-                      ? "green"
-                      : "red"
-                    : "none"
-                }>
-                {activePuzzle.inputs[2][0]}
-              </span>{" "}
-              -{" "}
-              <span
-                className={
-                  activePuzzle.results.length > 0
-                    ? activePuzzle.results[2][1]
-                      ? "green"
-                      : "red"
-                    : "none"
-                }>
-                {activePuzzle.inputs[2][1]}
-              </span>{" "}
-              -{" "}
-              <span
-                className={
-                  activePuzzle.results.length > 0
-                    ? activePuzzle.results[2][2]
-                      ? "green"
-                      : "red"
-                    : "none"
-                }>
-                {activePuzzle.inputs[2][2]}
-              </span>
-            </p>
+            <img
+              src={
+                activePuzzle.results.length > 0
+                  ? activePuzzle.results[2][0]
+                    ? images.puzzleAssets.ui.light_success
+                    : images.puzzleAssets.ui.light_fail
+                  : images.puzzleAssets.ui.light_off
+              }
+              alt=""
+            />
+            <img
+              src={
+                activePuzzle.results.length > 0
+                  ? activePuzzle.results[2][1]
+                    ? images.puzzleAssets.ui.light_success
+                    : images.puzzleAssets.ui.light_fail
+                  : images.puzzleAssets.ui.light_off
+              }
+              alt=""
+            />
+            <img
+              src={
+                activePuzzle.results.length > 0
+                  ? activePuzzle.results[2][2]
+                    ? images.puzzleAssets.ui.light_success
+                    : images.puzzleAssets.ui.light_fail
+                  : images.puzzleAssets.ui.light_off
+              }
+              alt=""
+            />
           </div>
         </div>
         <div className="buttons">
@@ -166,7 +155,8 @@ const Cryptography = ({ setWin, activePuzzle }) => {
                 })
               );
             }}
-            className="reset">
+            className="reset"
+          >
             Reset
           </button>
           <button onClick={checkWin} className="run">

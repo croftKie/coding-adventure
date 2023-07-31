@@ -332,6 +332,7 @@ button {
   width: 500px;
 }
 .popup .puzzleContent .instructions-puzzle .content .result-container .result div {
+  width: -moz-fit-content;
   width: fit-content;
 }
 .popup .puzzleContent .instructions-puzzle .content .result-container .result div img {
@@ -730,7 +731,7 @@ button {
   align-items: center;
 }
 .splash .splash-content {
-  width: 60%;
+  width: 40%;
   height: 70%;
   background-color: #fff8ef;
   display: grid;
@@ -772,6 +773,8 @@ button {
 .splash .splash-content .nav {
   grid-row: 3/4;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 30px;
   justify-self: center;
   width: 90%;
@@ -790,7 +793,7 @@ button {
   margin-bottom: 20px;
   box-shadow: 5px 5px 0 1px #333333;
   height: 80%;
-  width: 25%;
+  width: 85%;
   cursor: pointer;
 }
 .splash .splash-content .nav .card h3 {
@@ -1288,6 +1291,4 @@ button {
 .eggContainer canvas {
   border: 6px solid #fff8ef;
   border-radius: 10px;
-}
-
-/*# sourceMappingURL=App.css.map */
+}/*# sourceMappingURL=App.css.map */

@@ -114,22 +114,6 @@ const Splash = () => {
             <h3>Continue</h3>
             <p>Continue where you last left off and beat the bad guy!</p>
           </div>
-          <div
-            ref={cardThree}
-            // onMouseEnter={() => {
-            //   onEnter(cardThree);
-            // }}
-            // onMouseLeave={() => {
-            //   onLeave(cardThree);
-            // }}
-            // onClick={() => {
-            //   setMakePuzzle(true);
-            // }}
-            className="class card"
-            style={{ backgroundColor: "lightgrey" }}>
-            <h3>Make your own puzzles</h3>
-            <p>COMING SOON</p>
-          </div>
         </div>
       </div>
     </div>

@@ -119,9 +119,6 @@ function App() {
       <div className="contentWindow">
         <div className="topbar">
           <div className="buttons">
-            <div onClick={showToastMessage} className="item">
-              <img src={images.uiAssets.info} alt="" />
-            </div>
             <div className="item">
               <img src={images.uiAssets.close} alt="" />
             </div>
@@ -133,8 +130,7 @@ function App() {
               setPage(0);
               switchBarStyling("puzzles");
             }}
-            className="puzzles active"
-          >
+            className="puzzles active">
             Chapter
           </div>
           <div
@@ -142,19 +138,8 @@ function App() {
               setPage(1);
               switchBarStyling("progress");
             }}
-            className="progress"
-          >
+            className="progress">
             Progress
-          </div>
-          <div
-            // onClick={() => {
-            //   setPage(2);
-            //   switchBarStyling("leaderboard");
-            // }}
-            className="leaderboard"
-            style={{ backgroundColor: "lightgrey", cursor: "default" }}
-          >
-            Leaderboard
           </div>
         </div>
         {page === 0 ? (

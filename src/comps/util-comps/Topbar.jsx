@@ -13,9 +13,6 @@ const Topbar = ({
       <h1>{name}</h1>
       <div className="buttons">
         <div className="item">
-          <img onClick={show} src={images.uiAssets.info} alt="" />
-        </div>
-        <div className="item">
           <img onClick={close} src={images.uiAssets.close} alt="" />
         </div>
       </div>

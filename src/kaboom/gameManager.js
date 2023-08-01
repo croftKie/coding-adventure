@@ -139,13 +139,15 @@ export function gameManager(
     animManager(player, settings, walk);
 
     // Collision functions
-    onCollide("char", "puzzle", () => {
-      const puzzleText = add([
-        text(`Press "E" to open the next puzzle`, {
-          size: settings.TEXT_SIZE,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
+    onCollide("char", "puzzle", (puzzle) => {
+      const { x, y } = puzzle.worldArea().pts[0];
+      const puzzleKey = add([
+        sprite("key"),
+        pos(x + 140, y - 50),
+        scale(1),
+        anchor("bot"),
+        area(),
+        "key",
       ]);
 
       const popup = onKeyPress("e", () => {
@@ -153,19 +155,21 @@ export function gameManager(
       });
       onCollideEnd("char", "puzzle", () => {
         puzzleComplete = true;
-        puzzleText.destroy();
+        puzzleKey.destroy();
         popup.cancel();
       });
     });
 
-    onCollide("char", "arrow", () => {
+    onCollide("char", "arrow", (arrow) => {
       if (true) {
-        const puzzleText = add([
-          text(`Go to the next puzzle`, {
-            size: settings.TEXT_SIZE,
-          }),
-          pos(width / 2, height - 50),
-          anchor("center"),
+        const { x, y } = arrow.worldArea().pts[0];
+        const puzzleStar = add([
+          sprite("star"),
+          pos(x + 140, y - 50),
+          scale(1),
+          anchor("bot"),
+          area(),
+          "star",
         ]);
         const change = onKeyPress("e", () => {
           settings.level += 1;
@@ -182,30 +186,21 @@ export function gameManager(
           player.flipX = !player.flipX;
         });
         onCollideEnd("char", "arrow", () => {
-          puzzleText.destroy();
+          puzzleStar.destroy();
           change.cancel();
-        });
-      } else {
-        const puzzleText = add([
-          text(`Complete the puzzle first`, {
-            size: settings.TEXT_SIZE,
-          }),
-          pos(width / 2, height - 50),
-          anchor("center"),
-        ]);
-        onCollideEnd("char", "arrow", () => {
-          puzzleText.destroy();
         });
       }
     });
 
     onCollide("char", "exit", () => {
-      const puzzleText = add([
-        text(`Go to the next puzzle`, {
-          size: settings.TEXT_SIZE,
-        }),
-        pos(width / 2, height - 50),
-        anchor("center"),
+      const { x, y } = arrow.worldArea().pts[0];
+      const puzzleStar = add([
+        sprite("star"),
+        pos(x + 140, y - 50),
+        scale(1),
+        anchor("bot"),
+        area(),
+        "star",
       ]);
 
       const change = onKeyPress("e", () => {
@@ -227,7 +222,7 @@ export function gameManager(
       });
 
       onCollideEnd("char", "exit", () => {
-        puzzleText.destroy();
+        puzzleStar.destroy();
         change.cancel();
       });
     });

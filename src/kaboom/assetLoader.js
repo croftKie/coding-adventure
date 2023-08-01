@@ -45,9 +45,21 @@ export function assetLoader() {
       width: 128,
       height: 128,
     },
+    grass_lower: {
+      x: 128,
+      y: 0,
+      width: 128,
+      height: 128,
+    },
     stone: {
       x: 256,
       y: 640,
+      width: 128,
+      height: 128,
+    },
+    stone_lower: {
+      x: 384,
+      y: 512,
       width: 128,
       height: 128,
     },
@@ -57,16 +69,34 @@ export function assetLoader() {
       width: 128,
       height: 128,
     },
+    snow_lower: {
+      x: 512,
+      y: 768,
+      width: 128,
+      height: 128,
+    },
     sand: {
       x: 512,
       y: 1152,
       width: 128,
       height: 128,
     },
+    sand_lower: {
+      x: 640,
+      y: 1024,
+      width: 128,
+      height: 128,
+    },
   });
   loadSpriteAtlas(images.overworld.items.items_ss, {
-    flag: {
-      x: 0,
+    key: {
+      x: 384,
+      y: 256,
+      width: 128,
+      height: 128,
+    },
+    star: {
+      x: 384,
       y: 128,
       width: 128,
       height: 128,
@@ -74,7 +104,7 @@ export function assetLoader() {
   });
   loadSpriteAtlas(images.overworld.items.decorations_ss, {
     puzzle: {
-      x: 0,
+      x: 256,
       y: 1152,
       width: 128,
       height: 128,

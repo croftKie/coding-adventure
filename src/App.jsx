@@ -7,7 +7,6 @@ import { images } from "./utils/images.js";
 // React and React Redux dependencies
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
 
 // Import statements for child components
 import Splash from "./comps/Splash";
@@ -17,14 +16,11 @@ import Loading from "./comps/Loading";
 import Puzzle from "./comps/Puzzle.jsx";
 import Intro from "./comps/story-comps/Intro";
 import Landscape from "./comps/Landscape";
-import Msg from "./comps/tutorial/TutModal.jsx";
 import Ending from "./comps/story-comps/Ending";
 
 // Store import statements
 import {
   activeChapterSelector,
-  activePuzzleSelector,
-  allChaptersCompletedSelector,
 } from "./store/features/progressSlice";
 import {
   SplashSelector,
@@ -34,7 +30,6 @@ import {
 } from "./store/features/UiSlice";
 import {
   readContent,
-  setChapterCompleteStatus,
 } from "./store/features/contentSlice";
 import { puzzleTutorialSelector } from "./store/features/tutorialSlice";
 
@@ -46,11 +41,9 @@ function App() {
   const splashStatus = useSelector(SplashSelector);
   const introOpenState = useSelector(introOpenSelector);
   const exitOpenState = useSelector(exitOpenSelector);
-  const allChaptersCompleted = useSelector(allChaptersCompletedSelector);
   const content = useSelector(readContent);
   const [page, setPage] = useState(0);
   const [screenSize, setScreenSize] = useState(getCurrentDimensions());
-  const puzzleTutorial = useSelector(puzzleTutorialSelector);
 
   function getCurrentDimensions() {
     return {
@@ -61,24 +54,8 @@ function App() {
 
   content.forEach((chapter) => {
     chapter.chapterPuzzles.forEach((puzzle) => {
-      // console.log(puzzle.puzzleDialogue.join("|"));
     });
   });
-
-  // changes active tab styling on top bar
-  const switchBarStyling = (option) => {
-    Array.from(barRef.current.children).forEach((child, i) => {
-      child.classList.remove("active");
-      if (child.classList.contains(option)) {
-        child.classList.add("active");
-      }
-    });
-  };
-
-  // populates and inits toast message
-  const showToastMessage = () => {
-    toast(<Msg tutorial={puzzleTutorial} />, { autoClose: false });
-  };
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -115,31 +92,12 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
       <div className="contentWindow">
         <div className="topbar">
           <div className="buttons">
             <div className="item">
               <img src={images.uiAssets.close} alt="" />
             </div>
-          </div>
-        </div>
-        <div ref={barRef} className="lower-bar">
-          <div
-            onClick={() => {
-              setPage(0);
-              switchBarStyling("puzzles");
-            }}
-            className="puzzles active">
-            Chapter
-          </div>
-          <div
-            onClick={() => {
-              setPage(1);
-              switchBarStyling("progress");
-            }}
-            className="progress">
-            Progress
           </div>
         </div>
         {page === 0 ? (

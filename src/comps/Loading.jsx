@@ -31,7 +31,8 @@ const Loading = () => {
         onClick={() => {
           dispatch(changeCurrentChapter(activeChapter + 1));
           dispatch(addCompletedChapter(activeChapter));
-        }}>
+        }}
+      >
         Go to next chapter
       </button>
     </div>

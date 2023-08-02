@@ -2,6 +2,8 @@ import { images } from "../utils/images";
 import { sounds } from "../utils/sounds";
 
 export function assetLoader() {
+  loadSprite("byte", images.puzzleAssets.byte_right)
+
   loadSprite("char_idle", images.overworld.char_assets.char_idle, {
     sliceX: 8,
     sliceY: 5,
@@ -147,6 +149,9 @@ export function assetLoader() {
   loadSprite("note", images.overworld.ui.music_note);
   loadSprite("question", images.overworld.ui.help_button);
   loadSprite("button", images.overworld.ui.button);
+  loadSprite("next", images.overworld.ui.next);
+  loadSprite("previous", images.overworld.ui.previous);
+  loadSprite("close", images.overworld.ui.close);
 }
 //sounds loader
 export function soundLoader() {

@@ -84,6 +84,9 @@ export const images = {
       music_note: "./assets/overworld/ui/music.png",
       help_button: "./assets/overworld/ui/question.png",
       button: "./assets/overworld/ui/button.png",
+      next: "./assets/overworld/ui/next.png",
+      previous: "./assets/overworld/ui/previous.png",
+      close: "./assets/overworld/ui/cross.png",
     },
   },
 };

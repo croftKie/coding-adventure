@@ -96,7 +96,7 @@ button {
   box-shadow: $box-shadow-dark;
   position: absolute;
   display: grid;
-  grid-template-rows: 30px 30px 1fr;
+  grid-template-rows: 30px 1fr;
   top: 1%;
   left: 1%;
   .topbar {

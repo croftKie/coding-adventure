@@ -45,17 +45,12 @@ export function gameManager(
 
     if (settings.current_tutorial > 1) {
       const backButton = add([
-        rect(50, 50),
+        sprite("previous"),
         pos(width / 2 - 370, 100),
         anchor("center"),
         area(),
+        scale(0.1),
         "back",
-      ]);
-      const backButtonText = add([
-        text("<<"),
-        pos(width / 2 - 370, 100),
-        anchor("center"),
-        color(1, 0, 0),
       ]);
       backButton.onClick(() => {
         play("click", { volume: 0.4, speed: 1.2 });
@@ -67,17 +62,12 @@ export function gameManager(
 
     if (settings.current_tutorial < 4) {
       const forwardButton = add([
-        rect(50, 50),
+        sprite("next"),
         pos(width / 2 + 370, 100),
         anchor("center"),
         area(),
+        scale(0.1),
         "forward",
-      ]);
-      const forwardButtonText = add([
-        text(">>"),
-        pos(width / 2 + 370, 100),
-        anchor("center"),
-        color(1, 0, 0),
       ]);
       forwardButton.onClick(() => {
         play("click", { volume: 0.4, speed: 1.2 });
@@ -88,17 +78,12 @@ export function gameManager(
 
     if (settings.current_tutorial === 4) {
       const exitButton = add([
-        rect(50, 50),
+        sprite("close"),
         pos(width / 2 + 370, 100),
         anchor("center"),
         area(),
+        scale(0.1),
         "forward",
-      ]);
-      const exitButtonText = add([
-        text("!"),
-        pos(width / 2 + 370, 100),
-        anchor("center"),
-        color(1, 0, 0),
       ]);
       exitButton.onClick(() => {
         play("click", { volume: 0.4, speed: 1.2 });
@@ -246,12 +231,15 @@ export function gameManager(
 
     const dialogue_options = [
       "Welcome to Cyberspace!",
-      "I'm Byte!, Hi!",
-      "Doesn't look like your from here.",
+      "I'm Byte! Hi!",
+      "You're not a program.",
       "Did you get stuck here?",
-      "If you want to get out...",
-      "You'll need to beat all the puzzles.",
-      "I'll tag along and help out!",
+      "You'll need to get thinking...",
+      "if you want to get out of here.",
+      "There are lots of puzzles here...",
+      "logic, bug fixing and riddles.",
+      "By the time you escape...",
+      "you'll be thinking like a coder!"
     ];
     let index = 0;
     const l = loop(2, () => {
@@ -261,9 +249,15 @@ export function gameManager(
         anchor("center"),
         lifespan(2),
       ]);
+      const byte = add([
+        sprite("byte"),
+        pos(width/2 - 200, 100),
+        anchor("center"),
+        scale(0.15)
+      ]);
       const dialogue = add([
         text(dialogue_options[index], { size: 20 }),
-        pos(width / 2, 100),
+        pos(width / 2 + 20, 100),
         anchor("center"),
         lifespan(2),
         color(0, 0, 0),
@@ -273,6 +267,7 @@ export function gameManager(
         l.cancel();
       }
     });
+    
   });
 
   go("tut-1");

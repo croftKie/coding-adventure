@@ -1,6 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { toast } from "react-toastify";
+import React, { useState, useRef } from "react";
 import InstructionInput from "./instructions-comps/InstructionInput";
 import {
   instructionInputSelector,
@@ -15,7 +13,6 @@ import {
 import { activeChapterSelector } from "../../store/features/progressSlice";
 import { images } from "../../utils/images";
 import ResetCondition from "./ResetCondition";
-import Msg from "../tutorial/TutModal";
 import { instructionPuzzleTutorialSelector } from "../../store/features/tutorialSlice";
 import { setPuzzleCompleteStatus } from "../../store/features/contentSlice";
 
@@ -78,14 +75,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
       }
     );
   };
-  const showToastMessage = () => {
-    toast(<Msg tutorial={instructionPuzzleTutorial} />, { autoClose: false });
-  };
-  // useLayoutEffect(() => {
-  //   Array.from(resultRef.current.children).forEach((child) => {
-  //     gsap.to(child, { duration: 0.5, scale: 1.2, repeat: 4, yoyo: true });
-  //   });
-  // }, []);
+
   return (
     <div className="instructions-puzzle">
       <div className="content">
@@ -119,7 +109,6 @@ const Instructions = ({ activePuzzle, setWin }) => {
         <div className="controls">
           <img
             ref={tutorialRef}
-            onClick={showToastMessage}
             className="tutorial"
             src={images.uiAssets.info}
             alt=""

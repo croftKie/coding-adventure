@@ -124,11 +124,13 @@ export function gameManager(
     animManager(player, settings, walk);
 
     // Collision functions
-    onCollide("char", "puzzle", (puzzle) => {
-      const { x, y } = puzzle.worldArea().pts[0];
+    onCollide("char", "puzzle", (char, puzzle) => {
+      const left = puzzle.worldArea().pts[0];
+      const right = puzzle.worldArea().pts[2];
+
       const puzzleKey = add([
         sprite("key"),
-        pos(x + 140, y - 50),
+        pos(left.x + ((right.x - left.x) /2), left.y - ((right.y - left.y) / 4)),
         scale(1),
         anchor("bot"),
         area(),
@@ -145,12 +147,13 @@ export function gameManager(
       });
     });
 
-    onCollide("char", "arrow", (arrow) => {
+    onCollide("char", "arrow", (char, arrow) => {
       if (true) {
-        const { x, y } = arrow.worldArea().pts[0];
+        const left = arrow.worldArea().pts[0];
+        const right = arrow.worldArea().pts[2];
         const puzzleStar = add([
           sprite("star"),
-          pos(x + 140, y - 50),
+          pos(left.x + ((right.x - left.x) /2), left.y - ((right.y - left.y) / 4)),
           scale(1),
           anchor("bot"),
           area(),
@@ -177,11 +180,13 @@ export function gameManager(
       }
     });
 
-    onCollide("char", "exit", () => {
-      const { x, y } = arrow.worldArea().pts[0];
+    onCollide("char", "exit", (exit) => {
+      const left = arrow.worldArea().pts[0];
+      const right = arrow.worldArea().pts[2];
+
       const puzzleStar = add([
         sprite("star"),
-        pos(x + 140, y - 50),
+        pos(left.x + ((right.x - left.x) /2), left.y - ((right.y - left.y) / 4)),
         scale(1),
         anchor("bot"),
         area(),

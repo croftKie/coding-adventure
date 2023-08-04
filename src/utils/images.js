@@ -81,8 +81,8 @@ export const images = {
       decorations_ss: "./assets/overworld/spritesheet_tiles.png",
     },
     ui: {
-      music_note: "./assets/overworld/ui/music.png",
-      help_button: "./assets/overworld/ui/question.png",
+      music_note: "./assets/overworld/ui/music.jpeg",
+      help_button: "./assets/overworld/ui/question.jpeg",
       button: "./assets/overworld/ui/button.png",
       next: "./assets/overworld/ui/next.png",
       previous: "./assets/overworld/ui/previous.png",

@@ -180,9 +180,9 @@ export function gameManager(
       }
     });
 
-    onCollide("char", "exit", (exit) => {
-      const left = arrow.worldArea().pts[0];
-      const right = arrow.worldArea().pts[2];
+    onCollide("char", "exit", (char, exit) => {
+      const left = exit.worldArea().pts[0];
+      const right = exit.worldArea().pts[2];
 
       const puzzleStar = add([
         sprite("star"),

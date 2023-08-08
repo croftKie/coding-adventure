@@ -71,10 +71,14 @@ button {
 .contentWindow .content {
   height: 100%;
   width: 100%;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: #333333;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contentWindow .content canvas {
+  border-radius: 10px;
 }
 
 .hud {

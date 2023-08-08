@@ -37,7 +37,6 @@ const Puzzle = ({ content, endGame }) => {
 
   // Dispatch function for opening and closing UI elements
   const toggleUi = (type) => {
-    console.log("fired");
     dispatch(updateUi(type));
   };
   const changeActivePuzzle = (nextPuzzleId) => {
@@ -56,13 +55,10 @@ const Puzzle = ({ content, endGame }) => {
   };
 
   useLayoutEffect(() => {
-    const width = gameRef.current.parentNode.scrollWidth;
-    const height = gameRef.current.parentNode.scrollHeight;
-    console.log(activePuzzle, activeChapter);
     gameManager(
       gameRef.current,
-      width,
-      height,
+      1408,
+      768,
       toggleUi,
       changeActivePuzzle,
       changeActiveChapter,
@@ -70,11 +66,6 @@ const Puzzle = ({ content, endGame }) => {
     );
   }, []);
 
-  // useLayoutEffect(() => {
-  //   const width = gameRef.current.parentNode.scrollWidth;
-  //   const height = gameRef.current.parentNode.scrollHeight;
-  //   gameManager(gameRef.current, width, height, toggleUi);
-  // });
   return (
     <>
       <div className="content">

@@ -37,7 +37,6 @@ const Splash = () => {
     dispatch(changeCurrentChapter(chapter));
   };
 
-
   // returns for other modes
   if (makePuzzle) {
     return <MakePuzzle setMakePuzzle={setMakePuzzle} />;
@@ -46,7 +45,7 @@ const Splash = () => {
   return (
     <div className="splash">
       <div className="splash-content">
-        <Topbar/>
+        <Topbar />
         <div className="logo-bar">
           <img
             onClick={() => {
@@ -58,9 +57,7 @@ const Splash = () => {
           />
           <div className="logo-text">
             <h1>CodeVenture</h1>
-            <h3>
-              Learn to think like a coder
-            </h3>
+            <h3>Learn to think like a coder</h3>
           </div>
         </div>
         <div className="nav">
@@ -77,10 +74,12 @@ const Splash = () => {
               dispatch(updateUi("intro"));
               dispatch(updateUi("splashScreen"));
             }}
-            className="new card">
+            className="new card"
+          >
             <h3>Start New</h3>
             <p>
-              Start a new game as you dive into a world of logic and puzzles. Begins a new game with all puzzles incomplete.
+              Start a new game as you dive into a world of logic and puzzles.
+              Begins a new game with all puzzles incomplete.
             </p>
           </div>
           <div
@@ -94,9 +93,13 @@ const Splash = () => {
             onClick={() => {
               assignChapter(activeChapter), dispatch(updateUi("splashScreen"));
             }}
-            className="continue card">
+            className="continue card"
+          >
             <h3>Continue</h3>
-            <p>Continue where you previously left off, and solve the next chapter of puzzles to reach the exit and escape CyberSpace.</p>
+            <p>
+              Continue where you previously left off, and solve the next chapter
+              of puzzles to reach the exit and escape CyberSpace.
+            </p>
           </div>
         </div>
       </div>

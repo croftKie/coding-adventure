@@ -1,9 +1,9 @@
 import kaboom from "kaboom";
 import { assetLoader, soundLoader } from "./assetLoader";
 import { settings } from "./settings";
-import { levels, options } from "./levelManager";
 import { movementManager, animManager } from "./movementManager";
 import { walkSound } from "./soundManager";
+import { levels, options } from "./levelManager";
 
 export function gameManager(
   gameRef,
@@ -24,10 +24,6 @@ export function gameManager(
     const background = add([
       sprite(settings.bgRef[settings.chapter][settings.level]),
     ]);
-    const groundtiles = addLevel(
-      levels[settings.chapter][settings.level],
-      options[settings.chapter]
-    );
     const bgTut = add([
       pos(width / 2, height / 2),
       rect(width / 2, height - 40),
@@ -99,10 +95,15 @@ export function gameManager(
     const background = add([
       sprite(settings.bgRef[settings.chapter][settings.level]),
     ]);
+    const levelBG = add([
+      sprite(settings.levelRef[settings.chapter][settings.level]),
+    ]);
+
     groundtiles = addLevel(
       levels[settings.chapter][settings.level],
-      options[settings.chapter]
+      options[0]
     );
+
     invisWallCreator([16, 2000], [-20, 0]);
     invisWallCreator([16, 2000], [width, 0]);
     invisWallCreator([2000, 16], [0, 0]);
@@ -130,7 +131,7 @@ export function gameManager(
 
       const puzzleKey = add([
         sprite("key"),
-        pos(left.x + ((right.x - left.x) /2), left.y - ((right.y - left.y) / 4)),
+        pos(left.x + (right.x - left.x) / 2, left.y - (right.y - left.y) / 4),
         scale(1),
         anchor("bot"),
         area(),
@@ -153,7 +154,7 @@ export function gameManager(
         const right = arrow.worldArea().pts[2];
         const puzzleStar = add([
           sprite("star"),
-          pos(left.x + ((right.x - left.x) /2), left.y - ((right.y - left.y) / 4)),
+          pos(left.x + (right.x - left.x) / 2, left.y - (right.y - left.y) / 4),
           scale(1),
           anchor("bot"),
           area(),
@@ -163,13 +164,18 @@ export function gameManager(
           settings.level += 1;
           changeActivePuzzle(settings.level);
 
+          console.log(settings.bgRef[settings.chapter][settings.level]);
+
           background.use(
             sprite(settings.bgRef[settings.chapter][settings.level])
+          );
+          levelBG.use(
+            sprite(settings.levelRef[settings.chapter][settings.level])
           );
           groundtiles.destroy();
           groundtiles = addLevel(
             levels[settings.chapter][settings.level],
-            options[settings.chapter]
+            options[0]
           );
           player.flipX = !player.flipX;
         });
@@ -186,7 +192,7 @@ export function gameManager(
 
       const puzzleStar = add([
         sprite("star"),
-        pos(left.x + ((right.x - left.x) /2), left.y - ((right.y - left.y) / 4)),
+        pos(left.x + (right.x - left.x) / 2, left.y - (right.y - left.y) / 4),
         scale(1),
         anchor("bot"),
         area(),
@@ -202,11 +208,15 @@ export function gameManager(
         background.use(
           sprite(settings.bgRef[settings.chapter][settings.level])
         );
+        levelBG.use(
+          sprite(settings.levelRef[settings.chapter][settings.level])
+        );
+
         groundtiles.destroy();
 
         groundtiles = addLevel(
           levels[settings.chapter][settings.level],
-          options[settings.chapter]
+          options[0]
         );
         player.flipX = !player.flipX;
       });
@@ -244,7 +254,7 @@ export function gameManager(
       "There are lots of puzzles here...",
       "logic, bug fixing and riddles.",
       "By the time you escape...",
-      "you'll be thinking like a coder!"
+      "you'll be thinking like a coder!",
     ];
     let index = 0;
     const l = loop(2, () => {
@@ -256,9 +266,9 @@ export function gameManager(
       ]);
       const byte = add([
         sprite("byte"),
-        pos(width/2 - 200, 100),
+        pos(width / 2 - 200, 100),
         anchor("center"),
-        scale(0.15)
+        scale(0.15),
       ]);
       const dialogue = add([
         text(dialogue_options[index], { size: 20 }),
@@ -272,7 +282,6 @@ export function gameManager(
         l.cancel();
       }
     });
-    
   });
 
   go("tut-1");
@@ -341,5 +350,17 @@ function invisWallCreator(size, position) {
     area(),
     body({ isStatic: true }),
     pos(position[0], position[1]),
+    opacity(0),
+  ]);
+}
+
+function addAsset(spriteRef, scaleRef, position, tag) {
+  add([
+    sprite(spriteRef),
+    area(),
+    scale(scaleRef),
+    body({ isStatic: true }),
+    pos(position[0], position[1]),
+    tag,
   ]);
 }

@@ -9,7 +9,7 @@ Learn to think like a coder with this retro game, built using React, and Redux, 
 </tr>
 </table>
 
-[Kieran Croft ](https://github.com/iharsh234) || [Portfolio](https://www.quandl.com) || [Live Demo ](https://github.com/iharsh234)
+[Kieran Croft ](https://github.com/croftKie) || [Portfolio](https://croftkie.github.io/my-portfolio/) || [Live Demo ](https://croftkie.github.io/coding-adventure/)
 
 
 

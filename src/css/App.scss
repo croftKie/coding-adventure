@@ -133,10 +133,15 @@ button {
   .content {
     height: 100%;
     width: 100%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: $base-black;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    canvas {
+      border-radius: $border-radius-small;
+    }
   }
 }
 

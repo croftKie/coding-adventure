@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@uidotdev/usehooks": "^2.0.1",
     "axios": "^1.4.0",
+    "excalibur": "^0.27.0",
     "gsap": "^3.12.1",
     "kaboom": "^3000.0.14",
     "react": "^18.2.0",

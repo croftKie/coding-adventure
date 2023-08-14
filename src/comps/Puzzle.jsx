@@ -1,5 +1,5 @@
 // React imports
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { gameManager } from "../kaboom/gameManager.js";
 
@@ -7,63 +7,28 @@ import { gameManager } from "../kaboom/gameManager.js";
 import Popup from "./Popup";
 
 // store imports
-import { popUpSelector, updateUi } from "../store/features/UiSlice";
 import {
-  changeCurrentPuzzle,
-  changeCurrentChapter,
-  addCompletedChapter,
-} from "../store/features/progressSlice.js";
-import {
-  setChapterCompleteStatus,
-  setPuzzleCompleteStatus,
-} from "../store/features/contentSlice.js";
-import {
-  activeChapterSelector,
-  activePuzzleSelector,
-} from "../store/features/progressSlice.js";
+  addNewPuzzle,
+  selectT1Puzzle,
+  selectT2Puzzle,
+  selectT3Puzzle,
+} from "../store/features/puzzleSlice.js";
 
 const Puzzle = ({ content, endGame }) => {
+  const [currentType, setCurrentType] = useState(null);
   const dispatch = useDispatch();
   const gameRef = useRef();
-  const popUpStatus = useSelector(popUpSelector);
-  const activePuzzle = useSelector(activePuzzleSelector);
-  const activeChapter = useSelector(activeChapterSelector);
-  const puzzles = content[activeChapter].chapterPuzzles;
+  const t1Selected = useSelector(selectT1Puzzle);
+  const t2Selected = useSelector(selectT2Puzzle);
+  const t3Selected = useSelector(selectT3Puzzle);
 
-  // puzzle filter provides currently selected puzzle - prop drilled to child components
-  const [activePuzzleContent] = puzzles.filter(
-    (puzzle) => puzzle.id === activePuzzle
-  );
-
-  // Dispatch function for opening and closing UI elements
-  const toggleUi = (type) => {
-    dispatch(updateUi(type));
-  };
-  const changeActivePuzzle = (nextPuzzleId) => {
-    dispatch(
-      setPuzzleCompleteStatus({
-        chapterId: activeChapter,
-        puzzleId: activePuzzle,
-      })
-    );
-    dispatch(changeCurrentPuzzle(nextPuzzleId));
-  };
-  const changeActiveChapter = (nextChapter) => {
-    dispatch(setChapterCompleteStatus(activeChapter));
-    dispatch(addCompletedChapter(activeChapter));
-    dispatch(changeCurrentChapter(nextChapter));
+  const updatePuzzle = (type, puzzleData) => {
+    dispatch(addNewPuzzle({ type: type, data: puzzleData }));
+    setCurrentType(type.puzzle_type);
   };
 
   useLayoutEffect(() => {
-    gameManager(
-      gameRef.current,
-      1408,
-      768,
-      toggleUi,
-      changeActivePuzzle,
-      changeActiveChapter,
-      endGame
-    );
+    gameManager(gameRef.current, 1408, 768, endGame, updatePuzzle);
   }, []);
 
   return (
@@ -71,8 +36,16 @@ const Puzzle = ({ content, endGame }) => {
       <div className="content">
         <canvas ref={gameRef}></canvas>;
       </div>
-      {popUpStatus ? (
-        <Popup activePuzzle={activePuzzleContent} toggleUi={toggleUi} />
+      {currentType ? (
+        <Popup
+          activePuzzle={
+            currentType === 1
+              ? t1Selected
+              : currentType === 2
+              ? t2Selected
+              : t3Selected
+          }
+        />
       ) : (
         <></>
       )}

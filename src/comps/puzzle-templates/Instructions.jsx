@@ -10,10 +10,8 @@ import {
   animator,
   resetAnimationPath,
 } from "../../path-animation-library/pathAnimation";
-import { activeChapterSelector } from "../../store/features/progressSlice";
 import { images } from "../../utils/images";
 import ResetCondition from "./ResetCondition";
-import { instructionPuzzleTutorialSelector } from "../../store/features/tutorialSlice";
 import { setPuzzleCompleteStatus } from "../../store/features/contentSlice";
 
 const Instructions = ({ activePuzzle, setWin }) => {
@@ -22,13 +20,7 @@ const Instructions = ({ activePuzzle, setWin }) => {
   const resultRef = useRef();
   const tutorialRef = useRef();
   const instructionInputs = useSelector(instructionInputSelector);
-  const activeChapter = useSelector(activeChapterSelector);
-  const instructionPuzzleTutorial = useSelector(
-    instructionPuzzleTutorialSelector
-  );
   const dispatch = useDispatch();
-  const puzzleAssets = activePuzzle.puzzleAssets;
-  const puzzleAssetsCopy = [...puzzleAssets[0]];
 
   const pushInputs = (type) => {
     setInputs([...inputs, type]);
@@ -46,7 +38,6 @@ const Instructions = ({ activePuzzle, setWin }) => {
   };
   const run = () => {
     const assets = resultRef.current.children;
-    console.log(assets);
     const isRunComplete = animator(
       assets[0],
       instructionInputs,
@@ -65,16 +56,12 @@ const Instructions = ({ activePuzzle, setWin }) => {
           )
         ) {
           setWin(true);
-          dispatch(
-            setPuzzleCompleteStatus({
-              chapterId: activeChapter,
-              puzzleId: activePuzzle.id,
-            })
-          );
         }
       }
     );
   };
+
+  console.log(activePuzzle);
 
   return (
     <div className="instructions-puzzle">
@@ -89,18 +76,20 @@ const Instructions = ({ activePuzzle, setWin }) => {
             style={{
               backgroundImage: `url(${
                 images.puzzleAssets.backgrounds[
-                  puzzleAssets[1].puzzleBgAssets[1]
+                  activePuzzle.type.puzzle_bg_asset
                 ]
               })`,
             }}
-            className="result">
-            {puzzleAssets[0].map((assetRef) => {
+            className="result"
+          >
+            {activePuzzle.data.map((assetRef) => {
               return (
                 <div
                   style={{
-                    transform: `translate(${assetRef.startLocation[0].x}px, ${assetRef.startLocation[0].y}px`,
-                  }}>
-                  <img src={images.puzzleAssets[assetRef.asset]} alt="" />
+                    transform: `translate(${assetRef.x_position}px, ${assetRef.y_position}px`,
+                  }}
+                >
+                  <img src={images.puzzleAssets[assetRef.asset_image]} alt="" />
                 </div>
               );
             })}
@@ -118,25 +107,29 @@ const Instructions = ({ activePuzzle, setWin }) => {
               <button
                 onClick={() => {
                   pushInputs(1);
-                }}>
+                }}
+              >
                 <img src={images.puzzleAssets.ui.up} alt="" />
               </button>
               <button
                 onClick={() => {
                   pushInputs(2);
-                }}>
+                }}
+              >
                 <img src={images.puzzleAssets.ui.right} alt="" />
               </button>
               <button
                 onClick={() => {
                   pushInputs(3);
-                }}>
+                }}
+              >
                 <img src={images.puzzleAssets.ui.down} alt="" />
               </button>
               <button
                 onClick={() => {
                   pushInputs(4);
-                }}>
+                }}
+              >
                 <img src={images.puzzleAssets.ui.left} alt="" />
               </button>
             </div>
@@ -144,13 +137,15 @@ const Instructions = ({ activePuzzle, setWin }) => {
               <button
                 onClick={() => {
                   pushInputs(5);
-                }}>
+                }}
+              >
                 Repeat
               </button>
               <button
                 onClick={() => {
                   pushInputs(6);
-                }}>
+                }}
+              >
                 End
               </button>
             </div>

@@ -1,29 +1,27 @@
 import kaboom from "kaboom";
 import { assetLoader, soundLoader } from "./assetLoader";
-import { settings } from "./settings";
+import { puzzleInfo, settings, updatableSettings } from "./settings";
 import { movementManager, animManager } from "./movementManager";
 import { walkSound } from "./soundManager";
 import { levels, options } from "./levelManager";
+import {
+  getChapterData,
+  getPuzzleData,
+  getPuzzleByID,
+  getGameSettings,
+} from "../utils/fetchData";
+import { init } from "./initGame";
 
-export function gameManager(
-  gameRef,
-  width,
-  height,
-  toggleUi,
-  changeActivePuzzle,
-  changeActiveChapter,
-  endGame
-) {
+export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
   kaboom({ width: width, height: height, canvas: gameRef });
   soundLoader();
   assetLoader();
   setGravity(settings.GRAVITY);
   const walk = walkSound();
 
-  scene("tut-1", () => {
-    const background = add([
-      sprite(settings.bgRef[settings.chapter][settings.level]),
-    ]);
+  scene("tut-1", async () => {
+    await init();
+    const background = add([sprite(puzzleInfo.puzzle_bg_asset)]);
     const bgTut = add([
       pos(width / 2, height / 2),
       rect(width / 2, height - 40),
@@ -88,19 +86,21 @@ export function gameManager(
     }
   });
 
-  scene("1-1", () => {
+  scene("1-1", async () => {
     //variable initialisation and level asset setup
     let groundtiles;
-    let puzzleComplete = false;
-    const background = add([
-      sprite(settings.bgRef[settings.chapter][settings.level]),
-    ]);
+    const background = add([sprite(puzzleInfo.puzzle_bg_asset)]);
     const levelBG = add([
-      sprite(settings.levelRef[settings.chapter][settings.level]),
+      sprite(
+        settings.levelRef[updatableSettings.currentChapter - 1][
+          updatableSettings.currentPuzzle - 1
+        ]
+      ),
     ]);
-
     groundtiles = addLevel(
-      levels[settings.chapter][settings.level],
+      levels[updatableSettings.currentChapter - 1][
+        updatableSettings.currentPuzzle - 1
+      ],
       options[0]
     );
 
@@ -138,11 +138,14 @@ export function gameManager(
         "key",
       ]);
 
-      const popup = onKeyPress("e", () => {
-        toggleUi("popUp");
+      const popup = onKeyPress("e", async () => {
+        const puzzleData = await getPuzzleByID(
+          puzzleInfo.puzzle_type,
+          puzzleInfo.puzzle_id
+        );
+        updatePuzzle(puzzleInfo, puzzleData);
       });
       onCollideEnd("char", "puzzle", () => {
-        puzzleComplete = true;
         puzzleKey.destroy();
         popup.cancel();
       });
@@ -161,11 +164,6 @@ export function gameManager(
           "star",
         ]);
         const change = onKeyPress("e", () => {
-          settings.level += 1;
-          changeActivePuzzle(settings.level);
-
-          console.log(settings.bgRef[settings.chapter][settings.level]);
-
           background.use(
             sprite(settings.bgRef[settings.chapter][settings.level])
           );

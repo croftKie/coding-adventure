@@ -1,107 +1,54 @@
-import React, { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { gsap } from "gsap";
-
-import { images } from "../utils/images";
+import React, { useState } from "react";
 
 import Topbar from "./util-comps/Topbar";
-import MakePuzzle from "./MakePuzzle";
 
-import {
-  changeCurrentChapter,
-  activeChapterSelector,
-} from "../store/features/progressSlice";
-import { updateUi } from "../store/features/UiSlice";
+import StartGame from "./util-comps/startGame";
+import Login from "./util-comps/Login";
+import Maker from "./util-comps/Maker";
 
 const Splash = () => {
-  const dispatch = useDispatch();
-  const [makePuzzle, setMakePuzzle] = useState(false);
-  const cardOne = useRef();
-  const cardTwo = useRef();
-  const logoRef = useRef();
-  const activeChapter = useSelector(activeChapterSelector);
-
-  // Splash card animations
-  const onEnter = (ref) => {
-    gsap.to(ref.current, { scale: 1.1, backgroundColor: "#5AA9E6" });
-  };
-  const onLeave = (ref) => {
-    gsap.to(ref.current, { scale: 1, backgroundColor: "#9AD6FF" });
-  };
-  const spin = (ref) => {
-    gsap.to(ref.current, { rotation: 360, repeat: 4, yoyo: true });
-  };
-
-  // assigns 0 chapter on "start new" or fetches active from local storage
-  const assignChapter = (chapter) => {
-    dispatch(changeCurrentChapter(chapter));
-  };
-
-  // returns for other modes
-  if (makePuzzle) {
-    return <MakePuzzle setMakePuzzle={setMakePuzzle} />;
-  }
+  const [mode, setMode] = useState("login");
 
   return (
     <div className="splash">
+      <div className="login-splash">
+        <Topbar />
+        <h3>Welcome, guest!</h3>
+      </div>
       <div className="splash-content">
         <Topbar />
-        <div className="logo-bar">
-          <img
+        <div className="lower-bar">
+          <button
             onClick={() => {
-              spin(logoRef);
+              setMode("login");
             }}
-            ref={logoRef}
-            src={images.puzzleAssets.byte_right}
-            alt=""
-          />
-          <div className="logo-text">
-            <h1>CodeVenture</h1>
-            <h3>Learn to think like a coder</h3>
-          </div>
-        </div>
-        <div className="nav">
-          <div
-            ref={cardOne}
-            onMouseEnter={() => {
-              onEnter(cardOne);
-            }}
-            onMouseLeave={() => {
-              onLeave(cardOne);
-            }}
-            onClick={() => {
-              assignChapter(0);
-              dispatch(updateUi("intro"));
-              dispatch(updateUi("splashScreen"));
-            }}
-            className="new card"
           >
-            <h3>Start New</h3>
-            <p>
-              Start a new game as you dive into a world of logic and puzzles.
-              Begins a new game with all puzzles incomplete.
-            </p>
-          </div>
-          <div
-            ref={cardTwo}
-            onMouseEnter={() => {
-              onEnter(cardTwo);
-            }}
-            onMouseLeave={() => {
-              onLeave(cardTwo);
-            }}
+            Login
+          </button>
+          <button
             onClick={() => {
-              assignChapter(activeChapter), dispatch(updateUi("splashScreen"));
+              setMode("game");
             }}
-            className="continue card"
           >
-            <h3>Continue</h3>
-            <p>
-              Continue where you previously left off, and solve the next chapter
-              of puzzles to reach the exit and escape CyberSpace.
-            </p>
-          </div>
+            Play Game
+          </button>
+          <button
+            onClick={() => {
+              setMode("maker");
+            }}
+          >
+            Puzzle Maker
+          </button>
         </div>
+        {mode === "login" ? (
+          <Login />
+        ) : mode === "game" ? (
+          <StartGame />
+        ) : mode === "maker" ? (
+          <Maker />
+        ) : (
+          <Login />
+        )}
       </div>
     </div>
   );

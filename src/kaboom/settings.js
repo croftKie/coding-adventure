@@ -10,12 +10,6 @@ export const settings = {
     : 0,
   level_options: 0,
   current_tutorial: 1,
-  bgRef: [
-    ["1-0", "1-1", "1-2"],
-    ["2-1", "2-2", "2-3"],
-    ["3-1", "3-2", "3-3"],
-    ["4-1", "4-2", "4-3"],
-  ],
   levelRef: [
     ["l1", "l2", "l3"],
     ["l4", "l5", "l6"],
@@ -23,3 +17,12 @@ export const settings = {
     ["l10", "l11", "l12"],
   ],
 };
+
+export const updatableSettings = {
+  currentChapter: 2,
+  currentPuzzle: 2,
+};
+
+export const chapterInfo = {};
+
+export const puzzleInfo = {};

@@ -19,18 +19,14 @@ import Landscape from "./comps/Landscape";
 import Ending from "./comps/story-comps/Ending";
 
 // Store import statements
-import {
-  activeChapterSelector,
-} from "./store/features/progressSlice";
+import { activeChapterSelector } from "./store/features/progressSlice";
 import {
   SplashSelector,
   exitOpenSelector,
   introOpenSelector,
   updateUi,
 } from "./store/features/UiSlice";
-import {
-  readContent,
-} from "./store/features/contentSlice";
+import { readContent } from "./store/features/contentSlice";
 import { puzzleTutorialSelector } from "./store/features/tutorialSlice";
 
 function App() {
@@ -53,8 +49,7 @@ function App() {
   }
 
   content.forEach((chapter) => {
-    chapter.chapterPuzzles.forEach((puzzle) => {
-    });
+    chapter.chapterPuzzles.forEach((puzzle) => {});
   });
 
   useEffect(() => {
@@ -96,7 +91,13 @@ function App() {
         <div className="topbar">
           <div className="buttons">
             <div className="item">
-              <img src={images.uiAssets.close} alt="" />
+              <img
+                onClick={() => {
+                  dispatch(updateUi("splashScreen"));
+                }}
+                src={images.uiAssets.close}
+                alt=""
+              />
             </div>
           </div>
         </div>

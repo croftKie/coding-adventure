@@ -125,21 +125,21 @@ export function assetLoader() {
     },
   });
 
-  loadSprite("1-0", images.overworld.bgAssets.a_1);
-  loadSprite("1-1", images.overworld.bgAssets.a_2);
-  loadSprite("1-2", images.overworld.bgAssets.a_3);
+  loadSprite("a_1", images.overworld.bgAssets.a_1);
+  loadSprite("a_2", images.overworld.bgAssets.a_2);
+  loadSprite("a_3", images.overworld.bgAssets.a_3);
 
-  loadSprite("2-1", images.overworld.bgAssets.w_1);
-  loadSprite("2-2", images.overworld.bgAssets.w_2);
-  loadSprite("2-3", images.overworld.bgAssets.w_3);
+  loadSprite("w_1", images.overworld.bgAssets.w_1);
+  loadSprite("w_2", images.overworld.bgAssets.w_2);
+  loadSprite("w_3", images.overworld.bgAssets.w_3);
 
-  loadSprite("3-1", images.overworld.bgAssets.sg_1);
-  loadSprite("3-2", images.overworld.bgAssets.sg_2);
-  loadSprite("3-3", images.overworld.bgAssets.sg_3);
+  loadSprite("sg_1", images.overworld.bgAssets.sg_1);
+  loadSprite("sg_2", images.overworld.bgAssets.sg_2);
+  loadSprite("sg_3", images.overworld.bgAssets.sg_3);
 
-  loadSprite("4-1", images.overworld.bgAssets.sm_1);
-  loadSprite("4-2", images.overworld.bgAssets.sm_2);
-  loadSprite("4-3", images.overworld.bgAssets.sm_3);
+  loadSprite("sm_1", images.overworld.bgAssets.sm_1);
+  loadSprite("sm_2", images.overworld.bgAssets.sm_2);
+  loadSprite("sm_3", images.overworld.bgAssets.sm_3);
 
   loadSprite("l1", images.overworld.levels[0]);
   loadSprite("l2", images.overworld.levels[1]);

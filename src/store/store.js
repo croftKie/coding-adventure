@@ -7,6 +7,7 @@ import tutorialSlice from "./features/tutorialSlice.js";
 import storySlice from "./features/storySlice";
 import puzzleMakerSlice from "./features/puzzleMakerSlice.js";
 import leaderboardSlice from "./features/leaderboardSlice";
+import puzzleSlice from "./features/puzzleSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,5 +19,6 @@ export const store = configureStore({
     story: storySlice,
     puzzleMaker: puzzleMakerSlice,
     leaderboard: leaderboardSlice,
+    puzzle: puzzleSlice,
   },
 });

@@ -133,14 +133,13 @@ button {
   .content {
     height: 100%;
     width: 100%;
-    background-color: $base-black;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-
     canvas {
       border-radius: $border-radius-small;
+      border: $border-dark;
     }
   }
 }
@@ -707,16 +706,12 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  .splash-content {
-    width: 40%;
-    height: 70%;
-    background-color: $base-white;
-    display: grid;
-    grid-template-rows: 20px 1fr 2fr;
-    gap: 20px;
-    border-radius: $border-radius-small;
+  .login-splash {
+    position: absolute;
+    left: 10px;
+    top: 10px;
     border: $border-dark;
-    box-shadow: $box-shadow-dark;
+    border-radius: $border-radius-small;
     .topbar {
       @include topbar();
       .buttons {
@@ -729,18 +724,108 @@ button {
         }
       }
     }
+    h3 {
+      padding: 5px;
+    }
+  }
+  .splash-content {
+    width: 40%;
+    height: 70%;
+    background-color: $base-white;
+    display: grid;
+    grid-template-rows: 20px 30px 1fr;
+    border-radius: $border-radius-small;
+    border: $border-dark;
+    box-shadow: $box-shadow-dark;
+    gap: 10px;
+    .topbar {
+      @include topbar();
+      .buttons {
+        display: flex;
+        gap: 10px;
+        div {
+          img {
+            height: 20px;
+          }
+        }
+      }
+    }
+    .lower-bar {
+      background-color: #5aa9e6;
+      border-bottom: $border-dark;
+      display: flex;
+      button {
+        flex: 1;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        // color: $base-white;
+        font-weight: bold;
+        letter-spacing: 3px;
+        font-size: 1.4rem;
+        font-family: "VT323";
+      }
+    }
+    .login {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      img {
+        height: 120px;
+        width: 25%;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        gap: 20px;
+        input {
+          height: 50px;
+          width: 80%;
+          padding-left: 10px;
+          outline: none;
+          border: $border-dark;
+          box-shadow: $box-shadow-dark;
+        }
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 60%;
+          gap: 20px;
+          input {
+            height: 20px;
+            width: 20px;
+            box-shadow: 3px 3px 0 1px $base-black;
+          }
+        }
+        button {
+          height: 50px;
+          width: 60%;
+          background-color: white;
+          outline: none;
+          border: $border-dark;
+          box-shadow: $box-shadow-dark;
+        }
+      }
+    }
     .logo-bar {
-      grid-row: 2/3;
+      grid-row: 3/4;
       justify-self: center;
       display: flex;
       align-items: center;
       gap: 20px;
+      .logo-text {
+        background-color: transparent;
+      }
       img {
         height: 180px;
       }
     }
     .nav {
-      grid-row: 3/4;
+      grid-row: 4/5;
       display: flex;
       flex-direction: column;
       align-items: center;

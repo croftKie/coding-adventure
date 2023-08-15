@@ -46,3 +46,17 @@ export const updateGameSettings = async (chapter, puzzle) => {
   const { data } = await axios.get();
   return data;
 };
+
+export const setNewUser = async (userData) => {
+  const { data } = await axios.get(
+    `http://localhost:6001/newUser/${userData.email}/${userData.password}`
+  );
+  return data;
+};
+
+export const loginCheck = async (userData) => {
+  const { data } = await axios.get(
+    `http://localhost:6001/signin/${userData.email}/${userData.password}`
+  );
+  return data;
+};

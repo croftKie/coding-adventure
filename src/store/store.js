@@ -8,6 +8,7 @@ import storySlice from "./features/storySlice";
 import puzzleMakerSlice from "./features/puzzleMakerSlice.js";
 import leaderboardSlice from "./features/leaderboardSlice";
 import puzzleSlice from "./features/puzzleSlice";
+import settingsSlice from "./features/settingsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
     puzzleMaker: puzzleMakerSlice,
     leaderboard: leaderboardSlice,
     puzzle: puzzleSlice,
+    settings: settingsSlice,
   },
 });

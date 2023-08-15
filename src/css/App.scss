@@ -764,6 +764,14 @@ button {
         letter-spacing: 3px;
         font-size: 1.4rem;
         font-family: "VT323";
+        border-right: 3px solid black;
+        &:last-of-type {
+          border: none;
+        }
+      }
+      .inactive {
+        background-color: rgb(162, 162, 162);
+        cursor: default;
       }
     }
     .login {
@@ -773,7 +781,15 @@ button {
       justify-content: space-around;
       img {
         height: 120px;
-        width: 25%;
+        width: 20%;
+      }
+      .swap {
+        p {
+          &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
       }
       form {
         display: flex;
@@ -788,6 +804,8 @@ button {
           outline: none;
           border: $border-dark;
           box-shadow: $box-shadow-dark;
+          font-family: "VT323";
+          font-size: 1.25rem;
         }
         div {
           display: flex;

@@ -807,6 +807,14 @@ button {
   letter-spacing: 3px;
   font-size: 1.4rem;
   font-family: "VT323";
+  border-right: 3px solid black;
+}
+.splash .splash-content .lower-bar button:last-of-type {
+  border: none;
+}
+.splash .splash-content .lower-bar .inactive {
+  background-color: rgb(162, 162, 162);
+  cursor: default;
 }
 .splash .splash-content .login {
   display: flex;
@@ -816,7 +824,11 @@ button {
 }
 .splash .splash-content .login img {
   height: 120px;
-  width: 25%;
+  width: 20%;
+}
+.splash .splash-content .login .swap p:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 .splash .splash-content .login form {
   display: flex;
@@ -832,6 +844,8 @@ button {
   outline: none;
   border: 3px solid #333333;
   box-shadow: 5px 5px 0 1px #333333;
+  font-family: "VT323";
+  font-size: 1.25rem;
 }
 .splash .splash-content .login form div {
   display: flex;

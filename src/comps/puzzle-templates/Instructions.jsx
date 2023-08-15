@@ -12,7 +12,6 @@ import {
 } from "../../path-animation-library/pathAnimation";
 import { images } from "../../utils/images";
 import ResetCondition from "./ResetCondition";
-import { setPuzzleCompleteStatus } from "../../store/features/contentSlice";
 
 const Instructions = ({ activePuzzle, setWin }) => {
   const [inputs, setInputs] = useState([]);
@@ -31,10 +30,10 @@ const Instructions = ({ activePuzzle, setWin }) => {
     }
     dispatch(clearInstruction());
     setInputs([]);
-    resetAnimationPath(
-      resultRef.current.children[0],
-      puzzleAssets[0][0].startLocation[0]
-    );
+    resetAnimationPath(resultRef.current.children[0], {
+      x: activePuzzle.data[0].x_position,
+      y: activePuzzle.data[0].y_position,
+    });
   };
   const run = () => {
     const assets = resultRef.current.children;
@@ -43,25 +42,22 @@ const Instructions = ({ activePuzzle, setWin }) => {
       instructionInputs,
       500,
       500,
-      [puzzleAssetsCopy.slice(2)],
+      [activePuzzle.data.slice(2)],
       () => {
         if (isRunComplete.hitStatus) {
           setToggleResetScreen(true);
         }
         if (
-          isPathComplete(
-            assets[0],
-            isRunComplete,
-            puzzleAssets[0][0].endLocation
-          )
+          isPathComplete(assets[0], isRunComplete, {
+            x: activePuzzle.data[1].x_position,
+            y: activePuzzle.data[1].y_position,
+          })
         ) {
           setWin(true);
         }
       }
     );
   };
-
-  console.log(activePuzzle);
 
   return (
     <div className="instructions-puzzle">

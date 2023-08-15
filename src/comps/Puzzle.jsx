@@ -34,7 +34,7 @@ const Puzzle = ({ content, endGame }) => {
   return (
     <>
       <div className="content">
-        <canvas ref={gameRef}></canvas>;
+        <canvas ref={gameRef}></canvas>
       </div>
       {currentType ? (
         <Popup

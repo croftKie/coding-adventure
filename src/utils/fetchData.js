@@ -60,3 +60,10 @@ export const loginCheck = async (userData) => {
   );
   return data;
 };
+
+export const setPuzzleNumber = async (num) => {
+  const { data } = await axios.get(
+    `http://localhost:6001/setPuzzleNumber/${num}`
+  );
+  return data;
+};

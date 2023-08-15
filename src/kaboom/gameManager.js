@@ -9,6 +9,7 @@ import {
   getPuzzleData,
   getPuzzleByID,
   getGameSettings,
+  setPuzzleNumber,
 } from "../utils/fetchData";
 import { init } from "./initGame";
 
@@ -152,6 +153,8 @@ export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
     });
 
     onCollide("char", "arrow", (char, arrow) => {
+      // check if puzzle had been completed
+
       if (true) {
         const left = arrow.worldArea().pts[0];
         const right = arrow.worldArea().pts[2];
@@ -164,15 +167,19 @@ export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
           "star",
         ]);
         const change = onKeyPress("e", () => {
-          background.use(
-            sprite(settings.bgRef[settings.chapter][settings.level])
-          );
+          // change puzzle number in databse settings
+          setPuzzleNumber(updatableSettings.currentPuzzle + 1);
+          init();
+
+          background.use(sprite(puzzleInfo.puzzle_bg_asset));
           levelBG.use(
             sprite(settings.levelRef[settings.chapter][settings.level])
           );
           groundtiles.destroy();
           groundtiles = addLevel(
-            levels[settings.chapter][settings.level],
+            levels[updatableSettings.currentChapter - 1][
+              updatableSettings.currentPuzzle - 1
+            ],
             options[0]
           );
           player.flipX = !player.flipX;
@@ -207,7 +214,11 @@ export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
           sprite(settings.bgRef[settings.chapter][settings.level])
         );
         levelBG.use(
-          sprite(settings.levelRef[settings.chapter][settings.level])
+          sprite(
+            settings.levelRef[updatableSettings.currentChapter - 1][
+              updatableSettings.currentPuzzle - 1
+            ]
+          )
         );
 
         groundtiles.destroy();

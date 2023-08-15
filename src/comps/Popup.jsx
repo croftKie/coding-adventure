@@ -26,7 +26,7 @@ const Popup = ({ activePuzzle }) => {
 
   return (
     <div ref={popupRef} className="popup">
-      {win ? <WinCondition setWin={setWin} toggleUi={toggleUi} /> : <></>}
+      {win ? <WinCondition setWin={setWin} /> : <></>}
       <div className="nav">
         <Topbar close={closeOnPress} name={activePuzzle.type.puzzle_name} />
       </div>

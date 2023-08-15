@@ -1,5 +1,5 @@
-import { images } from "../utils/images";
-import { sounds } from "../utils/sounds";
+import { images } from "../../utils/images";
+import { sounds } from "../../utils/sounds";
 
 export function assetLoader() {
   loadSprite("byte", images.puzzleAssets.byte_right);
@@ -141,21 +141,21 @@ export function assetLoader() {
   loadSprite("sm_2", images.overworld.bgAssets.sm_2);
   loadSprite("sm_3", images.overworld.bgAssets.sm_3);
 
-  loadSprite("l1", images.overworld.levels[0]);
-  loadSprite("l2", images.overworld.levels[1]);
-  loadSprite("l3", images.overworld.levels[2]);
+  loadSprite("a_1_l", images.overworld.levels[0]);
+  loadSprite("a_2_l", images.overworld.levels[1]);
+  loadSprite("a_3_l", images.overworld.levels[2]);
 
-  loadSprite("l4", images.overworld.levels[3]);
-  loadSprite("l5", images.overworld.levels[4]);
-  loadSprite("l6", images.overworld.levels[5]);
+  loadSprite("w_1_l", images.overworld.levels[3]);
+  loadSprite("w_2_l", images.overworld.levels[4]);
+  loadSprite("w_3_l", images.overworld.levels[5]);
 
-  loadSprite("l7", images.overworld.levels[6]);
-  loadSprite("l8", images.overworld.levels[7]);
-  loadSprite("l9", images.overworld.levels[8]);
+  loadSprite("sg_1_l", images.overworld.levels[6]);
+  loadSprite("sg_2_l", images.overworld.levels[7]);
+  loadSprite("sg_3_l", images.overworld.levels[8]);
 
-  loadSprite("l10", images.overworld.levels[9]);
-  loadSprite("l11", images.overworld.levels[10]);
-  loadSprite("l12", images.overworld.levels[11]);
+  loadSprite("sm_1_l", images.overworld.levels[9]);
+  loadSprite("sm_2_l", images.overworld.levels[10]);
+  loadSprite("sm_3_l", images.overworld.levels[11]);
 
   loadSprite("tut-1", images.overworld.tutorialAssets.tut_1);
   loadSprite("tut-2", images.overworld.tutorialAssets.tut_2);

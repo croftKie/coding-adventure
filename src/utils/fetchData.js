@@ -67,3 +67,10 @@ export const setPuzzleNumber = async (num) => {
   );
   return data;
 };
+
+export const setChapterNumber = async (num) => {
+  const { data } = await axios.get(
+    `http://localhost:6001/setChapterNumber/${num}`
+  );
+  return data;
+};

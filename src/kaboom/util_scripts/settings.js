@@ -19,8 +19,8 @@ export const settings = {
 };
 
 export const updatableSettings = {
-  currentChapter: 2,
-  currentPuzzle: 2,
+  currentChapter: 1,
+  currentPuzzle: 1,
 };
 
 export const chapterInfo = {};

@@ -1,7 +1,7 @@
 // React imports
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { gameManager } from "../kaboom/gameManager.js";
+import { gameManager } from "../kaboom/game.js";
 
 // component imports
 import Popup from "./Popup";

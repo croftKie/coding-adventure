@@ -1,17 +1,25 @@
 import kaboom from "kaboom";
-import { assetLoader, soundLoader } from "./assetLoader";
-import { puzzleInfo, settings, updatableSettings } from "./settings";
-import { movementManager, animManager } from "./movementManager";
-import { walkSound } from "./soundManager";
-import { levels, options } from "./levelManager";
+import { assetLoader, soundLoader } from "./loader_scripts/assetLoader";
+import {
+  puzzleInfo,
+  settings,
+  updatableSettings,
+} from "./util_scripts/settings";
+import {
+  movementManager,
+  animManager,
+} from "./manager_scripts/movementManager";
+import { walkSound } from "./manager_scripts/soundManager";
+import { levels, options } from "./manager_scripts/levelManager";
 import {
   getChapterData,
   getPuzzleData,
   getPuzzleByID,
   getGameSettings,
   setPuzzleNumber,
+  setChapterNumber,
 } from "../utils/fetchData";
-import { init } from "./initGame";
+import { init } from "./util_scripts/initGame";
 
 export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
   kaboom({ width: width, height: height, canvas: gameRef });
@@ -88,20 +96,13 @@ export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
   });
 
   scene("1-1", async () => {
+    await init();
     //variable initialisation and level asset setup
     let groundtiles;
     const background = add([sprite(puzzleInfo.puzzle_bg_asset)]);
-    const levelBG = add([
-      sprite(
-        settings.levelRef[updatableSettings.currentChapter - 1][
-          updatableSettings.currentPuzzle - 1
-        ]
-      ),
-    ]);
+    const levelBG = add([sprite(`${puzzleInfo.puzzle_bg_asset}_l`)]);
     groundtiles = addLevel(
-      levels[updatableSettings.currentChapter - 1][
-        updatableSettings.currentPuzzle - 1
-      ],
+      levels[updatableSettings.currentPuzzle - 1],
       options[0]
     );
 
@@ -166,23 +167,9 @@ export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
           area(),
           "star",
         ]);
-        const change = onKeyPress("e", () => {
-          // change puzzle number in databse settings
+        const change = onKeyPress("e", async () => {
           setPuzzleNumber(updatableSettings.currentPuzzle + 1);
-          init();
-
-          background.use(sprite(puzzleInfo.puzzle_bg_asset));
-          levelBG.use(
-            sprite(settings.levelRef[settings.chapter][settings.level])
-          );
-          groundtiles.destroy();
-          groundtiles = addLevel(
-            levels[updatableSettings.currentChapter - 1][
-              updatableSettings.currentPuzzle - 1
-            ],
-            options[0]
-          );
-          player.flipX = !player.flipX;
+          go("1-1");
         });
         onCollideEnd("char", "arrow", () => {
           puzzleStar.destroy();
@@ -205,29 +192,9 @@ export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
       ]);
 
       const change = onKeyPress("e", () => {
-        settings.level = 0;
-        changeActivePuzzle(settings.level);
-        settings.chapter += 1;
-        changeActiveChapter(settings.chapter);
-
-        background.use(
-          sprite(settings.bgRef[settings.chapter][settings.level])
-        );
-        levelBG.use(
-          sprite(
-            settings.levelRef[updatableSettings.currentChapter - 1][
-              updatableSettings.currentPuzzle - 1
-            ]
-          )
-        );
-
-        groundtiles.destroy();
-
-        groundtiles = addLevel(
-          levels[settings.chapter][settings.level],
-          options[0]
-        );
-        player.flipX = !player.flipX;
+        setChapterNumber(updatableSettings.currentChapter + 1);
+        setPuzzleNumber(updatableSettings.currentPuzzle + 1);
+        go("1-1");
       });
 
       onCollideEnd("char", "exit", () => {

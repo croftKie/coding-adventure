@@ -112,14 +112,14 @@ const Instructions = ({ activePuzzle, setWin }) => {
                   pushInputs(2);
                 }}
               >
-                <img src={images.puzzleAssets.ui.right} alt="" />
+                <img src={images.puzzleAssets.ui.down} alt="" />
               </button>
               <button
                 onClick={() => {
                   pushInputs(3);
                 }}
               >
-                <img src={images.puzzleAssets.ui.down} alt="" />
+                <img src={images.puzzleAssets.ui.right} alt="" />
               </button>
               <button
                 onClick={() => {

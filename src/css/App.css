@@ -325,7 +325,6 @@ button {
 }
 .popup .puzzleContent .instructions-puzzle .content .result-container {
   display: grid;
-  grid-template-rows: 4fr 1fr;
   justify-self: center;
 }
 .popup .puzzleContent .instructions-puzzle .content .result-container .result {

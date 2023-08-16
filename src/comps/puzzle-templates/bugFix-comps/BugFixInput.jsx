@@ -7,15 +7,16 @@ import Repeat from "./Repeat";
 import End from "./End";
 
 const BugFixInput = ({ inputs, changeInput }) => {
+  console.log(inputs);
   return (
     <div className="bug-fix-input">
       {inputs.map((input, index) => {
-        switch (input.type) {
+        switch (input.input_type) {
           case "forward":
             return (
               <Forward
                 changeInput={changeInput}
-                placeholder={input.value}
+                placeholder={input.input_value}
                 index={index}
               />
             );
@@ -23,7 +24,7 @@ const BugFixInput = ({ inputs, changeInput }) => {
             return (
               <Backwards
                 changeInput={changeInput}
-                placeholder={input.value}
+                placeholder={input.input_value}
                 index={index}
               />
             );
@@ -31,7 +32,7 @@ const BugFixInput = ({ inputs, changeInput }) => {
             return (
               <Right
                 changeInput={changeInput}
-                placeholder={input.value}
+                placeholder={input.input_value}
                 index={index}
               />
             );
@@ -39,7 +40,7 @@ const BugFixInput = ({ inputs, changeInput }) => {
             return (
               <Left
                 changeInput={changeInput}
-                placeholder={input.value}
+                placeholder={input.input_value}
                 index={index}
               />
             );
@@ -47,12 +48,12 @@ const BugFixInput = ({ inputs, changeInput }) => {
             return (
               <Repeat
                 changeInput={changeInput}
-                placeholder={input.value}
+                placeholder={input.input_value}
                 index={index}
               />
             );
           case "end":
-            return <End placeholder={input.value} index={index} />;
+            return <End placeholder={input.input_value} index={index} />;
           default:
             break;
         }

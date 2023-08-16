@@ -14,12 +14,19 @@ import {
 } from "../../store/features/contentSlice.js";
 import { activeChapterSelector } from "../../store/features/progressSlice.js";
 const BugFix = ({ activePuzzle, setWin }) => {
+  const typeInfo = activePuzzle.type;
+  const assetInfo = activePuzzle.data.slice(0, 2);
+  const inputInfo = activePuzzle.data.filter((item) => {
+    return item.asset_type === 1;
+  });
+
   const puzzleAssets = activePuzzle.puzzleAssets;
   const startLocs = activePuzzle.startLocations;
   const charImg = useRef();
   const goalImg = useRef();
   const activeChapter = useSelector(activeChapterSelector);
   const dispatch = useDispatch();
+
   const run = () => {
     const isRunComplete = animator(
       charImg.current,
@@ -67,37 +74,35 @@ const BugFix = ({ activePuzzle, setWin }) => {
     );
   };
 
+  console.log(activePuzzle.type.puzzle_bg_asset);
   return (
     <div className="bugFix-puzzle">
       <div className="content">
         <div className="input">
-          <BugFixInput changeInput={changeInput} inputs={activePuzzle.inputs} />
+          <BugFixInput changeInput={changeInput} inputs={inputInfo} />
         </div>
         <div
           style={{
             backgroundImage: `url(${
-              images.puzzleAssets.backgrounds[puzzleAssets[1].puzzleBgAssets[1]]
+              images.puzzleAssets.backgrounds[activePuzzle.type.puzzle_bg_asset]
             })`,
           }}
-          className="result">
+          className="result"
+        >
           <img
             ref={charImg}
             style={{
-              transform: `translate(${startLocs[0].x}px, ${startLocs[0].y}px`,
+              transform: `translate(${assetInfo[0].x_position}px, ${assetInfo[1].y_position}px`,
             }}
-            src={
-              images.puzzleAssets.backgrounds[puzzleAssets[1].puzzleAssets[0]]
-            }
+            src={images.puzzleAssets[assetInfo[0].asset_image]}
             alt=""
           />
           <img
             ref={goalImg}
             style={{
-              transform: `translate(${startLocs[1].x}px, ${startLocs[1].y}px`,
+              transform: `translate(${assetInfo[1].x_position}px, ${assetInfo[1].y_positio}px`,
             }}
-            src={
-              images.puzzleAssets.backgrounds[puzzleAssets[1].puzzleAssets[1]]
-            }
+            src={images.puzzleAssets[assetInfo[1].asset_image]}
             alt=""
           />
         </div>

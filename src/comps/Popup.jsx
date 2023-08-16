@@ -33,9 +33,9 @@ const Popup = ({ activePuzzle }) => {
       <div className="puzzleContent">
         {activePuzzle.type.puzzle_type === 1 ? (
           <Instructions setWin={setWin} activePuzzle={activePuzzle} />
-        ) : activePuzzle.type.puzzle_type === 2 ? (
-          <Cryptography setWin={setWin} activePuzzle={activePuzzle} />
         ) : activePuzzle.type.puzzle_type === 3 ? (
+          <Cryptography setWin={setWin} activePuzzle={activePuzzle} />
+        ) : activePuzzle.type.puzzle_type === 2 ? (
           <BugFix setWin={setWin} activePuzzle={activePuzzle} />
         ) : (
           <></>

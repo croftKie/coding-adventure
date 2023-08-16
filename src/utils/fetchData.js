@@ -17,6 +17,7 @@ export const getPuzzleByID = async (type, id) => {
   const { data } = await axios.get(
     `http://localhost:6001/puzzles/${type}/${id}`
   );
+  console.log(data);
   return data;
 };
 

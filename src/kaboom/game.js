@@ -18,6 +18,7 @@ import {
   getGameSettings,
   setPuzzleNumber,
   setChapterNumber,
+  getPuzzleDialogue,
 } from "../utils/fetchData";
 import { init } from "./util_scripts/initGame";
 
@@ -49,7 +50,7 @@ export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
     if (settings.current_tutorial > 1) {
       const backButton = add([
         sprite("previous"),
-        pos(width / 2 - 370, 100),
+        pos(width / 2 - 310, 100),
         anchor("center"),
         area(),
         scale(0.1),
@@ -66,7 +67,7 @@ export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
     if (settings.current_tutorial < 4) {
       const forwardButton = add([
         sprite("next"),
-        pos(width / 2 + 370, 100),
+        pos(width / 2 + 310, 100),
         anchor("center"),
         area(),
         scale(0.1),
@@ -82,7 +83,7 @@ export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
     if (settings.current_tutorial === 4) {
       const exitButton = add([
         sprite("close"),
-        pos(width / 2 + 370, 100),
+        pos(width / 2 + 310, 100),
         anchor("center"),
         area(),
         scale(0.1),
@@ -106,9 +107,12 @@ export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
       options[0]
     );
 
+    // initialises the invisible boundrays of the play area
     invisWallCreator([16, 2000], [-20, 0]);
     invisWallCreator([16, 2000], [width, 0]);
     invisWallCreator([2000, 16], [0, 0]);
+
+    // initialises the HUD assets and interactions
     initHUDAssets();
     HUDInteractionManager();
 
@@ -220,31 +224,30 @@ export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
       });
     });
 
-    const dialogue_options = [
-      "Welcome to Cyberspace!",
-      "I'm Byte! Hi!",
-      "You're not a program.",
-      "Did you get stuck here?",
-      "You'll need to get thinking...",
-      "if you want to get out of here.",
-      "There are lots of puzzles here...",
-      "logic, bug fixing and riddles.",
-      "By the time you escape...",
-      "you'll be thinking like a coder!",
-    ];
+    const dialogue_options = await fetchDialogue(
+      updatableSettings.currentPuzzle
+    );
     let index = 0;
     const l = loop(2, () => {
+      const bg_outline = add([
+        rect(950, 75),
+        pos(width / 2 + 10, 100 + 10),
+        anchor("center"),
+        lifespan(2),
+        color(0, 0, 0),
+      ]);
       const bg = add([
-        rect(500, 75),
+        rect(950, 75),
         pos(width / 2, 100),
         anchor("center"),
         lifespan(2),
       ]);
       const byte = add([
         sprite("byte"),
-        pos(width / 2 - 200, 100),
+        pos(width / 2 - 450, 100),
         anchor("center"),
         scale(0.15),
+        lifespan(2),
       ]);
       const dialogue = add([
         text(dialogue_options[index], { size: 20 }),
@@ -276,6 +279,15 @@ function initHUDAssets() {
     scale(0.1),
     "question",
   ]);
+}
+
+async function fetchDialogue(id) {
+  const dialogue_data = await getPuzzleDialogue(id);
+  const dialogue = [];
+  dialogue_data.forEach((item) => {
+    dialogue.push(item.dialogue);
+  });
+  return dialogue;
 }
 
 function HUDInteractionManager() {

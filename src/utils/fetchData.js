@@ -74,3 +74,10 @@ export const setChapterNumber = async (num) => {
   );
   return data;
 };
+
+export const getPuzzleDialogue = async (id) => {
+  const { data } = await axios.get(
+    `http://localhost:6001/getPuzzleDialogue/${id}`
+  );
+  return data;
+};

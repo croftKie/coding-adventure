@@ -101,7 +101,7 @@ const Login = ({ setEmail, setMode, setLoggedIn, loginTimer }) => {
             setSignInMode(!signInMode);
           }}
         >
-          Switch to sign {signInMode ? "in" : "up"}
+          Switch to sign {signInMode ? "up" : "in"}
         </p>
       </div>
     </div>

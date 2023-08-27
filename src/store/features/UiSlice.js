@@ -5,6 +5,7 @@ const initialState = {
   popUp: false,
   intro: false,
   exit: false,
+  functionGame: false,
 };
 
 const UiSlice = createSlice({
@@ -27,5 +28,6 @@ export const SplashSelector = (state) => state.ui.splashScreen;
 export const popUpSelector = (state) => state.ui.popUp;
 export const introOpenSelector = (state) => state.ui.intro;
 export const exitOpenSelector = (state) => state.ui.exit;
+export const functionGameOpenSelector = (state) => state.ui.functionGame;
 
 export default UiSlice.reducer;

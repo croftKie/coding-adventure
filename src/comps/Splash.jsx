@@ -57,8 +57,8 @@ const Splash = () => {
           >
             Login
           </button>
-          {loggedInButton("game", "Play Game", "active")}
-          {loggedInButton("maker", "Puzzle Maker", "active")}
+          {loggedInButton("game", "Logic Games", "active")}
+          {loggedInButton("maker", "Function Puzzles", "active")}
         </div>
         {mode === "login" ? (
           <Login

@@ -23,11 +23,12 @@ import { activeChapterSelector } from "./store/features/progressSlice";
 import {
   SplashSelector,
   exitOpenSelector,
+  functionGameOpenSelector,
   introOpenSelector,
   updateUi,
 } from "./store/features/UiSlice";
 import { readContent } from "./store/features/contentSlice";
-import { puzzleTutorialSelector } from "./store/features/tutorialSlice";
+import FunctionsGame from "./comps/FunctionsGame";
 
 function App() {
   // component variable declarations
@@ -37,6 +38,7 @@ function App() {
   const splashStatus = useSelector(SplashSelector);
   const introOpenState = useSelector(introOpenSelector);
   const exitOpenState = useSelector(exitOpenSelector);
+  const functionGameOpenState = useSelector(functionGameOpenSelector);
   const content = useSelector(readContent);
   const [page, setPage] = useState(0);
   const [screenSize, setScreenSize] = useState(getCurrentDimensions());
@@ -67,7 +69,13 @@ function App() {
     dispatch(updateUi("exit"));
   };
 
+  console.log(functionGameOpenState);
   // Returns based on splash screen status and chapter complete status and default return
+  if (functionGameOpenState) {
+    console.log("fired");
+    return <FunctionsGame />;
+  }
+
   if (screenSize.width - 200 <= screenSize.height) {
     return <Landscape />;
   }

@@ -1,0 +1,120 @@
+.root-content {
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-rows: 50px 1fr;
+}
+.root-content .nav {
+  grid-row: 1/2;
+  border-bottom: 5px solid #333333;
+  background-color: #fff8ef;
+  color: #333333;
+  padding: 0 2% 0 2%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.root-content .nav img {
+  height: 35px;
+}
+.root-content .content {
+  padding: 2%;
+  background-color: #fff8ef;
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  -moz-column-gap: 1%;
+       column-gap: 1%;
+}
+.root-content .content .editor-pane {
+  grid-column: 1/2;
+  display: grid;
+  grid-template-rows: 50px 1fr 50px;
+}
+.root-content .content .editor-pane .language {
+  color: #333333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.root-content .content .editor-pane .language select {
+  color: #333333;
+  width: 15%;
+  height: 50%;
+  border: 2px solid #333333;
+  background-color: transparent;
+  padding-left: 1%;
+  box-shadow: 3px 3px 0 1px #333333;
+}
+.root-content .content .editor-pane section {
+  border: 5px solid #333333;
+  border-radius: 5px;
+}
+.root-content .content .editor-pane .challenges {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  font-size: 1.2rem;
+}
+.root-content .content .editor-pane .challenges p {
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  border: 2px solid white;
+  background-color: #fff8ef;
+  box-shadow: 3px 3px 0 1px rgb(240, 240, 240);
+}
+.root-content .content .editor-pane .challenges .active {
+  background-color: rgb(126, 126, 196);
+  color: black;
+}
+.root-content .content .editor-pane .challenges .complete {
+  background-color: rgb(121, 221, 156);
+  color: black;
+}
+.root-content .content .results-pane {
+  display: grid;
+  grid-template-rows: 7fr 3fr;
+  row-gap: 1%;
+}
+.root-content .content .results-pane .results {
+  background-color: #fff8ef;
+  border: 5px solid #333333;
+  border-radius: 5px;
+  padding: 2%;
+}
+.root-content .content .results-pane .results p {
+  font-weight: normal;
+}
+.root-content .content .results-pane .results .statusText {
+  font-weight: bold;
+}
+.root-content .content .results-pane .results .resultsText {
+  font-weight: bold;
+}
+.root-content .content .results-pane .console {
+  background-color: #fff8ef;
+  border: 5px solid #333333;
+  border-radius: 5px;
+  overflow-y: scroll;
+  padding: 2%;
+}
+.root-content .content .results-pane .controls {
+  background-color: #fff8ef;
+  border: 5px solid #333333;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 3%;
+  justify-content: space-around;
+  align-items: center;
+}
+.root-content .content .results-pane .controls button {
+  height: 30%;
+  width: 50%;
+  background-color: #fff8ef;
+  outline: none;
+  border: 2px solid #333333;
+  box-shadow: 5px 5px 0 1px #333333;
+}/*# sourceMappingURL=FunctionGame.css.map */

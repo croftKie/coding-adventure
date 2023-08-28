@@ -1,5 +1,4 @@
 import React from "react";
-import { activeChapterSelector } from "../../../store/features/progressSlice.js";
 import { useSelector, useDispatch } from "react-redux";
 import { changeCryptoInput } from "../../../store/features/contentSlice.js";
 

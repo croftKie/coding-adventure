@@ -1,7 +1,5 @@
 import { gsap } from "gsap";
-
 import React, { useState, useRef } from "react";
-
 import Instructions from "./puzzle-templates/Instructions";
 import BugFix from "./puzzle-templates/BugFix";
 import Cryptography from "./puzzle-templates/Cryptography";
@@ -26,7 +24,11 @@ const Popup = ({ activePuzzle }) => {
 
   return (
     <div ref={popupRef} className="popup">
-      {win ? <WinCondition setWin={setWin} /> : <></>}
+      {win ? (
+        <WinCondition activePuzzle={activePuzzle} setWin={setWin} />
+      ) : (
+        <></>
+      )}
       <div className="nav">
         <Topbar close={closeOnPress} name={activePuzzle.type.puzzle_name} />
       </div>

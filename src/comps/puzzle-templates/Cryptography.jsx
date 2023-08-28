@@ -6,7 +6,6 @@ import {
   resetCryptoInput,
   setPuzzleCompleteStatus,
 } from "../../store/features/contentSlice.js";
-import { activeChapterSelector } from "../../store/features/progressSlice.js";
 import { images } from "../../utils/images.js";
 
 const Cryptography = ({ setWin, activePuzzle }) => {
@@ -28,14 +27,14 @@ const Cryptography = ({ setWin, activePuzzle }) => {
     }
     dispatch(
       addCryptoResults({
-        activeChapter: activeChapter,
+        activeChapter: 1,
         activePuzzle: activePuzzle.id,
         result: results,
       })
     );
     dispatch(
       setPuzzleCompleteStatus({
-        chapterId: activeChapter,
+        chapterId: 1,
         puzzleId: activePuzzle.id,
       })
     );

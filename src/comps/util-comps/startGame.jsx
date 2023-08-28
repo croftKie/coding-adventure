@@ -1,9 +1,5 @@
 import React, { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  changeCurrentChapter,
-  activeChapterSelector,
-} from "../../store/features/progressSlice";
 import { gsap } from "gsap";
 import { images } from "../../utils/images";
 import { updateUi } from "../../store/features/UiSlice";
@@ -13,7 +9,6 @@ const StartGame = () => {
   const cardTwo = useRef();
   const logoRef = useRef();
   const dispatch = useDispatch();
-  const activeChapter = useSelector(activeChapterSelector);
 
   // Splash card animations
   const onEnter = (ref) => {
@@ -77,7 +72,7 @@ const StartGame = () => {
             onLeave(cardTwo);
           }}
           onClick={() => {
-            assignChapter(activeChapter), dispatch(updateUi("splashScreen"));
+            dispatch(updateUi("splashScreen"));
           }}
           className="continue card"
         >

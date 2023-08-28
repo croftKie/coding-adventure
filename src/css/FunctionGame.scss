@@ -6,14 +6,26 @@
   .nav {
     grid-row: 1/2;
     border-bottom: 5px solid #333333;
-    background-color: #fff8ef;
+    background-color: #5aa9e6;
     color: #333333;
     padding: 0 2% 0 2%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
     img {
       height: 35px;
+    }
+    div {
+      display: flex;
+      gap: 20px;
+    }
+    button {
+      height: 60%;
+      width: 5%;
+      background-color: #fff8ef;
+      outline: none;
+      border: 2px solid #333333;
+      box-shadow: 5px 5px 0 1px #333333;
     }
   }
   .content {
@@ -56,12 +68,12 @@
           height: 30px;
           width: 30px;
           text-align: center;
-          border: 2px solid white;
+          border: 2px solid #333333;
           background-color: #fff8ef;
-          box-shadow: 3px 3px 0 1px rgb(240, 240, 240);
+          box-shadow: 3px 3px 0 1px #333333;
         }
         .active {
-          background-color: rgb(126, 126, 196);
+          background-color: #5aa9e6;
           color: black;
         }
         .complete {

@@ -12,13 +12,11 @@ import {
 import { walkSound } from "./manager_scripts/soundManager";
 import { levels, options } from "./manager_scripts/levelManager";
 import {
-  getChapterData,
-  getPuzzleData,
   getPuzzleByID,
-  getGameSettings,
   setPuzzleNumber,
   setChapterNumber,
   getPuzzleDialogue,
+  getPuzzleCompletedStatus,
 } from "../utils/fetchData";
 import { init } from "./util_scripts/initGame";
 
@@ -157,10 +155,12 @@ export function gameManager(gameRef, width, height, endGame, updatePuzzle) {
       });
     });
 
-    onCollide("char", "arrow", (char, arrow) => {
+    onCollide("char", "arrow", async (char, arrow) => {
       // check if puzzle had been completed
-
-      if (true) {
+      const puzzleCompleteStatusData = await getPuzzleCompletedStatus(
+        puzzleInfo.puzzle_id
+      );
+      if (puzzleCompleteStatusData[0].completed_status) {
         const left = arrow.worldArea().pts[0];
         const right = arrow.worldArea().pts[2];
         const puzzleStar = add([

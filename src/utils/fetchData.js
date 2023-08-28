@@ -17,7 +17,6 @@ export const getPuzzleByID = async (type, id) => {
   const { data } = await axios.get(
     `http://localhost:6001/puzzles/${type}/${id}`
   );
-  console.log(data);
   return data;
 };
 
@@ -39,6 +38,12 @@ export const getCurrentPuzzleInfo = async (id) => {
 export const setPuzzleCompletedStatus = async (puzzle_id) => {
   const { data } = await axios.get(
     `http://localhost:6001/puzzleComplete/${puzzle_id}`
+  );
+  return data;
+};
+export const getPuzzleCompletedStatus = async (puzzle_id) => {
+  const { data } = await axios.get(
+    `http://localhost:6001/getPuzzleComplete/${puzzle_id}`
   );
   return data;
 };

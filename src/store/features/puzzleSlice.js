@@ -13,10 +13,11 @@ const puzzleSlice = createSlice({
     addNewPuzzle: (state, action) => {
       state[`type${action.payload.type.puzzle_type}_puzzle`] = action.payload;
     },
+    addInputType2: (state, action) => {},
   },
 });
 
-export const { addNewPuzzle } = puzzleSlice.actions;
+export const { addNewPuzzle, addInputType2 } = puzzleSlice.actions;
 
 export const selectT1Puzzle = (state) => {
   return state.puzzle.type1_puzzle;

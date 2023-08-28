@@ -1,7 +1,8 @@
 import React from "react";
 import { images } from "../../utils/images";
+import { setPuzzleCompletedStatus } from "../../utils/fetchData";
 
-const WinCondition = ({ setWin }) => {
+const WinCondition = ({ activePuzzle, setWin }) => {
   return (
     <div className="win-condition">
       <div className="topbar"></div>
@@ -16,6 +17,7 @@ const WinCondition = ({ setWin }) => {
           <button
             onClick={() => {
               setWin(false);
+              setPuzzleCompletedStatus(activePuzzle.type.puzzle_id);
             }}
           >
             Mark as Complete

@@ -39,7 +39,7 @@ const Login = ({ setEmail, setMode, setLoggedIn, loginTimer }) => {
       }
     });
     const check = await loginCheck(data);
-    if (check.length === 1) {
+    if (check) {
       setLoggedIn(true);
       loginTimer();
       setMode("game");

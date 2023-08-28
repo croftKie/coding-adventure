@@ -7,7 +7,6 @@ import Repeat from "./Repeat";
 import End from "./End";
 
 const BugFixInput = ({ inputs, changeInput }) => {
-  console.log(inputs);
   return (
     <div className="bug-fix-input">
       {inputs.map((input, index) => {

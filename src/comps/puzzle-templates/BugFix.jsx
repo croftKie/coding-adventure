@@ -1,80 +1,61 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import BugFixInput from "./bugFix-comps/bugFixInput";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { images } from "../../utils/images";
 import {
   animator,
   isPathComplete,
   resetAnimationPath,
 } from "../../path-animation-library/pathAnimation.js";
-import {
-  changeBugFixInstructions,
-  resetBugFixInstructions,
-  setPuzzleCompleteStatus,
-} from "../../store/features/contentSlice.js";
-import { activeChapterSelector } from "../../store/features/progressSlice.js";
 const BugFix = ({ activePuzzle, setWin }) => {
-  const typeInfo = activePuzzle.type;
   const assetInfo = activePuzzle.data.slice(0, 2);
   const inputInfo = activePuzzle.data.filter((item) => {
     return item.asset_type === 1;
   });
-
-  const puzzleAssets = activePuzzle.puzzleAssets;
-  const startLocs = activePuzzle.startLocations;
+  const inputs = inputInfo.map((input) => {
+    return {
+      type: input.input_type,
+      value: input.input_value,
+    };
+  });
   const charImg = useRef();
   const goalImg = useRef();
-  const activeChapter = useSelector(activeChapterSelector);
   const dispatch = useDispatch();
 
   const run = () => {
     const isRunComplete = animator(
       charImg.current,
-      activePuzzle.inputs,
+      inputs,
       500,
       500,
       [],
       () => {
         if (
-          isPathComplete(
-            charImg.current,
-            isRunComplete,
-            activePuzzle.endLocations[0]
-          )
+          isPathComplete(charImg.current, isRunComplete, {
+            x: assetInfo[1].x_position,
+            y: assetInfo[1].y_position,
+          })
         ) {
           setWin(true);
-          dispatch(
-            setPuzzleCompleteStatus({
-              chapterId: activeChapter,
-              puzzleId: activePuzzle.id,
-            })
-          );
         }
       }
     );
   };
   const reset = () => {
-    dispatch(
-      resetBugFixInstructions({
-        chapterIndex: activeChapter,
-        puzzleIndex: activePuzzle.id,
-      })
-    );
-    resetAnimationPath(charImg.current, startLocs[0]);
+    resetAnimationPath(charImg.current, {
+      x: assetInfo[0].x_position,
+      y: assetInfo[0].y_position,
+    });
   };
 
   const changeInput = (payload) => {
-    dispatch(
-      changeBugFixInstructions({
-        chapterIndex: activeChapter,
-        puzzleIndex: activePuzzle.id,
-        inputToChange: payload[0],
-        change: payload[1],
-      })
-    );
+    console.log(inputInfo[payload[0]].x_position);
+    inputInfo[payload[0]].x_position = 10000;
+    console.log(inputInfo[payload[0]].x_position);
   };
 
-  console.log(activePuzzle.type.puzzle_bg_asset);
+  console.log(activePuzzle);
+
   return (
     <div className="bugFix-puzzle">
       <div className="content">
@@ -92,7 +73,7 @@ const BugFix = ({ activePuzzle, setWin }) => {
           <img
             ref={charImg}
             style={{
-              transform: `translate(${assetInfo[0].x_position}px, ${assetInfo[1].y_position}px`,
+              transform: `translate(${assetInfo[0].x_position}px, ${assetInfo[0].y_position}px`,
             }}
             src={images.puzzleAssets[assetInfo[0].asset_image]}
             alt=""
@@ -100,7 +81,7 @@ const BugFix = ({ activePuzzle, setWin }) => {
           <img
             ref={goalImg}
             style={{
-              transform: `translate(${assetInfo[1].x_position}px, ${assetInfo[1].y_positio}px`,
+              transform: `translate(${assetInfo[1].x_position}px, ${assetInfo[1].y_position}px`,
             }}
             src={images.puzzleAssets[assetInfo[1].asset_image]}
             alt=""

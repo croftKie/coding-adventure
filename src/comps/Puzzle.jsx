@@ -14,7 +14,7 @@ import {
   selectT3Puzzle,
 } from "../store/features/puzzleSlice.js";
 
-const Puzzle = ({ content, endGame }) => {
+const Puzzle = ({ endGame }) => {
   const [currentType, setCurrentType] = useState(null);
   const dispatch = useDispatch();
   const gameRef = useRef();

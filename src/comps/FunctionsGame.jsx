@@ -5,6 +5,8 @@ import { challengeSelector } from "../store/features/challengeSlice";
 import { useSelector } from "react-redux";
 import Test from "../croftest/logic";
 import functionLogo from "../assets/function.png";
+import { updateUi } from "../store/features/UiSlice";
+import { useDispatch } from "react-redux";
 
 function FunctionsGame() {
   const editorRef = useRef(null);
@@ -15,6 +17,7 @@ function FunctionsGame() {
   const challenges = useSelector(challengeSelector);
   const [currentChallenge, setcurrentChallenge] = useState(0);
   const selectedChallenge = challenges[currentChallenge];
+  const dispatch = useDispatch();
 
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor;
@@ -82,8 +85,17 @@ function FunctionsGame() {
   return (
     <div className="root-content">
       <div className="nav">
-        <img src={functionLogo} alt="" />
-        <h1>CodeVenture - Functions</h1>
+        <div>
+          <img src={functionLogo} alt="" />
+          <h1>CodeVenture - Functions</h1>
+        </div>
+        <button
+          onClick={() => {
+            dispatch(updateUi("functionGame"));
+          }}
+        >
+          Go Back
+        </button>
       </div>
       <div className="content">
         <div className="editor-pane">

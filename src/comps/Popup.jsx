@@ -1,14 +1,13 @@
 import { gsap } from "gsap";
 import React, { useState, useRef } from "react";
 import Instructions from "./puzzle-templates/Instructions";
-import BugFix from "./puzzle-templates/BugFix";
 import Cryptography from "./puzzle-templates/Cryptography";
 import WinCondition from "./puzzle-templates/WinCondition";
 import Topbar from "./util-comps/Topbar";
 import { useDispatch } from "react-redux";
 import { updateUi } from "../store/features/UiSlice";
 
-const Popup = ({ activePuzzle }) => {
+const Popup = ({ setCurrentType, activePuzzle }) => {
   // variable declarations
   const [win, setWin] = useState(false);
   const popupRef = useRef();
@@ -19,6 +18,7 @@ const Popup = ({ activePuzzle }) => {
     gsap.to(popupRef.current, { opacity: 0 });
     setTimeout(() => {
       dispatch(updateUi("popUp"));
+      setCurrentType(null);
     }, 1000);
   };
 
@@ -35,10 +35,8 @@ const Popup = ({ activePuzzle }) => {
       <div className="puzzleContent">
         {activePuzzle.type.puzzle_type === 1 ? (
           <Instructions setWin={setWin} activePuzzle={activePuzzle} />
-        ) : activePuzzle.type.puzzle_type === 3 ? (
-          <Cryptography setWin={setWin} activePuzzle={activePuzzle} />
         ) : activePuzzle.type.puzzle_type === 2 ? (
-          <BugFix setWin={setWin} activePuzzle={activePuzzle} />
+          <Cryptography setWin={setWin} activePuzzle={activePuzzle} />
         ) : (
           <></>
         )}

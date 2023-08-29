@@ -59,7 +59,6 @@ function App() {
 
   // Returns based on splash screen status and chapter complete status and default return
   if (functionGameOpenState) {
-    console.log("fired");
     return <FunctionsGame />;
   }
 

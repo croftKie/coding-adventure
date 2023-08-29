@@ -1,43 +1,36 @@
 import React, { useState } from "react";
 import Clues from "./cryptography-comps/Clues.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addCryptoResults,
-  resetCryptoInput,
-  setPuzzleCompleteStatus,
-} from "../../store/features/contentSlice.js";
 import { images } from "../../utils/images.js";
 
 const Cryptography = ({ setWin, activePuzzle }) => {
   const [openPage, setOpenPage] = useState(0);
-  const dispatch = useDispatch();
-  const activeChapter = useSelector(activeChapterSelector);
+  const [attemptMade, setAttemptMade] = useState(false);
+  const arr = [];
+  const compareArr = [];
+  activePuzzle.data.forEach((result) => {
+    arr.push(result.user_input.split(""));
+    compareArr.push(result.win_condition.split(""));
+  });
+
+  const results = [];
+  arr.forEach((item, index) => {
+    for (let i = 0; i < item.length; i++) {
+      if (item[i] === compareArr[index][i]) {
+        results.push(true);
+      } else {
+        results.push(false);
+      }
+    }
+  });
 
   const checkWin = () => {
-    const results = activePuzzle.winCondition.map((condition, i) => {
-      return condition.map((figure, j) => {
-        return figure === activePuzzle.inputs[i][j];
-      });
-    });
-    const test = results.filter((step) => {
-      return step.includes(false);
-    });
-    if (test.length === 0) {
+    if (
+      !results.find((el) => {
+        return el === false;
+      })
+    ) {
       setWin(true);
     }
-    dispatch(
-      addCryptoResults({
-        activeChapter: 1,
-        activePuzzle: activePuzzle.id,
-        result: results,
-      })
-    );
-    dispatch(
-      setPuzzleCompleteStatus({
-        chapterId: 1,
-        puzzleId: activePuzzle.id,
-      })
-    );
   };
 
   return (
@@ -50,8 +43,8 @@ const Cryptography = ({ setWin, activePuzzle }) => {
           <div className="part-one">
             <img
               src={
-                activePuzzle.results.length > 0
-                  ? activePuzzle.results[0][0]
+                attemptMade
+                  ? results[0]
                     ? images.puzzleAssets.ui.light_success
                     : images.puzzleAssets.ui.light_fail
                   : images.puzzleAssets.ui.light_off
@@ -60,8 +53,8 @@ const Cryptography = ({ setWin, activePuzzle }) => {
             />
             <img
               src={
-                activePuzzle.results.length > 0
-                  ? activePuzzle.results[0][1]
+                attemptMade
+                  ? results[1]
                     ? images.puzzleAssets.ui.light_success
                     : images.puzzleAssets.ui.light_fail
                   : images.puzzleAssets.ui.light_off
@@ -70,8 +63,8 @@ const Cryptography = ({ setWin, activePuzzle }) => {
             />
             <img
               src={
-                activePuzzle.results.length > 0
-                  ? activePuzzle.results[0][2]
+                attemptMade
+                  ? results[2]
                     ? images.puzzleAssets.ui.light_success
                     : images.puzzleAssets.ui.light_fail
                   : images.puzzleAssets.ui.light_off
@@ -82,8 +75,8 @@ const Cryptography = ({ setWin, activePuzzle }) => {
           <div className="part-two">
             <img
               src={
-                activePuzzle.results.length > 0
-                  ? activePuzzle.results[1][0]
+                attemptMade
+                  ? results[3]
                     ? images.puzzleAssets.ui.light_success
                     : images.puzzleAssets.ui.light_fail
                   : images.puzzleAssets.ui.light_off
@@ -92,8 +85,8 @@ const Cryptography = ({ setWin, activePuzzle }) => {
             />
             <img
               src={
-                activePuzzle.results.length > 0
-                  ? activePuzzle.results[1][1]
+                attemptMade
+                  ? results[4]
                     ? images.puzzleAssets.ui.light_success
                     : images.puzzleAssets.ui.light_fail
                   : images.puzzleAssets.ui.light_off
@@ -102,8 +95,8 @@ const Cryptography = ({ setWin, activePuzzle }) => {
             />
             <img
               src={
-                activePuzzle.results.length > 0
-                  ? activePuzzle.results[1][2]
+                attemptMade
+                  ? results[5]
                     ? images.puzzleAssets.ui.light_success
                     : images.puzzleAssets.ui.light_fail
                   : images.puzzleAssets.ui.light_off
@@ -114,8 +107,8 @@ const Cryptography = ({ setWin, activePuzzle }) => {
           <div className="part-three">
             <img
               src={
-                activePuzzle.results.length > 0
-                  ? activePuzzle.results[2][0]
+                attemptMade
+                  ? results[6]
                     ? images.puzzleAssets.ui.light_success
                     : images.puzzleAssets.ui.light_fail
                   : images.puzzleAssets.ui.light_off
@@ -124,8 +117,8 @@ const Cryptography = ({ setWin, activePuzzle }) => {
             />
             <img
               src={
-                activePuzzle.results.length > 0
-                  ? activePuzzle.results[2][1]
+                attemptMade
+                  ? results[7]
                     ? images.puzzleAssets.ui.light_success
                     : images.puzzleAssets.ui.light_fail
                   : images.puzzleAssets.ui.light_off
@@ -134,8 +127,8 @@ const Cryptography = ({ setWin, activePuzzle }) => {
             />
             <img
               src={
-                activePuzzle.results.length > 0
-                  ? activePuzzle.results[2][2]
+                attemptMade
+                  ? results[8]
                     ? images.puzzleAssets.ui.light_success
                     : images.puzzleAssets.ui.light_fail
                   : images.puzzleAssets.ui.light_off
@@ -147,18 +140,11 @@ const Cryptography = ({ setWin, activePuzzle }) => {
         <div className="buttons">
           <button
             onClick={() => {
-              dispatch(
-                resetCryptoInput({
-                  activeChapter: activeChapter,
-                  activePuzzle: activePuzzle.id,
-                })
-              );
+              setAttemptMade(true);
+              checkWin();
             }}
-            className="reset"
+            className="run"
           >
-            Reset
-          </button>
-          <button onClick={checkWin} className="run">
             Run
           </button>
         </div>

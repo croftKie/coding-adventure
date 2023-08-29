@@ -6,7 +6,7 @@ import Maker from "./util-comps/Maker";
 
 const Splash = () => {
   const [mode, setMode] = useState("login");
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [loginSplashTimer, setLoginSplashTimer] = useState(false);
   const [email, setEmail] = useState(null);
 

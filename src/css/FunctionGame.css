@@ -91,10 +91,11 @@
   row-gap: 1%;
 }
 .root-content .content .results-pane .results {
-  background-color: #fff8ef;
+  background-color: #333333;
   border: 5px solid #333333;
   border-radius: 5px;
   padding: 2%;
+  color: #fff8ef;
 }
 .root-content .content .results-pane .results p {
   font-weight: normal;
@@ -104,13 +105,6 @@
 }
 .root-content .content .results-pane .results .resultsText {
   font-weight: bold;
-}
-.root-content .content .results-pane .console {
-  background-color: #fff8ef;
-  border: 5px solid #333333;
-  border-radius: 5px;
-  overflow-y: scroll;
-  padding: 2%;
 }
 .root-content .content .results-pane .controls {
   background-color: #fff8ef;

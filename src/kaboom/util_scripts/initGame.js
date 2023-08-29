@@ -1,12 +1,9 @@
 import {
-  getChapterData,
-  getPuzzleData,
-  getPuzzleByID,
   getGameSettings,
   getCurrentChapterInfo,
   getCurrentPuzzleInfo,
 } from "../../utils/fetchData";
-import { updatableSettings, chapterInfo, puzzleInfo } from "./settings";
+import { updatableSettings, puzzleInfo } from "./settings";
 
 export const init = async () => {
   const settings = await getGameSettings();

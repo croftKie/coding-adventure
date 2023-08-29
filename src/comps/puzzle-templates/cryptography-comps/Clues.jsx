@@ -1,95 +1,94 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { changeCryptoInput } from "../../../store/features/contentSlice.js";
+import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { addUserInput } from "../../../store/features/puzzleSlice.js";
 
 const Clues = ({ activePuzzle, openPage }) => {
+  const partOneRef = useRef();
+  const partTwoRef = useRef();
+  const partThreeRef = useRef();
   const dispatch = useDispatch();
-  const input = {
-    activeChapter: useSelector(activeChapterSelector),
-    activePuzzle: activePuzzle.id,
-  };
-  const onInput = (obj, inputIndex, value, part) => {
-    obj["inputIndex"] = inputIndex;
-    obj["value"] = value;
-    obj["part"] = part;
-    console.log(obj);
-    dispatch(changeCryptoInput(obj));
+
+  const onInput = (index, ref) => {
+    const results = Array.from(ref.current.children).map((child) => {
+      return child.value || 0;
+    });
+    dispatch(addUserInput({ input: index, value: results.join("") }));
   };
   return (
     <>
       <div className="cryptography-input">
         <div className="clues">
-          {activePuzzle.clues.map((clue, index) => {
-            return <p>{`Part ${index + 1}: ${clue}`}</p>;
+          {activePuzzle.data.map((clue) => {
+            return <p>{`Part ${clue.clue_number}: ${clue.clue_text}`}</p>;
           })}
         </div>
       </div>
       <div className="input-values">
-        <div className={"inputPartOne"}>
+        <div ref={partOneRef} className={"inputPartOne"}>
           <input
             placeholder={0}
             onBlur={(e) => {
-              onInput(input, 0, e.target.value, 0);
+              onInput(0, partOneRef);
             }}
             type="text"
           />
           <input
             placeholder={0}
             onBlur={(e) => {
-              onInput(input, 1, e.target.value, 0);
+              onInput(0, partOneRef);
             }}
             type="text"
           />
           <input
             placeholder={0}
             onBlur={(e) => {
-              onInput(input, 2, e.target.value, 0);
-            }}
-            type="text"
-          />
-        </div>
-        <div className={"inputPartTwo"}>
-          <input
-            placeholder={0}
-            onBlur={(e) => {
-              onInput(input, 0, e.target.value, 1);
-            }}
-            type="text"
-          />
-          <input
-            placeholder={0}
-            onBlur={(e) => {
-              onInput(input, 1, e.target.value, 1);
-            }}
-            type="text"
-          />
-          <input
-            placeholder={0}
-            onBlur={(e) => {
-              onInput(input, 2, e.target.value, 1);
+              onInput(0, partOneRef);
             }}
             type="text"
           />
         </div>
-        <div className={"inputPartThree"}>
+        <div ref={partTwoRef} className={"inputPartTwo"}>
           <input
             placeholder={0}
             onBlur={(e) => {
-              onInput(input, 0, e.target.value, 2);
+              onInput(1, partTwoRef);
             }}
             type="text"
           />
           <input
             placeholder={0}
             onBlur={(e) => {
-              onInput(input, 1, e.target.value, 2);
+              onInput(1, partTwoRef);
             }}
             type="text"
           />
           <input
             placeholder={0}
             onBlur={(e) => {
-              onInput(input, 2, e.target.value, 2);
+              onInput(1, partTwoRef);
+            }}
+            type="text"
+          />
+        </div>
+        <div ref={partThreeRef} className={"inputPartThree"}>
+          <input
+            placeholder={0}
+            onBlur={(e) => {
+              onInput(2, partThreeRef);
+            }}
+            type="text"
+          />
+          <input
+            placeholder={0}
+            onBlur={(e) => {
+              onInput(2, partThreeRef);
+            }}
+            type="text"
+          />
+          <input
+            placeholder={0}
+            onBlur={(e) => {
+              onInput(2, partThreeRef);
             }}
             type="text"
           />

@@ -88,10 +88,11 @@
       grid-template-rows: 7fr 3fr;
       row-gap: 1%;
       .results {
-        background-color: #fff8ef;
+        background-color: #333333;
         border: 5px solid #333333;
         border-radius: 5px;
         padding: 2%;
+        color: #fff8ef;
         p {
           font-weight: normal;
         }
@@ -101,13 +102,6 @@
         .resultsText {
           font-weight: bold;
         }
-      }
-      .console {
-        background-color: #fff8ef;
-        border: 5px solid #333333;
-        border-radius: 5px;
-        overflow-y: scroll;
-        padding: 2%;
       }
       .controls {
         background-color: #fff8ef;

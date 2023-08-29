@@ -87,3 +87,10 @@ export const getPuzzleDialogue = async (id) => {
   );
   return data;
 };
+
+export const setPuzzleType2Input = async (id, direction, value) => {
+  const { data } = await axios.get(
+    `http://localhost:6001/setPuzzleType2Input/${id}/${direction}/${value}`
+  );
+  return data;
+};

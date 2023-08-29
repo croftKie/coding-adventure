@@ -11,7 +11,6 @@ import {
   addNewPuzzle,
   selectT1Puzzle,
   selectT2Puzzle,
-  selectT3Puzzle,
 } from "../store/features/puzzleSlice.js";
 
 const Puzzle = ({ endGame }) => {
@@ -20,7 +19,6 @@ const Puzzle = ({ endGame }) => {
   const gameRef = useRef();
   const t1Selected = useSelector(selectT1Puzzle);
   const t2Selected = useSelector(selectT2Puzzle);
-  const t3Selected = useSelector(selectT3Puzzle);
 
   const updatePuzzle = (type, puzzleData) => {
     dispatch(addNewPuzzle({ type: type, data: puzzleData }));
@@ -38,13 +36,8 @@ const Puzzle = ({ endGame }) => {
       </div>
       {currentType ? (
         <Popup
-          activePuzzle={
-            currentType === 1
-              ? t1Selected
-              : currentType === 2
-              ? t2Selected
-              : t3Selected
-          }
+          setCurrentType={setCurrentType}
+          activePuzzle={currentType === 1 ? t1Selected : t2Selected}
         />
       ) : (
         <></>

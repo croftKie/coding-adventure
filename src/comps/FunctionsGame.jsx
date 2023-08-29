@@ -13,7 +13,6 @@ function FunctionsGame() {
   const resultsRef = useRef();
   const challengesRef = useRef();
   const currentChallengeNumberRef = useRef();
-  const consoleRef = useRef();
   const challenges = useSelector(challengeSelector);
   const [currentChallenge, setcurrentChallenge] = useState(0);
   const selectedChallenge = challenges[currentChallenge];

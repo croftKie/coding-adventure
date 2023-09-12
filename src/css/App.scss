@@ -732,7 +732,7 @@ button {
     height: 70%;
     background-color: $base-white;
     display: grid;
-    grid-template-rows: 20px 30px 1fr;
+    grid-template-rows: 20px 1fr;
     border-radius: $border-radius-small;
     border: $border-dark;
     box-shadow: $box-shadow-dark;

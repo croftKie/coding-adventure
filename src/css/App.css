@@ -767,7 +767,7 @@ button {
   height: 70%;
   background-color: #fff8ef;
   display: grid;
-  grid-template-rows: 20px 30px 1fr;
+  grid-template-rows: 20px 1fr;
   border-radius: 10px;
   border: 3px solid #333333;
   box-shadow: 5px 5px 0 1px #333333;

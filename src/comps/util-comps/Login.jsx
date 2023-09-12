@@ -1,7 +1,5 @@
 import React from "react";
-import { images } from "../../utils/images";
 import { useState } from "react";
-import { loginCheck, setNewUser } from "../../utils/fetchData";
 
 const Login = ({ setEmail, setMode, setLoggedIn, loginTimer }) => {
   const [signInMode, setSignInMode] = useState(true);

@@ -86,14 +86,14 @@ function FunctionsGame() {
       <div className="nav">
         <div>
           <img src={functionLogo} alt="" />
-          <h1>CodeVenture - Functions</h1>
+          <h1>CodeVenture</h1>
         </div>
         <button
           onClick={() => {
             dispatch(updateUi("functionGame"));
           }}
         >
-          Go Back
+          Log Out
         </button>
       </div>
       <div className="content">

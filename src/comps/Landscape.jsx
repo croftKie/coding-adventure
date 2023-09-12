@@ -9,7 +9,7 @@ const Landscape = () => {
           <div className="logo-text">
             <h1>CodeVenture</h1>
             <h3>
-              A visual novel for <br /> learning to code
+              Challenges for <br /> learning to code
             </h3>
           </div>
         </div>

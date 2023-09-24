@@ -11,6 +11,8 @@ const initialState = {
       test_placeholder: `function myFunction(args){
         return args
       }`,
+      test_description:
+        "Given an unknown number of integers, can you create a function that returns the sum of all those integers.",
     },
     {
       test_names: [
@@ -35,6 +37,8 @@ const initialState = {
       test_placeholder: `function myFunction(args){
         return args
       }`,
+      test_description:
+        "You are a given a single word, or a sentence of several words and asked to remove the first and last letter of the word, or every word in the array.",
     },
     {
       test_names: [
@@ -45,12 +49,14 @@ const initialState = {
       test_inputs: [
         "myFunction(['abba'])",
         "myFunction(['No lemon, no melon'])",
-        "myFunction([dog, madam, racecar])",
+        "myFunction(['dog', 'madam', 'racecar'])",
       ],
       test_results: [true, true, [false, true, true]],
       test_placeholder: `function myFunction(args){
         return args
       }`,
+      test_description:
+        "The palindrome test... can you determine if a single word, a sentence or each entry in a multi-word array is a true palindrome",
     },
   ],
   completedChallenges: [],

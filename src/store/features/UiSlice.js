@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  splashScreen: false,
+  splashScreen: Number(localStorage.getItem("splash")) === 1 ? false : true,
   functionGame: true,
 };
 

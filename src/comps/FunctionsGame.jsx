@@ -25,7 +25,6 @@ function FunctionsGame() {
   function showValue(editorRef, resultsRef) {
     const numOfTests = selectedChallenge.test_names.length;
     const codeEditorFunction = editorRef.current.getValue();
-
     const results = [];
     const output = [];
     for (let i = 0; i < numOfTests; i++) {
@@ -64,12 +63,12 @@ function FunctionsGame() {
       resultSpace.innerText = output[index];
     });
 
-    const hasPassedChecks = results.find((el) => {
-      return el === "FAILED";
+    const hasPassedChecks = results.map((el) => {
+      return el !== "PASSED" ? 0 : 1;
     });
 
-    if (hasPassedChecks) {
-      currentChallengeNumberRef.current.classList.add("complete");
+    if (!hasPassedChecks.includes(0)) {
+      challengesRef.current.classList.add("complete");
     }
   }
 
@@ -90,10 +89,12 @@ function FunctionsGame() {
         </div>
         <button
           onClick={() => {
-            dispatch(updateUi("functionGame"));
+            localStorage.removeItem("splash");
+            localStorage.setItem("splash", 0);
+            dispatch(updateUi("splashScreen"));
           }}
         >
-          Log Out
+          Go Back
         </button>
       </div>
       <div className="content">
@@ -130,6 +131,10 @@ function FunctionsGame() {
           </div>
         </div>
         <div className="results-pane">
+          <div className="controls">
+            <h3>Challenge Description</h3>
+            <p>{selectedChallenge.test_description}</p>
+          </div>
           <div ref={resultsRef} className="results">
             <p>Console://</p>
             {selectedChallenge.test_names.map((name, index) => {

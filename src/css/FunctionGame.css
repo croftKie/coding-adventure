@@ -76,6 +76,7 @@
   border: 2px solid #333333;
   background-color: #fff8ef;
   box-shadow: 3px 3px 0 1px #333333;
+  cursor: pointer;
 }
 .root-content .content .editor-pane .challenges .active {
   background-color: #5aa9e6;
@@ -87,7 +88,7 @@
 }
 .root-content .content .results-pane {
   display: grid;
-  grid-template-rows: 7fr 3fr;
+  grid-template-rows: 3fr 7fr 3fr;
   row-gap: 1%;
 }
 .root-content .content .results-pane .results {
